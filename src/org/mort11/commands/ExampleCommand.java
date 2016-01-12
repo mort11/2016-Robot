@@ -1,9 +1,8 @@
 
-package org.usfirst.frc.team11.robot.commands;
+package org.mort11.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc.team11.robot.Robot;
+import org.mort11.Robot;
 
 /**
  *
