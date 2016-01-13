@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public abstract class DTSide extends Subsystem {
     private Talon motors;
     private Encoder enc;
-    private double curVal = 0;
+//    private double curVal = 0;
     private boolean motorReverse;
     
     public DTSide(int motorPort, int encAPort, int encBPort, boolean motorReverse,
@@ -21,15 +21,34 @@ public abstract class DTSide extends Subsystem {
     	enc.setDistancePerPulse(1); //placeholder value
     	this.motorReverse = motorReverse;
     }
-    
-    
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void setSpeed(double speed){
+    	motors.set(speed);
+    }
+    
+    public double getSpeed(){
+    	return motors.get();
+    }
+    
+    public double getDist(){
+    	return enc.getDistance();
+    }
+    
+    public double getEncRate(){
+    	return enc.getRate();
+    }
+    
+    public void resetEnc() {
+    	enc.reset();
+    }
+    
+    
+    
+    
 }
 
