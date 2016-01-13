@@ -4,9 +4,6 @@ package org.mort11.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 
-/**
- *
- */
 public class ExampleCommand extends Command {
 
     public ExampleCommand() {
