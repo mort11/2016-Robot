@@ -5,10 +5,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class LeftDT extends Subsystem {
+public class DTRight extends DTSide {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+   public DTRight(){
+	   super(0, 1, 2, false, false); //placeholder values
+   }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
