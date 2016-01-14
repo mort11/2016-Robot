@@ -1,13 +1,18 @@
 package org.mort11.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import static org.mort11.Robot.rightSide;
 
 /**
  *
  */
-public class DriveLinearRight extends Command {
-
+public class DriveLinearRight extends DriveLinear {
+	
     public DriveLinearRight() {
+    	super(rightSide);
+    	
+    	
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

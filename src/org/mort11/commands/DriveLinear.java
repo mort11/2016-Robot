@@ -1,13 +1,21 @@
 package org.mort11.commands;
 
+import org.mort11.subsystems.DTSide;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveLinear extends Command {
-
-    public DriveLinear() {
+public abstract class DriveLinear extends Command {
+	protected DTSide side;
+	
+    public DriveLinear(DTSide drivetrain) {
+    	requires(drivetrain);
+    	setInterruptible(true);
+    	side = drivetrain;
+    	
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -18,6 +26,7 @@ public class DriveLinear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

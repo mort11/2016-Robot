@@ -1,19 +1,27 @@
 package org.mort11.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+import static org.mort11.Robot.leftSide;
 /**
  *
  */
-public class DriveLinearLeft extends Command {
 
+public class DriveLinearLeft extends DriveLinear {
+	
     public DriveLinearLeft() {
+    	super(leftSide);
+    	
+    	
+    	
+    	
+    	
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    /*protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,5 +40,5 @@ public class DriveLinearLeft extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    }
+    }*/
 }
