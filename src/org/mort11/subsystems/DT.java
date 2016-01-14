@@ -1,6 +1,7 @@
 package org.mort11.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -12,8 +13,8 @@ import edu.wpi.first.wpilibj.Talon;
 public class DT extends Subsystem {
    private final static double kCircumference = 4 * Math.PI;
    Talon leftTal = new Talon(0);
-   Talon rightTal = new Talon(1);
-   Encoder leftEnc = new Encoder(0,1);
+   Talon rightTal = new Talon(2);
+   Encoder leftEnc = new Encoder(2,3,false,EncodingType.k4X);
    
    public DT() {
 	   leftEnc.setDistancePerPulse(kCircumference/256);
@@ -29,7 +30,7 @@ public class DT extends Subsystem {
     
     public void driveSpeed(double speed) {
     	leftTal.set(speed);
-    	rightTal.set(speed);
+    	rightTal.set(-speed);
     }
     
     public void stop() {

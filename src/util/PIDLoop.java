@@ -9,7 +9,7 @@ public class PIDLoop {
 	boolean isNear = false; //whether we can shift from P to I, will tell us
 							//when we can start the timer
 	double currTime = 0,oldTime = 0;
-	Timer timer;
+	Timer timer = new Timer();
 	public PIDLoop(double target,double kP, double kI) {
 		this.target = target;
 		this.kP = kP;
@@ -17,10 +17,11 @@ public class PIDLoop {
 	}
 	
 	public double getOutput(double  pos){
-		double error = pos - target;
+		double error = target - pos;
 		//shift to I
-		if (error/pos < 0.2){
+		if (Math.abs(error/pos) < 0.2){
 			System.out.println("I loop");
+			System.out.println("Error: " + error);
 			if (!isNear) {
 				timer.start();
 				isNear = true;

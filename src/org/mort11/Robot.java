@@ -20,7 +20,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         oi = new OI();
         autonomousCommand = new ExampleCommand();
-        DrivePIDCommand = new DrivePID(); 
+        DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {
@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        if (autonomousCommand != null) DrivePIDCommand.cancel();
     }
 
     public void disabledInit() {

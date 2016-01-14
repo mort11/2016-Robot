@@ -27,7 +27,7 @@ public class DrivePID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	loopFunction = new PIDLoop(target, 0.01, 0);
+    	loopFunction = new PIDLoop(target, 0.01, 0.01);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,16 +41,18 @@ public class DrivePID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//2 inch threshold and slow
-        if(Robot.dt.getDist() > target - 2 && Robot.dt.getDist() < target + 2 
-        		&& Math.abs(vel) < 0.2) {
+        if(Math.abs(Robot.dt.getDist()/target) > 0.98  
+        		&& Math.abs(vel) < 0.35) {
         	return true;
         }
+        System.out.println(Math.abs(Robot.dt.getDist()/target));
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.dt.resetEnc();
+    	Robot.dt.stop();
     }
 
     // Called when another command which requires one or more of the same
