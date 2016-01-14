@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DTLeft extends DTSide {
 	 
     
-	
 	   public DTLeft(){
 		   super (RobotMap.DT_LEFT_PORT, RobotMap.DT_ENC_LEFT_A, RobotMap.DT_ENC_LEFT_B, false, false); //placeholder values 
 	   }
