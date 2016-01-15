@@ -6,13 +6,15 @@ import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.ShootingMechanism;
 import org.mort11.OI;
 import org.mort11.RobotMap;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+//install mDNS client (check if already installed): http://wpilib.screenstepslive.com/s/4485/m/13503/l/242608-roborio-networking
+
 public class Robot extends IterativeRobot {
+	
 
 	public static final ShootingMechanism ShootMech = new ShootingMechanism();
 	public static OI oi;
