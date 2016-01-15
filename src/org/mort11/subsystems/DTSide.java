@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public abstract class DTSide extends Subsystem {
-    private Talon motors;
-    private Encoder enc;
+    private static Talon motors;
+    private static Encoder enc;
     // private double curVal = 0;
     private boolean motorReverse;
 
@@ -22,23 +22,23 @@ public abstract class DTSide extends Subsystem {
 
     }
 
-    public double getSpeed() {
+    public static double getSpeed() {
         return motors.get();
     }
 
-    public void setSpeed(double speed) {
+    public static void setSpeed(double speed) {
         motors.set(speed);
     }
 
-    public double getDist() {
+    public static double getDist() {
         return enc.getDistance();
     }
 
-    public double getEncRate() {
+    public static double getEncRate() {
         return enc.getRate();
     }
 
-    public void resetEnc() {
+    public static void resetEnc() {
         enc.reset();
     }
 }
