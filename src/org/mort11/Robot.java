@@ -4,6 +4,7 @@ import org.mort11.commands.DrivePID;
 import org.mort11.subsystems.DT;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.ShootingMechanism;
+import org.mort11.subsystems.ee.Rollers;
 import org.mort11.OI;
 import org.mort11.RobotMap;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -21,6 +22,7 @@ public class Robot extends IterativeRobot {
     public static final DT dt = new DT();
     public static final Pneumatics piston = new Pneumatics(RobotMap.Pne_Eng1, RobotMap.Pne_Eng2);
     public static final ShootingMechanism intakeArm = new ShootingMechanism();
+    public static final Rollers Rollers = new Rollers();
     Command autonomousCommand;
     Command DrivePIDCommand;
 
