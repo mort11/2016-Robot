@@ -16,11 +16,11 @@ public abstract class DriveLinear extends Command {
     }
 
     protected abstract double getSpeed();
-    // Called repeatedly when this Command is scheduled to run
+
     protected void execute() {
-    	side.getSpeed();
+        side.getSpeed();
     }
-    
+
     protected boolean isFinished() {
         return false;
     }

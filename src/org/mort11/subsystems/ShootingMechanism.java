@@ -11,40 +11,40 @@ import org.mort11.RobotMap;
 import util.EEConstants;
 
 
-public class ShootingMechanism extends Subsystem{
+public class ShootingMechanism extends Subsystem {
 
-	private Talon ArmMotor;
-	private DigitalInput LimSwitch;
-	private Encoder ArmEnc;
-	private AnalogPotentiometer ArmPot;
-	
-	public ShootingMechanism(){
-		ArmMotor = new Talon(RobotMap.ARM_TAL_1);
-		LimSwitch = new DigitalInput(RobotMap.ARM_LIM);
-		ArmEnc = new Encoder(RobotMap.ARM_ENC_1, RobotMap.ARM_ENC_2, true, EncodingType.k4X);
-		ArmPot = new AnalogPotentiometer(RobotMap.ARM_POT);
-		ArmEnc.reset();
-		ArmEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
-	}
-	
-	public void initDefaultCommand() {
-		}
-	
-	public void setSpeed(double speed){
-		ArmMotor.set(speed);
-	}
-	
-	public boolean isLimSwitch(){
-		return LimSwitch.get();
-	}
-	
-	public double getDistance(){
-		return ArmEnc.getDistance();
-	}
-	
-	public double getAngle(){
-		return ArmPot.get();
-	}
-	
-	
+    private Talon ArmMotor;
+    private DigitalInput LimSwitch;
+    private Encoder ArmEnc;
+    private AnalogPotentiometer ArmPot;
+
+    public ShootingMechanism() {
+        ArmMotor = new Talon(RobotMap.ARM_TAL_1);
+        LimSwitch = new DigitalInput(RobotMap.ARM_LIM);
+        ArmEnc = new Encoder(RobotMap.ARM_ENC_1, RobotMap.ARM_ENC_2, true, EncodingType.k4X);
+        ArmPot = new AnalogPotentiometer(RobotMap.ARM_POT);
+        ArmEnc.reset();
+        ArmEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
+    }
+
+    public void initDefaultCommand() {
+    }
+
+    public void setSpeed(double speed) {
+        ArmMotor.set(speed);
+    }
+
+    public boolean isLimSwitch() {
+        return LimSwitch.get();
+    }
+
+    public double getDistance() {
+        return ArmEnc.getDistance();
+    }
+
+    public double getAngle() {
+        return ArmPot.get();
+    }
+
+
 }
