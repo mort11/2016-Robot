@@ -8,8 +8,9 @@ public class DriveLinearRight extends DriveLinear {
     public DriveLinearRight() {
         super(rightSide);
     }
-    protected double getSpeed(){
-    	return oi.getRightJoy();
+
+    protected double getSpeed() {
+        return oi.getRightJoy();
     }
 
     protected void initialize() {

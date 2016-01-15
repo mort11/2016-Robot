@@ -19,7 +19,6 @@ public abstract class DTSide extends Subsystem {
     }
 
     public void initDefaultCommand() {
-
     }
 
     public static double getSpeed() {
