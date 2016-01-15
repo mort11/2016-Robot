@@ -9,28 +9,31 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class TurnDegrees extends Command {
 	
-	Timer timer;
-	double curVal;
-	double time;
+//	Timer timer;
+	double error;
+	double angle;
+	double currentAngle;
 
-    public TurnDegrees() {
+    public TurnDegrees(double angle) { //takes desired angle for turning (between -180 and 180)
+    	this.angle = angle;
     	requires(Robot.leftSide);
         requires(Robot.rightSide);
     }
 
     protected void initialize() {
-    	timer = new Timer();
-    	timer.start();
+//    	timer = new Timer();
+//    	timer.start();
     }
 
     protected void execute() {
-    	Robot.leftSide.setSpeed(curVal);
-    	Robot.rightSide.setSpeed(-curVal);
+    	error = angle - currentAngle; 
+    	Robot.leftSide.setSpeed(error);
+    	Robot.rightSide.setSpeed(-error);
     }
 
 
     protected boolean isFinished() {
-        return timer.get() > time;
+        return currentAngle == angle;
     }
 
     protected void end() {
