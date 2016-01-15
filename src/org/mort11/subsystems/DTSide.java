@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import util.DTConstants;
 
 public abstract class DTSide extends Subsystem {
     private static Talon motors;
@@ -14,14 +15,15 @@ public abstract class DTSide extends Subsystem {
     public DTSide(int motorPort, int encAPort, int encBPort, boolean motorReverse, boolean encReverse) {
         motors = new Talon(motorPort);
         enc = new Encoder(encAPort, encBPort, encReverse, EncodingType.k4X);
-        enc.setDistancePerPulse(1); // Placeholder value
+        enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE); // Placeholder value
         this.motorReverse = motorReverse;
     }
 
     public void initDefaultCommand() {
+
     }
 
-    public static double getSpeed() {
+    public double getSpeed() {
         return motors.get();
     }
 

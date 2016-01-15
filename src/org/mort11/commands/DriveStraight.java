@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveStraight extends Command {
 
-<<<<<<< HEAD
 	private double driveDistance;
 	private DTSide left = Robot.leftSide;
 	private DTSide right = Robot.rightSide;
@@ -26,28 +25,12 @@ public class DriveStraight extends Command {
        pd = new PIDLoop(driveDistance, .01, 0);
        curDist = DTSide.getDist();
        speed = pd.getOutput(curDist);
-=======
-    private double driveDistance;
-    private DTSide left = Robot.leftSide;
-    private DTSide right = Robot.rightSide;
-    private Timer timer;
-
-    public DriveStraight() {
-        requires(left);
-        requires(right);
-        timer = new Timer();
->>>>>>> 9310cbde147d90fc109c008c4e69157523d37b0a
     }
 
     protected void initialize() {
-<<<<<<< HEAD
     	DTSide.resetEnc();
     	timer.start();
-    	
-    	
-=======
-        timer.start();
->>>>>>> 9310cbde147d90fc109c008c4e69157523d37b0a
+
     }
 
     protected void execute() {
