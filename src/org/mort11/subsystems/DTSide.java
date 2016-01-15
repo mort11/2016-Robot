@@ -41,7 +41,5 @@ public abstract class DTSide extends Subsystem {
     public void resetEnc() {
         enc.reset();
     }
-
-
 }
 
