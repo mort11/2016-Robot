@@ -2,6 +2,7 @@ package org.mort11.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import static org.mort11.Robot.rightSide;
+import static org.mort11.Robot.oi;
 
 /**
  *
@@ -15,6 +16,9 @@ public class DriveLinearRight extends DriveLinear {
     	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    }
+    protected double getSpeed(){
+    	return oi.getRightJoy();
     }
 
     // Called just before this Command runs the first time
