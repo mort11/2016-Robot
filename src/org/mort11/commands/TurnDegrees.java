@@ -12,7 +12,7 @@ public class TurnDegrees extends Command {
 //	Timer timer;
 	double error;
 	double angle;
-	double currentAngle;
+	double currentAngle; //need way to get angle of robot
 
     public TurnDegrees(double angle) { //takes desired angle for turning (between -180 and 180)
     	this.angle = angle;
@@ -26,7 +26,7 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-    	error = angle - currentAngle; 
+    	error = angle - currentAngle; //gets angle that robot has to change
     	Robot.leftSide.setSpeed(error);
     	Robot.rightSide.setSpeed(-error);
     }
