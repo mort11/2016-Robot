@@ -23,8 +23,6 @@ public class DriveStraight extends Command {
        requires(right);
        timer = new Timer();
        pd = new PIDLoop(driveDistance, .01, 0);
-       curDist = DTSide.getDist();
-       speed = pd.getOutput(curDist);
     }
 
     protected void initialize() {
@@ -34,6 +32,8 @@ public class DriveStraight extends Command {
     }
 
     protected void execute() {
+        curDist = DTSide.getDist();
+        speed = pd.getOutput(curDist);
     	DTSide.setSpeed(speed);
     	
     	
