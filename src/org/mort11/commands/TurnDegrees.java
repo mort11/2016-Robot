@@ -15,7 +15,6 @@ public class TurnDegrees extends Command {
 	private double speed;
 	private double angle;
 	private double curAngle; //need way to get angle of robot
-	//private boolean inTreshHold;
 
     public TurnDegrees(double angle) { //takes desired angle for turning (between -180 and 180)
     	this.angle = angle;
@@ -36,7 +35,7 @@ public class TurnDegrees extends Command {
 
 
     protected boolean isFinished() {
-        return this.inTreshHold();
+        return this.inTresh();
     }
 
     protected void end(){
@@ -46,8 +45,8 @@ public class TurnDegrees extends Command {
 
        protected void interrupted() {
     }
-     protected boolean inTreshHold(){
-    	if(speed<.1&& speed >-.1){
+     protected boolean inTresh(){
+    	if (speed < .1 && speed > -.1){
     		return true;
     	}
     	else{
