@@ -7,6 +7,7 @@ import util.PIDLoop;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveStraight extends Command {
 
@@ -35,7 +36,8 @@ public class DriveStraight extends Command {
         curDist = DTSide.getDist();
         speed = pd.getOutput(curDist);
     	DTSide.setSpeed(speed);
-    	
+    	SmartDashboard.putNumber("Distance Traveled", DTSide.getDist()); //gets and displays distance traveled
+    	SmartDashboard.putNumber("PWM Value", DTSide.getCurent()); //gets raw PWM value, unsure of what value means
     	
     }
 
