@@ -1,4 +1,4 @@
-package org.mort11.commands;
+package org.mort11.commands.dt;
 
 import static org.mort11.Robot.oi;
 

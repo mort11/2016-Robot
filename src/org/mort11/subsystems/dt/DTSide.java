@@ -1,4 +1,4 @@
-package org.mort11.subsystems;
+package org.mort11.subsystems.dt;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.kauailabs.navx.frc.AHRS.SerialDataType;

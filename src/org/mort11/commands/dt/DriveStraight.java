@@ -1,7 +1,7 @@
-package org.mort11.commands;
+package org.mort11.commands.dt;
 
 import org.mort11.Robot;
-import org.mort11.subsystems.DTSide;
+import org.mort11.subsystems.dt.DTSide;
 
 import util.PIDLoop;
 import edu.wpi.first.wpilibj.Talon;

@@ -1,8 +1,8 @@
-package org.mort11.commands;
+package org.mort11.commands.dt;
 
 import org.mort11.Robot;
-import org.mort11.subsystems.DTLeft;
-import org.mort11.subsystems.DTSide;
+import org.mort11.subsystems.dt.DTLeft;
+import org.mort11.subsystems.dt.DTSide;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;

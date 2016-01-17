@@ -1,7 +1,8 @@
-package org.mort11.commands;
+package org.mort11.commands.dt;
+
+import org.mort11.subsystems.dt.DTSide;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.mort11.subsystems.DTSide;
 
 public abstract class DriveLinear extends Command {
     protected DTSide side;

@@ -1,5 +1,5 @@
 
-package org.mort11.subsystems;
+package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
