@@ -1,6 +1,7 @@
 package org.mort11.commands;
 
 import org.mort11.Robot;
+import org.mort11.subsystems.DTLeft;
 import org.mort11.subsystems.DTSide;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -29,7 +30,7 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-    	speed = pd.getOutput(angle);
+    	speed = pd.getOutput(Robot.leftSide.getAngle());
     	Robot.leftSide.setSpeed(speed);
     	Robot.rightSide.setSpeed(-speed);
     	SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
