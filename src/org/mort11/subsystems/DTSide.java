@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import util.DTConstants;
 
 public abstract class DTSide extends Subsystem {
-    
+	
 	private static TalonSRX motors;
     private static Encoder enc;
     private static boolean motorReverse;
