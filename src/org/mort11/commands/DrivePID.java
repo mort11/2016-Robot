@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DrivePID extends Command {
-	PIDLoop loopFunction;
+	PIDLoop loopFunction_left;
+	PIDLoop loopFunction_right;
 	double target = 60;
-	double vel = 0;
+	double velLeft = 0;
+	double velRight = 0;
 	
     public DrivePID() {
         // Use requires() here to declare subsystem dependencies
@@ -27,25 +29,28 @@ public class DrivePID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	loopFunction = new PIDLoop(target, 0.01, 0.01);
+    	loopFunction_left = new PIDLoop(target, 0.01, 0);
+    	loopFunction_right = new PIDLoop(target, 0.01, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	vel = loopFunction.getOutput(Robot.dt.getDist());
-    	System.out.println("Dist: " + Robot.dt.getDist());
-    	System.out.println("Vel: " + vel);
-    	Robot.dt.driveSpeed(vel);
+    	velLeft = loopFunction_left.getOutput(Robot.dt.getDistLeft());
+    	velRight = loopFunction_right.getOutput(Robot.dt.getDistRight());
+    	System.out.println("DistLeft: " + Robot.dt.getDistLeft());
+    	System.out.println("DistRight: " + Robot.dt.getDistLeft());
+    	//System.out.println("Vel: " + vel);
+    	Robot.dt.driveLeft(velLeft);
+    	Robot.dt.driveRight(velRight);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//2 inch threshold and slow
-        if(Math.abs(Robot.dt.getDist()/target) > 0.98  
-        		&& Math.abs(vel) < 0.35) {
+        if(Math.abs(Robot.dt.getDistLeft()/target) > 0.98  
+        		&& Math.abs(velLeft) < 0.35) {
         	return true;
         }
-        System.out.println(Math.abs(Robot.dt.getDist()/target));
         return false;
     }
 

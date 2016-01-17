@@ -15,6 +15,7 @@ public class DT extends Subsystem {
    Talon leftTal = new Talon(0);
    Talon rightTal = new Talon(2);
    Encoder leftEnc = new Encoder(2,3,false,EncodingType.k4X);
+   Encoder rightEnc = new Encoder(2,3,false,EncodingType.k4X);
    
    public DT() {
 	   leftEnc.setDistancePerPulse(kCircumference/256);
@@ -28,21 +29,29 @@ public class DT extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void driveSpeed(double speed) {
+    public void driveLeft(double speed) {
     	leftTal.set(speed);
+    }
+    
+    public void driveRight(double speed) {
     	rightTal.set(-speed);
     }
     
     public void stop() {
-    	driveSpeed(0);
+    	driveLeft(0);
+    	driveRight(0);
     }
  
     public void resetEnc() {
     	leftEnc.reset();
     }
     
-    public double getDist() {
+    public double getDistLeft() {
     	return leftEnc.getDistance();
+    }
+    
+    public double getDistRight() {
+    	return rightEnc.getDistance();
     }
 }
 
