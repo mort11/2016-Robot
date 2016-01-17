@@ -22,7 +22,7 @@ public class TurnDegrees extends Command {
     	this.angle = angle;
     	requires(Robot.leftSide);
         requires(Robot.rightSide);
-        pd = new PIDLoop(angle, .01, 0);
+        pd = new PIDLoop(angle, .01, 0); //placeholder values, must test
     }
 
     protected void initialize() {
@@ -50,7 +50,7 @@ public class TurnDegrees extends Command {
     }
        
     protected boolean inTresh(){
-    	if (speed < .1 && speed > -.1){
+    	if (speed < .1 && speed > -.1){ //placeholder values, must test
     		return true;
     	}
     	else{

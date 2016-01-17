@@ -23,7 +23,7 @@ public class DriveStraight extends Command {
        requires(left);
        requires(right);
        timer = new Timer();
-       pd = new PIDLoop(driveDistance, .01, 0);
+       pd = new PIDLoop(driveDistance, .01, 0); //placeholder values, must test
     }
 
     protected void initialize() {
@@ -43,7 +43,7 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return this.inTresh();
     }
 
     protected void end() {
@@ -52,4 +52,14 @@ public class DriveStraight extends Command {
 
     protected void interrupted() {
     }
+    
+    protected boolean inTresh(){
+    	if (speed < .01 && speed > -.01){ //placeholder values, must test
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    	 
+     }
 }
