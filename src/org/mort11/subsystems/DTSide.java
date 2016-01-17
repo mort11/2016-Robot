@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import util.DTConstants;
 
 public abstract class DTSide extends Subsystem {
-    private static TalonSRX motors;
+    
+	private static TalonSRX motors;
     private static Encoder enc;
-    // private double curVal = 0;
-    private boolean motorReverse;
+    private static boolean motorReverse;
 
     public DTSide(int motorPort, int encAPort, int encBPort, boolean motorReverse, boolean encReverse) {
         motors = new TalonSRX(motorPort);
@@ -24,12 +24,12 @@ public abstract class DTSide extends Subsystem {
 
     }
 
-    public double getSpeed() {
+    public static double getSpeed() {
         return motors.get();
     }
 
     public static void setSpeed(double speed) {
-        motors.set(speed);
+        motors.set(speed * (motorReverse ? -1 : 1));
     }
     
     public static double getCurent(){ //returns raw value, unsure of what it means

@@ -37,7 +37,8 @@ public class DriveStraight extends Command {
         speed = pd.getOutput(curDist);
     	DTSide.setSpeed(speed);
     	SmartDashboard.putNumber("Distance Traveled", DTSide.getDist()); //gets and displays distance traveled
-    	SmartDashboard.putNumber("PWM Value", DTSide.getCurent()); //gets raw PWM value, unsure of what value means
+    	SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
+    	SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     	
     }
 

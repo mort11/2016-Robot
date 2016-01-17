@@ -5,6 +5,7 @@ import org.mort11.subsystems.DTSide;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import util.PIDLoop;
 
 
@@ -31,8 +32,9 @@ public class TurnDegrees extends Command {
     	speed = pd.getOutput(angle);
     	Robot.leftSide.setSpeed(speed);
     	Robot.rightSide.setSpeed(-speed);
+    	SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
+    	SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     }
-
 
     protected boolean isFinished() {
         return this.inTresh();
@@ -45,7 +47,8 @@ public class TurnDegrees extends Command {
 
        protected void interrupted() {
     }
-     protected boolean inTresh(){
+       
+    protected boolean inTresh(){
     	if (speed < .1 && speed > -.1){
     		return true;
     	}
