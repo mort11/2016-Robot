@@ -4,9 +4,6 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class DisplayCurrents extends Command {
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
@@ -32,10 +29,8 @@ public class DisplayCurrents extends Command {
 
 	private double temp; // temperature of PDP in degrees Celsius
 	private double totalCur; // current of all monitored PDP channels in Amps
-	private double totalEnergy; // total energy draw of all monitored PDP
-								// channels, give in Joules
-	private double totalPowerDraw; // total power draw of all monitored PDP
-									// channels, given in Watts
+	private double totalEnergy; // total energy draw of all monitored PDP channels, give in Joules
+	private double totalPowerDraw; // total power draw of all monitored PDP channels, given in Watts
 	private double voltage; // input voltage for PDP in Watts
 
 	public DisplayCurrents() {
