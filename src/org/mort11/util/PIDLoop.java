@@ -1,4 +1,4 @@
-package util;
+package org.mort11.util;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -11,6 +11,7 @@ public class PIDLoop {
 	double currTime = 0,oldTime = 0;
 	Timer timer = new Timer();
 	double vel_max = 3;
+	double curr_location = 0;
 	public PIDLoop(double target,double kP, double kI) {
 		this.desired_target = target;
 		this.kP = kP;
@@ -45,6 +46,7 @@ public class PIDLoop {
 			timer.start();
 			isNear = true;
 		}
+		this.curr_location = curr_location;
 		currTime = timer.get();
 		double error = getLocation(currTime,curr_location) - curr_location;
 		double deltaT = currTime - oldTime;
@@ -55,6 +57,10 @@ public class PIDLoop {
 		System.out.println("SP: " + getLocation(currTime,curr_location));
 		//System.out.println("Time: " + currTime);
 		return output;
+	}
+	
+	public double getSP() {
+		return getLocation(currTime,curr_location);
 	}
 	
 	public double getLocation(double time,double pos) {

@@ -1,4 +1,4 @@
-package util;
+package org.mort11.util;
 
 import java.io.BufferedWriter;
 import java.io.File;

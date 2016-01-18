@@ -1,9 +1,9 @@
 package org.mort11.commands;
 
 import org.mort11.Robot;
+import org.mort11.util.Logger;
+import org.mort11.util.PIDLoop;
 
-import util.Logger;
-import util.PIDLoop;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DrivePID extends Command {
 	PIDLoop loopFunction_left;
 	PIDLoop loopFunction_right;
+	Logger logger;
 	double target = 60;
 	double velLeft = 0;
 	double velRight = 0;
@@ -32,12 +33,17 @@ public class DrivePID extends Command {
     protected void initialize() {
     	loopFunction_left = new PIDLoop(target, 0.05, 0);
     	loopFunction_right = new PIDLoop(target, 0.05, 0);
+    	logger = new Logger();
+    	logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	velLeft = loopFunction_left.getOutput(Robot.dt.getDistLeft());
     	velRight = loopFunction_right.getOutput(Robot.dt.getDistRight());
+    	logger.writeString(Robot.dt.getDistLeft() + "," + loopFunction_left.getSP() 
+    			+ "," + velLeft + "," + Robot.dt.getDistRight() + "," + loopFunction_right.getSP()
+    			+ ","  + velRight);
     	System.out.println("Left- Distance:  " + Robot.dt.getDistLeft() + " PI: " + velLeft);
     	System.out.println("Right- Distance:  " + Robot.dt.getDistRight() + " PI: " + velRight);
     	Robot.dt.driveLeft(velLeft);
