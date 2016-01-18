@@ -2,7 +2,7 @@ package org.mort11;
 
 public class PortMap {
     /**
-     * These are the CAN device IDs for the TalonSRXs on the practice bot. Values will change on final
+     * These are the CAN device IDs for the TalonSRXs on the practice bot. Values will change on final bot
      */
     public static final int DT_LEFT_PORT = 1; // CAN
     public static final int DT_RIGHT_PORT = 2;// CAN

@@ -27,7 +27,6 @@ public class DriveStraight extends Command {
     protected void initialize() {
     	DTSide.resetEnc();
     	timer.start();
-
     }
 
     protected void execute() {
