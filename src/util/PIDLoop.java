@@ -3,7 +3,7 @@ package util;
 import edu.wpi.first.wpilibj.Timer;
 
 public class PIDLoop {
-	double target;
+	double desired_target;
 	double kP,kI,kAlly; //PID control constants
 	double netError = 0;
 	boolean isNear = false; //whether we can shift from P to I, will tell us
@@ -12,18 +12,18 @@ public class PIDLoop {
 	Timer timer = new Timer();
 	double vel_max = 3;
 	public PIDLoop(double target,double kP, double kI) {
-		this.target = target;
+		this.desired_target = target;
 		this.kP = kP;
 		this.kI = kI;
 	}
 	
 	
 	public double getOutput_notStaggered(double  pos){
-		double error = target - pos;
+		double error = desired_target - pos;
 		//shift to I
 		if (Math.abs(error/pos) < 0.2){
-			System.out.println("I loop");
-			System.out.println("Error: " + error);
+//			System.out.println("I loop");
+//			System.out.println("Error: " + error);
 			if (!isNear) {
 				timer.start();
 				isNear = true;
@@ -40,21 +40,25 @@ public class PIDLoop {
 		}
 	}
 	
-	public double getOutput(double pos) {
+	public double getOutput(double curr_location) {
 		if(!isNear) {
 			timer.start();
 			isNear = true;
 		}
 		currTime = timer.get();
-		double error = getLocation(currTime,pos) - pos;
+		double error = getLocation(currTime,curr_location) - curr_location;
 		double deltaT = currTime - oldTime;
 		netError += error * deltaT;
 		oldTime = currTime;
-		return (error * kP + netError * kI);
+		double output = (error * kP + netError * kI);
+//		System.out.println("PI: " + output);
+		System.out.println("SP: " + getLocation(currTime,curr_location));
+		//System.out.println("Time: " + currTime);
+		return output;
 	}
 	
 	public double getLocation(double time,double pos) {
-		if(time > pos/vel_max) {
+		if(time > desired_target/vel_max) {
 			return pos;
 		}
 		return vel_max * time;

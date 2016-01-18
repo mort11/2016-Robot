@@ -2,6 +2,7 @@ package org.mort11.commands;
 
 import org.mort11.Robot;
 
+import util.Logger;
 import util.PIDLoop;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -29,17 +30,16 @@ public class DrivePID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	loopFunction_left = new PIDLoop(target, 0.01, 0);
-    	loopFunction_right = new PIDLoop(target, 0.01, 0);
+    	loopFunction_left = new PIDLoop(target, 0.05, 0);
+    	loopFunction_right = new PIDLoop(target, 0.05, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	velLeft = loopFunction_left.getOutput(Robot.dt.getDistLeft());
     	velRight = loopFunction_right.getOutput(Robot.dt.getDistRight());
-    	System.out.println("DistLeft: " + Robot.dt.getDistLeft());
-    	System.out.println("DistRight: " + Robot.dt.getDistLeft());
-    	//System.out.println("Vel: " + vel);
+    	System.out.println("Left- Distance:  " + Robot.dt.getDistLeft() + " PI: " + velLeft);
+    	System.out.println("Right- Distance:  " + Robot.dt.getDistRight() + " PI: " + velRight);
     	Robot.dt.driveLeft(velLeft);
     	Robot.dt.driveRight(velRight);
     }

@@ -14,12 +14,14 @@ public class DT extends Subsystem {
    private final static double kCircumference = 4 * Math.PI;
    Talon leftTal = new Talon(0);
    Talon rightTal = new Talon(2);
-   Encoder leftEnc = new Encoder(2,3,false,EncodingType.k4X);
+   Encoder leftEnc = new Encoder(0,1,false,EncodingType.k4X);
    Encoder rightEnc = new Encoder(2,3,false,EncodingType.k4X);
    
    public DT() {
 	   leftEnc.setDistancePerPulse(kCircumference/256);
 	   leftEnc.reset();
+	   rightEnc.setDistancePerPulse(kCircumference/256);
+	   rightEnc.reset();
    }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
