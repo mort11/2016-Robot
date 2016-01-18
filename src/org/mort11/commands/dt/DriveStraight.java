@@ -1,13 +1,11 @@
 package org.mort11.commands.dt;
 
-import org.mort11.Robot;
-import org.mort11.subsystems.dt.DTSide;
-
-import util.PIDLoop;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.mort11.Robot;
+import org.mort11.subsystems.dt.DTSide;
+import util.PIDLoop;
 
 public class DriveStraight extends Command {
 
@@ -37,8 +35,8 @@ public class DriveStraight extends Command {
         speed = pd.getOutput(curDist);
     	DTSide.setSpeed(speed);
     	SmartDashboard.putNumber("Distance Traveled", DTSide.getDist()); //gets and displays distance traveled
-    	SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
-    	SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
+        SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurrent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
+        SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     	
     }
 
@@ -54,12 +52,8 @@ public class DriveStraight extends Command {
     }
     
     protected boolean inTresh(){
-    	if (speed < .01 && speed > -.01){ //placeholder values, must test
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    	 
-     }
+        //placeholder values, must test
+        return speed < .01 && speed > -.01;
+
+    }
 }

@@ -1,12 +1,9 @@
 package org.mort11.commands.dt;
 
-import org.mort11.Robot;
-import org.mort11.subsystems.dt.DTLeft;
-import org.mort11.subsystems.dt.DTSide;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.mort11.Robot;
+import org.mort11.subsystems.dt.DTSide;
 import util.PIDLoop;
 
 
@@ -31,10 +28,10 @@ public class TurnDegrees extends Command {
 
     protected void execute() {
     	speed = pd.getOutput(Robot.leftSide.getAngle());
-    	Robot.leftSide.setSpeed(speed);
-    	Robot.rightSide.setSpeed(-speed);
-    	SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
-    	SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
+        DTSide.setSpeed(speed);
+        DTSide.setSpeed(-speed);
+        SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurrent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
+        SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     }
 
     protected boolean isFinished() {
@@ -42,20 +39,16 @@ public class TurnDegrees extends Command {
     }
 
     protected void end(){
-    	Robot.leftSide.setSpeed(0);
-    	Robot.rightSide.setSpeed(0);
+        DTSide.setSpeed(0);
+        DTSide.setSpeed(0);
     }
 
        protected void interrupted() {
     }
        
     protected boolean inTresh(){
-    	if (speed < .1 && speed > -.1){ //placeholder values, must test
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    	 
-     }
+        //placeholder values, must test
+        return speed < .1 && speed > -.1;
+
+    }
 }

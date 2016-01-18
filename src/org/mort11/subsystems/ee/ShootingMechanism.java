@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.RobotMap;
+import org.mort11.PortMap;
 import util.EEConstants;
 
 
@@ -19,10 +19,10 @@ public class ShootingMechanism extends Subsystem {
     private AnalogPotentiometer ArmPot;
 
     public ShootingMechanism() {
-        ArmMotor = new Talon(RobotMap.ARM_TAL_1);
-        LimSwitch = new DigitalInput(RobotMap.ARM_LIM);
-        ArmEnc = new Encoder(RobotMap.ARM_ENC_1, RobotMap.ARM_ENC_2, true, EncodingType.k4X);
-        ArmPot = new AnalogPotentiometer(RobotMap.ARM_POT);
+        ArmMotor = new Talon(PortMap.ARM_TAL_1);
+        LimSwitch = new DigitalInput(PortMap.ARM_LIM);
+        ArmEnc = new Encoder(PortMap.ARM_ENC_1, PortMap.ARM_ENC_2, true, EncodingType.k4X);
+        ArmPot = new AnalogPotentiometer(PortMap.ARM_POT);
         ArmEnc.reset();
         ArmEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
     }
