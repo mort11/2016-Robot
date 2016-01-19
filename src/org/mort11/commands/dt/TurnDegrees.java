@@ -30,7 +30,6 @@ public class TurnDegrees extends Command {
     	speed = pd.getOutput(Robot.leftSide.getAngle());
         DTSide.setSpeed(speed);
         DTSide.setSpeed(-speed);
-        SmartDashboard.putNumber("Raw PWM Value", DTSide.getCurrent()); //gets raw PWM value from hardware,between 0-255, unsure of what value means
         SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     }
 
