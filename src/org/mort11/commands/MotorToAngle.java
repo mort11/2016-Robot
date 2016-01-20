@@ -4,7 +4,8 @@ import org.mort11.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.subsystems.ShootingMechanism;
+import org.mort11.subsystems.ee.ShootingMechanism;
+
 
 public class MotorToAngle extends Command{
 

@@ -1,10 +1,5 @@
 package org.mort11;
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+
 public class RobotMap {
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
@@ -21,4 +16,5 @@ public class RobotMap {
 	public static final int Arm_Enc1 = 0;
 	public static final int Arm_Enc2 = 0;
 	public static final int Arm_Pot = 0;
+
 }

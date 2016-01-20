@@ -1,5 +1,6 @@
-
-package org.mort11.subsystems;
+package org.mort11.subsystems.ee;
+import org.mort11.RobotMap;
+import org.mort11.util.EEConstants;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,7 +10,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import org.mort11.util.EEConstants;
 import org.mort11.RobotMap;
-
 
 public class ShootingMechanism extends Subsystem{
 
@@ -23,12 +23,12 @@ public class ShootingMechanism extends Subsystem{
 		LimSwitch = new DigitalInput(RobotMap.Arm_Lim);
 		ArmEnc = new Encoder(RobotMap.Arm_Enc1, RobotMap.Arm_Enc2, true, EncodingType.k4X);
 		ArmPot = new AnalogPotentiometer(RobotMap.Arm_Pot);
-		ArmEnc.reset();
 		ArmEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
+		ArmEnc.reset();
 	}
 	
 	public void initDefaultCommand() {
-		}
+	}
 	
 	public void setSpeed(double speed){
 		ArmMotor.set(speed);
@@ -44,7 +44,5 @@ public class ShootingMechanism extends Subsystem{
 	
 	public double getAngle(){
 		return ArmPot.get();
-	}
-	
-	
+	}	
 }
