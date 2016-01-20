@@ -16,5 +16,7 @@ public class RobotMap {
 	public static final int Arm_Enc1 = 0;
 	public static final int Arm_Enc2 = 0;
 	public static final int Arm_Pot = 0;
+	public static final int Pne_Eng1 = 0;
+	public static final int Pne_Eng2 = 0;
 
 }
