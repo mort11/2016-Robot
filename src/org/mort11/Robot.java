@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.mort11.commands.ExampleCommand;
 import org.mort11.subsystems.ExampleSubsystem;
+import org.mort11.subsystems.ShootingMechanism;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -18,6 +19,7 @@ import org.mort11.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final ShootingMechanism ShootMech = new ShootingMechanism();
 	public static OI oi;
 
     Command autonomousCommand;
