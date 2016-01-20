@@ -1,4 +1,4 @@
-package util;
+package org.mort11.util;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -11,12 +11,12 @@ public class PIDLoop {
 	double currTime = 0,oldTime = 0;
 	Timer timer = new Timer();
 	double vel_max = 3;
+	
 	public PIDLoop(double target,double kP, double kI) {
 		this.target = target;
 		this.kP = kP;
 		this.kI = kI;
 	}
-	
 	
 	public double getOutput_notStaggered(double  pos){
 		double error = target - pos;

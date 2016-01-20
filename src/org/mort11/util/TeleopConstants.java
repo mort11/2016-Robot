@@ -1,4 +1,4 @@
-package util;
+package org.mort11.util;
 
 public class TeleopConstants {
 	 public static final int EE_CPR = 256;

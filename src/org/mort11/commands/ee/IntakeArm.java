@@ -1,7 +1,7 @@
 package org.mort11.commands.ee;
 
 import org.mort11.Robot;
-import util.PIDLoop;
+import org.mort11.util.PIDLoop;
 
 import edu.wpi.first.wpilibj.command.Command;
 
