@@ -36,6 +36,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	System.out.println(System.getProperty("user.home"));
         if (autonomousCommand != null) DrivePIDCommand.cancel();
     }
 

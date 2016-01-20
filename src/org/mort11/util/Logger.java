@@ -1,47 +1,29 @@
 package org.mort11.util;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class Logger {
-	File f;
-	BufferedWriter bw;
-	FileWriter fw;
+		
+	 PrintWriter writer;
 	
-	public Logger(String filepath) {
+	public void init (String filepath) {
 		try {
-    		f = new File(filepath);
-    		if(!f.exists()){
-    			f.createNewFile();
-    		}
-			fw = new FileWriter(f);
-		} catch (IOException e) {
+			writer = new PrintWriter(filepath,"UTF-8");
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-    	bw = new BufferedWriter(fw);
 	}
 	
-	public Logger() {
-		new Logger("~/output");
-	}
 	
 	public void writeString(String msg) {
-		try {
-			bw.write(msg);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		writer.write(msg + "\n");
+		System.out.println("printing");
 	}
 	
 	public void close() {
-		try {
-			fw.close();
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		writer.close();
 	}
 }
+	
