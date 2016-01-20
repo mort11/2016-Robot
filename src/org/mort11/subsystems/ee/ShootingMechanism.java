@@ -1,4 +1,6 @@
 package org.mort11.subsystems.ee;
+import org.mort11.RobotMap;
+import org.mort11.util.EEConstants;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -6,7 +8,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
-import util.EEConstants;
+import org.mort11.util.EEConstants;
 import org.mort11.RobotMap;
 
 public class ShootingMechanism extends Subsystem{
@@ -26,7 +28,7 @@ public class ShootingMechanism extends Subsystem{
 	}
 	
 	public void initDefaultCommand() {
-		}
+	}
 	
 	public void setSpeed(double speed){
 		ArmMotor.set(speed);
