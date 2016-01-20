@@ -1,37 +1,46 @@
 package org.mort11.commands.ee;
 
+import org.mort11.Robot;
+import util.PIDLoop;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-
-/**
- *
- */
 public class IntakeArm extends Command {
-
+	PIDLoop loopFunction;
+	double target;
+	double curAngle;
+	double vel;
+	
     public IntakeArm() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.intakeArm);
+    }
+    
+    public IntakeArm(double target) {
+    	this.target = target;
+        requires(Robot.intakeArm);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
+    	loopFunction = new PIDLoop(target, .1, .1);
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	curAngle = Robot.intakeArm.getAngle();
+    	vel = loopFunction.getOutput(curAngle);
+    	Robot.intakeArm.setSpeed(vel);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return inThresh();
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    protected boolean inThresh(){
+    	return vel < .1 && vel > -.1;
     }
 }

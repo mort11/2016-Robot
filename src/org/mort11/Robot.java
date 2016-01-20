@@ -2,6 +2,7 @@ package org.mort11;
 
 import org.mort11.commands.DrivePID;
 import org.mort11.subsystems.DT;
+import org.mort11.subsystems.ee.ShootingMechanism;
 import org.mort11.OI;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -13,6 +14,7 @@ public class Robot extends IterativeRobot {
 
     public static OI oi;
     public static final DT dt = new DT();
+    public static final ShootingMechanism intakeArm = new ShootingMechanism();
     Command autonomousCommand;
     Command DrivePIDCommand;
 
