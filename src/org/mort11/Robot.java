@@ -1,24 +1,22 @@
 package org.mort11;
 
-
+import org.mort11.commands.DrivePID;
+import org.mort11.subsystems.DT;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.mort11.subsystems.dt.DTLeft;
-import org.mort11.subsystems.dt.DTRight;
-
 public class Robot extends IterativeRobot {
     public static OI oi;
-    public static DTLeft leftSide;
-    public static DTRight rightSide;
 
+    public static final DT dt = new DT();
     Command autonomousCommand;
+    Command DrivePIDCommand;
 
     public void robotInit() {
         oi = new OI();
-        leftSide = new DTLeft();
-        rightSide = new DTRight();
+        autonomousCommand = new ExampleCommand();
+        DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {
@@ -26,7 +24,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        if (autonomousCommand != null) autonomousCommand.start();
+        if (autonomousCommand != null) DrivePIDCommand.start();
     }
 
     public void autonomousPeriodic() {
@@ -34,7 +32,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        if (autonomousCommand != null) autonomousCommand.cancel();
+    	System.out.println(System.getProperty("user.home"));
+        if (autonomousCommand != null) DrivePIDCommand.cancel();
     }
 
     public void disabledInit() {
