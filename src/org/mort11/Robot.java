@@ -1,21 +1,26 @@
 package org.mort11;
 
-import org.mort11.commands.DrivePID;
-import org.mort11.subsystems.DT;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-public class Robot extends IterativeRobot {
-    public static OI oi;
+import org.mort11.commands.DrivePID;
+import org.mort11.subsystems.DT;
+import org.mort11.subsystems.dt.DTLeft;
+import org.mort11.subsystems.dt.DTRight;
 
+public class Robot extends IterativeRobot {
     public static final DT dt = new DT();
+    public static OI oi;
+    public static DTLeft leftSide;
+    public static DTRight rightSide;
     Command autonomousCommand;
     Command DrivePIDCommand;
 
     public void robotInit() {
         oi = new OI();
-        autonomousCommand = new ExampleCommand();
+        leftSide = new DTLeft();
+        rightSide = new DTRight();
         DrivePIDCommand = new DrivePID(120); 
     }
 
