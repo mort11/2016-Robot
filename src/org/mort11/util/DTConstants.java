@@ -1,4 +1,4 @@
-package util;
+package org.mort11.util;
 
 public class DTConstants {
 		//copypasta from 2015

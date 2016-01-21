@@ -1,5 +1,7 @@
 package org.mort11.subsystems.dt;
 
+import org.mort11.util.DTConstants;
+
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -8,7 +10,6 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import util.DTConstants;
 
 public abstract class DTSide extends Subsystem {
 

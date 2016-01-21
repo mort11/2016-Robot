@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.PortMap;
-import util.EEConstants;
+import org.mort11.util.EEConstants;
 
 
 public class ShootingMechanism extends Subsystem {
