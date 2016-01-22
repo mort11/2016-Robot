@@ -34,6 +34,7 @@ public class DrivePID extends Command {
     	loopFunction_left = new PIDLoop(target, 0.05, 0);
     	loopFunction_right = new PIDLoop(target, 0.05, 0);
     	logger = new Logger();
+    	logger.init("/home/lvuser/output");
     	logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
     }
 
@@ -62,6 +63,7 @@ public class DrivePID extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	logger.close();
     	Robot.dt.resetEnc();
     	Robot.dt.stop();
     }
