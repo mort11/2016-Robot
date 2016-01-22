@@ -16,7 +16,7 @@ public abstract class DTSide extends Subsystem {
     private static CANTalon motors;
     private static Encoder enc;
     private static boolean motorReverse;
-    private AHRS navx = new AHRS(SerialPort.Port.kMXP);
+    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
     
     static PowerDistributionPanel pdp = new PowerDistributionPanel();
 
@@ -68,7 +68,8 @@ public abstract class DTSide extends Subsystem {
 
     }
 
-    public double getAngle() {
+    //needs to be moved into a nav class
+    public static double getAngle() {
         return navx.getAngle();
     }
 

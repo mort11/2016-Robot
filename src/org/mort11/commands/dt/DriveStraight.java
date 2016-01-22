@@ -17,7 +17,8 @@ public class DriveStraight extends Command {
 	private double curDist;
 	private double speed;
 	
-    public DriveStraight() {
+    public DriveStraight(double distance) {
+       this.driveDistance = distance;
        requires(left);
        requires(right);
        timer = new Timer();

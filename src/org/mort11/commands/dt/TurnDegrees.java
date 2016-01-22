@@ -12,8 +12,8 @@ public class TurnDegrees extends Command {
 	//	Timer timer;
 	private PIDLoop pd;
 	private double speed;
-	private double angle;
-	private double curAngle; //need way to get angle of robot
+	private double angle; //angle that the robot will turn by
+	private double curAngle; //current orientation of robot
 
     public TurnDegrees(double angle) { //takes desired angle for turning (between -180 and 180)
     	this.angle = angle;
@@ -27,9 +27,10 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-    	speed = pd.getOutput(Robot.leftSide.getAngle());
-        DTSide.setSpeed(speed);
-        DTSide.setSpeed(-speed);
+    	curAngle = DTSide.getAngle();
+    	speed = pd.getOutput(curAngle);
+        Robot.leftSide.setSpeed(speed);
+        Robot.rightSide.setSpeed(-speed);
         SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     }
 
