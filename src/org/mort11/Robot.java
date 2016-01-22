@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
         leftSide = new DTLeft();
         rightSide = new DTRight();
-        DrivePIDCommand = new DrivePID(120); 
+//        DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {
