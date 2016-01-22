@@ -1,4 +1,4 @@
-package org.mort11.commands.dt;
+package org.mort11.commands;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;

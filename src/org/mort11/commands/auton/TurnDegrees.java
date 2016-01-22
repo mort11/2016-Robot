@@ -1,4 +1,4 @@
-package org.mort11.commands.dt;
+package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
