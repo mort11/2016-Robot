@@ -14,7 +14,8 @@ public class DriveStraight extends Command {
 	private DTSide right = Robot.rightSide;
 	private PIDLoop pd_left;
 	private PIDLoop pd_right;
-	private double curDist; 
+	private double curDist_left;
+	private double curDist_right;
 	private double speed_left;
 	private double speed_right;
 	
@@ -27,18 +28,23 @@ public class DriveStraight extends Command {
     }
 
     protected void initialize() {
-    	DTSide.resetEnc();
+    	left.resetEnc();
+    	right.resetEnc();
     }
     
     protected void execute() {
-        curDist = DTSide.getDist(); //get distance traveled since last encoder reset
-        speed_left = pd_left.getOutput(curDist); //gets speed using pid loop
-        speed_right = pd_right.getOutput(curDist); //gets speed using pid loop
+        curDist_left = left.getDist(); //get distance traveled since last encoder reset
+        curDist_right = left.getDist(); //get distance traveled since last encoder reset
+        speed_left = pd_left.getOutput(curDist_left); //gets speed using pid loop
+        speed_right = pd_right.getOutput(curDist_right); //gets speed using pid loop
     	left.setSpeed(speed_left); //sets speed of robot
     	right.setSpeed(speed_right); //sets speed of robot
-    	SmartDashboard.putNumber("Distance Traveled", DTSide.getDist()); //gets and displays distance traveled
-        SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
-    	
+    	SmartDashboard.putNumber("Distance Traveled Left", left.getDist()); //gets and displays distance traveled
+    	SmartDashboard.putNumber("Distance Traveled Right", right.getDist()); //gets and displays distance traveled
+        SmartDashboard.putNumber("Left PWM Value", left.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
+        SmartDashboard.putNumber("Right PWM Value", right.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
+        SmartDashboard.putNumber("Left Talon Current", left.getTalonCurrent()); //gets the current of the left talon in amps
+        SmartDashboard.putNumber("Right Talon Current", right.getTalonCurrent()); //gets the current of the right talon in amps
     }
 
     protected boolean isFinished() {
@@ -48,7 +54,8 @@ public class DriveStraight extends Command {
 	protected void end() {
     	left.setSpeed(0);
     	right.setSpeed(0);
-    	DTSide.resetEnc();
+    	left.resetEnc();
+    	right.resetEnc();
     }
 
     protected void interrupted() {

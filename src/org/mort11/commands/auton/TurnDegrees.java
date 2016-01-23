@@ -33,7 +33,6 @@ public class TurnDegrees extends Command {
     	speed = pd.getOutput(curAngle); //passes current angle through pid loop
         left.setSpeed(speed); //sets speed
         right.setSpeed(-speed); //sets negative speed so robot can turn
-        SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     }
 
     protected boolean isFinished() {
@@ -43,7 +42,8 @@ public class TurnDegrees extends Command {
     protected void end() {
         left.setSpeed(0);
         right.setSpeed(0);
-        DTSide.resetEnc();
+        left.resetEnc();
+        right.resetEnc();
     }
 
        protected void interrupted() {

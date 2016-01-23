@@ -10,22 +10,22 @@ public class DisplayCurrents extends Command {
 
 	// current values for each monitored PDP channel (0 - 15) in Amps
 	// can comment out any channels that are not in use
-	private double cur0;
+//	private double cur0;
 	private double cur1;
 	private double cur2;
-	private double cur3;
-	private double cur4;
-	private double cur5;
-	private double cur6;
-	private double cur7;
-	private double cur8;
-	private double cur9;
-	private double cur10;
-	private double cur11;
-	private double cur12;
-	private double cur13;
-	private double cur14;
-	private double cur15;
+//	private double cur3;
+//	private double cur4;
+//	private double cur5;
+//	private double cur6;
+//	private double cur7;
+//	private double cur8;
+//	private double cur9;
+//	private double cur10;
+//	private double cur11;
+//	private double cur12;
+//	private double cur13;
+//	private double cur14;
+//	private double cur15;
 
 	private double temp; // temperature of PDP in degrees Celsius
 	private double totalCur; // current of all monitored PDP channels in Amps
@@ -37,12 +37,11 @@ public class DisplayCurrents extends Command {
 
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
 	}
 
 	protected void execute() {
-		//cur0 = pdp.getCurrent(0);
+//		cur0 = pdp.getCurrent(0);
 		cur1 = pdp.getCurrent(1);
 		cur2 = pdp.getCurrent(2);
 //		cur3 = pdp.getCurrent(3);
@@ -64,7 +63,7 @@ public class DisplayCurrents extends Command {
 		totalPowerDraw = pdp.getTotalPower();
 		voltage = pdp.getTotalCurrent();
 
-		//SmartDashboard.putNumber("PDP Current Channel 0", cur0);
+//		SmartDashboard.putNumber("PDP Current Channel 0", cur0);
 		SmartDashboard.putNumber("PDP Current Channel 1", cur1);
 		SmartDashboard.putNumber("PDP Current Channel 2", cur2);
 //		SmartDashboard.putNumber("PDP Current Channel 3", cur3);
