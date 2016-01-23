@@ -2,7 +2,7 @@ package org.mort11.subsystems.dt;
 
 import org.mort11.util.DTConstants;
 
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -16,7 +16,7 @@ public abstract class DTSide extends Subsystem {
     private static CANTalon motors;
     private static Encoder enc;
     private static boolean motorReverse;
-    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
+//    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
     
     static PowerDistributionPanel pdp = new PowerDistributionPanel();
 
@@ -69,9 +69,9 @@ public abstract class DTSide extends Subsystem {
     }
 
     //needs to be moved into a nav class
-    public static double getAngle() {
-        return navx.getAngle();
-    }
+//    public static double getAngle() {
+//        return navx.getAngle();
+//    }
 
 }
 

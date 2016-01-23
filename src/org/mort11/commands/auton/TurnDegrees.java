@@ -29,7 +29,7 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-    	curAngle = DTSide.getAngle(); //gets current angle of robot
+    	//curAngle = DTSide.getAngle(); //gets current angle of robot
     	speed = pd.getOutput(curAngle); //passes current angle through pid loop
         left.setSpeed(speed); //sets speed
         right.setSpeed(-speed); //sets negative speed so robot can turn
