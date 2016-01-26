@@ -65,8 +65,10 @@ public class PIDLoop {
 	
 	public double getLocation(double time,double pos) {
 		if(time > desired_target/vel_max) {
+			System.out.println("time " + time );
 			return pos;
 		}
+		
 		return vel_max * time;
 	}
 	

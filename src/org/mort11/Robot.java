@@ -12,7 +12,6 @@ import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 
 public class Robot extends IterativeRobot {
-    public static final DT dt = new DT();
     public static OI oi;
     public static DTLeft leftSide;
     public static DTRight rightSide;
@@ -23,8 +22,8 @@ public class Robot extends IterativeRobot {
         oi = new OI();
         leftSide = new DTLeft();
         rightSide = new DTRight();
-        DispCurrent = new DisplayCurrents();
-        DriveStraight = new DriveStraight(10);
+        //DispCurrent = new DisplayCurrents();
+        DriveStraight = new DriveStraight(100);
     }
 
     public void disabledPeriodic() {
@@ -32,9 +31,10 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	System.out.println("auton initting");
         if (DriveStraight != null) {
         	DriveStraight.start();
-        	DispCurrent.start();
+        	//DispCurrent.start();
         }
         
     }
@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (DriveStraight != null) {
         	DriveStraight.cancel();
-        	DispCurrent.cancel();
+        	//DispCurrent.cancel();
         }
     }
 
