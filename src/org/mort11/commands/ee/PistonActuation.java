@@ -16,10 +16,12 @@ public class PistonActuation extends Command {
     }
 
     protected void execute() {
+    	System.out.println("piston is pressed" );
     	piston.setSolenoid(!piston.isEngaged());
     }
 
     protected boolean isFinished() {
+    	
         return true;
     }
 
