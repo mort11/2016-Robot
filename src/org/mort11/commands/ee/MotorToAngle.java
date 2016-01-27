@@ -10,6 +10,7 @@ import org.mort11.subsystems.ee.ShootingMechanism;
 public class MotorToAngle extends Command{
 
 	private ShootingMechanism Shooter = new ShootingMechanism();
+	double speed = .5;
 	
 	  public MotorToAngle() {
 	        requires(Robot.ShootMech);
@@ -20,15 +21,19 @@ public class MotorToAngle extends Command{
 	    }
 
 	    protected void execute() {
-	    	if(Shooter.getAngle() <= 90){
-	    		Shooter.setSpeed(.5);
-		    }else{
-		    	Shooter.setSpeed(0);
+	    	if(Shooter.getAngle() < 90){
+	    		Shooter.setSpeed(speed);
 		    }
+	    	if(Shooter.getAngle() > 90){
+		    	Shooter.setSpeed(-speed);
+		    }
+	    	if(Shooter.getAngle() == 90){
+	    		Shooter.setSpeed(0);
+	    	}
 	    }
 
 	    protected boolean isFinished() {
-	        return false;
+	        return true;
 	    }
 
 	    protected void end() {
