@@ -5,6 +5,8 @@ import org.mort11.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MotorToAngle extends Command{
+
+	double speed = .5;
 	
 	public MotorToAngle() {
 	      requires(Robot.ShootMech);
@@ -14,15 +16,19 @@ public class MotorToAngle extends Command{
 	}
 
 	protected void execute() {
-		if(Robot.ShootMech.getAngle() <= 90){
-			Robot.ShootMech.setSpeed(.5);
-		}else{
-		    Robot.ShootMech.setSpeed(0);
+		if(Robot.ShootMech.getAngle() < 90){
+			Robot.ShootMech.setSpeed(speed);
 		}
+	    if(Robot.ShootMech.getAngle() > 90){
+		   	Robot.ShootMech.setSpeed(-speed);
+		}
+	    if(Robot.ShootMech.getAngle() == 90){
+	    	Robot.ShootMech.setSpeed(0);
+	    }
 	}
 
 	protected boolean isFinished() {
-	    return false;
+	    return true;
 	}
 
 	protected void end() {
@@ -30,5 +36,5 @@ public class MotorToAngle extends Command{
 
 	protected void interrupted() {
 	}
-	
+	    
 }

@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class DT extends Subsystem {
    private final static double kCircumference = 4 * Math.PI;
-   Talon leftTal = new Talon(0);
-   Talon rightTal = new Talon(2);
+   Talon leftTal = new Talon(9);
+   Talon rightTal = new Talon(10);
    Encoder leftEnc = new Encoder(2,3,false,EncodingType.k4X);
    
    public DT() {

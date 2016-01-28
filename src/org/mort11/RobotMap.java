@@ -12,13 +12,13 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
 	
 	public static final int Arm_Tal1 = 0;
-	public static final int Arm_Lim = 0;
-	public static final int Arm_Enc1 = 0;
-	public static final int Arm_Enc2 = 0;
-	public static final int Arm_Pot = 0;
-	public static final int Pne_Eng1 = 0;
+	public static final int Arm_Lim = 6;
+	public static final int Arm_Enc1 = 8;
+	public static final int Arm_Enc2 = 3;
+	public static final int Arm_Pot = 1;
+	public static final int Pne_Eng1 = 2;
 	public static final int Pne_Eng2 = 1;
-	public static final int Roll_Tal1 = 0;
-	public static final int Roll_Enc1 = 0;
-	public static final int Roll_Enc2 = 0;
+	public static final int Roll_Tal1 = 7;
+	public static final int Roll_Enc1 = 4;
+	public static final int Roll_Enc2 = 5;
 }
