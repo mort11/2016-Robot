@@ -12,8 +12,6 @@ Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 public Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
  JoystickButton pb = new JoystickButton(ee, TeleopConstants.PISTON_BUTTON );
- JoystickButton intakeMotors = new JoystickButton(ee, TeleopConstants.INTAKE_BUTTON);
- JoystickButton outtakeMotors = new JoystickButton(ee, TeleopConstants.OUTTAKE_BUTTON);
  
  public OI() {
 	 pb.whenPressed(new PistonActuation());

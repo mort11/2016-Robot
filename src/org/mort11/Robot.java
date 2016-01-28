@@ -4,31 +4,36 @@ import org.mort11.commands.DrivePID;
 import org.mort11.subsystems.DT;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.ShootingMechanism;
+import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.OI;
 import org.mort11.RobotMap;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.Compressor;
 
 //install mDNS client (check if already installed): http://wpilib.screenstepslive.com/s/4485/m/13503/l/242608-roborio-networking
 
 public class Robot extends IterativeRobot {
 	
-
-	public static final ShootingMechanism ShootMech = new ShootingMechanism();
+	public static Compressor comp;
+	public static ShootingMechanism ShootMech;
 	public static OI oi;
-    public static final DT dt = new DT();
-    public static final Pneumatics piston = new Pneumatics(RobotMap.Pne_Eng1, RobotMap.Pne_Eng2);
-    public static final ShootingMechanism intakeArm = new ShootingMechanism();
-    public static final ShootingMechanism limMotor = new ShootingMechanism();
-    public static final ShootingMechanism intakeRollers = new ShootingMechanism();
+    public static DT dt;
+    public static Pneumatics piston;
+    public static ShootingMechanism intakeArm;
     Command autonomousCommand;
     Command DrivePIDCommand;
 
     public void robotInit() {
+    	comp = new Compressor(30);
+    	piston = new Pneumatics(RobotMap.Pne_Eng1, RobotMap.Pne_Eng2);
         oi = new OI();
-        DrivePIDCommand = new DrivePID(120); 
+        intakeArm = new ShootingMechanism();
+        //ShootMech = new ShootingMechanism();
+    	//dt = new DT();
+        //DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {
@@ -44,6 +49,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	comp.start();
         if (autonomousCommand != null) DrivePIDCommand.cancel();
     }
 
