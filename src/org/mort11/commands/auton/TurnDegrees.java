@@ -36,7 +36,7 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return this.inTresh();
+        return this.inThresh();
     }
 
     protected void end() {
@@ -50,7 +50,7 @@ public class TurnDegrees extends Command {
     }
       
      //used to determine if robot is close enough to target to stop
-    protected boolean inTresh(){
+    protected boolean inThresh(){
         //placeholder values, must test
         return speed < .1 && speed > -.1;
 

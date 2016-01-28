@@ -48,7 +48,7 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-        return this.inTresh();
+        return this.inThresh();
     }
 
 	protected void end() {
@@ -62,7 +62,7 @@ public class DriveStraight extends Command {
     }
     
     //used to determine if robot is close enough to target to stop
-    protected boolean inTresh(){
+    protected boolean inThresh(){
         //placeholder values, must test
         //return (speed_left < .01 && speed_left > -.01) && (speed_right < .01 && speed_right > -.01);
     	return false;
