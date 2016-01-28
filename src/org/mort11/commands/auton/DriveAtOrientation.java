@@ -61,7 +61,6 @@ public class DriveAtOrientation extends Command {
     }
     
     protected boolean inThresh(){
-        //placeholder values, must test
     	//placeholder values, must test
         //return (speed_left < .01 && speed_left > -.01) && (speed_right < .01 && speed_right > -.01);
     	return false;
