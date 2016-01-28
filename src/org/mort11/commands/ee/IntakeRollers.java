@@ -1,30 +1,31 @@
 package org.mort11.commands.ee;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.subsystems.ee.*;
+import org.mort11.util.EEConstants;
 
+import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeRollers extends Command{
 	
-	double speed;
-	private Rollers Rollers = Robot.Rollers;
+	boolean in, out;
 
-	public IntakeRollers(){
-		this.speed = speed;
-		requires(Rollers);
+	public IntakeRollers(boolean in, boolean out){
+		this.in = in;
+		this.out = out;
+		requires(Robot.intakeRollers);
 	}
 	
 	protected void initialize() {
-		
 	}
 
 	protected void execute() {
-		if(false){
-			Rollers.set(0);
-		}else{
-			Rollers.set(speed);
-		}
+		 if(in == out){
+		     Robot.intakeRollers.setSpeed(0);
+		 }else if(in){
+		     Robot.intakeRollers.setSpeed(EEConstants.ROLLER_SPEED);
+		 }else{
+		     Robot.intakeRollers.setSpeed(-1 * EEConstants.ROLLER_SPEED);
+		 }
 	}
 
 	protected boolean isFinished() {
@@ -32,11 +33,9 @@ public class IntakeRollers extends Command{
 	}
 
 	protected void end() {
-		
 	}
 
 	protected void interrupted() {
-		
 	}
 
 }
