@@ -19,7 +19,7 @@ public class Robot extends IterativeRobot {
 	public static final ShootingMechanism ShootMech = new ShootingMechanism();
 	public static OI oi;
     public static final DT dt = new DT();
-    public static final Pneumatics piston = new Pneumatics(RobotMap.Pne_Eng1, RobotMap.Pne_Eng2);
+    public static final Pneumatics piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
     public static final ShootingMechanism intakeArm = new ShootingMechanism();
     public static final ShootingMechanism limMotor = new ShootingMechanism();
     public static final ShootingMechanism intakeRollers = new ShootingMechanism();

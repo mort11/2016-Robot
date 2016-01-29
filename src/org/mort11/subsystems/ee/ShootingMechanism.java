@@ -11,36 +11,36 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class ShootingMechanism extends Subsystem{
 
-	private Talon ArmMotor;
-	private DigitalInput LimSwitch;
-	private Encoder ArmEnc;
-	private AnalogPotentiometer ArmPot;
+	private Talon armMotor;
+	private DigitalInput limSwitch;
+	private Encoder armEnc;
+	private AnalogPotentiometer armPot;
 	
 	public ShootingMechanism(){
-		ArmMotor = new Talon(RobotMap.Arm_Tal1);
-		LimSwitch = new DigitalInput(RobotMap.Arm_Lim);
-		ArmEnc = new Encoder(RobotMap.Arm_Enc1, RobotMap.Arm_Enc2, true, EncodingType.k4X);
-		ArmPot = new AnalogPotentiometer(RobotMap.Arm_Pot);
-		ArmEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
-		ArmEnc.reset();
+		armMotor = new Talon(RobotMap.ARM_TALL);
+		limSwitch = new DigitalInput(RobotMap.ARM_LIM);
+		armEnc = new Encoder(RobotMap.ARM_ENC1, RobotMap.ARM_ENC2, true, EncodingType.k4X);
+		armPot = new AnalogPotentiometer(RobotMap.ARM_POT);
+		armEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
+		armEnc.reset();
 	}
 	
 	public void initDefaultCommand() {
 	}
 	
 	public void setSpeed(double speed){
-		ArmMotor.set(speed);
+		armMotor.set(speed);
 	}
 	
-	public boolean isLimSwitch(){
-		return LimSwitch.get();
+	public boolean islimSwitch(){
+		return limSwitch.get();
 	}
 	
 	public double getDistance(){
-		return ArmEnc.getDistance();
+		return armEnc.getDistance();
 	}
 	
 	public double getAngle(){
-		return ArmPot.get();
+		return armPot.get();
 	}	
 }
