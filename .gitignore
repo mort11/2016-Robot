@@ -27,4 +27,4 @@ gradlew.bat
 bin
 gradle
 .idea
-
+sysProps.xml
