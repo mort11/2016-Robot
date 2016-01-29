@@ -1,17 +1,17 @@
 package org.mort11.commands;
 
 import org.mort11.Robot;
+import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class DrivePID extends Command {
-	PIDLoop loopFunction;
+	PIDLoop loopFunction_left;
+	PIDLoop loopFunction_right;
+	Logger logger;
 	double target = 60;
-	double vel = 0;
+	double velLeft = 0;
+	double velRight = 0;
 	
     public DrivePID() {
         // Use requires() here to declare subsystem dependencies
@@ -27,25 +27,32 @@ public class DrivePID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	loopFunction = new PIDLoop(target, 0.01, 0.01);
+    	loopFunction_left = new PIDLoop(target, 0.05, 0);
+    	loopFunction_right = new PIDLoop(target, 0.05, 0);
+    	logger = new Logger();
+    	logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	vel = loopFunction.getOutput(Robot.dt.getDist());
-    	System.out.println("Dist: " + Robot.dt.getDist());
-    	System.out.println("Vel: " + vel);
-    	Robot.dt.driveSpeed(vel);
+    	velLeft = loopFunction_left.getOutput(Robot.dt.getDistLeft());
+    	velRight = loopFunction_right.getOutput(Robot.dt.getDistRight());
+    	logger.writeString(Robot.dt.getDistLeft() + "," + loopFunction_left.getSP() 
+    			+ "," + velLeft + "," + Robot.dt.getDistRight() + "," + loopFunction_right.getSP()
+    			+ ","  + velRight);
+    	System.out.println("Left- Distance:  " + Robot.dt.getDistLeft() + " PI: " + velLeft);
+    	System.out.println("Right- Distance:  " + Robot.dt.getDistRight() + " PI: " + velRight);
+    	Robot.dt.driveLeft(velLeft);
+    	Robot.dt.driveRight(velRight);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//2 inch threshold and slow
-        if(Math.abs(Robot.dt.getDist()/target) > 0.98  
-        		&& Math.abs(vel) < 0.35) {
+        if(Math.abs(Robot.dt.getDistLeft()/target) > 0.98  
+        		&& Math.abs(velLeft) < 0.35) {
         	return true;
         }
-        System.out.println(Math.abs(Robot.dt.getDist()/target));
         return false;
     }
 
