@@ -1,15 +1,13 @@
 package org.mort11.commands.ee;
 
 import org.mort11.Robot;
-import org.mort11.subsystems.ee.Pneumatics;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PistonActuation extends Command {
-	Pneumatics piston = Robot.piston; 
 	
     public PistonActuation() {
-        requires(piston);
+        requires(Robot.piston);
     }
 
     protected void initialize() {
@@ -17,7 +15,7 @@ public class PistonActuation extends Command {
 
     protected void execute() {
     	System.out.println("piston is pressed" );
-    	piston.setSolenoid(!piston.isEngaged());
+    	Robot.piston.setSolenoid(!Robot.piston.isEngaged());
     }
 
     protected boolean isFinished() {
