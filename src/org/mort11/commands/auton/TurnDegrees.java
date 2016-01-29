@@ -29,28 +29,28 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-    	curAngle = DTSide.getAngle(); //gets current angle of robot
+    	//curAngle = DTSide.getAngle(); //gets current angle of robot
     	speed = pd.getOutput(curAngle); //passes current angle through pid loop
         left.setSpeed(speed); //sets speed
         right.setSpeed(-speed); //sets negative speed so robot can turn
-        SmartDashboard.putNumber("PWM Value", DTSide.getSpeed()); //get most recently set PWM value, between -1.0 and 1.0
     }
 
     protected boolean isFinished() {
-        return this.inTresh();
+        return this.inThresh();
     }
 
     protected void end() {
         left.setSpeed(0);
         right.setSpeed(0);
-        DTSide.resetEnc();
+        left.resetEnc();
+        right.resetEnc();
     }
 
        protected void interrupted() {
     }
       
      //used to determine if robot is close enough to target to stop
-    protected boolean inTresh(){
+    protected boolean inThresh(){
         //placeholder values, must test
         return speed < .1 && speed > -.1;
 

@@ -10,7 +10,7 @@ public class PIDLoop {
 							//when we can start the timer
 	double currTime = 0,oldTime = 0;
 	Timer timer = new Timer();
-	double vel_max = 3;
+	double vel_max = 12;
 	double curr_location = 0;
 	public PIDLoop(double target,double kP, double kI) {
 		this.desired_target = target;
@@ -65,8 +65,10 @@ public class PIDLoop {
 	
 	public double getLocation(double time,double pos) {
 		if(time > desired_target/vel_max) {
+			System.out.println("time " + time );
 			return pos;
 		}
+		
 		return vel_max * time;
 	}
 	

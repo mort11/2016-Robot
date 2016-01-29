@@ -2,7 +2,7 @@ package org.mort11.subsystems.dt;
 
 import org.mort11.util.DTConstants;
 
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public abstract class DTSide extends Subsystem {
 
-    private static CANTalon motors;
-    private static Encoder enc;
+    private CANTalon motors;
+    private Encoder enc;
     private static boolean motorReverse;
-    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
+//    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
     
     static PowerDistributionPanel pdp = new PowerDistributionPanel();
 
@@ -27,7 +27,7 @@ public abstract class DTSide extends Subsystem {
         DTSide.motorReverse = motorReverse;
     }
 
-    public static double getSpeed() {
+    public double getSpeed() {
         return motors.get();
     }
 
@@ -35,32 +35,32 @@ public abstract class DTSide extends Subsystem {
         motors.set(speed * (motorReverse ? -1 : 1));
     }
 
-    public static double getCurrentLeft() { 
+    public double getCurrentLeft() { 
     	SmartDashboard.putNumber("Left Motor Current", pdp.getCurrent(0));
         return pdp.getCurrent(0); //placeholder channel value, returns current of channel in Amps
     }
     
-    public static double getCurrentRight() {
+    public double getCurrentRight() {
     	SmartDashboard.putNumber("Right Motor Current", pdp.getCurrent(1));
     	return pdp.getCurrent(1); //placeholder channel value, returns current of channel in Amps
     }
 
-    public static double getTalonCurrent() {
+    public double getTalonCurrent() {
     	return motors.getOutputCurrent(); //gets current of talon in Amps
     }
     
-    public static double getTalonVoltage() {
+    public double getTalonVoltage() {
     	return motors.getOutputVoltage(); //gets voltage of talon in Volts
     }
-    public static double getDist() {
+    public double getDist() {
         return enc.getDistance();
     }
 
-    public static double getEncRate() {
+    public double getEncRate() {
         return enc.getRate();
     }
 
-    public static void resetEnc() {
+    public void resetEnc() {
         enc.reset();
     }
 
@@ -69,9 +69,9 @@ public abstract class DTSide extends Subsystem {
     }
 
     //needs to be moved into a nav class
-    public static double getAngle() {
-        return navx.getAngle();
-    }
+//    public static double getAngle() {
+//        return navx.getAngle();
+//    }
 
 }
 
