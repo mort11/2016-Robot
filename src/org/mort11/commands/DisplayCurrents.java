@@ -6,32 +6,32 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DisplayCurrents extends Command {
 
-	PowerDistributionPanel pdp = new PowerDistributionPanel();
+    PowerDistributionPanel pdp = new PowerDistributionPanel();
 
-	// current values for each monitored PDP channel (0 - 15) in Amps
-	// can comment out any channels that are not in use
-//	private double cur0;
-	private double cur1;
-	private double cur2;
-//	private double cur3;
-//	private double cur4;
-//	private double cur5;
-//	private double cur6;
-//	private double cur7;
-//	private double cur8;
-//	private double cur9;
-//	private double cur10;
-//	private double cur11;
-//	private double cur12;
-//	private double cur13;
-//	private double cur14;
-//	private double cur15;
+    // current values for each monitored PDP channel (0 - 15) in Amps
+    // can comment out any channels that are not in use
+    //private double cur0;
+    private double cur1;
+    private double cur2;
+//  private double cur3;
+//  private double cur4;
+//  private double cur5;
+//  private double cur6;
+//  private double cur7;
+//  private double cur8;
+//  private double cur9;
+//  private double cur10;
+//  private double cur11;
+//  private double cur12;
+//  private double cur13;
+//  private double cur14;
+//  private double cur15;
 
-	private double temp; // temperature of PDP in degrees Celsius
-	private double totalCur; // current of all monitored PDP channels in Amps
-	private double totalEnergy; // total energy draw of all monitored PDP channels, give in Joules
-	private double totalPowerDraw; // total power draw of all monitored PDP channels, given in Watts
-	private double voltage; // input voltage for PDP in Watts
+    private double temp; // temperature of PDP in degrees Celsius
+    private double totalCur; // current of all monitored PDP channels in Amps
+    private double totalEnergy; // total energy draw of all monitored PDP channels, give in Joules
+    private double totalPowerDraw; // total power draw of all monitored PDP channels, given in Watts
+    private double voltage; // input voltage for PDP in Watts
 
 	public DisplayCurrents() {
 

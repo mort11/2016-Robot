@@ -1,14 +1,9 @@
 package org.mort11.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
-
-/**
- *
- */
-
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DT extends Subsystem {
    private final static double kCircumference = 4 * Math.PI;
@@ -23,12 +18,8 @@ public class DT extends Subsystem {
 	   rightEnc.setDistancePerPulse(kCircumference/256);
 	   rightEnc.reset();
    }
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
    
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
     
     public void driveLeft(double speed) {

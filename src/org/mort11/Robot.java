@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
 import org.mort11.commands.DisplayCurrents;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.subsystems.DT;
@@ -18,6 +17,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     Command DriveStraight;
     Command DispCurrent;
+
     public void robotInit() {
         oi = new OI();
         leftSide = new DTLeft();
@@ -31,12 +31,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	System.out.println("auton initting");
+        System.out.println("auton initting");
         if (DriveStraight != null) {
         	DriveStraight.start();
         	DispCurrent.start();
         }
-        
     }
 
     public void autonomousPeriodic() {
