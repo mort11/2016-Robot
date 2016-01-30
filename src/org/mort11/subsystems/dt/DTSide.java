@@ -16,7 +16,7 @@ public abstract class DTSide extends Subsystem {
     private CANTalon motors;
     private Encoder enc;
     private static boolean motorReverse;
-//    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
+//  private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
     
     static PowerDistributionPanel pdp = new PowerDistributionPanel();
 
@@ -36,21 +36,21 @@ public abstract class DTSide extends Subsystem {
     }
 
     public double getCurrentLeft() { 
-    	SmartDashboard.putNumber("Left Motor Current", pdp.getCurrent(0));
+        SmartDashboard.putNumber("Left Motor Current", pdp.getCurrent(0));
         return pdp.getCurrent(0); //placeholder channel value, returns current of channel in Amps
     }
     
     public double getCurrentRight() {
-    	SmartDashboard.putNumber("Right Motor Current", pdp.getCurrent(1));
-    	return pdp.getCurrent(1); //placeholder channel value, returns current of channel in Amps
+        SmartDashboard.putNumber("Right Motor Current", pdp.getCurrent(1));
+        return pdp.getCurrent(1); //placeholder channel value, returns current of channel in Amps
     }
 
     public double getTalonCurrent() {
-    	return motors.getOutputCurrent(); //gets current of talon in Amps
+        return motors.getOutputCurrent(); //gets current of talon in Amps
     }
     
     public double getTalonVoltage() {
-    	return motors.getOutputVoltage(); //gets voltage of talon in Volts
+        return motors.getOutputVoltage(); //gets voltage of talon in Volts
     }
     public double getDist() {
         return enc.getDistance();

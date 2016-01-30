@@ -28,8 +28,8 @@ public class DriveStraight extends Command {
     }
 
     protected void initialize() {
-    	left.resetEnc();
-    	right.resetEnc();
+        left.resetEnc();
+        right.resetEnc();
     }
     
     protected void execute() {
@@ -37,10 +37,12 @@ public class DriveStraight extends Command {
         curDist_right = left.getDist(); //get distance traveled since last encoder reset
         speed_left = pd_left.getOutput(curDist_left); //gets speed using pid loop
         speed_right = pd_right.getOutput(curDist_right); //gets speed using pid loop
-    	left.setSpeed(speed_left); //sets speed of robot
-    	right.setSpeed(speed_right); //sets speed of robot
-    	SmartDashboard.putNumber("Distance Traveled Left", left.getDist()); //gets and displays distance traveled
-    	SmartDashboard.putNumber("Distance Traveled Right", right.getDist()); //gets and displays distance traveled
+        left.setSpeed(-speed_left); //sets speed of robot, is negative to make it drive correctly
+        right.setSpeed(speed_right); //sets speed of robot
+        System.out.println(curDist_left);
+        System.out.println(curDist_right);
+        SmartDashboard.putNumber("Distance Traveled Left", curDist_left); //gets and displays distance traveled
+        SmartDashboard.putNumber("Distance Traveled Right", curDist_right); //gets and displays distance traveled
         SmartDashboard.putNumber("Left PWM Value", left.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
         SmartDashboard.putNumber("Right PWM Value", right.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
         SmartDashboard.putNumber("Left Talon Current", left.getTalonCurrent()); //gets the current of the left talon in amps
@@ -48,24 +50,25 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-        return this.inThresh();
+        //return this.inThresh();
+        return (speed_left < 0 && speed_left > -.1);
     }
 
 	protected void end() {
-    	left.setSpeed(0);
-    	right.setSpeed(0);
-    	left.resetEnc();
-    	right.resetEnc();
+	    left.setSpeed(0);
+	    right.setSpeed(0);
+	    left.resetEnc();
+	    right.resetEnc();
     }
 
     protected void interrupted() {
     }
     
     //used to determine if robot is close enough to target to stop
-    protected boolean inThresh(){
+  //  protected boolean inThresh(){
         //placeholder values, must test
-        //return (speed_left < .01 && speed_left > -.01) && (speed_right < .01 && speed_right > -.01);
-    	return false;
+        //return (speed_left < 0 && speed_left > -.1) || (speed_right < .1 && speed_right > 0);
+        //return false;
 
-    }
+    //}
 }
