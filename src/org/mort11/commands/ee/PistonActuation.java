@@ -1,18 +1,18 @@
 package org.mort11.commands.ee;
 
+
 import org.mort11.OI;
 import org.mort11.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.Robot;
 
 public class PistonActuation extends Command {
 	
 	boolean isPressed;
 	
     public PistonActuation() {
-//    	System.out.println("isPressed");
-//    	this.isPressed = isPressed;/l
         requires(Robot.piston);
         setInterruptible(true);
     }
@@ -34,8 +34,9 @@ public class PistonActuation extends Command {
 
     protected boolean isFinished() {
     System.out.println("isfinished");
-    return true; 
+    return true;
     }
+
     protected void end() {
     }
     protected void interrupted() {
