@@ -1,9 +1,9 @@
 package org.mort11;
 
 import org.mort11.commands.DrivePID;
-import org.mort11.commands.ExampleCommand;
 import org.mort11.subsystems.DT;
-import org.mort11.subsystems.ExampleSubsystem;
+import org.mort11.subsystems.ee.ShootingMechanism;
+import org.mort11.subsystems.ee.Pneumatics;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -14,9 +14,12 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Robot extends IterativeRobot {
-    public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     public static OI oi;
-    public static final DT dt = new DT();
+    public static DT dt;
+    public static ShootingMechanism intakeArm;
+    public static ShootingMechanism ShootMech;
+    public static ShootingMechanism intakeRollers;
+    public static Pneumatics piston;
     Command autonomousCommand;
     Command DrivePIDCommand;
     Accelerometer accel;
@@ -24,8 +27,13 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         oi = new OI();
         accel = new BuiltInAccelerometer();
-        autonomousCommand = new ExampleCommand();
         //DrivePIDCommand = new DrivePID(120); 
+        dt = new DT();
+        intakeArm = new ShootingMechanism();
+        ShootMech = new ShootingMechanism();
+        intakeRollers = new ShootingMechanism();
+        piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
+        DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {
@@ -33,7 +41,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        //if (autonomousCommand != null) DrivePIDCommand.start();
     }
 
     public void autonomousPeriodic() {

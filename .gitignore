@@ -27,5 +27,8 @@ gradlew.bat
 bin
 gradle
 .idea
+<<<<<<< HEAD
 =======
 /bin/
+=======
+>>>>>>> ee
