@@ -57,13 +57,15 @@ public class DisplayCurrents extends Command {
 //		cur13 = pdp.getCurrent(13);
 //		cur14 = pdp.getCurrent(14);
 //		cur15 = pdp.getCurrent(15);
-		temp = pdp.getTemperature();
+		/**temp = pdp.getTemperature();
 		totalCur = pdp.getTotalCurrent();
 		totalEnergy = pdp.getTotalEnergy();
 		totalPowerDraw = pdp.getTotalPower();
-		voltage = pdp.getTotalCurrent();
+		voltage = pdp.getTotalCurrent();**/
 
 //		SmartDashboard.putNumber("PDP Current Channel 0", cur0);
+		System.out.println("current 1: " + cur1);
+		System.out.println("current 2: " + cur2);
 		SmartDashboard.putNumber("PDP Current Channel 1", cur1);
 		SmartDashboard.putNumber("PDP Current Channel 2", cur2);
 //		SmartDashboard.putNumber("PDP Current Channel 3", cur3);
@@ -79,11 +81,11 @@ public class DisplayCurrents extends Command {
 //		SmartDashboard.putNumber("PDP Current Channel 13", cur13);
 //		SmartDashboard.putNumber("PDP Current Channel 14", cur14);
 //		SmartDashboard.putNumber("PDP Current Channel 15", cur15);
-		SmartDashboard.putNumber("PDP Temperature", temp);
+		/**SmartDashboard.putNumber("PDP Temperature", temp);
 		SmartDashboard.putNumber("PDP Total Current", totalCur);
 		SmartDashboard.putNumber("PDP Total Energy", totalEnergy);
 		SmartDashboard.putNumber("PDP Total Power Draw", totalPowerDraw);
-		SmartDashboard.putNumber("PDP Voltage", voltage);
+		SmartDashboard.putNumber("PDP Voltage", voltage);**/
 	}
 
 	protected boolean isFinished() {

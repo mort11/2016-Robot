@@ -22,7 +22,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
         leftSide = new DTLeft();
         rightSide = new DTRight();
-        //DispCurrent = new DisplayCurrents();
+        DispCurrent = new DisplayCurrents();
         DriveStraight = new DriveStraight(100);
     }
 
@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
     	System.out.println("auton initting");
         if (DriveStraight != null) {
         	DriveStraight.start();
-        	//DispCurrent.start();
+        	DispCurrent.start();
         }
         
     }
@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (DriveStraight != null) {
         	DriveStraight.cancel();
-        	//DispCurrent.cancel();
+        	DispCurrent.cancel();
         }
     }
 
