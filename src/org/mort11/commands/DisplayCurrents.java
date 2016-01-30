@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DisplayCurrents extends Command {
 
-    PowerDistributionPanel pdp = new PowerDistributionPanel();
+    PowerDistributionPanel pdp;
 
     // current values for each monitored PDP channel (0 - 15) in Amps
     // can comment out any channels that are not in use
@@ -38,6 +38,7 @@ public class DisplayCurrents extends Command {
 	}
 
 	protected void initialize() {
+	    pdp = new PowerDistributionPanel();
 	}
 
 	protected void execute() {

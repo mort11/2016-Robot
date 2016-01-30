@@ -8,10 +8,10 @@ public class PortMap {
     public static final int DT_RIGHT_PORT = 2;// CAN
 
     // Encoders
-    public static final int DT_ENC_LEFT_A = 0; // DIO
-    public static final int DT_ENC_LEFT_B = 1; // DIO
-    public static final int DT_ENC_RIGHT_A = 2; // DIO
-    public static final int DT_ENC_RIGHT_B = 3; // DIO
+    public static final int DT_ENC_RIGHT_A = 0; // DIO
+    public static final int DT_ENC_RIGHT_B = 1; // DIO
+    public static final int DT_ENC_LEFT_A = 2; // DIO
+    public static final int DT_ENC_LEFT_B = 3; // DIO
 
     // Hanging arm?
     public static final int ARM_TAL_1 = 0;

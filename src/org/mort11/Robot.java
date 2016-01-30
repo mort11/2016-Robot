@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.mort11.commands.DisplayCurrents;
 import org.mort11.commands.auton.DriveStraight;
-import org.mort11.subsystems.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 
@@ -23,7 +22,7 @@ public class Robot extends IterativeRobot {
         leftSide = new DTLeft();
         rightSide = new DTRight();
         DispCurrent = new DisplayCurrents();
-        DriveStraight = new DriveStraight(100);
+        DriveStraight = new DriveStraight(200);
     }
 
     public void disabledPeriodic() {

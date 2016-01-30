@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public abstract class DTSide extends Subsystem {
 
     private CANTalon motors;
-    private Encoder enc;
+    protected Encoder enc;
     private static boolean motorReverse;
 //  private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
     
@@ -23,7 +23,7 @@ public abstract class DTSide extends Subsystem {
     public DTSide(int motorPort, int encAPort, int encBPort, boolean motorReverse, boolean encReverse) {
         motors = new CANTalon(motorPort);
         enc = new Encoder(encAPort, encBPort, encReverse, EncodingType.k4X);
-        enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE); // Placeholder value
+        enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE_RIGHT);
         DTSide.motorReverse = motorReverse;
     }
 
