@@ -11,14 +11,15 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  		
  		Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
  		Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
- 		public Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
+ 		Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
  		
- 		Button piston = new JoystickButton(ee, TeleopConstants.PISTON_BUTTON);
+ 		public Button piston = new JoystickButton(ee, TeleopConstants.PISTON_BUTTON);
  		Button intakeRoll = new JoystickButton(ee, TeleopConstants.INTAKE_BUTTON);
  		Button outtakeRoll = new JoystickButton(ee, TeleopConstants.OUTTAKE_BUTTON);
  	
  		public OI() {
- 			piston.whenPressed(new PistonActuation());
+ 			System.out.println("OI print ln fsklafhajdskjfehakjfhkj ewahfjweahkjefhewaihfkjawhke");
+ 			System.out.println(piston);
  		}
  	
 }

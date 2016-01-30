@@ -1,7 +1,6 @@
 package org.mort11.commands.ee;
 
 import org.mort11.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MotorToAngle extends Command{

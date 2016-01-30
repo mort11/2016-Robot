@@ -6,11 +6,13 @@ import org.mort11.subsystems.ee.ShootingMechanism;
 import org.mort11.subsystems.ee.Pneumatics;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Robot extends IterativeRobot {
+	public static Compressor comp;
     public static OI oi;
     public static DT dt;
     public static ShootingMechanism intakeArm;
@@ -21,13 +23,15 @@ public class Robot extends IterativeRobot {
     Command DrivePIDCommand;
 
     public void robotInit() {
+    	
+    	piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
+        //dt = new DT();
+        comp = new Compressor(30);
+       //intakeArm = new ShootingMechanism();
+       //ShootMech = new ShootingMechanism();
+        //intakeRollers = new ShootingMechanism();
+        //DrivePIDCommand = new DrivePID(120); 
         oi = new OI();
-        dt = new DT();
-        intakeArm = new ShootingMechanism();
-        ShootMech = new ShootingMechanism();
-        intakeRollers = new ShootingMechanism();
-        piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {
@@ -46,6 +50,7 @@ public class Robot extends IterativeRobot {
     	System.out.println(System.getProperty("user.home"));
         if (autonomousCommand != null) DrivePIDCommand.cancel();
     }
+    
 
     public void disabledInit() {
 
@@ -53,6 +58,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
     }
 
     public void testPeriodic() {
