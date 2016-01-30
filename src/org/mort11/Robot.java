@@ -32,8 +32,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         System.out.println("auton initting");
         if (DriveStraight != null) {
-            DriveStraight.start();
-            //DispCurrent.start();
+        	DriveStraight.start();
+        	DispCurrent.start();
         }
     }
 
@@ -43,8 +43,8 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (DriveStraight != null) {
-            DriveStraight.cancel();
-            //DispCurrent.cancel();
+        	DriveStraight.cancel();
+        	DispCurrent.cancel();
         }
     }
 
