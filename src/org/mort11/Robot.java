@@ -2,7 +2,7 @@ package org.mort11;
 
 import org.mort11.commands.DrivePID;
 import org.mort11.subsystems.DT;
-import org.mort11.subsystems.ee.ShootingMechanism;
+import org.mort11.subsystems.ee.Shooter;
 import org.mort11.subsystems.ee.Pneumatics;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
@@ -16,9 +16,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
     public static OI oi;
     public static DT dt;
-    public static ShootingMechanism intakeArm;
-    public static ShootingMechanism ShootMech;
-    public static ShootingMechanism intakeRollers;
+    public static Shooter intakeArm;
+    public static Shooter ShootMech;
+    public static Shooter intakeRollers;
     public static Pneumatics piston;
     Command autonomousCommand;
     Command DrivePIDCommand;
@@ -29,9 +29,9 @@ public class Robot extends IterativeRobot {
         accel = new BuiltInAccelerometer();
         //DrivePIDCommand = new DrivePID(120); 
         dt = new DT();
-        intakeArm = new ShootingMechanism();
-        ShootMech = new ShootingMechanism();
-        intakeRollers = new ShootingMechanism();
+        //intakeArm = new Shooter();
+        ShootMech = new Shooter();
+        //intakeRollers = new Shooter();
         piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         DrivePIDCommand = new DrivePID(120); 
     }

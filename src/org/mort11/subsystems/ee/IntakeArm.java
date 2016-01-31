@@ -1,11 +1,11 @@
-package org.usfirst.frc.team11.robot.subsystems;
+package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class DriveTrain extends Subsystem {
+public class IntakeArm extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
