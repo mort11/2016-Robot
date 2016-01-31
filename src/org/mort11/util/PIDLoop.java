@@ -18,6 +18,13 @@ public class PIDLoop {
 		this.kI = kI;
 	}
 	
+	public PIDLoop(double target,double kP, double kI, double multiplier) {
+		this.desired_target = target;
+		this.kP = kP;
+		this.kI = kI;
+		this.vel_max = multiplier * vel_max;
+	}
+	
 	
 	public double getOutput_notStaggered(double  pos){
 		double error = desired_target - pos;
