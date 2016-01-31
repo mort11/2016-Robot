@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.commands.ee.PistonActuation;
+import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.util.TeleopConstants;
 
  	public class OI{
@@ -13,9 +14,11 @@ import org.mort11.util.TeleopConstants;
  		Button piston = new JoystickButton(ee, TeleopConstants.PISTON_BUTTON);
  		Button intakeRoll = new JoystickButton(ee, TeleopConstants.INTAKE_BUTTON);
  		Button outtakeRoll = new JoystickButton(ee, TeleopConstants.OUTTAKE_BUTTON);
+ 		Button angle = new JoystickButton(ee, TeleopConstants.ANGLE_BUTTON);
  	
  		public OI() {
  			piston.whenPressed(new PistonActuation());
+ 			piston.whenPressed(new MotorToAngle());
  		}
  	
 }

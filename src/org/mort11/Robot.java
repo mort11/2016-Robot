@@ -16,6 +16,7 @@ public class Robot extends IterativeRobot {
     public static ShootingMechanism intakeArm;
     public static ShootingMechanism ShootMech;
     public static ShootingMechanism intakeRollers;
+    public static ShootingMechanism motorToAngle;
     public static Pneumatics piston;
     Command autonomousCommand;
     Command DrivePIDCommand;
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
         intakeArm = new ShootingMechanism();
         ShootMech = new ShootingMechanism();
         intakeRollers = new ShootingMechanism();
+        motorToAngle = new ShootingMechanism();
         piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         DrivePIDCommand = new DrivePID(120); 
     }

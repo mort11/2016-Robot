@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MotorToAngle extends Command{
 
 	double speed = .5;
+	double tarAng = 90;
 	
 	public MotorToAngle() {
 	      requires(Robot.ShootMech);
@@ -16,19 +17,20 @@ public class MotorToAngle extends Command{
 	}
 
 	protected void execute() {
-		if(Robot.ShootMech.getAngle() < 90){
+		System.out.println("MotorToAngle is executed");
+		if(Robot.ShootMech.getAngle() < tarAng){
 			Robot.ShootMech.setSpeed(speed);
 		}
-	    if(Robot.ShootMech.getAngle() > 90){
+	    if(Robot.ShootMech.getAngle() > tarAng){
 		   	Robot.ShootMech.setSpeed(-speed);
 		}
-	    if(Robot.ShootMech.getAngle() == 90){
+	    if(Robot.ShootMech.getAngle() == tarAng){
 	    	Robot.ShootMech.setSpeed(0);
 	    }
 	}
 
 	protected boolean isFinished() {
-	    return true;
+	    return false;
 	}
 
 	protected void end() {
@@ -38,3 +40,4 @@ public class MotorToAngle extends Command{
 	}
 	    
 }
+	
