@@ -13,15 +13,12 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.mort11.commands.DisplayCurrents;
-import org.mort11.commands.auton.DrivePID;
 import org.mort11.commands.auton.DriveStraight;
-import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 
 public class Robot extends IterativeRobot {
 	public static Compressor comp;
-    public static DT dt;
     public static Shooter intakeArm;
     public static Shooter ShootMech;
     public static Shooter intakeRollers;
@@ -43,7 +40,6 @@ public class Robot extends IterativeRobot {
         //intakeArm = new Shooter();
         ShootMech = new Shooter();
         piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        DrivePIDCommand = new DrivePID(120);
         leftSide = new DTLeft();
         rightSide = new DTRight();
         DispCurrent = new DisplayCurrents();
