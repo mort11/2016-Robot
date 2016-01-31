@@ -4,7 +4,6 @@ import org.mort11.commands.DrivePID;
 import org.mort11.subsystems.DT;
 import org.mort11.subsystems.ee.Shooter;
 import org.mort11.subsystems.ee.Pneumatics;
-
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -13,19 +12,27 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import org.mort11.commands.DisplayCurrents;
+import org.mort11.commands.auton.DriveStraight;
+import org.mort11.subsystems.dt.DTLeft;
+import org.mort11.subsystems.dt.DTRight;
 
 public class Robot extends IterativeRobot {
 	public static Compressor comp;
-    public static OI oi;
     public static DT dt;
     public static Shooter intakeArm;
     public static Shooter ShootMech;
     public static Shooter intakeRollers;
     public static Pneumatics piston;
-    Command autonomousCommand;
     Command DrivePIDCommand;
     Accelerometer accel;
     
+    public static OI oi;
+    public static DTLeft leftSide;
+    public static DTRight rightSide;
+    Command DriveStraight;
+    Command DispCurrent;
+
     public void robotInit() {
     	
     	piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
@@ -35,8 +42,11 @@ public class Robot extends IterativeRobot {
         ShootMech = new Shooter();
         piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         DrivePIDCommand = new DrivePID(120);
+        leftSide = new DTLeft();
+        rightSide = new DTRight();
+        DispCurrent = new DisplayCurrents();
+        DriveStraight = new DriveStraight(200);
         oi = new OI();
-        
     }
 
     public void disabledPeriodic() {
@@ -44,6 +54,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        System.out.println("auton initting");
+        if (DriveStraight != null) {
+        	DriveStraight.start();
+        	DispCurrent.start();
+        }
     }
 
     public void autonomousPeriodic() {
@@ -57,6 +72,10 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
     	System.out.println(System.getProperty("user.home"));
         //if (autonomousCommand != null) DrivePIDCommand.cancel();
+        if (DriveStraight != null) {
+        	DriveStraight.cancel();
+        	DispCurrent.cancel();
+        }
     }
     
 

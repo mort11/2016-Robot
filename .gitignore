@@ -28,7 +28,11 @@ bin
 gradle
 .idea
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /bin/
 =======
 >>>>>>> ee
+=======
+sysProps.xml
+>>>>>>> dt
