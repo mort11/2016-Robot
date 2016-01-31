@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 
-public class ShootingMechanism extends Subsystem{
+public class Shooter extends Subsystem{
 
 	private Talon armMotor;
 	private DigitalInput limSwitch;
 	private Encoder armEnc;
 	private AnalogPotentiometer armPot;
 	
-	public ShootingMechanism(){
+	public Shooter(){
 		armMotor = new Talon(RobotMap.ARM_TALL);
 		limSwitch = new DigitalInput(RobotMap.ARM_LIM);
 		armEnc = new Encoder(RobotMap.ARM_ENC1, RobotMap.ARM_ENC2, true, EncodingType.k4X);

@@ -1,4 +1,4 @@
-package org.mort11.subsystems;
+package org.mort11.subsystems.dt;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
