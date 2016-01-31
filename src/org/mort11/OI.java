@@ -38,12 +38,13 @@ public class OI{
         System.out.println(Robot.oi.timer.get());
         if (Robot.oi.fullSpeed.get()) {
             enabled = true;
+            count ++;
         }
         if (enabled) {
             Robot.oi.timer.start();
             enabled = false;
         }
-        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 ) {
+        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count < 5 ) {
             return speed;
         }
         if (Robot.oi.timer.get() >= 10){
@@ -53,11 +54,11 @@ public class OI{
             System.out.println("timer: " + Robot.oi.timer.get());
         }
         if (!enabled) {
-            if (speed >= .25) {
-                speed = .25;
+            if (speed >= .75) {
+                speed = .75;
             }
-            if (speed <= -.25) {
-                speed = -.25;
+            if (speed <= -.75) {
+                speed = -.75;
             }
         }
         return speed;
