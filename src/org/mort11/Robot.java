@@ -16,6 +16,7 @@ import org.mort11.commands.DisplayCurrents;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
+import org.mort11.commands.dt.*;
 
 public class Robot extends IterativeRobot {
 	public static Compressor comp;
@@ -29,21 +30,27 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static DTLeft leftSide;
     public static DTRight rightSide;
+    public static DT dt;
     Command DriveStraight;
     Command DispCurrent;
+    Command DriveLinearLeft;
+    Command DriveLinearRight;
 
     public void robotInit() {
     	
-    	piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        comp = new Compressor(30); 
-        accel = new BuiltInAccelerometer();
+    	//piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
+        //comp = new Compressor(30); 
+        //accel = new BuiltInAccelerometer();
         //intakeArm = new Shooter();
-        ShootMech = new Shooter();
-        piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
+        //ShootMech = new Shooter();
+        //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         leftSide = new DTLeft();
         rightSide = new DTRight();
-        DispCurrent = new DisplayCurrents();
-        DriveStraight = new DriveStraight(200);
+        //dt = new DT();
+        //DispCurrent = new DisplayCurrents();
+        //DriveStraight = new DriveStraight(200);
+        DriveLinearLeft = new DriveLinearLeft();
+        DriveLinearRight = new DriveLinearRight();
         oi = new OI();
     }
 
@@ -74,6 +81,8 @@ public class Robot extends IterativeRobot {
         	DriveStraight.cancel();
         	DispCurrent.cancel();
         }
+        DriveLinearLeft.start();
+        DriveLinearRight.start();
     }
     
 

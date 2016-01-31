@@ -17,6 +17,7 @@ public class OI{
 	public OI() {
 		System.out.println("OI print ln fsklafhajdskjfehakjfhkj ewahfjweahkjefhewaihfkjawhke");
 		System.out.println(piston);
+		System.out.println(left.getY());
 	}
  	
 
@@ -26,13 +27,20 @@ public class OI{
         }
         return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
+    
+    public static double limitSpeed(double speed) {
+        if (Math.abs(speed) >= .25) {
+            speed = .25;
+        }
+        return speed;
+    }
 
     public double getLeftJoy() {
-        return doThreshold(-left.getY());
+        return limitSpeed(-left.getY());
     }
 
     public double getRightJoy() {
-        return doThreshold(-right.getY());
+        return limitSpeed(-right.getY());
     }
 }
 

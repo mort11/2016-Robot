@@ -21,7 +21,7 @@ public class Shooter extends Subsystem{
 		armMotor = new Talon(RobotMap.ARM_TALL);
 		limSwitch = new DigitalInput(RobotMap.ARM_LIM);
 		armEnc = new Encoder(RobotMap.ARM_ENC1, RobotMap.ARM_ENC2, true, EncodingType.k4X);
-		armPot = new AnalogPotentiometer(RobotMap.ARM_POT);
+		//armPot = new AnalogPotentiometer(RobotMap.ARM_POT);
 		armEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
 		armEnc.reset();
 	}
