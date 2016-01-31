@@ -1,4 +1,4 @@
-package org.mort11.commands;
+package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
