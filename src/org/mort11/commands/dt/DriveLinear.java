@@ -1,7 +1,6 @@
 package org.mort11.commands.dt;
 
 import org.mort11.subsystems.dt.DTSide;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public abstract class DriveLinear extends Command {
@@ -19,7 +18,7 @@ public abstract class DriveLinear extends Command {
     protected abstract double getSpeed();
 
     protected void execute() {
-        side.getSpeed();
+        side.setSpeed(getSpeed());
     }
 
     protected boolean isFinished() {

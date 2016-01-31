@@ -13,19 +13,4 @@ public class DriveLinearRight extends DriveLinear {
         return oi.getRightJoy();
     }
 
-    protected void initialize() {
-    }
-
-    protected void execute() {
-    }
-
-    protected boolean isFinished() {
-        return false;
-    }
-
-    protected void end() {
-    }
-
-    protected void interrupted() {
-    }
 }
