@@ -44,7 +44,7 @@ public class OI{
             Robot.oi.timer.start();
             enabled = false;
         }
-        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count < 5 ) {
+        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 1 ) {
             return speed;
         }
         if (Robot.oi.timer.get() >= 10){
