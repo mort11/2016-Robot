@@ -63,6 +63,11 @@ public abstract class DTSide extends Subsystem {
     public void resetEnc() {
         enc.reset();
     }
+    
+    //will disable the motor by setting the speed to 0
+    public void disable(){
+        motors.set(0);
+    }
 
     public void initDefaultCommand() {
 
