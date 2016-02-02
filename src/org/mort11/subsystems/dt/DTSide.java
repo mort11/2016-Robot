@@ -67,6 +67,27 @@ public abstract class DTSide extends Subsystem {
     public void initDefaultCommand() {
 
     }
+    //copy pasted 2014 DT shift methods 
+   /* public void shift()
+    {
+        if (curGear == Gear.LowGear) {
+            shift(Gear.HighGear);
+        } else {
+            shift(Gear.LowGear);
+        }
+    }
+    
+    public void shift(Gear g)
+    {
+        curGear = g;
+        if (g == Gear.LowGear) {
+            lowShifter.set(true);
+            highShifter.set(false);
+        } else {
+            lowShifter.set(false);
+            highShifter.set(true);
+        }
+    }*/
 
     //needs to be moved into a nav class
 //    public static double getAngle() {
