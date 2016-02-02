@@ -14,9 +14,21 @@ public class PortMap {
     public static final int DT_ENC_LEFT_B = 3; // DIO
 
     // Hanging arm?
+    //need to resolve duplicate names and port numbers
     public static final int ARM_TAL_1 = 0;
-    public static final int ARM_LIM = 0;
+    //public static final int ARM_LIM = 0;
     public static final int ARM_ENC_1 = 0;
     public static final int ARM_ENC_2 = 0;
-    public static final int ARM_POT = 0;
+    //public static final int ARM_POT = 0;
+    
+    public static final int ARM_TALL = 10;
+    public static final int ARM_LIM = 6;
+    public static final int ARM_ENC1 = 8;
+    public static final int ARM_ENC2 = 3;
+    public static final int ARM_POT = 9;
+    public static final int PNE_ENG1 = 1;
+    public static final int PNE_ENG2 =0;
+    public static final int ROLL_TALL = 7;
+    public static final int ROLL_ENC1 = 4;
+    public static final int ROLL_ENC2 = 5;
 }
