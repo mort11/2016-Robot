@@ -58,6 +58,9 @@ public class DriveArc extends Command {
     			DTConstants.kRobotRadius * Math.signum(arc_length);
     	double left_radius = centerRadius + 
     			DTConstants.kRobotRadius * Math.signum(arc_length);
+    	System.out.println("Right radius: "  + right_radius * theta);
+    	System.out.println("Left radius: "  + left_radius * theta);
     	return (new double[]{right_radius * theta,left_radius*theta});
+    	
     }
 }

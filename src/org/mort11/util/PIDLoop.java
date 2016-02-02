@@ -10,7 +10,7 @@ public class PIDLoop {
 							//when we can start the timer
 	double currTime = 0,oldTime = 0;
 	Timer timer = new Timer();
-	double vel_max = 24;
+	double vel_max = 10;
 	double curr_location = 0;
 	public PIDLoop(double target,double kP, double kI) {
 		this.desired_target = target;
