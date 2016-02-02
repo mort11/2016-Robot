@@ -37,18 +37,18 @@ public class OI{
     public static double setSpeed(double speed) {
         System.out.println(Robot.oi.timer.get());
         if (Robot.oi.fullSpeed.get()) {
-            enabled = true;
+            enabled = true;       
             count ++;
-        }
+            }
         if (enabled) {
             Robot.oi.timer.start();
             enabled = false;
         }
-        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 1 ) {
+        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 20) {
             return speed;
         }
         if (Robot.oi.timer.get() >= 10){
-            System.out.println("stop");
+            //count = 2;
             Robot.oi.timer.stop();
             Robot.oi.timer.reset();
             System.out.println("timer: " + Robot.oi.timer.get());
@@ -67,6 +67,7 @@ public class OI{
     public double getLeftJoy() {
         //return doThreshold(-left.getY());
         //return limitSpeed(-left.getY());
+        //return doThreshold(setSpeed(-left.getY()));
         return setSpeed(-left.getY());
     }
 
