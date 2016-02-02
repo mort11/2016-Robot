@@ -15,8 +15,7 @@ public class OI{
 	Button outtakeRoll = new JoystickButton(ee, TeleopConstants.OUTTAKE_BUTTON);
 
 	public OI() {
-		System.out.println("OI print ln fsklafhajdskjfehakjfhkj ewahfjweahkjefhewaihfkjawhke");
-		System.out.println(piston);
+		
 	}
  	
 

@@ -18,6 +18,8 @@ import org.mort11.commands.auton.DriveStraight;
 import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
+import org.mort11.subsystems.ee.Intake;
+import org.mort11.subsystems.ee.Rollers;
 
 public class Robot extends IterativeRobot {
 	public static Compressor comp;
@@ -26,9 +28,10 @@ public class Robot extends IterativeRobot {
     public static Shooter ShootMech;
     public static Shooter intakeRollers;
     public static Pneumatics piston;
+    public static Rollers roller;
     Command DrivePIDCommand;
     Accelerometer accel;
-    
+    public static Intake intake ;
     public static OI oi;
     public static DTLeft leftSide;
     public static DTRight rightSide;
@@ -42,12 +45,13 @@ public class Robot extends IterativeRobot {
         accel = new BuiltInAccelerometer();
         //intakeArm = new Shooter();
         ShootMech = new Shooter();
-        piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         DrivePIDCommand = new DrivePID(120);
         leftSide = new DTLeft();
         rightSide = new DTRight();
         DispCurrent = new DisplayCurrents();
         DriveStraight = new DriveStraight(200);
+        intake = new Intake();
+        roller = new Rollers();
         oi = new OI();
     }
 
