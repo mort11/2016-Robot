@@ -1,16 +1,16 @@
 package org.mort11.commands.dt;
 
+import org.mort11.HardwareAdaptor;
+
 import static org.mort11.Robot.oi;
-import static org.mort11.Robot.leftSide;
 
 public class DriveLinearLeft extends DriveLinear {
 
     public DriveLinearLeft() {
-        super(leftSide);
+        super(HardwareAdaptor.leftSide);
     }
 
     protected double getSpeed() {
         return oi.getLeftJoy();
     }
-
 }

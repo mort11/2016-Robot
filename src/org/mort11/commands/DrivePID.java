@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
-import org.mort11.subsystems.DT;
 
 public class DrivePID extends Command {
     PIDLoop loopFunction_left;
@@ -24,11 +23,11 @@ public class DrivePID extends Command {
     }
 
     protected void initialize() {
-    	loopFunction_left = new PIDLoop(target, 0.05, 0);
-    	loopFunction_right = new PIDLoop(target, 0.05, 0);
-    	logger = new Logger();
-    	logger.init("/home/lvuser/output");
-    	logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
+        loopFunction_left = new PIDLoop(target, 0.05, 0);
+        loopFunction_right = new PIDLoop(target, 0.05, 0);
+        logger = new Logger();
+        logger.init("/home/lvuser/output");
+        logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
     }
 
     protected void execute() {
@@ -50,9 +49,9 @@ public class DrivePID extends Command {
     }
 
     protected void end() {
-    	logger.close();
-    	Robot.dt.resetEnc();
-    	Robot.dt.stop();
+        logger.close();
+        Robot.dt.resetEnc();
+        Robot.dt.stop();
         Robot.dt.resetEnc();
         Robot.dt.stop();
     }

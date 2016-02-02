@@ -1,51 +1,38 @@
 package org.mort11;
 
-import org.mort11.commands.DrivePID;
-import org.mort11.subsystems.DT;
-import org.mort11.subsystems.ee.Shooter;
-import org.mort11.subsystems.ee.Pneumatics;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.mort11.commands.DisplayCurrents;
-import org.mort11.commands.auton.DriveStraight;
-import org.mort11.subsystems.dt.DTLeft;
-import org.mort11.subsystems.dt.DTRight;
-import org.mort11.commands.dt.*;
+import org.mort11.commands.dt.DriveLinearLeft;
+import org.mort11.commands.dt.DriveLinearRight;
+import org.mort11.subsystems.DT;
+import org.mort11.subsystems.ee.Pneumatics;
 
+/**
+ * Robot - Main Robot class
+ *
+ * @author Matt Turi <mturi@mort11.org>
+ * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Michael Kozak <michael.kozak@motsd.org>
+ * @author Jeffrey Pastilha <jpmail967@yahoo.com>
+ */
 public class Robot extends IterativeRobot {
-	public static Compressor comp;
-    public static Shooter intakeArm;
-    public static Shooter ShootMech;
-    public static Shooter intakeRollers;
     public static Pneumatics piston;
-    Command DrivePIDCommand;
-    Accelerometer accel;
-    
     public static OI oi;
-    public static DTLeft leftSide;
-    public static DTRight rightSide;
     public static DT dt;
+
     Command DriveStraight;
     Command DispCurrent;
     Command DriveLinearLeft;
     Command DriveLinearRight;
 
     public void robotInit() {
-    	
-    	//piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        //comp = new Compressor(30); 
-        //accel = new BuiltInAccelerometer();
-        //intakeArm = new Shooter();
-        //ShootMech = new Shooter();
         //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        leftSide = new DTLeft();
-        rightSide = new DTRight();
         //dt = new DT();
         //DispCurrent = new DisplayCurrents();
         //DriveStraight = new DriveStraight(200);
@@ -59,32 +46,29 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        System.out.println("auton initting");
         if (DriveStraight != null) {
-        	DriveStraight.start();
-        	DispCurrent.start();
+            DriveStraight.start();
+            DispCurrent.start();
         }
     }
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        System.out.print("accel output x " + accel.getX()  + "   ");
-        System.out.print("accel output y " + accel.getY()  + "   ");
-        System.out.println("accel output z " + accel.getZ());
+        System.out.print("accel output x " + HardwareAdaptor.accelerometer.getX() + "   ");
+        System.out.print("accel output y " + HardwareAdaptor.accelerometer.getY() + "   ");
+        System.out.println("accel output z " + HardwareAdaptor.accelerometer.getZ());
         Timer.delay(0.5);
     }
 
     public void teleopInit() {
-    	System.out.println(System.getProperty("user.home"));
-        //if (autonomousCommand != null) DrivePIDCommand.cancel();
-        if (DriveStraight != null){
-        	DriveStraight.cancel();
-        	DispCurrent.cancel();
+        if (DriveStraight != null) {
+            DriveStraight.cancel();
+            DispCurrent.cancel();
         }
         DriveLinearLeft.start();
         DriveLinearRight.start();
     }
-    
+
 
     public void disabledInit() {
 
@@ -92,7 +76,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
     }
 
     public void testPeriodic() {
