@@ -33,18 +33,18 @@ public class DisplayCurrents extends Command {
     private double totalPowerDraw; // total power draw of all monitored PDP channels, given in Watts
     private double voltage; // input voltage for PDP in Watts
 
-	public DisplayCurrents() {
+    public DisplayCurrents() {
 
-	}
+    }
 
-	protected void initialize() {
-	    pdp = new PowerDistributionPanel();
-	}
+    protected void initialize() {
+        pdp = new PowerDistributionPanel();
+    }
 
-	protected void execute() {
+    protected void execute() {
 //		cur0 = pdp.getCurrent(0);
-		cur1 = pdp.getCurrent(1);
-		cur2 = pdp.getCurrent(2);
+        cur1 = pdp.getCurrent(1);
+        cur2 = pdp.getCurrent(2);
 //		cur3 = pdp.getCurrent(3);
 //		cur4 = pdp.getCurrent(4);
 //		cur5 = pdp.getCurrent(5);
@@ -58,17 +58,17 @@ public class DisplayCurrents extends Command {
 //		cur13 = pdp.getCurrent(13);
 //		cur14 = pdp.getCurrent(14);
 //		cur15 = pdp.getCurrent(15);
-		/**temp = pdp.getTemperature();
-		totalCur = pdp.getTotalCurrent();
-		totalEnergy = pdp.getTotalEnergy();
-		totalPowerDraw = pdp.getTotalPower();
-		voltage = pdp.getTotalCurrent();**/
+        /**temp = pdp.getTemperature();
+         totalCur = pdp.getTotalCurrent();
+         totalEnergy = pdp.getTotalEnergy();
+         totalPowerDraw = pdp.getTotalPower();
+         voltage = pdp.getTotalCurrent();**/
 
 //		SmartDashboard.putNumber("PDP Current Channel 0", cur0);
-		System.out.println("current 1: " + cur1);
-		System.out.println("current 2: " + cur2);
-		SmartDashboard.putNumber("PDP Current Channel 1", cur1);
-		SmartDashboard.putNumber("PDP Current Channel 2", cur2);
+        System.out.println("current 1: " + cur1);
+        System.out.println("current 2: " + cur2);
+        SmartDashboard.putNumber("PDP Current Channel 1", cur1);
+        SmartDashboard.putNumber("PDP Current Channel 2", cur2);
 //		SmartDashboard.putNumber("PDP Current Channel 3", cur3);
 //		SmartDashboard.putNumber("PDP Current Channel 4", cur4);
 //		SmartDashboard.putNumber("PDP Current Channel 5", cur5);
@@ -82,20 +82,20 @@ public class DisplayCurrents extends Command {
 //		SmartDashboard.putNumber("PDP Current Channel 13", cur13);
 //		SmartDashboard.putNumber("PDP Current Channel 14", cur14);
 //		SmartDashboard.putNumber("PDP Current Channel 15", cur15);
-		/**SmartDashboard.putNumber("PDP Temperature", temp);
-		SmartDashboard.putNumber("PDP Total Current", totalCur);
-		SmartDashboard.putNumber("PDP Total Energy", totalEnergy);
-		SmartDashboard.putNumber("PDP Total Power Draw", totalPowerDraw);
-		SmartDashboard.putNumber("PDP Voltage", voltage);**/
-	}
+        /**SmartDashboard.putNumber("PDP Temperature", temp);
+         SmartDashboard.putNumber("PDP Total Current", totalCur);
+         SmartDashboard.putNumber("PDP Total Energy", totalEnergy);
+         SmartDashboard.putNumber("PDP Total Power Draw", totalPowerDraw);
+         SmartDashboard.putNumber("PDP Voltage", voltage);**/
+    }
 
-	protected boolean isFinished() {
-		return false;
-	}
+    protected boolean isFinished() {
+        return false;
+    }
 
-	protected void end() {
-	}
+    protected void end() {
+    }
 
-	protected void interrupted() {
-	}
+    protected void interrupted() {
+    }
 }

@@ -1,17 +1,15 @@
 package org.mort11.subsystems.dt;
 
-
-import org.mort11.PortMap;
-import org.mort11.util.DTConstants;
+import org.mort11.constants.DrivetrainConstants;
+import org.mort11.sensors.SensorDealer;
 
 public class DTRight extends DTSide {
 
     public DTRight() {
-        super(PortMap.DT_RIGHT_PORT, PortMap.DT_ENC_RIGHT_A, PortMap.DT_ENC_RIGHT_B, false, false); //placeholder values
-        enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE_RIGHT); // Placeholder value
+        super(DrivetrainConstants.DT_RIGHT_TALON_PORT, DrivetrainConstants.DT_RIGHT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_RIGHT_HIGH_SHIFTER_PORT, false);
+        SensorDealer.getInstance().getRightDriveTrain().setDistancePerPulse(DrivetrainConstants.INCHES_PER_PULSE_RIGHT);
     }
 
     public void initDefaultCommand() {
-
     }
 }

@@ -25,59 +25,58 @@ public class PIDLoop {
 		this.vel_max = multiplier * vel_max;
 	}
 	
-	
-	public double getOutput_notStaggered(double  pos){
-		double error = desired_target - pos;
-		//shift to I
-		if (Math.abs(error/pos) < 0.2){
+
+    public double getOutput_notStaggered(double pos) {
+        double error = desired_target - pos;
+        //shift to I
+        if (Math.abs(error / pos) < 0.2) {
 //			System.out.println("I loop");
 //			System.out.println("Error: " + error);
-			if (!isNear) {
-				timer.start();
-				isNear = true;
-			}
-			currTime = timer.get();
-			double deltaT = currTime - oldTime;
-			netError += error * deltaT;
-			oldTime = currTime;
-			return netError * kI;
-		}
-		//P loop
-		else {
-			return error * kP;
-		}
-	}
-	
-	public double getOutput(double curr_location) {
-		if(!isNear) {
-			timer.start();
-			isNear = true;
-		}
-		this.curr_location = curr_location;
-		currTime = timer.get();
-		double error = getLocation(currTime,curr_location) - curr_location;
-		double deltaT = currTime - oldTime;
-		netError += error * deltaT;
-		oldTime = currTime;
-		double output = (error * kP + netError * kI);
+            if (!isNear) {
+                timer.start();
+                isNear = true;
+            }
+            currTime = timer.get();
+            double deltaT = currTime - oldTime;
+            netError += error * deltaT;
+            oldTime = currTime;
+            return netError * kI;
+        }
+        //P loop
+        else {
+            return error * kP;
+        }
+    }
+
+    public double getOutput(double curr_location) {
+        if (!isNear) {
+            timer.start();
+            isNear = true;
+        }
+        this.curr_location = curr_location;
+        currTime = timer.get();
+        double error = getLocation(currTime, curr_location) - curr_location;
+        double deltaT = currTime - oldTime;
+        netError += error * deltaT;
+        oldTime = currTime;
+        double output = (error * kP + netError * kI);
 //		System.out.println("PI: " + output);
-		System.out.println("SP: " + getLocation(currTime,curr_location));
-		//System.out.println("Time: " + currTime);
-		return output;
-	}
-	
-	public double getSP() {
-		return getLocation(currTime,curr_location);
-	}
-	
-	public double getLocation(double time,double pos) {
-		if(time > desired_target/vel_max) {
-			return desired_target;
-		}
-		
-		return vel_max * time;
-	}
-	
-	
+        System.out.println("SP: " + getLocation(currTime, curr_location));
+        //System.out.println("Time: " + currTime);
+        return output;
+    }
+
+    public double getSP() {
+        return getLocation(currTime, curr_location);
+    }
+
+    public double getLocation(double time, double pos) {
+        if (time > desired_target / vel_max) {
+            return desired_target;
+        }
+
+        return vel_max * time;
+    }
+
 
 }

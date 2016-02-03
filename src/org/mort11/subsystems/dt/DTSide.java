@@ -1,77 +1,101 @@
 package org.mort11.subsystems.dt;
 
-import org.mort11.util.DTConstants;
-
-//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.mort11.HardwareAdaptor;
+import org.mort11.sensors.SensorDealer;
+import org.mort11.util.MORTSubsystem;
 
-public abstract class DTSide extends Subsystem {
+public abstract class DTSide extends Subsystem implements MORTSubsystem {
 
-    private CANTalon motors;
-    protected Encoder enc;
-    private static boolean motorReverse;
-//  private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
-    
-    static PowerDistributionPanel pdp = new PowerDistributionPanel();
+    private Gear currentGear = Gear.LOW_GEAR;
+    private CANTalon motor;
+    private boolean motorReverse;
+    private Solenoid lowShifter;
+    private Solenoid highShifter;
 
-    public DTSide(int motorPort, int encAPort, int encBPort, boolean motorReverse, boolean encReverse) {
-        motors = new CANTalon(motorPort);
-        enc = new Encoder(encAPort, encBPort, encReverse, EncodingType.k4X);
-        enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE_RIGHT);
-        DTSide.motorReverse = motorReverse;
+    public DTSide(int motorPort, int lowShifterPort, int highSifterPort, boolean motorReverse) {
+        motor = new CANTalon(motorPort);
+        lowShifter = new Solenoid(lowShifterPort);
+        highShifter = new Solenoid(highSifterPort);
+        this.motorReverse = motorReverse;
+    }
+
+    public static void resetEncoders() {
+        SensorDealer.getInstance().getRightDriveTrain().reset();
+        SensorDealer.getInstance().getLeftDriveTrain().reset();
     }
 
     public double getSpeed() {
-        return motors.get();
+        return motor.get();
     }
 
     public void setSpeed(double speed) {
-        motors.set(speed * (motorReverse ? -1 : 1) * 0.5);
+        motor.set(speed * (motorReverse ? -1 : 1));
     }
 
-    public double getCurrentLeft() { 
-        SmartDashboard.putNumber("Left Motor Current", pdp.getCurrent(0));
-        return pdp.getCurrent(0); //placeholder channel value, returns current of channel in Amps
+    /**
+     * @return Current of channel in Amps
+     */
+    public double getCurrentLeft() {
+        SmartDashboard.putNumber("Left Motor Current", HardwareAdaptor.pdp.getCurrent(0));
+        return HardwareAdaptor.pdp.getCurrent(0);
     }
-    
+
+    /**
+     * @return Current of channel in Amps
+     */
     public double getCurrentRight() {
-        SmartDashboard.putNumber("Right Motor Current", pdp.getCurrent(1));
-        return pdp.getCurrent(1); //placeholder channel value, returns current of channel in Amps
+        SmartDashboard.putNumber("Right Motor Current", HardwareAdaptor.pdp.getCurrent(1));
+        return HardwareAdaptor.pdp.getCurrent(1);
     }
 
+    /**
+     * @return Current of talon in Amps
+     */
     public double getTalonCurrent() {
-        return motors.getOutputCurrent(); //gets current of talon in Amps
+        return motor.getOutputCurrent();
     }
-    
+
+    /**
+     * @return Voltage of talon in Volts
+     */
     public double getTalonVoltage() {
-        return motors.getOutputVoltage(); //gets voltage of talon in Volts
-    }
-    public double getDist() {
-        return enc.getDistance();
+        return motor.getOutputVoltage();
     }
 
-    public double getEncRate() {
-        return enc.getRate();
-    }
-
-    public void resetEnc() {
-        enc.reset();
+    @Override
+    public void disable() {
+        motor.set(0);
     }
 
     public void initDefaultCommand() {
-
     }
 
-    //needs to be moved into a nav class
-//    public static double getAngle() {
-//        return navx.getAngle();
-//    }
+    public void shift() {
+        if (this.currentGear == Gear.LOW_GEAR) {
+            shift(Gear.HIGH_GEAR);
+        } else {
+            shift(Gear.LOW_GEAR);
+        }
+    }
 
+    public void shift(Gear gear) {
+        this.currentGear = gear;
+        if (gear == Gear.LOW_GEAR) {
+            lowShifter.set(true);
+            highShifter.set(false);
+        } else {
+            lowShifter.set(false);
+            highShifter.set(true);
+        }
+    }
+
+    public static final class Gear {
+        public static final Gear HIGH_GEAR = new Gear();
+        public static final Gear LOW_GEAR = new Gear();
+    }
 }
 

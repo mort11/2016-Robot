@@ -1,28 +1,27 @@
 package org.mort11.subsystems.ee;
 
-import org.mort11.commands.ee.PistonActuation;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.commands.ee.PistonActuation;
 
 public class Pneumatics extends Subsystem {
-	DoubleSolenoid sol;
-	boolean engaged;
+    DoubleSolenoid solenoid;
+    boolean engaged;
 
     public Pneumatics(int engagedPort, int notEngagedPort) {
-        sol = new DoubleSolenoid(engagedPort, notEngagedPort);
+        solenoid = new DoubleSolenoid(engagedPort, notEngagedPort);
         engaged = false;
     }
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new PistonActuation());
+        setDefaultCommand(new PistonActuation());
     }
 
     public void setSolenoid(boolean engage) {
         if (engage) {
-            sol.set(DoubleSolenoid.Value.kForward); 
+            solenoid.set(DoubleSolenoid.Value.kForward);
         } else {
-            sol.set(DoubleSolenoid.Value.kReverse); 
+            solenoid.set(DoubleSolenoid.Value.kReverse);
         }
         engaged = engage;
         System.out.println("state 2: " + engage);
