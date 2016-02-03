@@ -8,28 +8,29 @@ import edu.wpi.first.wpilibj.Timer;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class PIDLoop {
-	double desired_target;
-	double kP,kI,kAlly; //PID control constants
-	double netError = 0;
-	boolean isNear = false; //whether we can shift from P to I, will tell us
-							//when we can start the timer
-	double currTime = 0,oldTime = 0;
-	Timer timer = new Timer();
-	double vel_max = 10;
-	double curr_location = 0;
-	public PIDLoop(double target,double kP, double kI) {
-		this.desired_target = target;
-		this.kP = kP;
-		this.kI = kI;
-	}
-	
-	public PIDLoop(double target,double kP, double kI, double multiplier) {
-		this.desired_target = target;
-		this.kP = kP;
-		this.kI = kI;
-		this.vel_max = multiplier * vel_max;
-	}
-	
+    double desired_target;
+    double kP, kI, kAlly; //PID control constants
+    double netError = 0;
+    boolean isNear = false; //whether we can shift from P to I, will tell us
+    //when we can start the timer
+    double currTime = 0, oldTime = 0;
+    Timer timer = new Timer();
+    double vel_max = 10;
+    double curr_location = 0;
+
+    public PIDLoop(double target, double kP, double kI) {
+        this.desired_target = target;
+        this.kP = kP;
+        this.kI = kI;
+    }
+
+    public PIDLoop(double target, double kP, double kI, double multiplier) {
+        this.desired_target = target;
+        this.kP = kP;
+        this.kI = kI;
+        this.vel_max = multiplier * vel_max;
+    }
+
 
     public double getOutput_notStaggered(double pos) {
         double error = desired_target - pos;
@@ -82,6 +83,4 @@ public class PIDLoop {
 
         return vel_max * time;
     }
-
-
 }
