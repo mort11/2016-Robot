@@ -1,12 +1,9 @@
 package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.mort11.HardwareAdaptor;
 import org.mort11.Robot;
 import org.mort11.constants.DrivetrainConstants;
 import org.mort11.sensors.SensorDealer;
-import org.mort11.subsystems.dt.DTLeft;
-import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
@@ -36,8 +33,8 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
-        rightSide.setSpeed(pidRight.getOutput(SensorDealer.getInstance().getRightDriveTrain().getDistance()));
-        leftSide.setSpeed(pidLeft.getOutput(SensorDealer.getInstance().getLeftDriveTrain().getDistance()));
+        rightSide.setSpeed(pidRight.getOutput(SensorDealer.getInstance().getRightDTEncoder().getDistance()));
+        leftSide.setSpeed(pidLeft.getOutput(SensorDealer.getInstance().getLeftDTEncoder().getDistance()));
     }
 
     protected boolean isFinished() {

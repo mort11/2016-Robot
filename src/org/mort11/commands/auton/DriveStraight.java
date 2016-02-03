@@ -3,11 +3,8 @@ package org.mort11.commands.auton;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.mort11.HardwareAdaptor;
 import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
-import org.mort11.subsystems.dt.DTLeft;
-import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
@@ -26,8 +23,8 @@ public class DriveStraight extends Command {
         private double curDist_right;
         private double speed_left;
         private double speed_right;
-        private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDriveTrain();
-        private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDriveTrain();
+        private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDTEncoder();
+        private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDTEncoder();
 
         public DriveStraight(double distance) {
             this.driveDistance = distance;

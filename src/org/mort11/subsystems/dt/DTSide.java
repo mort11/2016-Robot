@@ -31,8 +31,8 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     }
 
     public static void resetEncoders() {
-        SensorDealer.getInstance().getRightDriveTrain().reset();
-        SensorDealer.getInstance().getLeftDriveTrain().reset();
+        SensorDealer.getInstance().getRightDTEncoder().reset();
+        SensorDealer.getInstance().getLeftDTEncoder().reset();
     }
 
     public double getSpeed() {

@@ -30,7 +30,7 @@ public class Shooter extends Subsystem {
     }
 
     public double getDistance() {
-        return SensorDealer.getInstance().getArm().getDistance();
+        return SensorDealer.getInstance().getArmEncoder().getDistance();
     }
 
     public double getAngle() {

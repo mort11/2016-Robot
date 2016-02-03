@@ -18,8 +18,8 @@ public class ShootingMechanism extends Subsystem {
 
     public ShootingMechanism() {
         armMotor = new Talon(EndEffectorConstants.ARM_TALON_PORT);
-        SensorDealer.getInstance().getArm().reset();
-        SensorDealer.getInstance().getArm().setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
+        SensorDealer.getInstance().getArmEncoder().reset();
+        SensorDealer.getInstance().getArmEncoder().setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
     }
 
     public void initDefaultCommand() {
@@ -34,7 +34,7 @@ public class ShootingMechanism extends Subsystem {
     }
 
     public double getDistance() {
-        return SensorDealer.getInstance().getArm().getDistance();
+        return SensorDealer.getInstance().getArmEncoder().getDistance();
     }
 
     public double getAngle() {

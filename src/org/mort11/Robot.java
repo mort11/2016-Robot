@@ -10,6 +10,7 @@ import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
+import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Pneumatics;
 
 /**
@@ -28,8 +29,8 @@ public class Robot extends IterativeRobot {
     public static Pneumatics piston;
     public static OI oi;
     public static DT dt;
-    public static DTLeft left;
-    public static DTRight right;
+    public static DTSide left;
+    public static DTSide right;
 
     Command DriveStraight;
     Command DispCurrent;
