@@ -1,29 +1,17 @@
 package org.mort11;
 
-<<<<<<< HEAD
-import java.sql.Timestamp;
-import java.util.Date;
-
-import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.dt.DriveLinearLeft;
-import org.mort11.commands.dt.DriveLinearRight;
-import org.mort11.subsystems.DT;
-import org.mort11.subsystems.ee.Pneumatics;
-import org.mort11.util.Logger;
-
-=======
->>>>>>> 4c65a532b0d4782f80eb7cc779a6eb1f81c2f9e6
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-<<<<<<< HEAD
-=======
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.subsystems.ee.Pneumatics;
->>>>>>> 4c65a532b0d4782f80eb7cc779a6eb1f81c2f9e6
+import org.mort11.util.Logger;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Robot - Main Robot class
@@ -48,16 +36,17 @@ public class Robot extends IterativeRobot {
     Command DriveLinearRight;
     Command driveArc;
     Date date;
+
     public void robotInit() {
         //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        //dt = new DT();
         //DispCurrent = new DisplayCurrents();
         //DriveStraight = new DriveStraight(200);
         adaptor = HardwareAdaptor.getInstance();
         DriveLinearLeft = new DriveLinearLeft();
         DriveLinearRight = new DriveLinearRight();
-        driveArc = new DriveArc(1.33*Math.PI , 0.5*Math.PI);
+        driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
         date = new Date();
+
         Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
         oi = new OI();
     }
