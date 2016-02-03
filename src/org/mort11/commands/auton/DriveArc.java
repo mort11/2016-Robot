@@ -1,12 +1,15 @@
 package org.mort11.commands.auton;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.HardwareAdaptor;
 import org.mort11.constants.DrivetrainConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
+import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveArc extends Command {
     double arcLength, turnRadius;
@@ -14,7 +17,9 @@ public class DriveArc extends Command {
     PIDLoop pidRight;
     private DTRight rightSide = HardwareAdaptor.rightSide;
     private DTLeft leftSide = HardwareAdaptor.leftSide;
-
+    Timer timer = new Timer();
+    double rightTarget,leftTarget;
+    double rightDist,leftDist;
     public DriveArc(double arclength, double turnRadius) {
         requires(leftSide);
         requires(rightSide);
@@ -24,20 +29,34 @@ public class DriveArc extends Command {
 
     protected void initialize() {
         double[] distances = arc_calc(arcLength, turnRadius);
+        Logger.writeString("Right target,"+distances[0]);
+        Logger.writeString("Left target,"+distances[1]);
+        rightTarget = distances[0];
+        leftTarget = distances[1];
         pidRight = new PIDLoop(distances[0], 0.01, 0.00, distances[0] / Math.max(distances[0], distances[1]));
         pidLeft = new PIDLoop(distances[1], 0.01, 0.00, distances[1] / Math.max(distances[0], distances[1]));
+        Logger.writeString("Time, Distance Left, SP Left, Output Left, "
+        		+ "Distance Right, SP Right, Output Right");
+        timer.start();
     }
 
     protected void execute() {
-        rightSide.setSpeed(pidRight.getOutput(SensorDealer.getInstance().getRightDriveTrain().getDistance()));
-        leftSide.setSpeed(pidLeft.getOutput(SensorDealer.getInstance().getLeftDriveTrain().getDistance()));
+    	rightDist = SensorDealer.getInstance().getRightDriveTrain().getDistance();
+    	double rightVel = pidRight.getOutput(rightDist);
+        leftDist = SensorDealer.getInstance().getLeftDriveTrain().getDistance();
+        double leftVel = pidLeft.getOutput(leftDist);
+        rightSide.setSpeed(rightVel);
+        leftSide.setSpeed(leftVel);
+        Logger.writeString(timer.get()+","+ leftDist+","+pidLeft.getSP()+","+leftVel
+        		+","+pidRight.getSP()+","+rightVel);
     }
 
     protected boolean isFinished() {
-        return false;
+        return rightDist > rightTarget * 1.3 && leftDist > leftTarget * 1.3;
     }
 
     protected void end() {
+    	Logger.close();
     }
 
     protected void interrupted() {

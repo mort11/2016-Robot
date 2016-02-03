@@ -1,27 +1,19 @@
 package org.mort11;
 
-import org.mort11.commands.DrivePID;
-import org.mort11.subsystems.DT;
-import org.mort11.subsystems.ee.Shooter;
-import org.mort11.subsystems.ee.Pneumatics;
+import java.sql.Timestamp;
+import java.util.Date;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
-import org.mort11.commands.DisplayCurrents;
 import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.auton.DriveStraight;
-import org.mort11.subsystems.dt.DTLeft;
-import org.mort11.subsystems.dt.DTRight;
-import org.mort11.commands.dt.*;
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.subsystems.DT;
 import org.mort11.subsystems.ee.Pneumatics;
+import org.mort11.util.Logger;
+
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * Robot - Main Robot class
@@ -44,7 +36,7 @@ public class Robot extends IterativeRobot {
     Command DriveLinearLeft;
     Command DriveLinearRight;
     Command driveArc;
-
+    Date date;
     public void robotInit() {
         //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         //dt = new DT();
@@ -53,6 +45,8 @@ public class Robot extends IterativeRobot {
         DriveLinearLeft = new DriveLinearLeft();
         DriveLinearRight = new DriveLinearRight();
         driveArc = new DriveArc(1.33*Math.PI , 0.5*Math.PI);
+        date = new Date();
+        Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
         oi = new OI();
     }
 
