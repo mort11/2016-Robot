@@ -2,10 +2,12 @@ package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.HardwareAdaptor;
+import org.mort11.Robot;
 import org.mort11.constants.DrivetrainConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
+import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
 /**
@@ -17,8 +19,8 @@ public class DriveArc extends Command {
     double arcLength, turnRadius;
     PIDLoop pidLeft;
     PIDLoop pidRight;
-    private DTRight rightSide = HardwareAdaptor.rightSide;
-    private DTLeft leftSide = HardwareAdaptor.leftSide;
+    private DTSide rightSide = Robot.right;
+    private DTSide leftSide = Robot.left;
 
     public DriveArc(double arclength, double turnRadius) {
         requires(leftSide);

@@ -8,6 +8,8 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.subsystems.dt.DT;
+import org.mort11.subsystems.dt.DTLeft;
+import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.ee.Pneumatics;
 
 /**
@@ -26,6 +28,8 @@ public class Robot extends IterativeRobot {
     public static Pneumatics piston;
     public static OI oi;
     public static DT dt;
+    public static DTLeft left;
+    public static DTRight right;
 
     Command DriveStraight;
     Command DispCurrent;
@@ -38,6 +42,8 @@ public class Robot extends IterativeRobot {
         //dt = new DT();
         //DispCurrent = new DisplayCurrents();
         //DriveStraight = new DriveStraight(200);
+        left = new DTLeft();
+        right = new DTRight();
         DriveLinearLeft = new DriveLinearLeft();
         DriveLinearRight = new DriveLinearRight();
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);

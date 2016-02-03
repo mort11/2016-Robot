@@ -6,13 +6,13 @@ package org.mort11.constants;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class DrivetrainConstants {
-    public static final int DT_LEFT_TALON_PORT = 1;
-    public static final int DT_RIGHT_TALON_PORT = 2;
+    public static final int DT_LEFT_TALON_ID = 1;
+    public static final int DT_RIGHT_TALON_ID = 2;
 
     public static final int DT_LEFT_HIGH_SHIFTER_PORT = 0;
-    public static final int DT_LEFT_LOW_SHIFTER_PORT = 0;
-    public static final int DT_RIGHT_HIGH_SHIFTER_PORT = 0;
-    public static final int DT_RIGHT_LOW_SHIFTER_PORT = 0;
+    public static final int DT_LEFT_LOW_SHIFTER_PORT = 1;
+    public static final int DT_RIGHT_HIGH_SHIFTER_PORT = 2;
+    public static final int DT_RIGHT_LOW_SHIFTER_PORT = 3;
 
     public static final double DT_P = 0.3;
     public static final double WHEEL_RADIUS_INCHES = 3; // From KoP robot

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import org.mort11.constants.HardwareConstants;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
+import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Shooter;
 
 /**
@@ -28,6 +29,20 @@ public class HardwareAdaptor {
     public static Accelerometer accelerometer = new BuiltInAccelerometer();
 
     // Motors
-    public static DTLeft leftSide = new DTLeft();
-    public static DTRight rightSide = new DTRight();
+    public static DTSide leftSide;
+    public static DTSide rightSide;
+
+    private static HardwareAdaptor instance;
+
+    public static HardwareAdaptor getInstance() {
+        if (instance == null) {
+            return new HardwareAdaptor();
+        }
+        return instance;
+    }
+
+    public HardwareAdaptor() {
+        leftSide = new DTLeft();
+        rightSide = new DTRight();
+    }
 }
