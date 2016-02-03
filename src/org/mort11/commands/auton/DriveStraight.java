@@ -17,20 +17,20 @@ public class DriveStraight extends Command {
     private double driveDistance; //distance that you want robot to drive
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
-        private PIDLoop pd_left;
-        private PIDLoop pd_right;
-        private double curDist_left;
-        private double curDist_right;
-        private double speed_left;
-        private double speed_right;
-        private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDTEncoder();
-        private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDTEncoder();
+    private PIDLoop pd_left;
+    private PIDLoop pd_right;
+    private double curDist_left;
+    private double curDist_right;
+    private double speed_left;
+    private double speed_right;
+    private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDTEncoder();
+    private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDTEncoder();
 
-        public DriveStraight(double distance) {
-            this.driveDistance = distance;
-            requires(left);
-            requires(right);
-            pd_left = new PIDLoop(driveDistance, .01, 0); //placeholder values, must test
+    public DriveStraight(double distance) {
+        this.driveDistance = distance;
+        requires(left);
+        requires(right);
+        pd_left = new PIDLoop(driveDistance, .01, 0); //placeholder values, must test
         pd_right = new PIDLoop(driveDistance, .01, 0); //placeholder values, must test
     }
 
