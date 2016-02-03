@@ -1,7 +1,7 @@
 package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.mort11.HardwareAdaptor;
+import org.mort11.Robot;
 import org.mort11.subsystems.ee.Shooter;
 
 /**
@@ -14,7 +14,7 @@ import org.mort11.subsystems.ee.Shooter;
 public class MotorToAngle extends Command {
 
     double speed = .5;
-    private Shooter shooter = HardwareAdaptor.shooter;
+    private Shooter shooter = Robot.adaptor.shooter;
 
     public MotorToAngle() {
         requires(shooter);

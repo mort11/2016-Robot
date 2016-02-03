@@ -13,15 +13,13 @@ import org.mort11.constants.SensorConstants;
  * @author Ryan Thant <ryanthant1@gmail.com>
  */
 public class SensorDealer {
-    private static SensorDealer instance = new SensorDealer();
-
-    private final Encoder leftDriveTrain;
-    private final Encoder rightDriveTrain;
-    private final Encoder arm;
-    private final Encoder roller;
-    private final AnalogPotentiometer armPot;
-    private final DigitalInput armLimitSwitch;
-
+    private static SensorDealer instance;
+    private Encoder leftDriveTrain;
+    private Encoder rightDriveTrain;
+    private Encoder arm;
+    private Encoder roller;
+    private AnalogPotentiometer armPot;
+    private DigitalInput armLimitSwitch;
     private SensorDealer() {
         leftDriveTrain = new Encoder(SensorConstants.DT_ENCODER_LEFT_A, SensorConstants.DT_ENCODER_LEFT_B, false, CounterBase.EncodingType.k4X);
         rightDriveTrain = new Encoder(SensorConstants.DT_ENCODER_RIGHT_A, SensorConstants.DT_ENCODER_RIGHT_B, false, CounterBase.EncodingType.k4X);
@@ -32,30 +30,33 @@ public class SensorDealer {
     }
 
     public static SensorDealer getInstance() {
+        if (instance == null) {
+            instance = new SensorDealer();
+        }
         return instance;
     }
 
-    public Encoder getLeftDriveTrain() {
-        return this.leftDriveTrain;
+    public Encoder getLeftDTEncoder() {
+        return leftDriveTrain;
     }
 
-    public Encoder getRightDriveTrain() {
-        return this.rightDriveTrain;
+    public Encoder getRightDTEncoder() {
+        return rightDriveTrain;
     }
 
-    public Encoder getArm() {
-        return this.arm;
+    public Encoder getArmEncoder() {
+        return arm;
     }
 
-    public Encoder getRoller() {
-        return this.roller;
+    public Encoder getRollerEncoder() {
+        return roller;
     }
 
     public AnalogPotentiometer getArmPot() {
-        return this.armPot;
+        return armPot;
     }
 
     public DigitalInput getArmLimitSwitch() {
-        return this.armLimitSwitch;
+        return armLimitSwitch;
     }
 }

@@ -5,9 +5,11 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import org.mort11.constants.HardwareConstants;
+import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
-import org.mort11.subsystems.dt.DTSide;
+import org.mort11.subsystems.ee.Intake;
+import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Shooter;
 
 /**
@@ -16,33 +18,39 @@ import org.mort11.subsystems.ee.Shooter;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class HardwareAdaptor {
-    // System components
-    public static PowerDistributionPanel pdp = new PowerDistributionPanel();
-    public static Compressor compressor = new Compressor(HardwareConstants.PCM_ID);
-
-    // End Effector mechanisms
-    public static Shooter intakeArm = new Shooter();
-    public static Shooter intakeRollers = new Shooter();
-    public static Shooter shooter = new Shooter();
-
-    // Navigational instruments
-    public static Accelerometer accelerometer = new BuiltInAccelerometer();
-
-    // Motors
-    public static DTSide leftSide;
-    public static DTSide rightSide;
-
     private static HardwareAdaptor instance;
+    // System components
+    public PowerDistributionPanel pdp;
+    public Compressor compressor;
+    // End Effector mechanisms
+    public IntakeArm intakeArm;
+    public Intake intakeRollers;
+    public Shooter shooter;
+    // Navigational instruments
+    public Accelerometer accelerometer;
+    // Motors
+    public DTLeft leftSide;
+    public DTRight rightSide;
+    public DT dt;
+
+    private HardwareAdaptor() {
+        pdp = new PowerDistributionPanel();
+        compressor = new Compressor(HardwareConstants.PCM_ID);
+
+        intakeArm = new IntakeArm();
+        intakeRollers = new Intake();
+
+        accelerometer = new BuiltInAccelerometer();
+
+        leftSide = new DTLeft();
+        rightSide = new DTRight();
+        dt = new DT();
+    }
 
     public static HardwareAdaptor getInstance() {
         if (instance == null) {
-            return new HardwareAdaptor();
+            instance = new HardwareAdaptor();
         }
         return instance;
-    }
-
-    public HardwareAdaptor() {
-        leftSide = new DTLeft();
-        rightSide = new DTRight();
     }
 }

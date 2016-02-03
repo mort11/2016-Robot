@@ -16,8 +16,8 @@ public class DT extends Subsystem {
     private final static double kCircumference = 4 * Math.PI;
     Talon leftTal = new Talon(0);
     Talon rightTal = new Talon(2);
-    Encoder leftEnc = SensorDealer.getInstance().getLeftDriveTrain();
-    Encoder rightEnc = SensorDealer.getInstance().getRightDriveTrain();
+    Encoder leftEnc = SensorDealer.getInstance().getLeftDTEncoder();
+    Encoder rightEnc = SensorDealer.getInstance().getRightDTEncoder();
 
     public DT() {
         leftEnc.setDistancePerPulse(kCircumference / 256);
