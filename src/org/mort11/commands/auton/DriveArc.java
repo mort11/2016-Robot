@@ -8,6 +8,11 @@ import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.util.PIDLoop;
 
+/**
+ * DriveArc - Drives in an arc
+ *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ */
 public class DriveArc extends Command {
     double arcLength, turnRadius;
     PIDLoop pidLeft;

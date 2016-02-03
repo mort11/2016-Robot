@@ -2,6 +2,11 @@ package org.mort11.util;
 
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * PIDLoop - Takes params of target and PID constants and returns motor outputs
+ *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ */
 public class PIDLoop {
     double desired_target;
     double kP, kI, kAlly; //PID control constants

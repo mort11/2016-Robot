@@ -5,8 +5,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.HardwareAdaptor;
 import org.mort11.subsystems.dt.DTSide;
 
+/**
+ * DriveLinear - Base command for controlling left and right drivetrain movement
+ *
+ * @author gridbug <wmarshall@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public abstract class DriveLinear extends Command {
-
     protected DTSide side;
     private DTSide left = HardwareAdaptor.leftSide;
     private DTSide right = HardwareAdaptor.rightSide;

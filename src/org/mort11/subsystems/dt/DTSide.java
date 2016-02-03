@@ -8,8 +8,15 @@ import org.mort11.HardwareAdaptor;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
 
+/**
+ * DTSide - Base class controlling drivetrain sides
+ *
+ * @author gridbug <wmarshall@mort11.org>
+ * @author Matt Turi <mturi@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Abi Koutha <akoutha7@gmail.com>
+ */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
-
     private Gear currentGear = Gear.LOW_GEAR;
     private CANTalon motor;
     private boolean motorReverse;

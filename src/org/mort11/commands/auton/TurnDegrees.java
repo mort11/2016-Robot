@@ -5,7 +5,11 @@ import org.mort11.HardwareAdaptor;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
-
+/**
+ * TurnDegrees - Turn x degrees
+ *
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class TurnDegrees extends Command {
 
     //	Timer timer;

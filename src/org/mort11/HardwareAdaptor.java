@@ -9,6 +9,11 @@ import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.ee.Shooter;
 
+/**
+ * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
+ *
+ * @author Matt Turi <mturi@mort11.org>
+ */
 public class HardwareAdaptor {
     // System components
     public static PowerDistributionPanel pdp = new PowerDistributionPanel();

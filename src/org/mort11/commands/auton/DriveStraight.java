@@ -10,8 +10,12 @@ import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
+/**
+ * DriveStraight - Drive in a (mostly) straight line
+ *
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class DriveStraight extends Command {
-
     private double driveDistance; //distance that you want robot to drive
     private DTLeft left = HardwareAdaptor.leftSide;
     private DTRight right = HardwareAdaptor.rightSide;

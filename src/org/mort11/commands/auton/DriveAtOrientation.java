@@ -5,8 +5,12 @@ import org.mort11.HardwareAdaptor;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
+/**
+ * DriveAtOrientation - Drives at orientation
+ *
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class DriveAtOrientation extends Command {
-
     private DTSide left = HardwareAdaptor.leftSide;
     private DTSide right = HardwareAdaptor.rightSide;
     private PIDLoop pd_left;

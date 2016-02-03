@@ -5,6 +5,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
 
+/**
+ * Shooter - Controls the flywheel
+ *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class Shooter extends Subsystem {
     private Talon armMotor;
 

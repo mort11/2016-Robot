@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.commands.dt.DriveLinearRight;
-import org.mort11.subsystems.DT;
+import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.ee.Pneumatics;
 
 /**
@@ -20,6 +20,7 @@ import org.mort11.subsystems.ee.Pneumatics;
  * @author Seven Kurt <seven.kurt@motsd.org>
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
+ * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class Robot extends IterativeRobot {
     public static Pneumatics piston;
