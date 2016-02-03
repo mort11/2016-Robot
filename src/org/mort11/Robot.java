@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
         //DriveStraight = new DriveStraight(200);
         DriveLinearLeft = new DriveLinearLeft();
         DriveLinearRight = new DriveLinearRight();
-        driveArc = new DriveArc(1.5*Math.PI , 0.5*Math.PI);
+        driveArc = new DriveArc(1.33*Math.PI , 0.5*Math.PI);
         oi = new OI();
     }
 

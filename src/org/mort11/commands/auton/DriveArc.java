@@ -28,8 +28,8 @@ public class DriveArc extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	double[] dists = arc_calc(arcLength, turnRadius);
-    	pidRight = new PIDLoop(dists[0], 0.01, 0.00, dists[0]/Math.max(dists[0], dists[1]));
-    	pidLeft = new PIDLoop(dists[1], 0.01, 0.00, dists[1]/Math.max(dists[0], dists[1]));
+    	pidRight = new PIDLoop(dists[0], 0.1, 0.00, dists[0]/Math.max(dists[0], dists[1]));
+    	pidLeft = new PIDLoop(dists[1], 0.1, 0.00, dists[1]/Math.max(dists[0], dists[1]));
     }
 
     // Called repeatedly when this Command is scheduled to run

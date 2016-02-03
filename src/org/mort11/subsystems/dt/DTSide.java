@@ -32,7 +32,7 @@ public abstract class DTSide extends Subsystem {
     }
 
     public void setSpeed(double speed) {
-        motors.set(speed * (motorReverse ? -1 : 1));
+        motors.set(speed * (motorReverse ? -1 : 1) * 0.5);
     }
 
     public double getCurrentLeft() { 
