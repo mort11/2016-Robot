@@ -16,8 +16,8 @@ public class DriveArc extends Command {
     double arcLength, turnRadius;
     PIDLoop pidLeft;
     PIDLoop pidRight;
-    private DTSide rightSide = Robot.right;
-    private DTSide leftSide = Robot.left;
+    private DTSide rightSide = Robot.adaptor.rightSide;
+    private DTSide leftSide = Robot.adaptor.leftSide;
 
     public DriveArc(double arclength, double turnRadius) {
         requires(leftSide);

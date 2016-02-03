@@ -1,7 +1,6 @@
 package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.mort11.HardwareAdaptor;
 import org.mort11.Robot;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
@@ -15,8 +14,8 @@ public class TurnDegrees extends Command {
 
     //	Timer timer;
     private PIDLoop pd;
-    private DTSide left = Robot.left;
-    private DTSide right = Robot.right;
+    private DTSide left = Robot.adaptor.leftSide;
+    private DTSide right = Robot.adaptor.rightSide;
     private double speed;
     private double angle; //angle that the robot will turn by
     private double curAngle; //current orientation of robot

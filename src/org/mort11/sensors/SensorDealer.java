@@ -13,15 +13,13 @@ import org.mort11.constants.SensorConstants;
  * @author Ryan Thant <ryanthant1@gmail.com>
  */
 public class SensorDealer {
-    private static SensorDealer instance = new SensorDealer();
-
-    private static Encoder leftDriveTrain;
-    private static Encoder rightDriveTrain;
-    private static Encoder arm;
-    private static Encoder roller;
-    private static AnalogPotentiometer armPot;
-    private static DigitalInput armLimitSwitch;
-
+    private static SensorDealer instance;
+    private Encoder leftDriveTrain;
+    private Encoder rightDriveTrain;
+    private Encoder arm;
+    private Encoder roller;
+    private AnalogPotentiometer armPot;
+    private DigitalInput armLimitSwitch;
     private SensorDealer() {
         leftDriveTrain = new Encoder(SensorConstants.DT_ENCODER_LEFT_A, SensorConstants.DT_ENCODER_LEFT_B, false, CounterBase.EncodingType.k4X);
         rightDriveTrain = new Encoder(SensorConstants.DT_ENCODER_RIGHT_A, SensorConstants.DT_ENCODER_RIGHT_B, false, CounterBase.EncodingType.k4X);
@@ -32,6 +30,9 @@ public class SensorDealer {
     }
 
     public static SensorDealer getInstance() {
+        if (instance == null) {
+            instance = new SensorDealer();
+        }
         return instance;
     }
 

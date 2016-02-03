@@ -2,7 +2,7 @@ package org.mort11.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.mort11.HardwareAdaptor;
+import org.mort11.Robot;
 
 /**
  * DisplayCurrents - Main Robot class
@@ -24,8 +24,8 @@ public class DisplayCurrents extends Command {
     }
 
     protected void execute() {
-        cur1 = HardwareAdaptor.pdp.getCurrent(1);
-        cur2 = HardwareAdaptor.pdp.getCurrent(2);
+        cur1 = Robot.adaptor.pdp.getCurrent(1);
+        cur2 = Robot.adaptor.pdp.getCurrent(2);
 
         System.out.println("current 1: " + cur1);
         System.out.println("current 2: " + cur2);

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.mort11.HardwareAdaptor;
+import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
 
@@ -47,16 +47,16 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      * @return Current of channel in Amps
      */
     public double getCurrentLeft() {
-        SmartDashboard.putNumber("Left Motor Current", HardwareAdaptor.pdp.getCurrent(0));
-        return HardwareAdaptor.pdp.getCurrent(0);
+        SmartDashboard.putNumber("Left Motor Current", Robot.adaptor.pdp.getCurrent(0));
+        return Robot.adaptor.pdp.getCurrent(0);
     }
 
     /**
      * @return Current of channel in Amps
      */
     public double getCurrentRight() {
-        SmartDashboard.putNumber("Right Motor Current", HardwareAdaptor.pdp.getCurrent(1));
-        return HardwareAdaptor.pdp.getCurrent(1);
+        SmartDashboard.putNumber("Right Motor Current", Robot.adaptor.pdp.getCurrent(1));
+        return Robot.adaptor.pdp.getCurrent(1);
     }
 
     /**

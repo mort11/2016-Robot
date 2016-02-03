@@ -22,12 +22,12 @@ public class DrivePID extends Command {
     double velRight = 0;
 
     public DrivePID() {
-        requires(Robot.dt);
+        requires(Robot.adaptor.dt);
     }
 
     public DrivePID(double target) {
         this.target = target;
-        requires(Robot.dt);
+        requires(Robot.adaptor.dt);
     }
 
     protected void initialize() {
@@ -39,29 +39,29 @@ public class DrivePID extends Command {
     }
 
     protected void execute() {
-        velLeft = loopFunction_left.getOutput(Robot.dt.getDistLeft());
-        velRight = loopFunction_right.getOutput(Robot.dt.getDistRight());
-        logger.writeString(Robot.dt.getDistLeft() + "," + loopFunction_left.getSP()
-                + "," + velLeft + "," + Robot.dt.getDistRight() + "," + loopFunction_right.getSP()
+        velLeft = loopFunction_left.getOutput(Robot.adaptor.dt.getDistLeft());
+        velRight = loopFunction_right.getOutput(Robot.adaptor.dt.getDistRight());
+        logger.writeString(Robot.adaptor.dt.getDistLeft() + "," + loopFunction_left.getSP()
+                + "," + velLeft + "," + Robot.adaptor.dt.getDistRight() + "," + loopFunction_right.getSP()
                 + "," + velRight);
-        System.out.println("Left- Distance:  " + Robot.dt.getDistLeft() + " PI: " + velLeft);
-        System.out.println("Right- Distance:  " + Robot.dt.getDistRight() + " PI: " + velRight);
-        Robot.dt.driveLeft(velLeft);
-        Robot.dt.driveRight(velRight);
+        System.out.println("Left- Distance:  " + Robot.adaptor.dt.getDistLeft() + " PI: " + velLeft);
+        System.out.println("Right- Distance:  " + Robot.adaptor.dt.getDistRight() + " PI: " + velRight);
+        Robot.adaptor.dt.driveLeft(velLeft);
+        Robot.adaptor.dt.driveRight(velRight);
     }
 
     protected boolean isFinished() {
         //2 inch threshold and slow
-        return Math.abs(Robot.dt.getDistLeft() / target) > 0.98
+        return Math.abs(Robot.adaptor.dt.getDistLeft() / target) > 0.98
                 && Math.abs(velLeft) < 0.35;
     }
 
     protected void end() {
         logger.close();
-        Robot.dt.resetEnc();
-        Robot.dt.stop();
-        Robot.dt.resetEnc();
-        Robot.dt.stop();
+        Robot.adaptor.dt.resetEnc();
+        Robot.adaptor.dt.stop();
+        Robot.adaptor.dt.resetEnc();
+        Robot.adaptor.dt.stop();
     }
 
     protected void interrupted() {

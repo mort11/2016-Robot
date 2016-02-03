@@ -15,8 +15,8 @@ import org.mort11.util.PIDLoop;
  */
 public class DriveStraight extends Command {
     private double driveDistance; //distance that you want robot to drive
-    private DTSide left = Robot.left;
-    private DTSide right = Robot.right;
+    private DTSide left = Robot.adaptor.leftSide;
+    private DTSide right = Robot.adaptor.rightSide;
         private PIDLoop pd_left;
         private PIDLoop pd_right;
         private double curDist_left;
