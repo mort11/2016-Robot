@@ -4,6 +4,12 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.PistonActuation;
 
+/**
+ * Pneumatics - Does pneumatic things
+ *
+ * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ */
 public class Pneumatics extends Subsystem {
     DoubleSolenoid solenoid;
     boolean engaged;

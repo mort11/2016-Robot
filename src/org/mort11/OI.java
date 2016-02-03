@@ -6,6 +6,17 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.constants.OperatorInterfaceConstants;
 
+/**
+ * OI - Joystick mapping to buttons and other math stuff
+ *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Matt Turi <mturi@mort11.org>
+ * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Michael Kozak <michael.kozak@motsd.org>
+ * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ */
 public class OI {
     private static boolean enabled;
     private static int count = 0;
@@ -62,15 +73,10 @@ public class OI {
     }
 
     public double getLeftJoy() {
-        //return threshold(-left.getY());
-        //return limitSpeed(-left.getY());
-        //return threshold(setSpeed(-left.getY()));
         return setSpeed(-left.getY());
     }
 
     public double getRightJoy() {
-        //return threshold(right.getY());
-        //return limitSpeed(right.getY());
         return setSpeed(right.getY());
     }
 }

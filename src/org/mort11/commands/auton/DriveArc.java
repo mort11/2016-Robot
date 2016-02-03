@@ -1,25 +1,33 @@
 package org.mort11.commands.auton;
 
 import org.mort11.HardwareAdaptor;
+import org.mort11.Robot;
 import org.mort11.constants.DrivetrainConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.subsystems.dt.DTSide;
+import org.mort11.util.PIDLoop;
 
+/**
+ * DriveArc - Drives in an arc
+ *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ */
 public class DriveArc extends Command {
     double arcLength, turnRadius;
     PIDLoop pidLeft;
     PIDLoop pidRight;
-    private DTRight rightSide = HardwareAdaptor.rightSide;
-    private DTLeft leftSide = HardwareAdaptor.leftSide;
     Timer timer = new Timer();
     double rightTarget,leftTarget;
     double rightDist,leftDist;
+    private DTSide rightSide = Robot.right;
+    private DTSide leftSide = Robot.left;
+
     public DriveArc(double arclength, double turnRadius) {
         requires(leftSide);
         requires(rightSide);

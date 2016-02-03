@@ -4,31 +4,36 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.HardwareAdaptor;
+import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
+/**
+ * DriveStraight - Drive in a (mostly) straight line
+ *
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class DriveStraight extends Command {
-
     private double driveDistance; //distance that you want robot to drive
-    private DTLeft left = HardwareAdaptor.leftSide;
-    private DTRight right = HardwareAdaptor.rightSide;
-    private PIDLoop pd_left;
-    private PIDLoop pd_right;
-    private double curDist_left;
-    private double curDist_right;
-    private double speed_left;
-    private double speed_right;
-    private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDriveTrain();
-    private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDriveTrain();
+    private DTSide left = Robot.left;
+    private DTSide right = Robot.right;
+        private PIDLoop pd_left;
+        private PIDLoop pd_right;
+        private double curDist_left;
+        private double curDist_right;
+        private double speed_left;
+        private double speed_right;
+        private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDriveTrain();
+        private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDriveTrain();
 
-    public DriveStraight(double distance) {
-        this.driveDistance = distance;
-        requires(left);
-        requires(right);
-        pd_left = new PIDLoop(driveDistance, .01, 0); //placeholder values, must test
+        public DriveStraight(double distance) {
+            this.driveDistance = distance;
+            requires(left);
+            requires(right);
+            pd_left = new PIDLoop(driveDistance, .01, 0); //placeholder values, must test
         pd_right = new PIDLoop(driveDistance, .01, 0); //placeholder values, must test
     }
 

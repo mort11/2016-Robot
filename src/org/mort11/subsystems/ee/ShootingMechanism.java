@@ -5,7 +5,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
 
-
+/**
+ * ShootingMechanism - Subset of Shooter for controlling flywheel mechanism
+ *
+ * @author Matt Turi <mturi@mort11.org>
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class ShootingMechanism extends Subsystem {
 
     private Talon armMotor;

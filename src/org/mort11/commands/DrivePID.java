@@ -5,6 +5,14 @@ import org.mort11.Robot;
 import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
 
+/**
+ * DrivePID - Drive linear within PID confines
+ *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Matt Turi <mturi@mort11.org>
+ * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class DrivePID extends Command {
     PIDLoop loopFunction_left;
     PIDLoop loopFunction_right;
