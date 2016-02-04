@@ -24,6 +24,7 @@ import java.util.Date;
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ * @author Carl Hausman <carl@hausman.org>
  */
 public class Robot extends IterativeRobot {
     public static Pneumatics piston;
@@ -32,22 +33,16 @@ public class Robot extends IterativeRobot {
 
     Command DriveStraight;
     Command DispCurrent;
-    Command DriveLinearLeft;
-    Command DriveLinearRight;
     Command driveArc;
     Date date;
 
     public void robotInit() {
-        //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        //DispCurrent = new DisplayCurrents();
-        //DriveStraight = new DriveStraight(200);
         adaptor = HardwareAdaptor.getInstance();
-        DriveLinearLeft = new DriveLinearLeft();
-        DriveLinearRight = new DriveLinearRight();
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
         date = new Date();
 
         Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
+
         oi = new OI();
     }
 
@@ -69,8 +64,6 @@ public class Robot extends IterativeRobot {
             DriveStraight.cancel();
             DispCurrent.cancel();
         }
-        DriveLinearLeft.start();
-        DriveLinearRight.start();
     }
 
     public void disabledInit() {
