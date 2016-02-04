@@ -39,22 +39,20 @@ public class DriveStraight extends Command {
     }
 
     protected void execute() {
-        curDist_left = leftDTEncoder.getDistance(); //get distance traveled since last encoder reset
+        curDist_left = -leftDTEncoder.getDistance(); //get distance traveled since last encoder reset
         curDist_right = rightDTEncoder.getDistance(); //get distance traveled since last encoder reset
-        speed_left = pd_left.getOutput(curDist_left); //gets speed using pid loop
-        speed_right = pd_right.getOutput(curDist_right); //gets speed using pid loop
+        speed_left = pd_left.getP(curDist_left); //gets speed using pid loop
+        speed_right = pd_right.getP(curDist_right); //gets speed using pid loop
         left.setSpeed(speed_left); //sets speed of robot, is negative to make it drive correctly
-        right.setSpeed(-speed_right); //sets speed of robot
-        System.out.println(curDist_left);
-        System.out.println(curDist_right);
+        right.setSpeed(speed_right); //sets speed of robot
         SmartDashboard.putNumber("Distance Traveled Left", curDist_left); //gets and displays distance traveled
         SmartDashboard.putNumber("Distance Traveled Right", curDist_right); //gets and displays distance traveled
-        SmartDashboard.putNumber("Left PWM Value", left.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
-        SmartDashboard.putNumber("Right PWM Value", right.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
+        //SmartDashboard.putNumber("Left PWM Value", left.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
+        //SmartDashboard.putNumber("Right PWM Value", right.getSpeed()); //gets most recently set PWM value, between -1.0 and 1.0
         SmartDashboard.putNumber("Left Speed", speed_left); //gets most recently set PWM value, between -1.0 and 1.0
         SmartDashboard.putNumber("Right Speed", speed_right); //gets most recently set PWM value, between -1.0 and 1.0
-        SmartDashboard.putNumber("Left Talon Current", left.getTalonCurrent()); //gets the current of the left talon in amps
-        SmartDashboard.putNumber("Right Talon Current", right.getTalonCurrent()); //gets the current of the right talon in amps
+        //SmartDashboard.putNumber("Left Talon Current", left.getTalonCurrent()); //gets the current of the left talon in amps
+        //SmartDashboard.putNumber("Right Talon Current", right.getTalonCurrent()); //gets the current of the right talon in amps
     }
 
     protected boolean isFinished() {

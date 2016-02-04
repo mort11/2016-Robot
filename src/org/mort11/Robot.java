@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.mort11.commands.auton.DriveArc;
+import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.subsystems.ee.Pneumatics;
@@ -28,7 +29,7 @@ import java.util.Date;
 public class Robot extends IterativeRobot {
     public static Pneumatics piston;
     public static OI oi;
-    public static HardwareAdaptor adaptor;
+    public static HardwareAdaptor adaptor = HardwareAdaptor.getInstance();
 
     Command DriveStraight;
     Command DispCurrent;
@@ -40,8 +41,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         //DispCurrent = new DisplayCurrents();
-        //DriveStraight = new DriveStraight(200);
-        adaptor = HardwareAdaptor.getInstance();
+        DriveStraight = new DriveStraight(30);
+        //adaptor = HardwareAdaptor.getInstance();
         DriveLinearLeft = new DriveLinearLeft();
         DriveLinearRight = new DriveLinearRight();
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
@@ -57,7 +58,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         System.out.println("auton initting");
-        driveArc.start();
+       // driveArc.start();
+        DriveStraight.start();
     }
 
     public void autonomousPeriodic() {

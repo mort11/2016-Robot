@@ -17,6 +17,7 @@ import org.mort11.util.MORTSubsystem;
  * @author Abi Koutha <akoutha7@gmail.com>
  */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
+    private static boolean isDisabled = false;
     private Gear currentGear = Gear.LOW_GEAR;
     private CANTalon motor;
     private boolean motorReverse;
@@ -75,7 +76,15 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
 
     @Override
     public void disable() {
-        motor.set(0);
+        DTSide.isDisabled = true;
+    }
+
+    public static boolean isDisabled() {
+        return isDisabled;
+    }
+
+    public static void setDisabled(boolean isDisabled) {
+        DTSide.isDisabled = isDisabled;
     }
 
     public void initDefaultCommand() {

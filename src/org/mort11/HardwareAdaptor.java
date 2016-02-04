@@ -44,7 +44,7 @@ public class HardwareAdaptor {
 
         leftSide = new DTLeft();
         rightSide = new DTRight();
-        dt = new DT();
+        //dt = new DT();
     }
 
     public static HardwareAdaptor getInstance() {
