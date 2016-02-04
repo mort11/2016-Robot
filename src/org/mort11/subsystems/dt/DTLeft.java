@@ -1,5 +1,6 @@
 package org.mort11.subsystems.dt;
 
+import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.constants.DrivetrainConstants;
 import org.mort11.sensors.SensorDealer;
 
@@ -17,6 +18,7 @@ public class DTLeft extends DTSide {
     }
 
     public void initDefaultCommand() {
+        new DriveLinearLeft();
     }
 }
 
