@@ -9,7 +9,7 @@ import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.ee.Intake;
-import org.mort11.subsystems.ee.IntakeArm;
+import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
 
 /**
@@ -22,12 +22,15 @@ public class HardwareAdaptor {
     // System components
     public PowerDistributionPanel pdp;
     public Compressor compressor;
+
     // End Effector mechanisms
-    public IntakeArm intakeArm;
+    public Rollers rollers;
     public Intake intakeRollers;
     public Shooter shooter;
+
     // Navigational instruments
     public Accelerometer accelerometer;
+
     // Motors
     public DTLeft leftSide;
     public DTRight rightSide;
@@ -37,7 +40,7 @@ public class HardwareAdaptor {
         pdp = new PowerDistributionPanel();
         compressor = new Compressor(HardwareConstants.PCM_ID);
 
-        intakeArm = new IntakeArm();
+        rollers = new Rollers();
         intakeRollers = new Intake();
 
         accelerometer = new BuiltInAccelerometer();

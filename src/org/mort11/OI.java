@@ -17,7 +17,7 @@ import org.mort11.constants.OperatorInterfaceConstants;
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
-public class OI {
+public class OI{
     private static boolean enabled;
     private static int count = 0;
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
@@ -33,7 +33,8 @@ public class OI {
 
     public OI() {
         timer = new Timer();
-    }
+	}
+ 	
 
     public static double threshold(double input) {
         if (Math.abs(input) <= 0.05) {
