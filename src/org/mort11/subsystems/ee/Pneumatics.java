@@ -15,7 +15,11 @@ public class Pneumatics extends Subsystem {
     boolean engaged;
 
     public Pneumatics(int engagedPort, int notEngagedPort) {
+<<<<<<< HEAD
         solenoid = new DoubleSolenoid(engagedPort, notEngagedPort);
+=======
+        sol = new DoubleSolenoid(30,engagedPort, notEngagedPort);
+>>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
         engaged = false;
     }
 

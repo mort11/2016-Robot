@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+<<<<<<< HEAD
 import org.mort11.constants.OperatorInterfaceConstants;
 
 /**
@@ -36,6 +37,25 @@ public class OI {
     }
 
     public static double threshold(double input) {
+=======
+import org.mort11.commands.ee.PistonActuation;
+import org.mort11.util.TeleopConstants;
+
+public class OI{
+	public Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
+	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
+	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);	
+	public Button piston = new JoystickButton(ee, TeleopConstants.PISTON_BUTTON);
+	Button intakeRoll = new JoystickButton(ee, TeleopConstants.INTAKE_BUTTON);
+	Button outtakeRoll = new JoystickButton(ee, TeleopConstants.OUTTAKE_BUTTON);
+
+	public OI() {
+		
+	}
+ 	
+
+    public static double doThreshold(double input) {
+>>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
         if (Math.abs(input) <= 0.05) {
             return 0;
         }
