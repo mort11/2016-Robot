@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.dt.DriveLinearLeft;
-import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.util.Logger;
 
@@ -28,9 +26,9 @@ import java.util.Date;
  */
 public class Robot extends IterativeRobot {
     public static Pneumatics piston;
-    public static OI oi;
     public static HardwareAdaptor adaptor;
 
+    public static OI oi;
     Command DriveStraight;
     Command DispCurrent;
     Command driveArc;
@@ -42,7 +40,6 @@ public class Robot extends IterativeRobot {
         date = new Date();
 
         Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
-
         oi = new OI();
     }
 
@@ -72,6 +69,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+
     }
 
     public void testPeriodic() {
