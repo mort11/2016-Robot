@@ -38,10 +38,20 @@ public class Shooter extends Subsystem{
 	}
 	
 	public double getDistance(){
+		
 		return armEnc.getDistance();
 	}
 	
 	public double getAngle(){
 		return armPot.get();
 	}	
+	public boolean disable(){
+			if (armMotor.get()>=0){
+			 	return false;
+			}
+			else if (armEnc.get() >=0){
+			    	return false;
+			    }else {
+			    	return true; }
+	}
 }

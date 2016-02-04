@@ -5,9 +5,9 @@ import org.mort11.RobotMap;
 import org.mort11.util.EEConstants;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
+
 public class Intake extends Subsystem {
 		private Talon intakeArm;
-
 		private Encoder intakeEnc;
     
 
@@ -17,7 +17,7 @@ public class Intake extends Subsystem {
     	intakeEnc.reset();
         intakeEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
     }
-	protected void initDefaultCommand() {
+	protected void initDefaultCommand() { 
 		
 	}
 	public double getDistance(){
