@@ -5,11 +5,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.dt.DriveLinearLeft;
-import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.util.Logger;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 import java.sql.Timestamp;
 import java.util.Date;
@@ -23,6 +22,10 @@ import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.ee.Intake;
 import org.mort11.subsystems.ee.Rollers;
 >>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
+=======
+import java.sql.Timestamp;
+import java.util.Date;
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
 
 /**
  * Robot - Main Robot class
@@ -35,9 +38,11 @@ import org.mort11.subsystems.ee.Rollers;
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ * @author Carl Hausman <carl@hausman.org>
  */
 public class Robot extends IterativeRobot {
     public static Pneumatics piston;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     public static Rollers roller;
@@ -46,16 +51,18 @@ public class Robot extends IterativeRobot {
     public static Intake intake ;
 >>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
     public static OI oi;
+=======
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
     public static HardwareAdaptor adaptor;
 
+    public static OI oi;
     Command DriveStraight;
     Command DispCurrent;
-    Command DriveLinearLeft;
-    Command DriveLinearRight;
     Command driveArc;
     Date date;
 
     public void robotInit() {
+<<<<<<< HEAD
 <<<<<<< HEAD
         //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         //DispCurrent = new DisplayCurrents();
@@ -63,10 +70,14 @@ public class Robot extends IterativeRobot {
         adaptor = HardwareAdaptor.getInstance();
         DriveLinearLeft = new DriveLinearLeft();
         DriveLinearRight = new DriveLinearRight();
+=======
+        adaptor = HardwareAdaptor.getInstance();
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
         date = new Date();
 
         Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
+<<<<<<< HEAD
 =======
     	
     	piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
@@ -82,6 +93,8 @@ public class Robot extends IterativeRobot {
         intake = new Intake();
         roller = new Rollers();
 >>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
+=======
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
         oi = new OI();
     }
 
@@ -103,8 +116,6 @@ public class Robot extends IterativeRobot {
             DriveStraight.cancel();
             DispCurrent.cancel();
         }
-        DriveLinearLeft.start();
-        DriveLinearRight.start();
     }
 
     public void disabledInit() {
@@ -113,6 +124,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+
     }
 
     public void testPeriodic() {

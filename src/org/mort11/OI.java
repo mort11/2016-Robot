@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
 import org.mort11.constants.OperatorInterfaceConstants;
 
 /**
@@ -18,7 +21,7 @@ import org.mort11.constants.OperatorInterfaceConstants;
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
-public class OI {
+public class OI{
     private static boolean enabled;
     private static int count = 0;
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
@@ -34,9 +37,11 @@ public class OI {
 
     public OI() {
         timer = new Timer();
-    }
+	}
+ 	
 
     public static double threshold(double input) {
+<<<<<<< HEAD
 =======
 import org.mort11.commands.ee.PistonActuation;
 import org.mort11.util.TeleopConstants;
@@ -56,6 +61,8 @@ public class OI{
 
     public static double doThreshold(double input) {
 >>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
+=======
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
         if (Math.abs(input) <= 0.05) {
             return 0;
         }
