@@ -16,7 +16,6 @@ import org.mort11.util.PIDLoop;
 public class DrivePID extends Command {
     PIDLoop loopFunction_left;
     PIDLoop loopFunction_right;
-    Logger logger;
     double target = 60;
     double velLeft = 0;
     double velRight = 0;
@@ -33,15 +32,15 @@ public class DrivePID extends Command {
     protected void initialize() {
         loopFunction_left = new PIDLoop(target, 0.05, 0);
         loopFunction_right = new PIDLoop(target, 0.05, 0);
-        logger = new Logger();
-        logger.init("/home/lvuser/output");
-        logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
+
+        Logger.init("/home/lvuser/output");
+        Logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
     }
 
     protected void execute() {
         velLeft = loopFunction_left.getOutput(Robot.adaptor.dt.getDistLeft());
         velRight = loopFunction_right.getOutput(Robot.adaptor.dt.getDistRight());
-        logger.writeString(Robot.adaptor.dt.getDistLeft() + "," + loopFunction_left.getSP()
+        Logger.writeString(Robot.adaptor.dt.getDistLeft() + "," + loopFunction_left.getSP()
                 + "," + velLeft + "," + Robot.adaptor.dt.getDistRight() + "," + loopFunction_right.getSP()
                 + "," + velRight);
         System.out.println("Left- Distance:  " + Robot.adaptor.dt.getDistLeft() + " PI: " + velLeft);
@@ -57,7 +56,7 @@ public class DrivePID extends Command {
     }
 
     protected void end() {
-        logger.close();
+        Logger.close();
         Robot.adaptor.dt.resetEnc();
         Robot.adaptor.dt.stop();
         Robot.adaptor.dt.resetEnc();

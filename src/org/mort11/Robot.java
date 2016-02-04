@@ -4,15 +4,11 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.dt.DriveLinearLeft;
-import org.mort11.commands.dt.DriveLinearRight;
-import org.mort11.subsystems.ee.Pneumatics;
-import org.mort11.util.Logger;
-
-import java.sql.Timestamp;
-import java.util.Date;
+import org.mort11.commands.auton.WaitTime;
 
 /**
  * Robot - Main Robot class
@@ -28,62 +24,62 @@ import java.util.Date;
  * @author Carl Hausman <carl@hausman.org>
  */
 public class Robot extends IterativeRobot {
-    public static Pneumatics piston;
     public static OI oi;
     public static HardwareAdaptor adaptor = HardwareAdaptor.getInstance();
 
-    Command DriveStraight;
-    Command DispCurrent;
-    Command DriveLinearLeft;
-    Command DriveLinearRight;
-    Command driveArc;
-    Date date;
+    Command autonomousCommand;
+    SendableChooser autonomousChooser;
 
+    @Override
     public void robotInit() {
-        //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        //DispCurrent = new DisplayCurrents();
-        DriveStraight = new DriveStraight(200);
-        adaptor = HardwareAdaptor.getInstance();
-        DriveLinearLeft = new DriveLinearLeft();
-        DriveLinearRight = new DriveLinearRight();
-        driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
-        date = new Date();
-
-        Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
         oi = new OI();
+
+        // Have operator choose autonomous mode
+        autonomousChooser = new SendableChooser();
+        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
+        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
+        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
+        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 
+    @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
     }
 
     public void autonomousInit() {
-        System.out.println("auton initting");
-       // driveArc.start();
-        DriveStraight.start();
+        System.out.println("STARTED AUTONOMOUS");
+        autonomousCommand = (Command) autonomousChooser.getSelected();
+        System.out.println("Auto Mode: " + autonomousCommand);
+        autonomousCommand.start();
     }
 
+    @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
+    @Override
     public void teleopInit() {
-        if (DriveStraight != null) {
-            DriveStraight.cancel();
-            DispCurrent.cancel();
-        }
-        DriveLinearLeft.start();
-        DriveLinearRight.start();
+        if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
+    @Override
     public void disabledInit() {
-
+        // None
     }
 
+    @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
 
+    @Override
+    public void testInit() {
+        System.out.println("Starting test mode...");
+    }
+
+    @Override
     public void testPeriodic() {
         LiveWindow.run();
     }

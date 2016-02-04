@@ -4,25 +4,24 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
+ * Hood - ToDo description
  *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class Hood extends Subsystem {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	DoubleSolenoid sol;
-	boolean engaged;
+    DoubleSolenoid solenoid;
+    boolean engaged;
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }	
+
+    }
+
     public void popHood() {
-    	sol.set(DoubleSolenoid.Value.kForward);
-    	engaged = true;
+        solenoid.set(DoubleSolenoid.Value.kForward);
+        engaged = true;
     }
     public void stowHood() {
-    	sol.set(DoubleSolenoid.Value.kReverse);
-    	engaged = false;
+        solenoid.set(DoubleSolenoid.Value.kReverse);
+        engaged = false;
     }
     public void toggleHood() {
     	setSolenoid(!engaged);
@@ -30,9 +29,9 @@ public class Hood extends Subsystem {
     
     public void setSolenoid(boolean engage) {
         if (engage) {
-            sol.set(DoubleSolenoid.Value.kForward); 
+            solenoid.set(DoubleSolenoid.Value.kForward);
         } else {
-            sol.set(DoubleSolenoid.Value.kReverse); 
+            solenoid.set(DoubleSolenoid.Value.kReverse);
         }
         engaged = engage;
         System.out.println("state 2: " + engage);

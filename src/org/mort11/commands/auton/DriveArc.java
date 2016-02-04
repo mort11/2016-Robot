@@ -49,8 +49,8 @@ public class DriveArc extends Command {
         double rightVel = pidRight.getOutput(rightDist);
         leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
         double leftVel = pidLeft.getOutput(leftDist);
-        rightSide.setSpeed(rightVel);
-        leftSide.setSpeed(leftVel);
+        rightSide.set(rightVel);
+        leftSide.set(leftVel);
         Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
                 + "," + pidRight.getSP() + "," + rightVel);
     }
