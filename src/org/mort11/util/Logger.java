@@ -4,11 +4,16 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+/**
+ * Logger - Utility for writing log files to RoboRIO for later use
+ *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ */
 public class Logger {
 
-    PrintWriter writer;
+    static PrintWriter writer;
 
-    public void init(String filepath) {
+    public static void init(String filepath) {
         try {
             writer = new PrintWriter(filepath, "UTF-8");
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
@@ -17,12 +22,11 @@ public class Logger {
     }
 
 
-    public void writeString(String msg) {
+    public static void writeString(String msg) {
         writer.write(msg + "\n");
-        System.out.println("printing");
     }
 
-    public void close() {
+    public static void close() {
         writer.close();
     }
 }

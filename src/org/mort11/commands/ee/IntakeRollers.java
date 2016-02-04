@@ -1,7 +1,7 @@
 	 package org.mort11.commands.ee;
 
 import org.mort11.Robot;
-import org.mort11.util.EEConstants;
+import org.mort11.constants.EndEffectorConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -22,9 +22,9 @@ public class IntakeRollers extends Command{
 		 if(in == out){
 		     Robot.intakeRollers.setSpeed(0);
 		 }else if(in){
-		     Robot.intakeRollers.setSpeed(EEConstants.ROLLER_SPEED);
+		     Robot.intakeRollers.setSpeed(EndEffectorConstants.ROLLER_SPEED);
 		 }else{
-		     Robot.intakeRollers.setSpeed(-1 * EEConstants.ROLLER_SPEED);
+		     Robot.intakeRollers.setSpeed(-1 * EndEffectorConstants.ROLLER_SPEED);
 		 }
 	}
 

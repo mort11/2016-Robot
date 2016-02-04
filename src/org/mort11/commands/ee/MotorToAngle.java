@@ -1,8 +1,8 @@
 package org.mort11.commands.ee;
 
-import org.mort11.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.Robot;
+import org.mort11.subsystems.ee.Shooter;
 
 public class MotorToAngle extends Command{
 
@@ -39,5 +39,14 @@ public class MotorToAngle extends Command{
 	protected void interrupted() {
 	}
 	    
-}
+
+
+/**
+ * MotorToAngle - Move motor to angle
+ *
+ * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ */
+
 	
