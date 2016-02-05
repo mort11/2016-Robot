@@ -39,7 +39,7 @@ public class DriveAtOrientation extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getIsDisabled()){ // disable method integration
+        if (!DTSide.getDisabled()){ // disable method integration
             //currentOrientation = navx.getAngle();
             if (isUrgent) {
                 //use high urgency pid loop

@@ -29,11 +29,11 @@ public class DriveStraight extends Command {
     }
 
     protected void initialize() {
-        DTSide.resetEncoders();
+        DTSide.resetEncoder();
     }
 
     protected void execute() {
-        if (!DTSide.getIsDisabled()){ // disable method integration
+        if (!DTSide.getDisabled()){ // disable method integration
             double currentDistanceLeft = leftDTEncoder.getDistance();
             double currentDistanceRight = rightDTEncoder.getDistance();
     
@@ -60,7 +60,7 @@ public class DriveStraight extends Command {
     protected void end() {
         left.stop();
         right.stop();
-        DTSide.resetEncoders();
+        DTSide.resetEncoder();
     }
 
     protected void interrupted() {

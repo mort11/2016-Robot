@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
         autonomousChooser = new SendableChooser();
         autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
         autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
-        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
+        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(12 * Math.PI, 0.5 * Math.PI));
         SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 

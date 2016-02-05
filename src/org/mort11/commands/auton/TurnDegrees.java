@@ -32,7 +32,7 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getIsDisabled()){ // disable method integration
+        if (!DTSide.getDisabled()){ // disable method integration
             //curAngle = DTSide.getAngle(); //gets current angle of robot
             speed = pd.getOutput(curAngle); //passes current angle through pid loop
             left.set(speed); //sets speed
@@ -49,7 +49,7 @@ public class TurnDegrees extends Command {
     protected void end() {
         left.set(0);
         right.set(0);
-        DTSide.resetEncoders();
+        DTSide.resetEncoder();
     }
 
     protected void interrupted() {
