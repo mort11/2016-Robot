@@ -11,7 +11,7 @@ import org.mort11.util.MORTSubsystem;
  * @author Ryan Thant <ryanthant1@gmail.com>
  * @author Seven Kurt <seven.kurt@motsd.org>
  */
-public class Pneumatics extends Subsystem implements MORTSubsystem{
+public class Pneumatics extends Subsystem implements MORTSubsystem {
     DoubleSolenoid solenoid;
     boolean engaged;
     boolean isDisabled;
@@ -26,22 +26,22 @@ public class Pneumatics extends Subsystem implements MORTSubsystem{
     }
 
     public void setSolenoid(boolean engage) {
-        if(isDisabled == false){
-        	if (engage) {
-            solenoid.set(DoubleSolenoid.Value.kForward);
-        } else {
-            solenoid.set(DoubleSolenoid.Value.kReverse);
-        }
-        engaged = engage;
-        System.out.println("state 2: " + engage);
+        if (isDisabled == false) {
+            if (engage) {
+                solenoid.set(DoubleSolenoid.Value.kForward);
+            } else {
+                solenoid.set(DoubleSolenoid.Value.kReverse);
+            }
+            engaged = engage;
+            System.out.println("state 2: " + engage);
         }
     }
 
     public boolean isEngaged() {
         return engaged;
     }
-    
-    public void disable(){
-    	isDisabled = true;
+
+    public void disable() {
+        isDisabled = true;
     }
 }

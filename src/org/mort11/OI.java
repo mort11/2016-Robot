@@ -4,11 +4,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.mort11.commands.ee.PistonActuation;
-import org.mort11.commands.ee.MotorToAngle;
-import org.mort11.util.TeleopConstants;
-
- 		
 import org.mort11.constants.OperatorInterfaceConstants;
 
 /**
@@ -22,7 +17,7 @@ import org.mort11.constants.OperatorInterfaceConstants;
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
-public class OI{
+public class OI {
     private static boolean enabled;
     private static int count = 0;
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
@@ -38,8 +33,8 @@ public class OI{
 
     public OI() {
         timer = new Timer();
-	}
- 	
+    }
+
 
     public static double threshold(double input) {
         if (Math.abs(input) <= 0.05) {
@@ -48,7 +43,13 @@ public class OI{
         return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
 
-    public static double setSpeed(double speed) {
+    /**
+     * Limits top speed of robot to avoid brownouts
+     *
+     * @param speed Current speed received from Joystick or other control module
+     * @return Speed limited value
+     */
+    public static double speedLimit(double speed) {
         System.out.println(Robot.oi.timer.get());
         if (Robot.oi.fullSpeed.get()) {
             enabled = true;
@@ -79,11 +80,11 @@ public class OI{
     }
 
     public double getLeftJoy() {
-        return setSpeed(-left.getY());
+        return speedLimit(-left.getY());
     }
 
     public double getRightJoy() {
-        return setSpeed(right.getY());
+        return speedLimit(right.getY());
     }
 }
 

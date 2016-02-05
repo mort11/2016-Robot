@@ -5,10 +5,11 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import org.mort11.constants.HardwareConstants;
-import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
+import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Intake;
+import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
 
@@ -18,7 +19,6 @@ import org.mort11.subsystems.ee.Shooter;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class HardwareAdaptor {
-    private static HardwareAdaptor instance;
     // System components
     public PowerDistributionPanel pdp;
     public Compressor compressor;
@@ -27,33 +27,27 @@ public class HardwareAdaptor {
     public Rollers rollers;
     public Intake intake;
     public Shooter shooter;
+    public Pneumatics piston;
 
     // Navigational instruments
     public Accelerometer accelerometer;
 
-    // Motors
-    public DTLeft leftSide;
-    public DTRight rightSide;
-    public DT dt;
+    // Subsystems
+    public DTSide leftSide;
+    public DTSide rightSide;
 
-    private HardwareAdaptor() {
+    public HardwareAdaptor() {
         pdp = new PowerDistributionPanel();
         compressor = new Compressor(HardwareConstants.PCM_ID);
 
         rollers = new Rollers();
         intake = new Intake();
+        shooter = new Shooter();
+        // piston = new Pneumatics();
 
         accelerometer = new BuiltInAccelerometer();
 
         leftSide = new DTLeft();
         rightSide = new DTRight();
-        dt = new DT();
-    }
-
-    public static HardwareAdaptor getInstance() {
-        if (instance == null) {
-            instance = new HardwareAdaptor();
-        }
-        return instance;
     }
 }

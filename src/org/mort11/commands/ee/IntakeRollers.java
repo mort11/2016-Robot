@@ -1,41 +1,42 @@
-	 package org.mort11.commands.ee;
-
-import org.mort11.Robot;
-import org.mort11.constants.EndEffectorConstants;
+package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.Robot;
+import org.mort11.constants.EndEffectorConstants;
+import org.mort11.subsystems.ee.Rollers;
 
-public class IntakeRollers extends Command{
-	
-	boolean in, out;
+public class IntakeRollers extends Command {
 
-	public IntakeRollers(boolean in, boolean out){
-		this.in = in;
-		this.out = out;
-		requires(Robot.intakeRollers);
-	}
-	
-	protected void initialize() {
-	}
+    boolean in, out;
+    Rollers rollers = Robot.adaptor.rollers;
 
-	protected void execute() {
-		 if(in == out){
-		     Robot.intakeRollers.setSpeed(0);
-		 }else if(in){
-		     Robot.intakeRollers.setSpeed(EndEffectorConstants.ROLLER_SPEED);
-		 }else{
-		     Robot.intakeRollers.setSpeed(-1 * EndEffectorConstants.ROLLER_SPEED);
-		 }
-	}
+    public IntakeRollers(boolean in, boolean out) {
+        this.in = in;
+        this.out = out;
+        requires(rollers);
+    }
 
-	protected boolean isFinished() {
-		return false;
-	}
+    protected void initialize() {
+    }
 
-	protected void end() {
-	}
+    protected void execute() {
+        if (in == out) {
+            rollers.set(0);
+        } else if (in) {
+            rollers.set(EndEffectorConstants.ROLLER_SPEED);
+        } else {
+            rollers.set(-1 * EndEffectorConstants.ROLLER_SPEED);
+        }
+    }
 
-	protected void interrupted() {
-	}
+    protected boolean isFinished() {
+        return false;
+    }
+
+    protected void end() {
+    }
+
+    protected void interrupted() {
+    }
 
 }
