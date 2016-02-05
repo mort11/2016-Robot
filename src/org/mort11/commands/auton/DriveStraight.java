@@ -12,6 +12,7 @@ import org.mort11.util.PIDLoop;
  * DriveStraight - Drive in a (mostly) straight line
  *
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  */
 public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;
@@ -29,7 +30,8 @@ public class DriveStraight extends Command {
     }
 
     protected void initialize() {
-        DTSide.resetEncoder();
+        left.resetEncoder();
+        right.resetEncoder();
     }
 
     protected void execute() {
@@ -60,7 +62,8 @@ public class DriveStraight extends Command {
     protected void end() {
         left.stop();
         right.stop();
-        DTSide.resetEncoder();
+        left.resetEncoder();
+        right.resetEncoder();
     }
 
     protected void interrupted() {
