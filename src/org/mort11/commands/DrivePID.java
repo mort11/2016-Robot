@@ -1,7 +1,10 @@
 package org.mort11.commands;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
+import org.mort11.sensors.SensorDealer;
+import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
 
@@ -20,13 +23,20 @@ public class DrivePID extends Command {
     double velLeft = 0;
     double velRight = 0;
 
+    private DTSide left = Robot.adaptor.leftSide;
+    private DTSide right = Robot.adaptor.rightSide;
+    private Encoder leftEncoder = SensorDealer.getInstance().getLeftDTEncoder();
+    private Encoder rightEncoder = SensorDealer.getInstance().getRightDTEncoder();
+
     public DrivePID() {
-        requires(Robot.adaptor.dt);
+        requires(left);
+        requires(right);
     }
 
     public DrivePID(double target) {
         this.target = target;
-        requires(Robot.adaptor.dt);
+        requires(left);
+        requires(right);
     }
 
     protected void initialize() {
@@ -38,29 +48,29 @@ public class DrivePID extends Command {
     }
 
     protected void execute() {
-        velLeft = loopFunction_left.getOutput(Robot.adaptor.dt.getDistLeft());
-        velRight = loopFunction_right.getOutput(Robot.adaptor.dt.getDistRight());
-        Logger.writeString(Robot.adaptor.dt.getDistLeft() + "," + loopFunction_left.getSP()
-                + "," + velLeft + "," + Robot.adaptor.dt.getDistRight() + "," + loopFunction_right.getSP()
+        velLeft = loopFunction_left.getOutput(leftEncoder.getDistance());
+        velRight = loopFunction_right.getOutput(rightEncoder.getDistance());
+        Logger.writeString(leftEncoder.getDistance() + "," + loopFunction_left.getSP()
+                + "," + velLeft + "," + rightEncoder.getDistance() + "," + loopFunction_right.getSP()
                 + "," + velRight);
-        System.out.println("Left- Distance:  " + Robot.adaptor.dt.getDistLeft() + " PI: " + velLeft);
-        System.out.println("Right- Distance:  " + Robot.adaptor.dt.getDistRight() + " PI: " + velRight);
-        Robot.adaptor.dt.driveLeft(velLeft);
-        Robot.adaptor.dt.driveRight(velRight);
+        System.out.println("Left- Distance:  " + leftEncoder.getDistance() + " PI: " + velLeft);
+        System.out.println("Right- Distance:  " + rightEncoder.getDistance() + " PI: " + velRight);
+        left.set(velLeft);
+        right.set(velRight);
     }
 
     protected boolean isFinished() {
         //2 inch threshold and slow
-        return Math.abs(Robot.adaptor.dt.getDistLeft() / target) > 0.98
+        return Math.abs(leftEncoder.getDistance() / target) > 0.98
                 && Math.abs(velLeft) < 0.35;
     }
 
     protected void end() {
         Logger.close();
-        Robot.adaptor.dt.resetEnc();
-        Robot.adaptor.dt.stop();
-        Robot.adaptor.dt.resetEnc();
-        Robot.adaptor.dt.stop();
+        right.stop();
+        left.stop();
+        rightEncoder.reset();
+        leftEncoder.reset();
     }
 
     protected void interrupted() {
