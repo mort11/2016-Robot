@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
+import org.mort11.util.MORTSubsystem;
 
 /**
  * Shooter - Controls the flywheel
@@ -11,9 +12,9 @@ import org.mort11.sensors.SensorDealer;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
-public class Shooter extends Subsystem {
+public class Shooter extends Subsystem implements MORTSubsystem{
     private CANTalon armMotor;
-
+    boolean isDisabled = false;
     public Shooter() {
         armMotor = new CANTalon(EndEffectorConstants.ARM_TALON_PORT);
     }
@@ -23,7 +24,7 @@ public class Shooter extends Subsystem {
 
     public void set(double speed) {
         if(isDisabled == false){
-        armMotor.set(speed);
+        	armMotor.set(speed);
         }
     }
 
