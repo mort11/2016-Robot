@@ -33,7 +33,7 @@ public class DriveStraight extends Command {
     }
 
     protected void execute() {
-        double currentDistanceLeft = -leftDTEncoder.getDistance();
+        double currentDistanceLeft = leftDTEncoder.getDistance();
         double currentDistanceRight = rightDTEncoder.getDistance();
 
         double speedLeft = pd_left.getP(currentDistanceLeft);

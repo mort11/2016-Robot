@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import org.mort11.commands.auton.DriveArc;
+import org.mort11.commands.auton.DriveStraight;
 import org.mort11.util.Logger;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -39,13 +40,13 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 
         driveArc = new DriveArc(12 * Math.PI, 0.5 * Math.PI);
+    	//driveArc = new DriveStraight(100);
         date = new Date();
 
-        Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
+        Logger.init("/home/lvuser/test");
 
         oi = new OI();
 
-        Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
         // Have operator choose autonomous mode
 //        autonomousChooser = new SendableChooser();
 //        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
