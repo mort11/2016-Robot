@@ -12,6 +12,7 @@ import org.mort11.OI;
 import org.mort11.commands.DrivePID;
 import org.mort11.subsystems.dt.DT;
 
+
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -56,8 +57,8 @@ public class Robot extends IterativeRobot {
         ShootMech = new ShootingMechanism();
         intakeRollers = new ShootingMechanism();
         motorToAngle = new ShootingMechanism();
-        piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        DrivePIDCommand = new DrivePID(120); 
+        //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
+       // DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {

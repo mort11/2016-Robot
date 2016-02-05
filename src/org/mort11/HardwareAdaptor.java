@@ -25,7 +25,7 @@ public class HardwareAdaptor {
 
     // End Effector mechanisms
     public Rollers rollers;
-    public Intake intakeRollers;
+    public Intake intake;
     public Shooter shooter;
 
     // Navigational instruments
@@ -41,7 +41,7 @@ public class HardwareAdaptor {
         compressor = new Compressor(HardwareConstants.PCM_ID);
 
         rollers = new Rollers();
-        intakeRollers = new Intake();
+        intake = new Intake();
 
         accelerometer = new BuiltInAccelerometer();
 
