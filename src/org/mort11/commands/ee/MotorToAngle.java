@@ -4,6 +4,43 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.subsystems.ee.Shooter;
 
+public class MotorToAngle extends Command{
+
+	double speed = .5;
+	double tarAng = 90;
+	
+	public MotorToAngle() {
+	      requires(Robot.ShootMech);
+	}
+
+	protected void initialize() {
+	}
+
+	protected void execute() {
+		System.out.println("MotorToAngle is executed");
+		if(Robot.ShootMech.getAngle() < tarAng){
+			Robot.ShootMech.setSpeed(speed);
+		}
+	    if(Robot.ShootMech.getAngle() > tarAng){
+		   	Robot.ShootMech.setSpeed(-speed);
+		}
+	    if(Robot.ShootMech.getAngle() == tarAng){
+	    	Robot.ShootMech.setSpeed(0);
+	    }
+	}
+
+	protected boolean isFinished() {
+	    return false;
+	}
+
+	protected void end() {
+	}
+
+	protected void interrupted() {
+	}
+	    
+
+
 /**
  * MotorToAngle - Move motor to angle
  *
@@ -11,37 +48,5 @@ import org.mort11.subsystems.ee.Shooter;
  * @author Seven Kurt <seven.kurt@motsd.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
-public class MotorToAngle extends Command {
 
-    double speed = .5;
-    private Shooter shooter = Robot.adaptor.shooter;
-
-    public MotorToAngle() {
-        requires(shooter);
-    }
-
-    protected void initialize() {
-    }
-
-    protected void execute() {
-        if (shooter.getAngle() < 90) {
-            shooter.setSpeed(speed);
-        }
-        if (shooter.getAngle() > 90) {
-            shooter.setSpeed(-speed);
-        }
-        if (shooter.getAngle() == 90) {
-            shooter.setSpeed(0);
-        }
-    }
-
-    protected boolean isFinished() {
-        return true;
-    }
-
-    protected void end() {
-    }
-
-    protected void interrupted() {
-    }
-}
+	

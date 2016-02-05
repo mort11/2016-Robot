@@ -7,6 +7,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.util.Logger;
+import org.mort11.subsystems.ee.ShootingMechanism;
+import org.mort11.OI;
+import org.mort11.commands.DrivePID;
+import org.mort11.subsystems.dt.DT;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -41,6 +45,12 @@ import java.util.Date;
  * @author Carl Hausman <carl@hausman.org>
  */
 public class Robot extends IterativeRobot {
+    public static OI OI;
+    public static DT dt;
+    public static ShootingMechanism intakeArm;
+    public static ShootingMechanism ShootMech;
+    public static ShootingMechanism intakeRollers;
+    public static ShootingMechanism motorToAngle;
     public static Pneumatics piston;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -96,6 +106,13 @@ public class Robot extends IterativeRobot {
 =======
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
         oi = new OI();
+        dt = new DT();
+        intakeArm = new ShootingMechanism();
+        ShootMech = new ShootingMechanism();
+        intakeRollers = new ShootingMechanism();
+        motorToAngle = new ShootingMechanism();
+        piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
+        DrivePIDCommand = new DrivePID(120); 
     }
 
     public void disabledPeriodic() {
