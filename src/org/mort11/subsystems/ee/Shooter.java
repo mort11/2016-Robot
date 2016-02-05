@@ -22,7 +22,9 @@ public class Shooter extends Subsystem {
     }
 
     public void set(double speed) {
+        if(isDisabled == false){
         armMotor.set(speed);
+        }
     }
 
     public boolean islimSwitch() {
@@ -35,5 +37,9 @@ public class Shooter extends Subsystem {
 
     public double getAngle() {
         return SensorDealer.getInstance().getArmPot().get();
+    }
+    
+    public void disable(){
+    	isDisabled = true;
     }
 }

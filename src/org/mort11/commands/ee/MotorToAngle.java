@@ -12,6 +12,7 @@ import org.mort11.subsystems.ee.Shooter;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class MotorToAngle extends Command {
+
     double speed = .5;
     double tarAng = 90;
     private Shooter shooter = Robot.adaptor.shooter;

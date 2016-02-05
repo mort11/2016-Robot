@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        System.out.println("STARTING AUTONOMOUS");
+        System.out.println("auton initting");
         driveArc.start();
     }
 
@@ -67,6 +67,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledInit() {
+
         // None
     }
 

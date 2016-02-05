@@ -49,9 +49,9 @@ public class DrivePID extends Command {
     protected void execute() {
         velLeft = loopFunction_left.getOutput(leftEncoder.getDistance());
         velRight = loopFunction_right.getOutput(rightEncoder.getDistance());
-        Logger.writeString(leftEncoder.getDistance() + "," + loopFunction_left.getSP()
-                + "," + velLeft + "," + rightEncoder.getDistance() + "," + loopFunction_right.getSP()
-                + "," + velRight);
+        //Logger.writeString(leftEncoder.getDistance() + "," + loopFunction_left.getSP()
+        //        + "," + velLeft + "," + rightEncoder.getDistance() + "," + loopFunction_right.getSP()
+        //        + "," + velRight);
         System.out.println("Left- Distance:  " + leftEncoder.getDistance() + " PI: " + velLeft);
         System.out.println("Right- Distance:  " + rightEncoder.getDistance() + " PI: " + velRight);
         left.set(velLeft);
