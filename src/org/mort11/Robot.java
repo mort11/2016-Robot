@@ -42,10 +42,10 @@ public class Robot extends IterativeRobot {
         //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
         //DispCurrent = new DisplayCurrents();
         DriveStraight = new DriveStraight(30);
-        //adaptor = HardwareAdaptor.getInstance();
+        adaptor = HardwareAdaptor.getInstance();
         DriveLinearLeft = new DriveLinearLeft();
         DriveLinearRight = new DriveLinearRight();
-        driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
+        driveArc = new DriveArc(12 * Math.PI, 0.5 * Math.PI);
         date = new Date();
 
         Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
@@ -58,8 +58,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         System.out.println("auton initting");
-       // driveArc.start();
-        DriveStraight.start();
+         driveArc.start();
+        //DriveStraight.start();
     }
 
     public void autonomousPeriodic() {
