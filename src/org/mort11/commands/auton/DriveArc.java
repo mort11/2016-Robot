@@ -45,6 +45,7 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
+        if (!DTSide.getIsDisabled()){ // disable method integration
         rightDist = SensorDealer.getInstance().getRightDTEncoder().getDistance();
         double rightVel = pidRight.getOutput(rightDist);
         leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
@@ -53,6 +54,11 @@ public class DriveArc extends Command {
         leftSide.set(leftVel);
         Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
                 + "," + rightDist+","+pidRight.getSP() + "," + rightVel);
+        } else {
+            leftSide.stop();
+            rightSide.stop();
+            end();
+        }
     }
 
     protected boolean isFinished() {

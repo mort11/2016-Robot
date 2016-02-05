@@ -36,14 +36,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         SensorDealer.getInstance().getLeftDTEncoder().reset();
     }
 
-    public static boolean isDisabled() {
-        return isDisabled;
-    }
-
-    public static void setDisabled(boolean isDisabled) {
-        DTSide.isDisabled = isDisabled;
-    }
-
     public double getSpeed() {
         return motor.get();
     }
@@ -89,6 +81,14 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     @Override
     public void disable() {
         DTSide.isDisabled = true;
+    }
+    
+    public static boolean getIsDisabled() {
+        return isDisabled;
+    }
+
+    public static void setDisabled(boolean isDisabled) {
+        DTSide.isDisabled = isDisabled;
     }
 
     public void initDefaultCommand() {

@@ -33,6 +33,7 @@ public class DriveStraight extends Command {
     }
 
     protected void execute() {
+        if (!DTSide.getIsDisabled()){ // disable method integration
         double currentDistanceLeft = leftDTEncoder.getDistance();
         double currentDistanceRight = rightDTEncoder.getDistance();
 
@@ -46,6 +47,10 @@ public class DriveStraight extends Command {
         SmartDashboard.putNumber("Right Distance", currentDistanceRight);
         SmartDashboard.putNumber("Left Speed", speedLeft);
         SmartDashboard.putNumber("Right Speed", speedRight);
+        }
+        else {
+            end();
+        }
     }
 
     protected boolean isFinished() {
