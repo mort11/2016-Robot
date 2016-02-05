@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
+import org.mort11.util.MORTSubsystem;
 
 /**
  * Shooter - Controls the flywheel
@@ -13,6 +14,7 @@ import org.mort11.sensors.SensorDealer;
  */
 public class Shooter extends Subsystem {
     private Talon armMotor;
+    boolean isDisabled = false;
 
     public Shooter() {
         armMotor = new Talon(EndEffectorConstants.ARM_TALON_PORT);
@@ -22,7 +24,9 @@ public class Shooter extends Subsystem {
     }
 
     public void setSpeed(double speed) {
-        armMotor.set(speed);
+        if(isDisabled == false){
+        	armMotor.set(speed);
+        }
     }
 
     public boolean islimSwitch() {
@@ -35,5 +39,9 @@ public class Shooter extends Subsystem {
 
     public double getAngle() {
         return SensorDealer.getInstance().getArmPot().get();
+    }
+    
+    public void disable(){
+    	isDisabled = true;
     }
 }
