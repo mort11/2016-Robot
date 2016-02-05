@@ -14,6 +14,7 @@ import org.mort11.util.MORTSubsystem;
  * @author gridbug <wmarshall@mort11.org>
  * @author Matt Turi <mturi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Abi Koutha <akoutha7@gmail.com>
  */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {

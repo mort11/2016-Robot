@@ -10,6 +10,8 @@ import org.mort11.sensors.SensorDealer;
  * @author gridbug <wmarshall@mort11.org>
  * @author Matt Turi <mturi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ *  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
+
  */
 public class DTLeft extends DTSide {
     public DTLeft() {
