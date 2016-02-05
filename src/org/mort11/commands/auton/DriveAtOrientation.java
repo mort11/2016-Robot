@@ -39,6 +39,7 @@ public class DriveAtOrientation extends Command {
     }
 
     protected void execute() {
+        if (!DTSide.getIsDisabled()){ // disable method integration
         //currentOrientation = navx.getAngle();
         if (isUrgent) {
             //use high urgency pid loop
@@ -51,6 +52,9 @@ public class DriveAtOrientation extends Command {
         }
         left.set(speed_left);
         right.set(speed_right);
+        } else {
+            end();
+        }
     }
 
     protected boolean isFinished() {
@@ -58,6 +62,8 @@ public class DriveAtOrientation extends Command {
     }
 
     protected void end() {
+        left.stop();
+        right.stop();
     }
 
     protected void interrupted() {
