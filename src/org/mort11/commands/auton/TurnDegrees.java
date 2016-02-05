@@ -49,7 +49,8 @@ public class TurnDegrees extends Command {
     protected void end() {
         left.set(0);
         right.set(0);
-        DTSide.resetEncoder();
+        left.resetEncoder();
+        right.resetEncoder();
     }
 
     protected void interrupted() {
