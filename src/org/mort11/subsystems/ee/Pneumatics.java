@@ -11,7 +11,7 @@ import org.mort11.util.MORTSubsystem;
  * @author Ryan Thant <ryanthant1@gmail.com>
  * @author Seven Kurt <seven.kurt@motsd.org>
  */
-public class Pneumatics extends Subsystem {
+public class Pneumatics extends Subsystem implements MORTSubsystem{
     DoubleSolenoid solenoid;
     boolean engaged;
     boolean isDisabled;

@@ -12,7 +12,7 @@ import org.mort11.util.MORTSubsystem;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
-public class Shooter extends Subsystem {
+public class Shooter extends Subsystem implements MORTSubsystem{
     private Talon armMotor;
     boolean isDisabled = false;
 
