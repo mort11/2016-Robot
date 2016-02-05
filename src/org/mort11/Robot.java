@@ -23,6 +23,7 @@ import org.mort11.util.Logger;
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Carl Hausman <carl@hausman.org>
+ * @author Avi Pillai <apillai@mort11.org>
  */
 public class Robot extends IterativeRobot {
     public static OI oi;
