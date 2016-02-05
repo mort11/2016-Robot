@@ -34,19 +34,19 @@ public class DriveStraight extends Command {
 
     protected void execute() {
         if (!DTSide.getIsDisabled()){ // disable method integration
-        double currentDistanceLeft = leftDTEncoder.getDistance();
-        double currentDistanceRight = rightDTEncoder.getDistance();
-
-        double speedLeft = pd_left.getP(currentDistanceLeft);
-        double speedRight = pd_right.getP(currentDistanceRight);
-
-        left.set(speedLeft);
-        right.set(speedRight);
-
-        SmartDashboard.putNumber("Left Distance", currentDistanceLeft);
-        SmartDashboard.putNumber("Right Distance", currentDistanceRight);
-        SmartDashboard.putNumber("Left Speed", speedLeft);
-        SmartDashboard.putNumber("Right Speed", speedRight);
+            double currentDistanceLeft = leftDTEncoder.getDistance();
+            double currentDistanceRight = rightDTEncoder.getDistance();
+    
+            double speedLeft = pd_left.getP(currentDistanceLeft);
+            double speedRight = pd_right.getP(currentDistanceRight);
+    
+            left.set(speedLeft);
+            right.set(speedRight);
+    
+            SmartDashboard.putNumber("Left Distance", currentDistanceLeft);
+            SmartDashboard.putNumber("Right Distance", currentDistanceRight);
+            SmartDashboard.putNumber("Left Speed", speedLeft);
+            SmartDashboard.putNumber("Right Speed", speedRight);
         }
         else {
             end();
