@@ -1,6 +1,6 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
@@ -12,16 +12,16 @@ import org.mort11.sensors.SensorDealer;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class Shooter extends Subsystem {
-    private Talon armMotor;
+    private CANTalon armMotor;
 
     public Shooter() {
-        armMotor = new Talon(EndEffectorConstants.ARM_TALON_PORT);
+        armMotor = new CANTalon(EndEffectorConstants.ARM_TALON_PORT);
     }
 
     public void initDefaultCommand() {
     }
 
-    public void setSpeed(double speed) {
+    public void set(double speed) {
         armMotor.set(speed);
     }
 

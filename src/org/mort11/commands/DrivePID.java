@@ -19,6 +19,7 @@ import org.mort11.util.PIDLoop;
 public class DrivePID extends Command {
     PIDLoop loopFunction_left;
     PIDLoop loopFunction_right;
+    Logger logger;
     double target = 60;
     double velLeft = 0;
     double velRight = 0;
@@ -27,7 +28,6 @@ public class DrivePID extends Command {
     private DTSide right = Robot.adaptor.rightSide;
     private Encoder leftEncoder = SensorDealer.getInstance().getLeftDTEncoder();
     private Encoder rightEncoder = SensorDealer.getInstance().getRightDTEncoder();
-
     public DrivePID() {
         requires(left);
         requires(right);
@@ -42,9 +42,8 @@ public class DrivePID extends Command {
     protected void initialize() {
         loopFunction_left = new PIDLoop(target, 0.05, 0);
         loopFunction_right = new PIDLoop(target, 0.05, 0);
-
-        Logger.init("/home/lvuser/output");
-        Logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
+        //Logger.init("/home/lvuser/output");
+        //Logger.writeString("Left Dist,SP Left,Left PWM, Right Dist,SP Right, Right PWM");
     }
 
     protected void execute() {

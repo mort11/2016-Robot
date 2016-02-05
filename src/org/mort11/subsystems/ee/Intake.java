@@ -14,10 +14,10 @@ public class Intake extends Subsystem {
     private Encoder intakeEnc;
 
     public Intake() {
-//    	intakeArm = Robot.adaptor.intake;
-//    	intakeEnc = new Encoder(RobotMap.INTAKE_ENCODER1,RobotMap.INTAKE_ENCODER2 );
-//    	intakeEnc.reset();
-//        intakeEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
+//    intakeArm = Robot.adaptor.intake;
+//    intakeEnc = new Encoder(RobotMap.INTAKE_ENCODER1,RobotMap.INTAKE_ENCODER2 );
+//    intakeEnc.reset();
+//    intakeEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
     }
 
     protected void initDefaultCommand() {

@@ -12,8 +12,8 @@ import org.mort11.subsystems.ee.Shooter;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class MotorToAngle extends Command {
-
     double speed = .5;
+    double tarAng = 90;
     private Shooter shooter = Robot.adaptor.shooter;
 
     public MotorToAngle() {
@@ -24,19 +24,19 @@ public class MotorToAngle extends Command {
     }
 
     protected void execute() {
-        if (shooter.getAngle() < 90) {
-            shooter.setSpeed(speed);
+        if (shooter.getAngle() < tarAng) {
+            shooter.set(speed);
         }
-        if (shooter.getAngle() > 90) {
-            shooter.setSpeed(-speed);
+        if (shooter.getAngle() > tarAng) {
+            shooter.set(-speed);
         }
-        if (shooter.getAngle() == 90) {
-            shooter.setSpeed(0);
+        if (shooter.getAngle() == tarAng) {
+            shooter.set(0);
         }
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     protected void end() {

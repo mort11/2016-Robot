@@ -11,22 +11,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Hood extends Subsystem {
     DoubleSolenoid solenoid;
     boolean engaged;
-    public void initDefaultCommand() {
 
+    public void initDefaultCommand() {
     }
 
     public void popHood() {
         solenoid.set(DoubleSolenoid.Value.kForward);
         engaged = true;
     }
+
     public void stowHood() {
         solenoid.set(DoubleSolenoid.Value.kReverse);
         engaged = false;
     }
+
     public void toggleHood() {
-    	setSolenoid(!engaged);
+        setSolenoid(!engaged);
     }
-    
+
     public void setSolenoid(boolean engage) {
         if (engage) {
             solenoid.set(DoubleSolenoid.Value.kForward);

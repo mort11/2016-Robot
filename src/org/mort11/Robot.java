@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.WaitTime;
-import org.mort11.util.Logger;
 
 /**
  * Robot - Main Robot class
@@ -34,10 +33,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void robotInit() {
-
-        driveArc = new DriveArc(12 * Math.PI, 0.5 * Math.PI);
-
-        Logger.init("/home/lvuser/test");
+        driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
 
         oi = new OI();
 
