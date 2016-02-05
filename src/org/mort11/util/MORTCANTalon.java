@@ -9,7 +9,7 @@ import org.mort11.Robot;
  *
  * @author Matt Turi <mturi@mort11.org>
  */
-public class MORTCANTalon {
+public class MORTCANTalon extends CANTalon {
     private PowerDistributionPanel pdp = Robot.adaptor.pdp;
     private int[] slots;
     private CANTalon talon;
@@ -21,6 +21,7 @@ public class MORTCANTalon {
      * @param slots        int[] of PDP slots each motor is connected to
      */
     public MORTCANTalon(int deviceNumber, int[] slots) {
+        super(deviceNumber);
         this.talon = new CANTalon(deviceNumber);
         this.slots = slots;
     }
@@ -32,6 +33,7 @@ public class MORTCANTalon {
      * @param pdpSlot      int of PDP slot motor is connected to
      */
     public MORTCANTalon(int deviceNumber, int pdpSlot) {
+        super(deviceNumber);
         this.talon = new CANTalon(deviceNumber);
         this.slots = new int[]{pdpSlot};
     }

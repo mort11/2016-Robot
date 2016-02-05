@@ -4,7 +4,10 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import org.mort11.constants.EndEffectorConstants;
 import org.mort11.constants.HardwareConstants;
+import org.mort11.constants.PDPMap;
+import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
@@ -12,6 +15,7 @@ import org.mort11.subsystems.ee.Intake;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
+import org.mort11.util.MORTCANTalon;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -36,12 +40,18 @@ public class HardwareAdaptor {
     public DTSide leftSide;
     public DTSide rightSide;
 
+    // Motors
+    MORTCANTalon intakeArmMotor;
+
     public HardwareAdaptor() {
         pdp = new PowerDistributionPanel();
         compressor = new Compressor(HardwareConstants.PCM_ID);
 
+        // Init motors
+        intakeArmMotor = new MORTCANTalon(EndEffectorConstants.ARM_TALON_PORT, PDPMap.INTAKE_ARM);
+
         rollers = new Rollers();
-        intake = new Intake();
+        intake = new Intake("Intake", intakeArmMotor, SensorDealer.getInstance().getArmEncoder());
         shooter = new Shooter();
         // piston = new Pneumatics();
 
