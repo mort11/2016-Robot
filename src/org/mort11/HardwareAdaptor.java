@@ -9,7 +9,8 @@ import org.mort11.subsystems.dt.DT;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.ee.Intake;
-import org.mort11.subsystems.ee.IntakeArm;
+import org.mort11.subsystems.ee.Pneumatics;
+import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
 
 /**
@@ -19,16 +20,21 @@ import org.mort11.subsystems.ee.Shooter;
  */
 public class HardwareAdaptor {
     private static HardwareAdaptor instance;
+
     // System components
     public PowerDistributionPanel pdp;
     public Compressor compressor;
+
     // End Effector mechanisms
-    public IntakeArm intakeArm;
-    public Intake intakeRollers;
+    public Rollers rollers;
+    public Intake intake;
     public Shooter shooter;
+    public Pneumatics piston;
+
     // Navigational instruments
     public Accelerometer accelerometer;
-    // Motors
+
+    // Subsystems
     public DTLeft leftSide;
     public DTRight rightSide;
     public DT dt;
@@ -37,14 +43,16 @@ public class HardwareAdaptor {
         pdp = new PowerDistributionPanel();
         compressor = new Compressor(HardwareConstants.PCM_ID);
 
-        intakeArm = new IntakeArm();
-        intakeRollers = new Intake();
+        rollers = new Rollers();
+        intake = new Intake();
+        shooter = new Shooter();
+//        piston = new Pneumatics();
 
         accelerometer = new BuiltInAccelerometer();
 
         leftSide = new DTLeft();
         rightSide = new DTRight();
-        //dt = new DT();
+        dt = new DT();
     }
 
     public static HardwareAdaptor getInstance() {

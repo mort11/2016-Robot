@@ -34,8 +34,8 @@ public class TurnDegrees extends Command {
     protected void execute() {
         //curAngle = DTSide.getAngle(); //gets current angle of robot
         speed = pd.getOutput(curAngle); //passes current angle through pid loop
-        left.setSpeed(speed); //sets speed
-        right.setSpeed(-speed); //sets negative speed so robot can turn
+        left.set(speed); //sets speed
+        right.set(-speed); //sets negative speed so robot can turn
     }
 
     protected boolean isFinished() {
@@ -43,8 +43,8 @@ public class TurnDegrees extends Command {
     }
 
     protected void end() {
-        left.setSpeed(0);
-        right.setSpeed(0);
+        left.set(0);
+        right.set(0);
         DTSide.resetEncoders();
     }
 

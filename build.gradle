@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "GradleRIO"
+            url = "http://dev.imjac.in/maven"
+        }
+    }
+    dependencies {
+        classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '1.1.6'
+    }
+}
+
+apply plugin: 'GradleRIO'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+dependencies {
+    compile 'com.google.code.gson:gson:1.7.2'
+//    compile 'com.github.sarxos:webcam-capture:0.3.10'
+//    compile group: 'org.bytedeco', name: 'javacv', version: '1.0'
+}
+
+gradlerio.robotClass = "org.mort11.Robot"
+gradlerio.team = "11"
+//gradlerio.rioIP = "10.0.11.20"
+
+def robotManifest = {
+    attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
+    attributes 'Robot-Class': gradlerio.robotClass
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    from configurations.compile.collect { zipTree it }
+    manifest robotManifest
+}
+
+task genJavadoc(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives genJavadoc
+}

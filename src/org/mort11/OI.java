@@ -35,6 +35,7 @@ public class OI {
         timer = new Timer();
     }
 
+
     public static double threshold(double input) {
         if (Math.abs(input) <= 0.05) {
             return 0;
@@ -42,7 +43,13 @@ public class OI {
         return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
 
-    public static double setSpeed(double speed) {
+    /**
+     * Limits top speed of robot to avoid brownouts
+     *
+     * @param speed Current speed received from Joystick or other control module
+     * @return Speed limited value
+     */
+    public static double speedLimit(double speed) {
         System.out.println(Robot.oi.timer.get());
         if (Robot.oi.fullSpeed.get()) {
             enabled = true;
@@ -73,11 +80,11 @@ public class OI {
     }
 
     public double getLeftJoy() {
-        return setSpeed(-left.getY());
+        return speedLimit(-left.getY());
     }
 
     public double getRightJoy() {
-        return setSpeed(right.getY());
+        return speedLimit(right.getY());
     }
 }
 

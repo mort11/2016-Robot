@@ -2,27 +2,31 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.commands.ee.PistonActuation;
 
 /**
- * Pneumatics - Does pneumatic things
+ * Hood - ToDo description
  *
- * @author Ryan Thant <ryanthant1@gmail.com>
- * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
-public class Pneumatics extends Subsystem {
+public class Hood extends Subsystem {
     DoubleSolenoid solenoid;
     boolean engaged;
+    public void initDefaultCommand() {
 
-    public Pneumatics(int engagedPort, int notEngagedPort) {
-        solenoid = new DoubleSolenoid(30, engagedPort, notEngagedPort);
+    }
+
+    public void popHood() {
+        solenoid.set(DoubleSolenoid.Value.kForward);
+        engaged = true;
+    }
+    public void stowHood() {
+        solenoid.set(DoubleSolenoid.Value.kReverse);
         engaged = false;
     }
-
-    public void initDefaultCommand() {
-        setDefaultCommand(new PistonActuation());
+    public void toggleHood() {
+    	setSolenoid(!engaged);
     }
-
+    
     public void setSolenoid(boolean engage) {
         if (engage) {
             solenoid.set(DoubleSolenoid.Value.kForward);
@@ -37,3 +41,4 @@ public class Pneumatics extends Subsystem {
         return engaged;
     }
 }
+

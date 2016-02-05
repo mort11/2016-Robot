@@ -49,8 +49,8 @@ public class DriveAtOrientation extends Command {
             //speed_left = pd_left.getOutputHigh(currentOrientation);
             //speed_right = pd_right.getOutputHigh(currentOrientation);
         }
-        left.setSpeed(speed_left);
-        right.setSpeed(speed_right);
+        left.set(speed_left);
+        right.set(speed_right);
     }
 
     protected boolean isFinished() {
