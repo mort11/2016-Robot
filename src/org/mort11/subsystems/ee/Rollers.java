@@ -14,12 +14,11 @@ import org.mort11.sensors.SensorDealer;
 public class Rollers extends Subsystem {
 
     private CANTalon rollerMotor = new CANTalon(EndEffectorConstants.ARM_TALON_PORT);
-    private Encoder rollerEnc = SensorDealer.getInstance().getRollerEncoder();
+    private Encoder rollerEnc = SensorDealer.getInstance().getShooterEncoder();
 
     public Rollers() {
         rollerEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
         rollerEnc.reset();
-    }
 }
 
     protected void initDefaultCommand() {

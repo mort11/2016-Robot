@@ -39,6 +39,9 @@ public class Shooter extends Subsystem implements MORTSubsystem{
     public double getAngle() {
         return SensorDealer.getInstance().getArmPot().get();
     }
+    public double getRate(){
+    	return SensorDealer.getInstance().getShooterEncoder().getRate();
+    }
     
     public void disable(){
     	isDisabled = true;
