@@ -1,6 +1,8 @@
 package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.mort11.Robot;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
@@ -17,24 +19,29 @@ public class TurnDegrees extends Command {
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
     private double speed;
-    private double angle; //angle that the robot will turn by
+    private double desiredAngle; //angle that the robot will turn by
     private double currentAngle; //current orientation of robot
 
-    public TurnDegrees(double angle) { //takes desired angle for turning (between -180 and 180)
-        this.angle = angle;
+    public TurnDegrees(double angle) { //takes desired angle for turning (hopefully between -180 and 180)
+        this.desiredAngle = angle;
         requires(left);
         requires(right);
-        pd = new PIDLoop(this.angle, .01, 0); //placeholder values, must test
+        pd = new PIDLoop(this.desiredAngle, .01, 0); //placeholder values, must test
     }
 
     protected void initialize() {
-
+        DTSide.resetYaw(); //resets the yaw so current angle is accurate
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()){ // disable method integration
-            //curAngle = DTSide.getAngle(); //gets current angle of robot
+        if (!DTSide.getDisabled()){ // Will run when the Drivetrain is not disabled
+            currentAngle = DTSide.getAngle(); //gets current angle of robot
+            //currentAngle = DTSide.getYaw(); //might work better than getAngle(), must test
+            System.out.println(currentAngle);
             speed = pd.getOutput(currentAngle); //passes current angle through pid loop
+            System.out.println(speed);
+            SmartDashboard.putNumber("Current Angle", currentAngle);
+            SmartDashboard.putNumber("Speed", speed);
             left.set(speed); //sets speed
             right.set(-speed); //sets negative speed so robot can turn
         } else {
@@ -43,7 +50,8 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return this.inThresh();
+        return false;
+        //return this.inThresh();
     }
 
     protected void end() {
@@ -51,14 +59,15 @@ public class TurnDegrees extends Command {
         right.set(0);
         left.resetEncoder();
         right.resetEncoder();
+        DTSide.resetYaw();
     }
 
     protected void interrupted() {
     }
 
     //used to determine if robot is close enough to target to stop
-    protected boolean inThresh() {
-        //placeholder values, must test
-        return speed < .1 && speed > -.1;
-    }
+//    protected boolean inThresh() {
+//        //placeholder values, must test
+//        return speed < .1 && speed > -.1;
+//    }
 }

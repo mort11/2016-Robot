@@ -35,13 +35,13 @@ public class DriveStraight extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()){ // disable method integration
-        double currentDistanceLeft = leftDTEncoder.getDistance();
-        double currentDistanceRight = rightDTEncoder.getDistance();
-        System.out.println("left: " + currentDistanceLeft);
-        System.out.println("Right " + currentDistanceRight);
-        double speedLeft = pd_left.getOutput(currentDistanceLeft);
-        double speedRight = pd_right.getOutput(currentDistanceRight);
+        if (!DTSide.getDisabled()){ // // Will run when the Drivetrain is not disabled
+            double currentDistanceLeft = leftDTEncoder.getDistance();
+            double currentDistanceRight = rightDTEncoder.getDistance();
+            System.out.println("left: " + currentDistanceLeft);
+            System.out.println("Right " + currentDistanceRight);
+            double speedLeft = pd_left.getOutput(currentDistanceLeft);
+            double speedRight = pd_right.getOutput(currentDistanceRight);
 
             left.set(speedLeft);
             right.set(speedRight);
