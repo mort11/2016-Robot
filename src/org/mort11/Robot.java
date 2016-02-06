@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.auton.WaitTime;
 
 /**
@@ -26,7 +27,7 @@ import org.mort11.commands.auton.WaitTime;
 public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
-
+    Command spinUp;
     Command driveArc;
     Command autonomousCommand;
     SendableChooser autonomousChooser;
@@ -36,13 +37,14 @@ public class Robot extends IterativeRobot {
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
 
         oi = new OI();
-
+        spinUp= new SpinUp(20,false);
+        
         // Have operator choose autonomous mode
-        autonomousChooser = new SendableChooser();
-        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
-        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
-        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
-        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
+//        autonomousChooser = new SendableChooser();
+//        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
+//        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
+//        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
+//        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         System.out.println("auton initting");
-        driveArc.start();
+        spinUp.start();
     }
 
     @Override

@@ -78,6 +78,7 @@ public class PIDLoop {
     }
     
     public double getP(double curr_location) {
+    	System.out.println("error:  " + (desired_target - curr_location));
         return (desired_target - curr_location) * kP;
     }
 
