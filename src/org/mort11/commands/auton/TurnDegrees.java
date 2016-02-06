@@ -35,11 +35,11 @@ public class TurnDegrees extends Command {
 
     protected void execute() {
         if (!DTSide.getDisabled()){ // Will run when the Drivetrain is not disabled
-            currentAngle = DTSide.getAngle(); //gets current angle of robot
-            //currentAngle = DTSide.getYaw(); //might work better than getAngle(), must test
-            System.out.println(currentAngle);
+            //currentAngle = DTSide.getAngle(); //gets current angle of robot
+            currentAngle = DTSide.getYaw(); //might work better than getAngle(), must test
+            System.out.println("current angle" + currentAngle);
             speed = pd.getOutput(currentAngle); //passes current angle through pid loop
-            System.out.println(speed);
+            System.out.println("speed" + speed);
             SmartDashboard.putNumber("Current Angle", currentAngle);
             SmartDashboard.putNumber("Speed", speed);
             left.set(speed); //sets speed
