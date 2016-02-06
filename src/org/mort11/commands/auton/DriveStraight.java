@@ -12,11 +12,8 @@ import org.mort11.util.PIDLoop;
  * DriveStraight - Drive in a (mostly) straight line
  *
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
-<<<<<<< HEAD
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
-=======
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
->>>>>>> 7daeac2223cd5af3518fa5757e3775c2a76075dc
  */
 public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;

@@ -18,7 +18,7 @@ public class TurnDegrees extends Command {
     private DTSide right = Robot.adaptor.rightSide;
     private double speed;
     private double angle; //angle that the robot will turn by
-    private double curAngle; //current orientation of robot
+    private double currentAngle; //current orientation of robot
 
     public TurnDegrees(double angle) { //takes desired angle for turning (between -180 and 180)
         this.angle = angle;
@@ -34,7 +34,7 @@ public class TurnDegrees extends Command {
     protected void execute() {
         if (!DTSide.getDisabled()){ // disable method integration
             //curAngle = DTSide.getAngle(); //gets current angle of robot
-            speed = pd.getOutput(curAngle); //passes current angle through pid loop
+            speed = pd.getOutput(currentAngle); //passes current angle through pid loop
             left.set(speed); //sets speed
             right.set(-speed); //sets negative speed so robot can turn
         } else {

@@ -2,11 +2,14 @@ package org.mort11.subsystems.dt;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
 import org.mort11.util.MORTSubsystem;
+
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * DTSide - Base class controlling drivetrain sides
@@ -25,6 +28,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private Solenoid lowShifter;
     private Solenoid highShifter;
     private Encoder encoder;
+    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
 
     public DTSide(int motorPort, int lowShifterPort, int highSifterPort, boolean motorReverse, Encoder encoder) {
         motor = new CANTalon(motorPort);
@@ -33,13 +37,10 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         this.motorReverse = motorReverse;
         this.encoder = encoder;
     }
-
-    public static boolean getDisabled() {
-        return disabled;
-    }
-
-    public static void setDisabledState(boolean isDisabled) {
-        DTSide.disabled = isDisabled;
+    
+    //gets angle of robot, might work, must test
+    public static double getAngle() {
+        return navx.getAngle();
     }
 
     public void resetEncoder() {
@@ -93,6 +94,14 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         DTSide.disabled = true;
     }
 
+    public static boolean getDisabled() {
+        return disabled;
+    }
+
+    public static void setDisabledState(boolean isDisabled) {
+        DTSide.disabled = isDisabled;
+    }
+    
     public void initDefaultCommand() {
     }
 
