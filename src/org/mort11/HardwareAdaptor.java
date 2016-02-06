@@ -1,13 +1,6 @@
 package org.mort11;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import org.mort11.constants.EndEffectorConstants;
-import org.mort11.constants.HardwareConstants;
-import org.mort11.constants.PDPMap;
-import org.mort11.sensors.SensorDealer;
+import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
@@ -15,7 +8,11 @@ import org.mort11.subsystems.ee.Intake;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
-import org.mort11.util.MORTCANTalon;
+
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -25,6 +22,7 @@ import org.mort11.util.MORTCANTalon;
 public class HardwareAdaptor {
     // System components
     public PowerDistributionPanel pdp;
+    public Camera cam;
     public Compressor compressor;
 
     // End Effector mechanisms
@@ -45,6 +43,7 @@ public class HardwareAdaptor {
 
     public HardwareAdaptor() {
         pdp = new PowerDistributionPanel();
+        cam = new Camera();
         //compressor = new Compressor(HardwareConstants.PCM_ID);
 
         // Init motors
