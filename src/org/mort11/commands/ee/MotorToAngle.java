@@ -1,39 +1,47 @@
 package org.mort11.commands.ee;
 
-import org.mort11.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.Robot;
+import org.mort11.subsystems.ee.Shooter;
 
-public class MotorToAngle extends Command{
+/**
+ * MotorToAngle - Move motor to angle
+ *
+ * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ */
+public class MotorToAngle extends Command {
 
-	double speed = .5;
-	
-	public MotorToAngle() {
-	      requires(Robot.ShootMech);
-	}
+    double speed = .5;
+    private Shooter shooter = Robot.adaptor.shooter;
 
-	protected void initialize() {
-	}
+    public MotorToAngle() {
+        requires(shooter);
+    }
 
-	protected void execute() {
-		if(Robot.ShootMech.getAngle() < 90){
-			Robot.ShootMech.setSpeed(speed);
-		}
-	    if(Robot.ShootMech.getAngle() > 90){
-		   	Robot.ShootMech.setSpeed(-speed);
-		}
-	    if(Robot.ShootMech.getAngle() == 90){
-	    	Robot.ShootMech.setSpeed(0);
-	    }
-	}
+    protected void initialize() {
+    }
 
-	protected boolean isFinished() {
-	    return true;
-	}
+    protected void execute() {
+        if (shooter.getAngle() < 90) {
+            shooter.setSpeed(speed);
+        }
+        if (shooter.getAngle() > 90) {
+            shooter.setSpeed(-speed);
+        }
+        if (shooter.getAngle() == 90) {
+            shooter.setSpeed(0);
+        }
+    }
 
-	protected void end() {
-	}
+    protected boolean isFinished() {
+        return true;
+    }
 
-	protected void interrupted() {
-	}
-	    
+    protected void end() {
+    }
+
+    protected void interrupted() {
+    }
 }

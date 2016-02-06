@@ -1,35 +1,22 @@
 package org.mort11.commands.dt;
 
+import org.mort11.Robot;
+
 import static org.mort11.Robot.oi;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-import static org.mort11.Robot.leftSide;
-
+/**
+ * DriveLinearLeft - Controls left drivetrain movement
+ *
+ * @author gridbug <wmarshall@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class DriveLinearLeft extends DriveLinear {
 
     public DriveLinearLeft() {
-        super(leftSide);
+        super(Robot.adaptor.leftSide);
     }
 
     protected double getSpeed() {
         return oi.getLeftJoy();
-    }
-
-
-    protected void initialize() {
-    }
-
-    protected void execute() {
-    }
-
-    protected boolean isFinished() {
-        return false;
-    }
-
-    protected void end() {
-    }
-
-    protected void interrupted() {
     }
 }

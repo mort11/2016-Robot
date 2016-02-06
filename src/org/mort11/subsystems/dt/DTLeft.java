@@ -1,18 +1,22 @@
 package org.mort11.subsystems.dt;
 
+import org.mort11.constants.DrivetrainConstants;
+import org.mort11.sensors.SensorDealer;
 
-import org.mort11.PortMap;
-import org.mort11.util.DTConstants;
-
+/**
+ * DTLeft - Subsystem controlling left drivetrain side
+ *
+ * @author gridbug <wmarshall@mort11.org>
+ * @author Matt Turi <mturi@mort11.org>
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ */
 public class DTLeft extends DTSide {
-
     public DTLeft() {
-        super(PortMap.DT_LEFT_PORT, PortMap.DT_ENC_LEFT_A, PortMap.DT_ENC_LEFT_B, false, false); //placeholder values
-        enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE_LEFT); // Placeholder value        
+        super(DrivetrainConstants.DT_LEFT_TALON_ID, DrivetrainConstants.DT_LEFT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_LEFT_HIGH_SHIFTER_PORT, false);
+        SensorDealer.getInstance().getLeftDTEncoder().setDistancePerPulse(DrivetrainConstants.INCHES_PER_PULSE_LEFT);
     }
 
     public void initDefaultCommand() {
-
     }
 }
 

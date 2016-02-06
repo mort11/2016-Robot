@@ -6,16 +6,20 @@ import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
 
 /**
- * Shooter - Controls the flywheel
+ * ShootingMechanism - Subset of Shooter for controlling flywheel mechanism
  *
+ * @author Matt Turi <mturi@mort11.org>
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
-public class Shooter extends Subsystem {
+public class ShootingMechanism extends Subsystem {
+
     private Talon armMotor;
 
-    public Shooter() {
+    public ShootingMechanism() {
         armMotor = new Talon(EndEffectorConstants.ARM_TALON_PORT);
+        SensorDealer.getInstance().getArmEncoder().reset();
+        SensorDealer.getInstance().getArmEncoder().setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
     }
 
     public void initDefaultCommand() {
@@ -25,7 +29,7 @@ public class Shooter extends Subsystem {
         armMotor.set(speed);
     }
 
-    public boolean islimSwitch() {
+    public boolean isLimSwitch() {
         return SensorDealer.getInstance().getArmLimitSwitch().get();
     }
 
