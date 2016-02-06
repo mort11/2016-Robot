@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Hood extends Subsystem {
     DoubleSolenoid solenoid;
     boolean engaged;
+
     public void initDefaultCommand() {
 
     }

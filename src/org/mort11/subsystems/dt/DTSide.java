@@ -1,11 +1,11 @@
 package org.mort11.subsystems.dt;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
 
 /**
@@ -14,26 +14,36 @@ import org.mort11.util.MORTSubsystem;
  * @author gridbug <wmarshall@mort11.org>
  * @author Matt Turi <mturi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Abi Koutha <akoutha7@gmail.com>
  */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
-    private static boolean isDisabled = false;
+    private static boolean disabled = false;
     private Gear currentGear = Gear.LOW_GEAR;
     private CANTalon motor;
     private boolean motorReverse;
     private Solenoid lowShifter;
     private Solenoid highShifter;
+    private Encoder encoder;
 
-    public DTSide(int motorPort, int lowShifterPort, int highSifterPort, boolean motorReverse) {
+    public DTSide(int motorPort, int lowShifterPort, int highSifterPort, boolean motorReverse, Encoder encoder) {
         motor = new CANTalon(motorPort);
         lowShifter = new Solenoid(lowShifterPort);
         highShifter = new Solenoid(highSifterPort);
         this.motorReverse = motorReverse;
+        this.encoder = encoder;
     }
 
-    public static void resetEncoders() {
-        SensorDealer.getInstance().getRightDTEncoder().reset();
-        SensorDealer.getInstance().getLeftDTEncoder().reset();
+    public static boolean getDisabled() {
+        return disabled;
+    }
+
+    public static void setDisabledState(boolean isDisabled) {
+        DTSide.disabled = isDisabled;
+    }
+
+    public void resetEncoder() {
+        this.encoder.reset();
     }
 
     public double getSpeed() {
@@ -80,15 +90,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
 
     @Override
     public void disable() {
-        DTSide.isDisabled = true;
-    }
-    
-    public static boolean getIsDisabled() {
-        return isDisabled;
-    }
-
-    public static void setDisabled(boolean isDisabled) {
-        DTSide.isDisabled = isDisabled;
+        DTSide.disabled = true;
     }
 
     public void initDefaultCommand() {

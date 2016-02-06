@@ -32,11 +32,11 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getIsDisabled()){ // disable method integration
-        //curAngle = DTSide.getAngle(); //gets current angle of robot
-        speed = pd.getOutput(curAngle); //passes current angle through pid loop
-        left.set(speed); //sets speed
-        right.set(-speed); //sets negative speed so robot can turn
+        if (!DTSide.getDisabled()){ // disable method integration
+            //curAngle = DTSide.getAngle(); //gets current angle of robot
+            speed = pd.getOutput(curAngle); //passes current angle through pid loop
+            left.set(speed); //sets speed
+            right.set(-speed); //sets negative speed so robot can turn
         } else {
             end();
         }
@@ -49,7 +49,8 @@ public class TurnDegrees extends Command {
     protected void end() {
         left.set(0);
         right.set(0);
-        DTSide.resetEncoders();
+        left.resetEncoder();
+        right.resetEncoder();
     }
 
     protected void interrupted() {

@@ -12,7 +12,11 @@ import org.mort11.util.PIDLoop;
  * DriveStraight - Drive in a (mostly) straight line
  *
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+<<<<<<< HEAD
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+=======
+ * @author Jeffrey Pastilha <jpmail967@yahoo.com>
+>>>>>>> 7daeac2223cd5af3518fa5757e3775c2a76075dc
  */
 public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;
@@ -29,11 +33,12 @@ public class DriveStraight extends Command {
     }
 
     protected void initialize() {
-        DTSide.resetEncoders();
+        left.resetEncoder();
+        right.resetEncoder();
     }
 
     protected void execute() {
-        if (!DTSide.getIsDisabled()){ // disable method integration
+        if (!DTSide.getDisabled()){ // disable method integration
         double currentDistanceLeft = leftDTEncoder.getDistance();
         double currentDistanceRight = rightDTEncoder.getDistance();
         System.out.println("left: " + currentDistanceLeft);
@@ -41,15 +46,14 @@ public class DriveStraight extends Command {
         double speedLeft = pd_left.getOutput(currentDistanceLeft);
         double speedRight = pd_right.getOutput(currentDistanceRight);
 
-        left.set(speedLeft);
-        right.set(speedRight);
+            left.set(speedLeft);
+            right.set(speedRight);
 
-        SmartDashboard.putNumber("Left Distance", currentDistanceLeft);
-        SmartDashboard.putNumber("Right Distance", currentDistanceRight);
-        SmartDashboard.putNumber("Left Speed", speedLeft);
-        SmartDashboard.putNumber("Right Speed", speedRight);
-        }
-        else {
+            SmartDashboard.putNumber("Left Distance", currentDistanceLeft);
+            SmartDashboard.putNumber("Right Distance", currentDistanceRight);
+            SmartDashboard.putNumber("Left Speed", speedLeft);
+            SmartDashboard.putNumber("Right Speed", speedRight);
+        } else {
             end();
         }
     }
@@ -61,7 +65,8 @@ public class DriveStraight extends Command {
     protected void end() {
         left.stop();
         right.stop();
-        DTSide.resetEncoders();
+        left.resetEncoder();
+        right.resetEncoder();
     }
 
     protected void interrupted() {
