@@ -41,17 +41,17 @@ public class HardwareAdaptor {
     public DTSide rightSide;
 
     // Motors
-    MORTCANTalon intakeArmMotor;
+   // public MORTCANTalon intakeArmMotor;
 
     public HardwareAdaptor() {
         pdp = new PowerDistributionPanel();
-        compressor = new Compressor(HardwareConstants.PCM_ID);
+        //compressor = new Compressor(HardwareConstants.PCM_ID);
 
         // Init motors
-        intakeArmMotor = new MORTCANTalon(EndEffectorConstants.ARM_TALON_PORT, PDPMap.INTAKE_ARM);
+     //  intakeArmMotor = new MORTCANTalon(EndEffectorConstants.ARM_TALON_PORT, PDPMap.INTAKE_ARM);
 
         rollers = new Rollers();
-        intake = new Intake("Intake", intakeArmMotor, SensorDealer.getInstance().getArmEncoder());
+       //intake = new Intake("Intake", intakeArmMotor, SensorDealer.getInstance().getArmEncoder());
         shooter = new Shooter();
         // piston = new Pneumatics();
 

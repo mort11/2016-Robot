@@ -12,11 +12,8 @@ import org.mort11.util.PIDLoop;
  * DriveStraight - Drive in a (mostly) straight line
  *
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
-<<<<<<< HEAD
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
-=======
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
->>>>>>> 7daeac2223cd5af3518fa5757e3775c2a76075dc
  */
 public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;
@@ -35,6 +32,8 @@ public class DriveStraight extends Command {
     protected void initialize() {
         left.resetEncoder();
         right.resetEncoder();
+        SensorDealer.getInstance().getAHRS().zeroYaw();
+        
     }
 
     protected void execute() {
@@ -46,13 +45,21 @@ public class DriveStraight extends Command {
         double speedLeft = pd_left.getOutput(currentDistanceLeft);
         double speedRight = pd_right.getOutput(currentDistanceRight);
 
-            left.set(speedLeft);
-            right.set(speedRight);
+       double angleError = SensorDealer.getInstance().getAHRS().getYaw() % 360;
+       if (angleError > 180) {
+    	   angleError = Math.abs(360 - angleError);
+       }
+       System.out.println("angle error: " + angleError);
+        
+        left.set(speedLeft);
+        right.set(speedRight + 0.03 * angleError);
 
-            SmartDashboard.putNumber("Left Distance", currentDistanceLeft);
-            SmartDashboard.putNumber("Right Distance", currentDistanceRight);
-            SmartDashboard.putNumber("Left Speed", speedLeft);
-            SmartDashboard.putNumber("Right Speed", speedRight);
+        
+        SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
+        SmartDashboard.putNumber("Right Distance", currentDistanceRight);
+        SmartDashboard.putNumber("Left Speed", speedLeft);
+        SmartDashboard.putNumber("Right Speed", speedRight);
+        SmartDashboard.putNumber("Angle Disp", angleError);
         } else {
             end();
         }

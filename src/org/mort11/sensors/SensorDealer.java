@@ -1,10 +1,14 @@
 package org.mort11.sensors;
 
+import org.mort11.constants.SensorConstants;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import org.mort11.constants.SensorConstants;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * SensorDealer - Declare all sensors on robot to consolidate them to one place
@@ -20,6 +24,7 @@ public class SensorDealer {
     private Encoder roller;
     private AnalogPotentiometer armPot;
     private DigitalInput armLimitSwitch;
+    private AHRS ahrs;
 
     private SensorDealer() {
         leftDriveTrain = new Encoder(SensorConstants.DT_ENCODER_LEFT_A, SensorConstants.DT_ENCODER_LEFT_B, false, CounterBase.EncodingType.k4X);
@@ -28,6 +33,7 @@ public class SensorDealer {
         roller = new Encoder(SensorConstants.ROLLER_ENCODER_A, SensorConstants.ROLLER_ENCODER_B, false, CounterBase.EncodingType.k4X);
         armPot = new AnalogPotentiometer(SensorConstants.ARM_POT);
         armLimitSwitch = new DigitalInput(SensorConstants.ARM_LIM_SWITCH_PORT);
+        ahrs = new AHRS(SPI.Port.kMXP);
     }
 
     public static SensorDealer getInstance() {
@@ -59,5 +65,9 @@ public class SensorDealer {
 
     public DigitalInput getArmLimitSwitch() {
         return armLimitSwitch;
+    }
+    
+    public AHRS getAHRS() {
+    	return ahrs;
     }
 }
