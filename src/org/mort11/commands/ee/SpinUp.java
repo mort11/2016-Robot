@@ -7,13 +7,15 @@ import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.ee.Shooter;
 import org.mort11.util.PIDLoop;
+import org.mort11.util.MORTSubsystem;
 /**
  *
  */
-public class SpinUp extends Command {
+public class SpinUp extends Command implements MORTSubsystem{
 	private Shooter armMotor;
     private PIDLoop pd_arm;
     private Encoder shooter = SensorDealer.getInstance().getShooterEncoder();
+    boolean isDisabled = false;
     
     public SpinUp(double velocity) {
     	requires(armMotor);
@@ -25,20 +27,29 @@ public class SpinUp extends Command {
     }
 
     protected void execute() {
-    	 double currentVelocity = shooter.getRate();
+    	if(isDisabled == false){
+    		double currentVelocity = shooter.getRate();
+    	
 
          double speed = pd_arm.getP(currentVelocity);
 
          armMotor.set(speed);
 
          SmartDashboard.putNumber("Velocity", currentVelocity);
+    	}
     }
+    
     protected boolean isFinished() {
         return false;
     }
+    
     protected void end() {
     }
 
     protected void interrupted() {
+    }
+    
+    public void disable(){
+    	isDisabled = true;
     }
 }
