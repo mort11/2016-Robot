@@ -23,7 +23,7 @@ import org.mort11.util.Logger;
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Carl Hausman <carl@hausman.org>
- * @author Avi Pillai <apillai@mort11.org>
+ * @author Jakob Shortell <jshortell@mort11.org>
  */
 public class Robot extends IterativeRobot {
     public static OI oi;
@@ -37,8 +37,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 
         //driveArc = new DriveArc(18 * Math.PI, 0.5 * Math.PI);
-    	driveArc = new DriveStraight(200);
-        date = new Date();
+        driveArc = new DriveStraight(200);
 
         Logger.init("/home/lvuser/test");
 
