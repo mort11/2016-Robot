@@ -11,26 +11,17 @@ import org.mort11.Robot;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class DisplayCurrents extends Command {
-    // current values for each monitored HardwareAdaptor.pdp channel (0 - 15) in Amps
-    // can comment out any channels that are not in use
-    private double cur1;
-    private double cur2;
-
-    public DisplayCurrents() {
-
-    }
-
     protected void initialize() {
     }
 
     protected void execute() {
-        cur1 = Robot.adaptor.pdp.getCurrent(1);
-        cur2 = Robot.adaptor.pdp.getCurrent(2);
+        double cur1 = Robot.adaptor.pdp.getCurrent(1);
+        double cur2 = Robot.adaptor.pdp.getCurrent(2);
 
-        System.out.println("current 1: " + cur1);
-        System.out.println("current 2: " + cur2);
-        SmartDashboard.putNumber("HardwareAdaptor.pdp Current Channel 1", cur1);
-        SmartDashboard.putNumber("HardwareAdaptor.pdp Current Channel 2", cur2);
+        System.out.println("Channel 1: " + cur1);
+        System.out.println("Channel 2: " + cur2);
+        SmartDashboard.putNumber("PDP Channel 1", cur1);
+        SmartDashboard.putNumber("PDP Channel 2", cur2);
     }
 
     protected boolean isFinished() {

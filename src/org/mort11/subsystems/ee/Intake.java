@@ -1,37 +1,44 @@
 package org.mort11.subsystems.ee;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.RobotMap;
 import org.mort11.constants.EndEffectorConstants;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
+import org.mort11.sensors.SensorDealer;
+import org.mort11.util.MORTSubsystem;
 
 /**
  * Intake - Intake
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
-public class Intake extends Subsystem {
-		private Talon intakeArm;
-
-		private Encoder intakeEnc;
-    
+public class Intake extends Subsystem implements MORTSubsystem {
+    boolean isDisabled = false;
+    private CANTalon intakeArm;
 
     public Intake() {
-    	intakeArm = new Talon(RobotMap.INTAKE_TALON);
-    	intakeEnc = new Encoder(RobotMap.INTAKE_ENCODER1,RobotMap.INTAKE_ENCODER2 );
-    	intakeEnc.reset();
-        intakeEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
+        intakeArm = new CANTalon(EndEffectorConstants.ARM_TALON_PORT);
+        SensorDealer.getInstance().getArmEncoder().reset();
+        SensorDealer.getInstance().getArmEncoder().setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
     }
-	protected void initDefaultCommand() {
-		
-	}
-	public double getDistance(){
-		System.out.println(intakeEnc.get());
-		return intakeEnc.get();
-	}
-	public void setSpeed(double speed) {
-		intakeArm.set(speed);	
-		}
-	
+
+    protected void initDefaultCommand() {
+
+    }
+
+    public double getDistance() {
+        System.out.println(SensorDealer.getInstance().getArmEncoder().get());
+        return SensorDealer.getInstance().getArmEncoder().get();
+    }
+
+    public void set(double speed) {
+        if (isDisabled == false) {
+            intakeArm.set(speed);
+        }
+    }
+
+    public void disable() {
+        isDisabled = true;
+    }
+
 }

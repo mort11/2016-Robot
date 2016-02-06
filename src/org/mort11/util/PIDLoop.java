@@ -15,7 +15,7 @@ public class PIDLoop {
     //when we can start the timer
     double currTime = 0, oldTime = 0;
     Timer timer = new Timer();
-    double vel_max = 10;
+    double vel_max = 8;
     double curr_location = 0;
 
     public PIDLoop(double target, double kP, double kI) {
@@ -68,12 +68,17 @@ public class PIDLoop {
         double output = (error * kP + netError * kI);
 //		System.out.println("PI: " + output);
         System.out.println("SP: " + getLocation(currTime, curr_location));
+        System.out.println("error: " + error);
         //System.out.println("Time: " + currTime);
         return output;
     }
 
     public double getSP() {
         return getLocation(currTime, curr_location);
+    }
+    
+    public double getP(double curr_location) {
+        return (desired_target - curr_location) * kP;
     }
 
     public double getLocation(double time, double pos) {

@@ -33,8 +33,8 @@ public class DriveArc extends Command {
 
     protected void initialize() {
         double[] distances = arc_calc(arcLength, turnRadius);
-        Logger.writeString("Right target," + distances[0]);
-        Logger.writeString("Left target," + distances[1]);
+        //Logger.writeString("Right target," + distances[0]);
+        //Logger.writeString("Left target," + distances[1]);
         rightTarget = distances[0];
         leftTarget = distances[1];
         pidRight = new PIDLoop(distances[0], 0.01, 0.00, distances[0] / Math.max(distances[0], distances[1]));
@@ -45,14 +45,20 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
+        if (!DTSide.getIsDisabled()){ // disable method integration
         rightDist = SensorDealer.getInstance().getRightDTEncoder().getDistance();
         double rightVel = pidRight.getOutput(rightDist);
         leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
         double leftVel = pidLeft.getOutput(leftDist);
-        rightSide.setSpeed(rightVel);
-        leftSide.setSpeed(leftVel);
+        rightSide.set(rightVel);
+        leftSide.set(leftVel);
         Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
-                + "," + pidRight.getSP() + "," + rightVel);
+                + "," + rightDist+","+pidRight.getSP() + "," + rightVel);
+        } else {
+            leftSide.stop();
+            rightSide.stop();
+            end();
+        }
     }
 
     protected boolean isFinished() {
