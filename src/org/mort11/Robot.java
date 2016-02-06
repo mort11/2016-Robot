@@ -10,6 +10,7 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.TurnDegrees;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.auton.DriveStraighter;
 import org.mort11.util.Logger;
 
 /**
@@ -33,6 +34,7 @@ public class Robot extends IterativeRobot {
     //Command driveArc;
     Command autonomousCommand;
     Command turnDegrees;
+    Command DriveStraighter;
     //SendableChooser autonomousChooser;
 
     @Override
@@ -40,7 +42,8 @@ public class Robot extends IterativeRobot {
 
         //driveArc = new DriveArc(18 * Math.PI, 0.5 * Math.PI);
         //driveArc = new DriveStraight(200);
-        turnDegrees = new TurnDegrees (-90);
+        turnDegrees = new TurnDegrees (90);
+        DriveStraighter = new DriveStraighter();
         
         //Logger.init("/home/lvuser/test");
 
@@ -61,6 +64,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         System.out.println("STARTING AUTONOMOUS");
+        //DriveStraighter.start();
         turnDegrees.start();
     }
 
