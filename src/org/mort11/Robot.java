@@ -38,7 +38,6 @@ public class Robot extends IterativeRobot {
 
         //driveArc = new DriveArc(18 * Math.PI, 0.5 * Math.PI);
     	driveArc = new DriveStraight(200);
-        date = new Date();
 
         Logger.init("/home/lvuser/test");
 
