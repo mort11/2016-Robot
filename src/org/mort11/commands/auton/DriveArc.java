@@ -37,8 +37,8 @@ public class DriveArc extends Command {
         //Logger.writeString("Left target," + distances[1]);
         rightTarget = distances[0];
         leftTarget = distances[1];
-        pidRight = new PIDLoop(distances[0], 0.01, 0.00, distances[0] / Math.max(distances[0], distances[1]));
-        pidLeft = new PIDLoop(distances[1], 0.01, 0.00, distances[1] / Math.max(distances[0], distances[1]));
+        pidRight = new PIDLoop(distances[0], 0.1, 0.01, distances[0] / Math.max(distances[0], distances[1]));
+        pidLeft = new PIDLoop(distances[1], 0.1, 0.01, distances[1] / Math.max(distances[0], distances[1]));
         Logger.writeString("Time, Distance Left, SP Left, Output Left, "
                 + "Distance Right, SP Right, Output Right");
         timer.start();

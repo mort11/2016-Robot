@@ -12,12 +12,12 @@ import org.mort11.util.PIDLoop;
  * DriveStraight - Drive in a (mostly) straight line
  *
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
-    private PIDLoop pd_left;
-    private PIDLoop pd_right;
+    private PIDLoop pd_left,pd_right;
     private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDTEncoder();
     private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDTEncoder();
 
@@ -36,9 +36,10 @@ public class DriveStraight extends Command {
         if (!DTSide.getIsDisabled()){ // disable method integration
         double currentDistanceLeft = leftDTEncoder.getDistance();
         double currentDistanceRight = rightDTEncoder.getDistance();
-
-        double speedLeft = pd_left.getP(currentDistanceLeft);
-        double speedRight = pd_right.getP(currentDistanceRight);
+        System.out.println("left: " + currentDistanceLeft);
+        System.out.println("Right " + currentDistanceRight);
+        double speedLeft = pd_left.getOutput(currentDistanceLeft);
+        double speedRight = pd_right.getOutput(currentDistanceRight);
 
         left.set(speedLeft);
         right.set(speedRight);

@@ -39,8 +39,8 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
 
-        driveArc = new DriveArc(12 * Math.PI, 0.5 * Math.PI);
-    	//driveArc = new DriveStraight(100);
+        //driveArc = new DriveArc(18 * Math.PI, 0.5 * Math.PI);
+    	driveArc = new DriveStraight(200);
         date = new Date();
 
         Logger.init("/home/lvuser/test");
