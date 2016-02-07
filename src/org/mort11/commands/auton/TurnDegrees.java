@@ -28,7 +28,7 @@ public class TurnDegrees extends Command {
         this.desiredAngle = angle;
         requires(left);
         requires(right);
-        pd = new PIDLoop(this.desiredAngle, 0.01, 0.01, 1.5); 
+        pd = new PIDLoop(this.desiredAngle, 0.01, 0.01, 1.5); //original values were (.02, .005, 2)
     }
 
     protected void initialize() {
