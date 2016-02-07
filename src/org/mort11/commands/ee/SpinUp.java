@@ -8,8 +8,13 @@ import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.ee.Shooter;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
+
 /**
- *
+ * SpinUp - Spins up flywheel to a specified RPM
+ * 
+ *@author Seven Kurt <seven.kurt@motsd.org>
+ *@author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class SpinUp extends Command {
     private DTSide left = Robot.adaptor.leftSide; //replace/remove with SpinUp stuff

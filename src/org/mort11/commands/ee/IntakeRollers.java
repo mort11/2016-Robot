@@ -5,6 +5,12 @@ import org.mort11.Robot;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.subsystems.ee.Rollers;
 
+/**
+ * IntakeRollers - Spins the intake rollers at a 
+ *
+ * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ * @author Ryan Thant <ryanthant1@gmail.com>
+ */
 public class IntakeRollers extends Command {
 
     boolean in, out;

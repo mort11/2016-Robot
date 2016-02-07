@@ -3,7 +3,9 @@ package org.mort11.commands.ee;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Shoot - Shoots the boulders
+ * 
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class Shoot extends Command {
 
