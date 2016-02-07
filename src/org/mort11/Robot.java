@@ -163,6 +163,12 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        if (Robot.oi.spin.get()) {
+            OI.enabled_spin = true;
+        }
+        if (OI.enabled_spin) {
+            spinUp.start();
+        }
     }
 
     @Override
