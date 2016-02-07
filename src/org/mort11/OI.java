@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.constants.OperatorInterfaceConstants;
+import org.mort11.commands.auton.DriveStraight;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -18,7 +19,7 @@ import org.mort11.constants.OperatorInterfaceConstants;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
-    private static boolean enabled;
+    protected static boolean enabled_fullSpeed;
     private static int count = 0;
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
@@ -52,12 +53,12 @@ public class OI {
     public static double speedLimit(double speed) {
         System.out.println(Robot.oi.timer.get());
         if (Robot.oi.fullSpeed.get()) {
-            enabled = true;
+            enabled_fullSpeed = true;
             count++;
         }
-        if (enabled) {
+        if (enabled_fullSpeed) {
             Robot.oi.timer.start();
-            enabled = false;
+            enabled_fullSpeed = false;
         }
         if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 20) {
             return speed;
@@ -68,7 +69,7 @@ public class OI {
             Robot.oi.timer.reset();
             System.out.println("timer: " + Robot.oi.timer.get());
         }
-        if (!enabled) {
+        if (!enabled_fullSpeed) {
             if (speed >= .75) {
                 speed = .75;
             }
