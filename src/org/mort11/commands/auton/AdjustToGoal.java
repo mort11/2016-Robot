@@ -26,7 +26,6 @@ public class AdjustToGoal extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.adaptor.cam.setPicture();
-    	double x_pos = Robot.adaptor.cam.getX();
     	System.out.println("looping");
 		double x_val =Robot.adaptor.cam.getX();
 		if(x_val == -1){
@@ -35,12 +34,12 @@ public class AdjustToGoal extends Command {
 		}
 		System.out.println("Centering");
 		if(x_val < 135) {
-			Robot.adaptor.leftSide.set(-0.05);
-			Robot.adaptor.rightSide.set(0.05);
+			Robot.adaptor.leftSide.set(-0.15);
+			Robot.adaptor.rightSide.set(0.15);
 			System.out.println("too far right");
 		} else if(x_val > 185) {
-			Robot.adaptor.leftSide.set(0.05);
-			Robot.adaptor.rightSide.set(-0.05);
+			Robot.adaptor.leftSide.set(0.15);
+			Robot.adaptor.rightSide.set(-0.15);
 			System.out.println("too far left");
 		} else {
 			System.out.println("centered");

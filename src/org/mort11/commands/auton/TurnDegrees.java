@@ -28,7 +28,7 @@ public class TurnDegrees extends Command {
         this.desiredAngle = angle;
         requires(left);
         requires(right);
-        pd = new PIDLoop(this.desiredAngle, 0.02, 0.0001, 2); 
+        pd = new PIDLoop(this.desiredAngle, 0.02, 0.005, 2); 
     }
 
     protected void initialize() {
@@ -36,6 +36,7 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
+    	System.out.println("turning");
         if (!DTSide.getDisabled()){ // Will run when the Drivetrain is not disabled
             //currentAngle = DTSide.getAngle(); //gets current angle of robot
             currentAngle = DTSide.getYaw(); //might work better than getAngle(), must test
