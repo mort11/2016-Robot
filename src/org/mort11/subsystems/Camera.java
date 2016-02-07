@@ -68,7 +68,7 @@ public class Camera extends Subsystem {
 		
 		largest_particle = 0;
 		largest_size = 0;
-		Location_X = 0;
+		Location_X = -1;
 		if (num_particles > 0) {
 			for (int k = 0; k < num_particles; k++) {
 
@@ -119,4 +119,6 @@ public class Camera extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     }
+    
+    
 }

@@ -50,7 +50,7 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return DTSide.getYaw() > desiredAngle * 0.9;
         //return this.inThresh();
     }
 

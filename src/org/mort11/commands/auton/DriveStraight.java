@@ -21,12 +21,15 @@ public class DriveStraight extends Command {
     private PIDLoop pd_left,pd_right;
     private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDTEncoder();
     private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDTEncoder();
-
+    double currentDistanceLeft,currentDistanceRight;
+    double distance; 
+    
     public DriveStraight(double distance) {
         requires(left);
         requires(right);
         pd_left = new PIDLoop(distance, .01, 0); // Placeholder values, must test
         pd_right = new PIDLoop(distance, .01, 0); // Placeholder values, must test
+        this.distance = distance;
     }
 
     protected void initialize() {
@@ -38,8 +41,8 @@ public class DriveStraight extends Command {
 
     protected void execute() {
         if (!DTSide.getDisabled()){ // // Will run when the Drivetrain is not disabled
-            double currentDistanceLeft = leftDTEncoder.getDistance();
-            double currentDistanceRight = rightDTEncoder.getDistance();
+            currentDistanceLeft = leftDTEncoder.getDistance();
+            currentDistanceRight = rightDTEncoder.getDistance();
             System.out.println("left: " + currentDistanceLeft);
             System.out.println("Right " + currentDistanceRight);
             double speedLeft = pd_left.getOutput(currentDistanceLeft);
@@ -66,7 +69,8 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return currentDistanceLeft > distance * 0.8 
+        		&& currentDistanceLeft > distance * 0.8;
     }
 
     protected void end() {
