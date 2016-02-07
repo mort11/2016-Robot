@@ -13,8 +13,8 @@ public class LowBarAuton extends CommandGroup {
     public  LowBarAuton() {
      	System.out.println("starting low bar auton");
     	addSequential(new DriveStraight(96));
-    	addSequential(new TurnDegrees(90));
-    	addSequential(new AdjustToGoal());
+    	//addSequential(new TurnDegrees(false,90));
+    	//addSequential(new AdjustToGoal());
     	
     }
 }
