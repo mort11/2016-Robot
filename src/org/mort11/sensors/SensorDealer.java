@@ -17,7 +17,7 @@ public class SensorDealer {
     private Encoder leftDriveTrain;
     private Encoder rightDriveTrain;
     private Encoder arm;
-    private Encoder roller;
+    private Encoder shooter;
     private AnalogPotentiometer armPot;
     private DigitalInput armLimitSwitch;
 
@@ -25,7 +25,7 @@ public class SensorDealer {
         leftDriveTrain = new Encoder(SensorConstants.DT_ENCODER_LEFT_A, SensorConstants.DT_ENCODER_LEFT_B, false, CounterBase.EncodingType.k4X);
         rightDriveTrain = new Encoder(SensorConstants.DT_ENCODER_RIGHT_A, SensorConstants.DT_ENCODER_RIGHT_B, false, CounterBase.EncodingType.k4X);
         arm = new Encoder(SensorConstants.ARM_ENCODER_A, SensorConstants.ARM_ENCODER_B, false, CounterBase.EncodingType.k4X);
-        roller = new Encoder(SensorConstants.ROLLER_ENCODER_A, SensorConstants.ROLLER_ENCODER_B, false, CounterBase.EncodingType.k4X);
+        shooter = new Encoder(SensorConstants.ROLLER_ENCODER_A, SensorConstants.ROLLER_ENCODER_B, false, CounterBase.EncodingType.k4X);
         armPot = new AnalogPotentiometer(SensorConstants.ARM_POT);
         armLimitSwitch = new DigitalInput(SensorConstants.ARM_LIM_SWITCH_PORT);
     }
@@ -49,8 +49,8 @@ public class SensorDealer {
         return arm;
     }
 
-    public Encoder getRollerEncoder() {
-        return roller;
+    public Encoder getShooterEncoder() {
+        return shooter;
     }
 
     public AnalogPotentiometer getArmPot() {

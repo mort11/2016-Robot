@@ -4,7 +4,10 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
+<<<<<<< HEAD
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.util.Logger;
 import org.mort11.subsystems.ee.ShootingMechanism;
@@ -30,6 +33,11 @@ import org.mort11.subsystems.ee.Rollers;
 import java.sql.Timestamp;
 import java.util.Date;
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
+=======
+import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.ee.SpinUp;
+import org.mort11.commands.auton.WaitTime;
+>>>>>>> 71aec0c941fc3f0a86872790a1014caf2b6d8718
 
 /**
  * Robot - Main Robot class
@@ -45,6 +53,7 @@ import java.util.Date;
  * @author Carl Hausman <carl@hausman.org>
  */
 public class Robot extends IterativeRobot {
+<<<<<<< HEAD
     public static OI OI;
     public static DT dt;
     public static ShootingMechanism intakeArm;
@@ -65,13 +74,18 @@ public class Robot extends IterativeRobot {
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
     public static HardwareAdaptor adaptor;
 
+=======
+>>>>>>> 71aec0c941fc3f0a86872790a1014caf2b6d8718
     public static OI oi;
-    Command DriveStraight;
-    Command DispCurrent;
+    public static HardwareAdaptor adaptor = new HardwareAdaptor();
+    Command spinUp;
     Command driveArc;
-    Date date;
+    Command autonomousCommand;
+    SendableChooser autonomousChooser;
 
+    @Override
     public void robotInit() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         //piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
@@ -83,9 +97,11 @@ public class Robot extends IterativeRobot {
 =======
         adaptor = HardwareAdaptor.getInstance();
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
+=======
+>>>>>>> 71aec0c941fc3f0a86872790a1014caf2b6d8718
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
-        date = new Date();
 
+<<<<<<< HEAD
         Logger.init("/home/lvuser/test_" + new Timestamp(date.getTime()));
 <<<<<<< HEAD
 =======
@@ -105,45 +121,56 @@ public class Robot extends IterativeRobot {
 >>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
 =======
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
+=======
+>>>>>>> 71aec0c941fc3f0a86872790a1014caf2b6d8718
         oi = new OI();
-        dt = new DT();
-        intakeArm = new ShootingMechanism();
-        ShootMech = new ShootingMechanism();
-        intakeRollers = new ShootingMechanism();
-        motorToAngle = new ShootingMechanism();
-        piston = new Pneumatics(RobotMap.PNE_ENG1, RobotMap.PNE_ENG2);
-        DrivePIDCommand = new DrivePID(120); 
+        spinUp= new SpinUp(20,false);
+        
+        // Have operator choose autonomous mode
+//        autonomousChooser = new SendableChooser();
+//        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
+//        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
+//        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
+//        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 
+    @Override
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
     }
 
     public void autonomousInit() {
         System.out.println("auton initting");
-        driveArc.start();
+        spinUp.start();
     }
 
+    @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
+    @Override
     public void teleopInit() {
-        if (DriveStraight != null) {
-            DriveStraight.cancel();
-            DispCurrent.cancel();
-        }
+        if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
+    @Override
     public void disabledInit() {
 
+        // None
     }
 
+    @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-
     }
 
+    @Override
+    public void testInit() {
+        System.out.println("Starting test mode...");
+    }
+
+    @Override
     public void testPeriodic() {
         LiveWindow.run();
     }

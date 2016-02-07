@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
 =======
@@ -16,6 +17,8 @@ import org.mort11.util.TeleopConstants;
 import org.mort11.subsystems.dt.DT;
  		
 >>>>>>> ff2541f2f511a88973d3aad641851c8cd4226270
+=======
+>>>>>>> 71aec0c941fc3f0a86872790a1014caf2b6d8718
 import org.mort11.constants.OperatorInterfaceConstants;
 
 /**
@@ -29,14 +32,15 @@ import org.mort11.constants.OperatorInterfaceConstants;
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
-public class OI{
+public class OI {
     private static boolean enabled;
     private static int count = 0;
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
     public Joystick right = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
     public Button piston = new JoystickButton(ee, OperatorInterfaceConstants.PISTON_BUTTON);
-
+    public Button spin = new JoystickButton(ee, OperatorInterfaceConstants.SPIN_UP_BUTTON);
+    
     public Button intakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.OUTTAKE_BUTTON);
 
@@ -45,8 +49,8 @@ public class OI{
 
     public OI() {
         timer = new Timer();
-	}
- 	
+    }
+
 
     public static double threshold(double input) {
 <<<<<<< HEAD
@@ -77,7 +81,13 @@ public class OI{
         return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
 
-    public static double setSpeed(double speed) {
+    /**
+     * Limits top speed of robot to avoid brownouts
+     *
+     * @param speed Current speed received from Joystick or other control module
+     * @return Speed limited value
+     */
+    public static double speedLimit(double speed) {
         System.out.println(Robot.oi.timer.get());
         if (Robot.oi.fullSpeed.get()) {
             enabled = true;
@@ -108,11 +118,11 @@ public class OI{
     }
 
     public double getLeftJoy() {
-        return setSpeed(-left.getY());
+        return speedLimit(-left.getY());
     }
 
     public double getRightJoy() {
-        return setSpeed(right.getY());
+        return speedLimit(right.getY());
     }
 }
 

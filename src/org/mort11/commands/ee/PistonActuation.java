@@ -3,6 +3,7 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.Pneumatics;
 
 /**
  * PistonActuation - Actuates a piston
@@ -14,9 +15,10 @@ import org.mort11.Robot;
 public class PistonActuation extends Command {
 
     boolean isPressed;
+    private Pneumatics piston = Robot.adaptor.piston;
 
     public PistonActuation() {
-        requires(Robot.piston);
+        requires(piston);
         setInterruptible(true);
     }
 
@@ -27,11 +29,9 @@ public class PistonActuation extends Command {
         System.out.println("Execute");
         if (Robot.oi.piston.get()) {
             System.out.println("piston is pressed");
-            Robot.piston.setSolenoid(true);
+            piston.setSolenoid(true);
         } else {
-//        	Robot.piston.setSolenoid(true);
-//        	Timer.delay(1);
-            Robot.piston.setSolenoid(false);
+            piston.setSolenoid(false);
         }
     }
 
