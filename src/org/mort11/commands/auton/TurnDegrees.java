@@ -21,12 +21,14 @@ public class TurnDegrees extends Command {
     private double speed;
     private double desiredAngle; //angle that the robot will turn by
     private double currentAngle; //current orientation of robot
+    private boolean isReverse; //allows the robot to turn counterclockwise if set to true
 
-    public TurnDegrees(double angle) { //takes desired angle for turning (hopefully between -180 and 180)
+    public TurnDegrees(boolean isReverse, double angle) { //takes desired angle for turning, must be positive, and boolean for turn direction
+        this.isReverse = isReverse;
         this.desiredAngle = angle;
         requires(left);
         requires(right);
-        pd = new PIDLoop(this.desiredAngle, 0.02, 0.0001, 2); //placeholder values, must test
+        pd = new PIDLoop(this.desiredAngle, 0.02, 0.0001, 2); 
     }
 
     protected void initialize() {
@@ -42,8 +44,13 @@ public class TurnDegrees extends Command {
             System.out.println("speed" + speed);
             SmartDashboard.putNumber("Current Angle", currentAngle);
             SmartDashboard.putNumber("Speed", speed);
-            left.set(speed); //sets speed
-            right.set(-speed); //sets negative speed so robot can turn
+            if (!isReverse) { //clockwise turning
+                left.set(speed); //sets speed
+                right.set(-speed); //sets negative speed so robot can turn
+            } else { //counterclockwise turning
+                left.set(-speed); //sets negative speed so robot can turn
+                right.set(speed); //sets speed
+            }
         } else {
             end();
         }
