@@ -10,7 +10,6 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.TurnDegrees;
 import org.mort11.commands.auton.WaitTime;
-import org.mort11.commands.auton.DriveStraighter;
 import org.mort11.util.Logger;
 
 /**
