@@ -28,14 +28,14 @@ public class LowBarAuton extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new DriveStraight(96));
-    	addSequential(new TurnDegrees(90));
+    	addSequential(new TurnDegrees(false, 90));
     	Robot.adaptor.cam.setPicture();
     	while(true) {
     		System.out.println("Centering");
     		if(Robot.adaptor.cam.getX() < 135) {
-    			addSequential(new TurnDegrees(-5));
+    			addSequential(new TurnDegrees(true, 5));
     		} else if(Robot.adaptor.cam.getX() > 185) {
-    			addSequential(new TurnDegrees(5));
+    			addSequential(new TurnDegrees(false, 5));
     		} else {
     			break;
     		}
