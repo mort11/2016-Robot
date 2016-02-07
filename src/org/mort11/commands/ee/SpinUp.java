@@ -12,11 +12,11 @@ import org.mort11.util.PIDLoop;
  *
  */
 public class SpinUp extends Command {
-    private DTSide left = Robot.adaptor.leftSide;
+    private DTSide left = Robot.adaptor.leftSide; //replace/remove with SpinUp stuff
 	private Shooter armMotor;
     private PIDLoop pd_arm;
     private boolean PID;
-    private Encoder shooter = SensorDealer.getInstance().getLeftDTEncoder();//SensorDealer.getInstance().getShooterEncoder();
+    private Encoder shooter = SensorDealer.getInstance().getLeftDTEncoder();//SensorDealer.getInstance().getShooterEncoder(); replace with SpinUp encoder
     private double speed_ghetto = 0;
     private double velocity;
     
@@ -28,17 +28,17 @@ public class SpinUp extends Command {
 
     }
     protected void initialize() {
-    	
+        DTSide.resetEncoders(); // replace with SpinUo encoder 
     }
 
     protected void execute() {
-    	if(PID) {
+    	if(PID) { //uses pid loop to SpinUp
 	    	 double currentVelocity = shooter.getRate();
 	    	 System.out.println("speed: " + currentVelocity);
 	         double speed = pd_arm.getP(currentVelocity);
 	         left.set(speed);
 	         SmartDashboard.putNumber("Velocity", currentVelocity);
-    	} else {
+    	} else { // ghetto way of spinning up
 	    	 double currentVelocity = shooter.getRate();
     			if (currentVelocity < velocity) {
 		    		speed_ghetto += .03;
