@@ -24,7 +24,8 @@ public class OI {
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
     public Joystick right = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
     public Button piston = new JoystickButton(ee, OperatorInterfaceConstants.PISTON_BUTTON);
-
+    public Button spin = new JoystickButton(ee, OperatorInterfaceConstants.SPIN_UP_BUTTON);
+    
     public Button intakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.OUTTAKE_BUTTON);
 

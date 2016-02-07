@@ -3,8 +3,10 @@ package org.mort11.commands.ee;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.buttons.Button;
 import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
+import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.Shooter;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
@@ -17,6 +19,7 @@ import org.mort11.util.PIDLoop;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class SpinUp extends Command {
+    private Shooter spinUp = Robot.adaptor.shooter;
     private DTSide left = Robot.adaptor.leftSide; //replace/remove with SpinUp stuff
 	private Shooter armMotor;
     private PIDLoop pd_arm;
@@ -37,14 +40,15 @@ public class SpinUp extends Command {
     }
 
     protected void execute() {
+    	
     	if(PID) { //uses pid loop to SpinUp
-	    	 double currentVelocity = shooter.getRate();
+	    	 double currentVelocity = spinUp.getRate();
 	    	 System.out.println("speed: " + currentVelocity);
 	         double speed = pd_arm.getP(currentVelocity);
 	         left.set(speed);
 	         SmartDashboard.putNumber("Velocity", currentVelocity);
     	} else { // ghetto way of spinning up
-	    	 double currentVelocity = shooter.getRate();
+	    	 double currentVelocity = spinUp.getRate();
     			if (currentVelocity < velocity) {
 		    		speed_ghetto += .03;
 		    		System.out.println("speed if: " + speed_ghetto);

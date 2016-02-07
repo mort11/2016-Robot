@@ -31,8 +31,6 @@ public class PistonActuation extends Command {
             System.out.println("piston is pressed");
             piston.setSolenoid(true);
         } else {
-//        	Robot.piston.setSolenoid(true);
-//        	Timer.delay(1);
             piston.setSolenoid(false);
         }
     }

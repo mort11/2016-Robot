@@ -16,4 +16,5 @@ public class OperatorInterfaceConstants {
     public static final int INTAKE_BUTTON = 4;
     public static final int OUTTAKE_BUTTON = 5;
     public static final int FULL_SPEED_BUTTON = 11;
+    public static final int SPIN_UP_BUTTON = 3;
 }
