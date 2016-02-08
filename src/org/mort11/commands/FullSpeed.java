@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * FullSpeed - Allows the robot to drive at fullSpeed for a specified amount of time in teleop
  *
+ * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class FullSpeed extends Command {
 

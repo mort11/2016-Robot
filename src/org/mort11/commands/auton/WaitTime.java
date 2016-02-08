@@ -3,6 +3,11 @@ package org.mort11.commands.auton;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * WaitTime - Waits for a specified amount of time
+ *
+ * @author Matt Turi <mturi@mort11.org>
+ */
 public class WaitTime extends Command {
     Timer timer;
     double timeToWait;
