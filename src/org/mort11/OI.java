@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.constants.OperatorInterfaceConstants;
+import org.mort11.commands.ee.SpinUp;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -20,20 +21,22 @@ import org.mort11.constants.OperatorInterfaceConstants;
 public class OI {
     protected static boolean enabled_fullSpeed, enabled_spin, enabled_intake;
     private static int count = 0;
+    
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
     public Joystick right = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
-    public Button piston = new JoystickButton(ee, OperatorInterfaceConstants.PISTON_BUTTON);
-    public Button spin = new JoystickButton(ee, OperatorInterfaceConstants.SPIN_UP_BUTTON);
     
+    public Button piston = new JoystickButton(ee, OperatorInterfaceConstants.PISTON_BUTTON);
+    public Button spinUp = new JoystickButton(ee, OperatorInterfaceConstants.SPIN_UP_BUTTON);
     public Button intakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.OUTTAKE_BUTTON);
-
     public Button fullSpeed = new JoystickButton(right, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
+    
     private Timer timer;
 
     public OI() {
         timer = new Timer();
+        spinUp.toggleWhenPressed(new SpinUp(20, false));
     }
 
     public static double threshold(double input) {
