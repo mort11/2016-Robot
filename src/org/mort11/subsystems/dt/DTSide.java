@@ -28,7 +28,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private Solenoid lowShifter;
     private Solenoid highShifter;
     private Encoder encoder;
-    private static AHRS navx = new AHRS(SerialPort.Port.kMXP);
 
     public DTSide(int motorPort, int lowShifterPort, int highSifterPort, boolean motorReverse, Encoder encoder) {
         motor = new CANTalon(motorPort);

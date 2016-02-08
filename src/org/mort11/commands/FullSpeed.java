@@ -11,11 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FullSpeed extends Command {
 
     Timer timer;
+    private double waitTime; // fullSpeed duration 
     public static boolean isEnabled_fullSpeed = false;
     
-    public FullSpeed() {
+    public FullSpeed(double time) {
+        this.waitTime = time;
         timer = new Timer();
-        OI.count_fullSpeed++;
+        OI.count_fullSpeed++; // makes sure fullSpeed can only be used once per match
     }
 
     protected void initialize() {
@@ -23,7 +25,7 @@ public class FullSpeed extends Command {
     }
 
     protected void execute() {
-        if (OI.count_fullSpeed > 1) {
+        if (OI.count_fullSpeed > 1) { // makes sure fullSpeed can only be used once per match
             end();
         } else {
             FullSpeed.isEnabled_fullSpeed = true;
@@ -32,7 +34,8 @@ public class FullSpeed extends Command {
     }
 
     protected boolean isFinished() {
-        return timer.get() < 10 && timer.get() > 0;
+        return (timer.get() > waitTime); 
+        //return timer.get() < 10 && timer.get() > 0;
     }
 
     protected void end() {

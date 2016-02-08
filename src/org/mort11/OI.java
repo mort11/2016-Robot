@@ -34,7 +34,7 @@ public class OI {
 
     public OI() {
         timer = new Timer();
-        fullSpeed.whenPressed(new FullSpeed());
+        fullSpeed.whenPressed(new FullSpeed(10)); // allows robot to drive at fullSpeed for a specified amount of time
     }
 
 
