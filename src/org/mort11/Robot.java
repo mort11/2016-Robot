@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
 
         oi = new OI();
-        spinUp= new SpinUp(20,false);
+        spinUp= new SpinUp(20, false);
         
         // Have operator choose autonomous mode
 //        autonomousChooser = new SendableChooser();
@@ -76,12 +76,12 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        if (Robot.oi.spin.get()) {
-            OI.enabled_spin = true;
-        }
-        if (OI.enabled_spin) {
-            spinUp.start();
-        }
+//        if (Robot.oi.spin.get()) {
+//            OI.enabled_spin = true;
+//        }
+//        if (OI.enabled_spin) {
+//            spinUp.start();
+//        }
     }
 
     @Override
