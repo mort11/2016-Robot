@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.constants.OperatorInterfaceConstants;
+import org.mort11.commands.FullSpeed;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -18,8 +19,8 @@ import org.mort11.constants.OperatorInterfaceConstants;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
-    protected static boolean enabled_fullSpeed;
-    private static int count = 0;
+//    protected static boolean enabled_fullSpeed;
+    public static int count_fullSpeed = 0;
     
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
@@ -33,6 +34,7 @@ public class OI {
 
     public OI() {
         timer = new Timer();
+        fullSpeed.whenPressed(new FullSpeed());
     }
 
 
@@ -50,41 +52,56 @@ public class OI {
      * @return Speed limited value
      */
     public static double speedLimit(double speed) {
-        System.out.println(Robot.oi.timer.get());
-        if (Robot.oi.fullSpeed.get()) {
-            enabled_fullSpeed = true;
-            count++;
-        }
-        if (enabled_fullSpeed) {
-            Robot.oi.timer.start();
-            enabled_fullSpeed = false;
-        }
-        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 20) {
-            return speed;
-        }
-        if (Robot.oi.timer.get() >= 10) {
-            //count = 2;
-            Robot.oi.timer.stop();
-            Robot.oi.timer.reset();
-            System.out.println("timer: " + Robot.oi.timer.get());
-        }
-        if (!enabled_fullSpeed) {
-            if (speed >= .75) {
-                speed = .75;
-            }
-            if (speed <= -.75) {
-                speed = -.75;
-            }
-        }
-        return speed;
+//        System.out.println(Robot.oi.timer.get());
+//        if (Robot.oi.fullSpeed.get()) {
+//            enabled_fullSpeed = true;
+//            count_fullSpeed++;
+//        }
+//        if (enabled_fullSpeed) {
+//            Robot.oi.timer.start();
+//            enabled_fullSpeed = false;
+//        }
+//        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count_fullSpeed <= 20) {
+//            return speed;
+//        }
+//        if (Robot.oi.timer.get() >= 10) {
+//            //count = 2;
+//            Robot.oi.timer.stop();
+//            Robot.oi.timer.reset();
+//            System.out.println("timer: " + Robot.oi.timer.get());
+//        }
+//        if (!enabled_fullSpeed) {
+//            if (speed >= .75) {
+//                speed = .75;
+//            }
+//            if (speed <= -.75) {
+//                speed = -.75;
+//            }
+//        }
+//        return speed;
+          if (speed >= .75) {
+              speed = 0.75;
+          }
+          if (speed <= -.75) {
+              speed = -0.75;
+          }
+          return speed;
     }
 
-    public double getLeftJoy() {
+    public double getLeftJoy_limit() {
         return speedLimit(-left.getY());
     }
 
-    public double getRightJoy() {
+    public double getRightJoy_limit() {
         return speedLimit(right.getY());
+    }
+    
+    public double getLeftJoy_full() {
+        return threshold(-left.getY());
+    }
+
+    public double getRightJoy_full() {
+        return threshold(right.getY());
     }
 }
 

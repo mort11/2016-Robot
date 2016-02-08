@@ -1,6 +1,7 @@
 package org.mort11.commands.dt;
 
 import org.mort11.Robot;
+import org.mort11.commands.FullSpeed;
 
 import static org.mort11.Robot.oi;
 
@@ -17,6 +18,10 @@ public class DriveLinearRight extends DriveLinear {
     }
 
     protected double getSpeed() {
-        return oi.getRightJoy();
+        if (!FullSpeed.isEnabled_fullSpeed) {
+            return oi.getRightJoy_limit();
+        } else {
+            return oi.getRightJoy_full();
+        }
     }
 }
