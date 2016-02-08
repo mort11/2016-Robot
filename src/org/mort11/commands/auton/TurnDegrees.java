@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.mort11.Robot;
+import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
@@ -32,14 +33,14 @@ public class TurnDegrees extends Command {
     }
 
     protected void initialize() {
-        DTSide.resetYaw(); //resets the yaw so current angle is accurate
+        SensorDealer.getInstance().getAHRS().reset(); //resets the yaw so current angle is accurate
     }
 
     protected void execute() {
     	System.out.println("turning");
         if (!DTSide.getDisabled()){ // Will run when the Drivetrain is not disabled
             //currentAngle = DTSide.getAngle(); //gets current angle of robot
-            currentAngle = Math.abs(DTSide.getYaw()); //might work better than getAngle(), must test
+            currentAngle = Math.abs(SensorDealer.getInstance().getAHRS().getYaw()); //might work better than getAngle(), must test
             System.out.println("current angle" + currentAngle);
             speed = pd.getOutput(currentAngle); //passes current angle through pid loop
             System.out.println("speed" + speed);
@@ -58,8 +59,9 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return DTSide.getYaw() > desiredAngle * 0.9;
+        return SensorDealer.getInstance().getAHRS().getYaw() > desiredAngle * 0.9;
         //return this.inThresh();
+        //return (currentAngle > (desiredAngle - 1) && currentAngle < (desiredAngle + 1));
     }
 
     protected void end() {
@@ -67,7 +69,7 @@ public class TurnDegrees extends Command {
         right.set(0);
         left.resetEncoder();
         right.resetEncoder();
-        DTSide.resetYaw();
+        SensorDealer.getInstance().getAHRS().reset();
     }
 
     protected void interrupted() {

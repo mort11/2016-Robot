@@ -38,21 +38,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         this.encoder = encoder;
     }
     
-    //gets angle of robot, might work, must test
-    public static double getAngle() {
-        return navx.getAngle();
-    }
-    
-    //returns yaw in degrees (between -180 and 180), might work better than getAngle(), must test
-    public static float getYaw() {
-        return navx.getYaw();
-    }
-    
-    //resets the Yaw gyro of the navx
-    public static void resetYaw() {
-        navx.reset();
-    }
-
     public void resetEncoder() {
         this.encoder.reset();
     }
