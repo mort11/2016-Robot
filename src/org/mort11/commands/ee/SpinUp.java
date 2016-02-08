@@ -36,7 +36,7 @@ public class SpinUp extends Command {
 
     }
     protected void initialize() {
-        DTSide.resetEncoders(); // replace with SpinUo encoder 
+        DTSide.resetEncoders(); // replace with SpinUp encoder 
     }
 
     protected void execute() {

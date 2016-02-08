@@ -18,7 +18,7 @@ import org.mort11.constants.OperatorInterfaceConstants;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
-    protected static boolean enabled_fullSpeed, enabled_spin;
+    protected static boolean enabled_fullSpeed, enabled_spin, enabled_intake;
     private static int count = 0;
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);

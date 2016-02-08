@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.SpinUp;
+import org.mort11.subsystems.ee.Rollers;
 import org.mort11.commands.auton.WaitTime;
 
 /**
@@ -27,6 +29,7 @@ import org.mort11.commands.auton.WaitTime;
 public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
+    Command intakeRoller;
     Command spinUp;
     Command driveArc;
     Command autonomousCommand;
@@ -38,6 +41,7 @@ public class Robot extends IterativeRobot {
 
         oi = new OI();
         spinUp= new SpinUp(20,false);
+        intakeRoller = new IntakeRollers(false,true); 
         
         // Have operator choose autonomous mode
 //        autonomousChooser = new SendableChooser();
@@ -81,6 +85,12 @@ public class Robot extends IterativeRobot {
         }
         if (OI.enabled_spin) {
             spinUp.start();
+        }
+        if (Robot.oi.intakeRoller.get()){
+        	OI.enabled_intake = true;
+        }
+        if (OI.enabled_intake) {
+        	intakeRoller.start();
         }
     }
 
