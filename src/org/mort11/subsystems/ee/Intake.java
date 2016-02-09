@@ -26,7 +26,7 @@ public class Intake extends Subsystem implements MORTSubsystem {
 
     }
 
-    public double getDistance() {
+    public static double getDistance() {
         System.out.println(SensorDealer.getInstance().getArmEncoder().get());
         return SensorDealer.getInstance().getArmEncoder().get();
     }
@@ -37,7 +37,7 @@ public class Intake extends Subsystem implements MORTSubsystem {
         }
     }
     
-    public double getAngle() {
+    public static double getAngle() {
         return getDistance() * EndEffectorConstants.ROLLER_DEGREE_PER_TICK; 
     }
     public void disable() {

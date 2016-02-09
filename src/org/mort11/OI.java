@@ -8,6 +8,7 @@ import org.mort11.constants.OperatorInterfaceConstants;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.PistonActuation;
+import org.mort11.commands.ee.RollerUp;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -33,6 +34,7 @@ public class OI {
     public Button intakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.OUTTAKE_BUTTON);
     public Button fullSpeed = new JoystickButton(right, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
+    public Button rollerUp = new JoystickButton(ee, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
     
     private Timer timer;
 
@@ -41,6 +43,7 @@ public class OI {
         spinUp.toggleWhenPressed(new SpinUp(20, false));
         intakeRoller.toggleWhenPressed(new IntakeRollers(true, false));
         outtakeRoller.toggleWhenPressed(new IntakeRollers(false, true));
+        rollerUp.toggleWhenPressed(new RollerUp(182)); // will keep roller up at 182 degrees when toggled 
         //piston.toggleWhenPressed(new PistonActuation());
     }
 
