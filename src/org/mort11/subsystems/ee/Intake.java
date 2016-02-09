@@ -36,7 +36,10 @@ public class Intake extends Subsystem implements MORTSubsystem {
             intakeArm.set(speed);
         }
     }
-
+    
+    public double getAngle() {
+        return getDistance() * EndEffectorConstants.ROLLER_DEGREE_PER_TICK; 
+    }
     public void disable() {
         isDisabled = true;
     }
