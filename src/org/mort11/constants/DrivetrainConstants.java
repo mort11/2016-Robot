@@ -7,8 +7,12 @@ package org.mort11.constants;
  */
 public class DrivetrainConstants {
     // CAN IDs
-    public static final int DT_LEFT_TALON_ID = 1;
-    public static final int DT_RIGHT_TALON_ID = 2;
+    public static final int DT_LEFT_TALON_ID_1 = 10;
+    public static final int DT_LEFT_TALON_ID_2 = 9;
+    public static final int DT_LEFT_TALON_ID_3 = 8;
+    public static final int DT_RIGHT_TALON_ID_1 = 5;
+    public static final int DT_RIGHT_TALON_ID_2 = 4;
+    public static final int DT_RIGHT_TALON_ID_3 = 3;
 
     // Solenoid ports
     public static final int DT_LEFT_LOW_SHIFTER_PORT = 4;

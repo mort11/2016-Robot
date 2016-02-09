@@ -23,17 +23,22 @@ import com.kauailabs.navx.frc.AHRS;
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private static boolean disabled = false;
     private Gear currentGear = Gear.LOW_GEAR;
-    private CANTalon motor;
-    private boolean motorReverse;
+    private CANTalon motor1, motor2, motor3;
+    private boolean motor1Reverse, motor2Reverse, motor3Reverse;
     private Solenoid lowShifter;
     private Solenoid highShifter;
     private Encoder encoder;
 
-    public DTSide(int motorPort, int lowShifterPort, int highSifterPort, boolean motorReverse, Encoder encoder) {
-        motor = new CANTalon(motorPort);
+    public DTSide(int motorPort1, int motorPort2, int motorPort3, int lowShifterPort, int highSifterPort, boolean motor1Reverse, 
+            boolean motor2Reverse, boolean motor3Reverse, Encoder encoder) {
+        motor1 = new CANTalon(motorPort1);
+        motor2 = new CANTalon(motorPort2);
+        motor3 = new CANTalon(motorPort3);
         lowShifter = new Solenoid(lowShifterPort);
         highShifter = new Solenoid(highSifterPort);
-        this.motorReverse = motorReverse;
+        this.motor1Reverse = motor1Reverse;
+        this.motor2Reverse = motor2Reverse;
+        this.motor3Reverse = motor3Reverse;
         this.encoder = encoder;
     }
     
@@ -42,15 +47,19 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     }
 
     public double getSpeed() {
-        return motor.get();
+        return motor1.get();
     }
 
     public void set(double speed) {
-        motor.set(speed * (motorReverse ? -1 : 1));
+        motor1.set(speed * (motor1Reverse ? -1 : 1)); //left:  right:
+        //motor2.set(speed * (motor2Reverse ? -1 : 1)); //left:  right:
+        //motor3.set(speed * (motor3Reverse ? -1 : 1)); //left:  right:
     }
 
     public void stop() {
-        motor.set(0);
+        motor1.set(0);
+        motor2.set(0);
+        motor3.set(0);
     }
 
     /**
@@ -73,14 +82,14 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      * @return Current of talon in Amps
      */
     public double getTalonCurrent() {
-        return motor.getOutputCurrent();
+        return motor1.getOutputCurrent();
     }
 
     /**
      * @return Voltage of talon in Volts
      */
     public double getTalonVoltage() {
-        return motor.getOutputVoltage();
+        return motor1.getOutputVoltage();
     }
 
     @Override
