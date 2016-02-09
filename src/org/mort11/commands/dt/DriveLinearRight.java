@@ -18,7 +18,7 @@ public class DriveLinearRight extends DriveLinear {
     }
 
     protected double getSpeed() {
-        if (!FullSpeed.isEnabled_fullSpeed) {
+        if (!FullSpeed.fullSpeedEnabled) {
             return oi.getRightJoy_limit();
         } else {
             return oi.getRightJoy_full();

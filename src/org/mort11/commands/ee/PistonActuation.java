@@ -13,7 +13,6 @@ import org.mort11.subsystems.ee.Pneumatics;
  * @author Michael Kozak <michael.kozak@motsd.org>
  */
 public class PistonActuation extends Command {
-
     boolean isPressed;
     private Pneumatics piston = Robot.adaptor.piston;
 
@@ -25,20 +24,20 @@ public class PistonActuation extends Command {
     protected void initialize() {
     }
 
+    /**
+     * Toggle the piston based on joystick button status
+     */
     protected void execute() {
-        System.out.println("Execute");
         if (Robot.oi.piston.get()) {
-            System.out.println("piston is pressed");
+            this.isPressed = true;
             piston.setSolenoid(true);
         } else {
-//        	Robot.piston.setSolenoid(true);
-//        	Timer.delay(1);
+            this.isPressed = false;
             piston.setSolenoid(false);
         }
     }
 
     protected boolean isFinished() {
-        System.out.println("isfinished");
         return true;
     }
 

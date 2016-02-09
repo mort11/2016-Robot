@@ -13,7 +13,7 @@ import org.mort11.subsystems.ee.Shooter;
  */
 public class MotorToAngle extends Command {
 
-    double speed = .5;
+    double speed = 0.5;
     private Shooter shooter = Robot.adaptor.shooter;
 
     public MotorToAngle() {

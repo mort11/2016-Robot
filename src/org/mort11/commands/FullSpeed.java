@@ -1,9 +1,8 @@
 package org.mort11.commands;
 
-import org.mort11.OI;
-import org.mort11.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.OI;
 
 /**
  * FullSpeed - Allows the robot to drive at fullSpeed for a specified amount of time in teleop
@@ -11,41 +10,51 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class FullSpeed extends Command {
+    public static boolean fullSpeedEnabled = false;
+    private Timer timer;
+    private double duration;
 
-    Timer timer;
-    private double waitTime; // fullSpeed duration 
-    public static boolean isEnabled_fullSpeed = false;
-    
+    /**
+     * Ensure that full speed (robot at max power) is only used once per match
+     *
+     * @param time Length of time full speed will run for
+     */
     public FullSpeed(double time) {
-        this.waitTime = time;
-        timer = new Timer();
-        OI.count_fullSpeed++; // makes sure fullSpeed can only be used once per match
+        this.duration = time;
+        this.timer = new Timer();
+        OI.count_fullSpeed++;
     }
 
+    /**
+     * Start timer
+     */
     protected void initialize() {
-        timer.start();
+        this.timer.start();
     }
 
+    /**
+     * Keep full speed enabled while fullSpeedCounter is less than 1
+     */
     protected void execute() {
-        if (OI.count_fullSpeed > 1) { // makes sure fullSpeed can only be used once per match
+        if (OI.count_fullSpeed > 1) {
             end();
         } else {
-            FullSpeed.isEnabled_fullSpeed = true;
+            fullSpeedEnabled = true;
         }
-       //wait
     }
 
+    /**
+     * @return Finished if time is greater than allotted duration
+     */
     protected boolean isFinished() {
-        return (timer.get() > waitTime); 
-        //return timer.get() < 10 && timer.get() > 0;
+        return (timer.get() > this.duration);
     }
 
     protected void end() {
-        FullSpeed.isEnabled_fullSpeed = false;
+        fullSpeedEnabled = false;
         timer.stop();
         timer.reset();
     }
-
 
     protected void interrupted() {
     }
