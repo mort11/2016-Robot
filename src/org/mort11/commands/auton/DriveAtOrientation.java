@@ -39,7 +39,7 @@ public class DriveAtOrientation extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()){ // // Will run when the Drivetrain is not disabled
+        if (!DTSide.getDisabled()) { // // Will run when the Drivetrain is not disabled
             //currentOrientation = navx.getAngle();
             if (isUrgent) {
                 //use high urgency pid loop

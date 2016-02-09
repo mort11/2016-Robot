@@ -24,17 +24,15 @@ public class DriveArc extends Command {
     private DTSide rightSide = Robot.adaptor.rightSide;
     private DTSide leftSide = Robot.adaptor.leftSide;
 
-    public DriveArc(double arclength, double turnRadius) {
+    public DriveArc(double arcLength, double turnRadius) {
         requires(leftSide);
         requires(rightSide);
-        this.arcLength = arclength;
+        this.arcLength = arcLength;
         this.turnRadius = turnRadius;
     }
 
     protected void initialize() {
         double[] distances = arc_calc(arcLength, turnRadius);
-        //Logger.writeString("Right target," + distances[0]);
-        //Logger.writeString("Left target," + distances[1]);
         rightTarget = distances[0];
         leftTarget = distances[1];
         pidRight = new PIDLoop(distances[0], 0.1, 0.01, distances[0] / Math.max(distances[0], distances[1]));
@@ -45,7 +43,7 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()){ // // Will run when the Drivetrain is not disabled
+        if (!DTSide.getDisabled()) { // // Will run when the Drivetrain is not disabled
             rightDist = SensorDealer.getInstance().getRightDTEncoder().getDistance();
             double rightVel = pidRight.getOutput(rightDist);
             leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
@@ -53,7 +51,7 @@ public class DriveArc extends Command {
             rightSide.set(rightVel);
             leftSide.set(leftVel);
             Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
-                    + "," + rightDist+","+pidRight.getSP() + "," + rightVel);
+                    + "," + rightDist + "," + pidRight.getSP() + "," + rightVel);
         } else {
             leftSide.stop();
             rightSide.stop();

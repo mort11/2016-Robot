@@ -16,14 +16,14 @@ import org.mort11.util.PIDLoop;
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  */
 public class DriveStraight extends Command {
+    double currentDistanceLeft, currentDistanceRight;
+    double distance;
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
-    private PIDLoop pd_left,pd_right;
+    private PIDLoop pd_left, pd_right;
     private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDTEncoder();
     private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDTEncoder();
-    double currentDistanceLeft,currentDistanceRight;
-    double distance; 
-    
+
     public DriveStraight(double distance) {
         requires(left);
         requires(right);
@@ -36,11 +36,10 @@ public class DriveStraight extends Command {
         left.resetEncoder();
         right.resetEncoder();
         SensorDealer.getInstance().getAHRS().zeroYaw();
-        
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()){ // // Will run when the Drivetrain is not disabled
+        if (!DTSide.getDisabled()) {
             currentDistanceLeft = leftDTEncoder.getDistance();
             currentDistanceRight = rightDTEncoder.getDistance();
             System.out.println("left: " + currentDistanceLeft);
@@ -48,29 +47,28 @@ public class DriveStraight extends Command {
             double speedLeft = pd_left.getOutput(currentDistanceLeft);
             double speedRight = pd_right.getOutput(currentDistanceRight);
 
-       double angleError = SensorDealer.getInstance().getAHRS().getYaw() % 360;
-       if (angleError > 180) {
-    	   angleError = Math.abs(360 - angleError);
-       }
-       System.out.println("angle error: " + angleError);
-        
-        left.set(speedLeft);
-        right.set(speedRight + 0.05 * angleError);
+            double angleError = SensorDealer.getInstance().getAHRS().getYaw() % 360;
+            if (angleError > 180) {
+                angleError = Math.abs(360 - angleError);
+            }
+            System.out.println("angle error: " + angleError);
 
-        
-        SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
-        SmartDashboard.putNumber("Right Distance", currentDistanceRight);
-        SmartDashboard.putNumber("Left Speed", speedLeft);
-        SmartDashboard.putNumber("Right Speed", speedRight);
-        SmartDashboard.putNumber("Angle Disp", angleError);
+            left.set(speedLeft);
+            right.set(speedRight + 0.05 * angleError);
+
+
+            SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
+            SmartDashboard.putNumber("Right Distance", currentDistanceRight);
+            SmartDashboard.putNumber("Left Speed", speedLeft);
+            SmartDashboard.putNumber("Right Speed", speedRight);
+            SmartDashboard.putNumber("Angle Disp", angleError);
         } else {
             end();
         }
     }
 
     protected boolean isFinished() {
-        return currentDistanceLeft > distance * 0.8 
-        		&& currentDistanceLeft > distance * 0.8;
+        return currentDistanceLeft > distance * 0.8 && currentDistanceLeft > distance * 0.8;
     }
 
     protected void end() {

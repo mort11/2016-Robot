@@ -11,7 +11,7 @@ import org.mort11.subsystems.dt.DTSide;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class AdjustToGoal extends Command {
-    boolean finished = false;
+    private boolean isFinished = false;
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
     private Camera camera = Robot.adaptor.cam;
@@ -26,42 +26,40 @@ public class AdjustToGoal extends Command {
         //SensorDealer.getInstance().getAHRS().zeroYaw();
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.adaptor.cam.setPicture();
+        camera.setPicture();
         System.out.println("looping");
-        double x_val = Robot.adaptor.cam.getX();
+        double x_val = camera.getX();
+
         if (x_val == -1) {
             System.out.println("not found");
-            finished = true;
+            this.isFinished = true;
         }
         System.out.println("Centering");
+
         if (x_val < 135) {
-            Robot.adaptor.leftSide.set(-0.15);
-            Robot.adaptor.rightSide.set(0.15);
+            left.set(-0.15);
+            right.set(0.15);
             System.out.println("too far right");
         } else if (x_val > 185) {
-            Robot.adaptor.leftSide.set(0.15);
-            Robot.adaptor.rightSide.set(-0.15);
+            left.set(0.15);
+            right.set(-0.15);
             System.out.println("too far left");
         } else {
             System.out.println("centered");
-            finished = true;
+            isFinished = true;
         }
-        Robot.adaptor.cam.setPicture();
+
+        camera.setPicture();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished;
+        return isFinished;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }
