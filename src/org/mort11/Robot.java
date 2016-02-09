@@ -5,13 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.SpinUp;
-import org.mort11.subsystems.ee.Rollers;
-import org.mort11.commands.auton.WaitTime;
 
 /**
  * Robot - Main Robot class
@@ -40,9 +36,9 @@ public class Robot extends IterativeRobot {
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
 
         oi = new OI();
-        spinUp= new SpinUp(20,false);
-        intakeRoller = new IntakeRollers(false,true); 
-        
+        spinUp = new SpinUp(20, false);
+        intakeRoller = new IntakeRollers(false, true);
+
         // Have operator choose autonomous mode
 //        autonomousChooser = new SendableChooser();
 //        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
@@ -80,7 +76,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-       
+
     }
 
     @Override

@@ -1,21 +1,22 @@
 package org.mort11.commands.ee;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.ee.Intake;
 import org.mort11.util.PIDLoop;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
+ * RollerUp - Keeps the roller up at a constant angle
+ *
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class RollerUp extends Command {
     private Intake intake = Robot.adaptor.intake;
     private Encoder intakeEncoder = SensorDealer.getInstance().getArmEncoder();
     private PIDLoop pd;
-    private double desiredAngle,currentAngle, speed;
+    private double desiredAngle, currentAngle, speed;
 
     public RollerUp(double Angle) {
         requires(intake);
@@ -25,7 +26,7 @@ public class RollerUp extends Command {
 
     protected void initialize() {
         intakeEncoder.reset();
-        
+
     }
 
     protected void execute() {
