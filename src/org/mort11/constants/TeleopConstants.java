@@ -1,4 +1,4 @@
-package org.mort11.util;
+package org.mort11.constants;
 
 public class TeleopConstants {
 	 public static final int LEFT_JOYSTICK = 1;

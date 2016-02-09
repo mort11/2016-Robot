@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.constants.OperatorInterfaceConstants;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.ee.IntakeRollers;
+import org.mort11.commands.ee.PistonActuation;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -40,6 +41,7 @@ public class OI {
         spinUp.toggleWhenPressed(new SpinUp(20, false));
         intakeRoller.toggleWhenPressed(new IntakeRollers(true, false));
         outtakeRoller.toggleWhenPressed(new IntakeRollers(false, true));
+        //piston.toggleWhenPressed(new PistonActuation());
     }
 
     public static double threshold(double input) {
