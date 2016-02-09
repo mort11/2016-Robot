@@ -6,13 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.auton.LowBarAuton;
-import org.mort11.commands.auton.TurnDegrees;
-import org.mort11.commands.auton.WaitTime;
-import org.mort11.util.Logger;
+import org.mort11.commands.auton.*;
 
 /**
  * Robot - Main Robot class
@@ -32,30 +26,24 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
 
-    //Command driveArc;
     Command autonomousCommand;
     Command turnDegrees;
     Command robotTest;
-    //SendableChooser autonomousChooser;
-    
+    SendableChooser autonomousChooser;
+
     @Override
     public void robotInit() {
-
-        //driveArc = new DriveArc(18 * Math.PI, 0.5 * Math.PI);
-        //driveArc = new DriveStraight(200);
         turnDegrees = new TurnDegrees(false, 0);
         robotTest = new LowBarAuton();
-        
-        //Logger.init("/home/lvuser/test");
 
         oi = new OI();
 
         // Have operator choose autonomous mode
-//        autonomousChooser = new SendableChooser();
-//        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
-//        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
-//        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(12 * Math.PI, 0.5 * Math.PI));
-//        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
+        autonomousChooser = new SendableChooser();
+        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
+        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
+        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(12 * Math.PI, 0.5 * Math.PI));
+        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 
     @Override
