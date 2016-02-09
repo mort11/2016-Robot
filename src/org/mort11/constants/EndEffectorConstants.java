@@ -15,6 +15,7 @@ public class EndEffectorConstants {
     public static final double EE_HEIGHT_PER_TURN = 5.0379; // inches
     public static final double INCHES_PER_PULSE = EE_HEIGHT_PER_TURN / EE_CPR;
     public static final double ROLLER_SPEED = 0.5; // Placeholder
-    public static final int ROLLER_CPR = 512;
+    
+    public static final int ROLLER_DEGREE_PER_TICK = 360/512;
     
 }
