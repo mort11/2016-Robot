@@ -2,24 +2,23 @@ package org.mort11.subsystems.dt;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
 import org.mort11.util.MORTSubsystem;
 
-import com.kauailabs.navx.frc.AHRS;
-
 /**
- * DTSide - Base class controlling drivetrain sides
+ * DTSide - Base class controlling both drivetrain sides
  *
  * @author gridbug <wmarshall@mort11.org>
  * @author Matt Turi <mturi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Abi Koutha <akoutha7@gmail.com>
+ * @author Jakob Shortell <jshortell@mort11.org>
  */
+
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private static boolean disabled = false;
     private Gear currentGear = Gear.LOW_GEAR;
@@ -37,18 +36,30 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         this.encoder = encoder;
     }
     
+    /**
+     * Sets the encoder value back to 0
+     */
     public void resetEncoder() {
         this.encoder.reset();
     }
 
+    /**
+     * Returns the speed the talon is set at
+     */
     public double getSpeed() {
         return motor.get();
     }
 
+    /**
+     * Sets the speed of the robot
+     */   
     public void set(double speed) {
         motor.set(speed * (motorReverse ? -1 : 1));
     }
 
+    /**
+     * Sets the motor speed to 0
+     */  
     public void stop() {
         motor.set(0);
     }
@@ -99,6 +110,9 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     public void initDefaultCommand() {
     }
 
+    /**
+     * Changes the gear from low to high or high to low depending on the current state
+     */ 
     public void shift() {
         if (this.currentGear == Gear.LOW_GEAR) {
             shift(Gear.HIGH_GEAR);
