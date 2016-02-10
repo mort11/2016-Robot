@@ -4,8 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.mort11.constants.OperatorInterfaceConstants;
 import org.mort11.commands.FullSpeed;
+import org.mort11.commands.Shift;
+import org.mort11.constants.OperatorInterfaceConstants;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -19,22 +20,24 @@ import org.mort11.commands.FullSpeed;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
-//    protected static boolean enabled_fullSpeed;
+    //    protected static boolean enabled_fullSpeed;
     public static int count_fullSpeed = 0;
-    
+
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
     public Joystick right = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
-    
+
     public Button piston = new JoystickButton(ee, OperatorInterfaceConstants.PISTON_BUTTON);
     public Button intakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.OUTTAKE_BUTTON);
     public Button fullSpeed = new JoystickButton(right, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
+    public Button shift = new JoystickButton(right, OperatorInterfaceConstants.SHIFT_BUTTON);
     private Timer timer;
 
     public OI() {
         timer = new Timer();
         fullSpeed.whenPressed(new FullSpeed(10)); // allows robot to drive at fullSpeed for a specified amount of time
+        shift.whenPressed(new Shift());
     }
 
 
@@ -79,13 +82,13 @@ public class OI {
 //            }
 //        }
 //        return speed;
-          if (speed >= .75) {
-              speed = 0.75;
-          }
-          if (speed <= -.75) {
-              speed = -0.75;
-          }
-          return speed;
+        if (speed >= .75) {
+            speed = 0.75;
+        }
+        if (speed <= -.75) {
+            speed = -0.75;
+        }
+        return speed;
     }
 
     public double getLeftJoy_limit() {
@@ -95,7 +98,7 @@ public class OI {
     public double getRightJoy_limit() {
         return speedLimit(right.getY());
     }
-    
+
     public double getLeftJoy_full() {
         return threshold(-left.getY());
     }

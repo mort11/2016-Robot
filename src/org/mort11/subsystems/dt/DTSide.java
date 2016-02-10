@@ -2,14 +2,12 @@ package org.mort11.subsystems.dt;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
+import org.mort11.constants.DrivetrainConstants;
 import org.mort11.util.MORTSubsystem;
-
-import com.kauailabs.navx.frc.AHRS;
 
 /**
  * DTSide - Base class controlling drivetrain sides
@@ -22,26 +20,53 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private static boolean disabled = false;
-    private Gear currentGear = Gear.LOW_GEAR;
+    private static Gear currentGear = Gear.LOW_GEAR;
+    private static Solenoid lowShifter;
+    private static Solenoid highShifter;
     private CANTalon motor1, motor2, motor3;
     private boolean motor1Reverse, motor2Reverse, motor3Reverse;
-    private Solenoid lowShifter;
-    private Solenoid highShifter;
     private Encoder encoder;
 
-    public DTSide(int motorPort1, int motorPort2, int motorPort3, int lowShifterPort, int highSifterPort, boolean motor1Reverse, 
-            boolean motor2Reverse, boolean motor3Reverse, Encoder encoder) {
+    public DTSide(int motorPort1, int motorPort2, int motorPort3, boolean motor1Reverse,
+                  boolean motor2Reverse, boolean motor3Reverse, Encoder encoder) {
         motor1 = new CANTalon(motorPort1);
         motor2 = new CANTalon(motorPort2);
         motor3 = new CANTalon(motorPort3);
-        lowShifter = new Solenoid(lowShifterPort);
-        highShifter = new Solenoid(highSifterPort);
+        lowShifter = new Solenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT);
+        highShifter = new Solenoid(DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
         this.motor1Reverse = motor1Reverse;
         this.motor2Reverse = motor2Reverse;
         this.motor3Reverse = motor3Reverse;
         this.encoder = encoder;
     }
-    
+
+    public static boolean getDisabled() {
+        return disabled;
+    }
+
+    public static void setDisabledState(boolean isDisabled) {
+        DTSide.disabled = isDisabled;
+    }
+
+    public static void shift() {
+        if (currentGear == Gear.LOW_GEAR) {
+            shift(Gear.HIGH_GEAR);
+        } else {
+            shift(Gear.LOW_GEAR);
+        }
+    }
+
+    public static void shift(Gear gear) {
+        currentGear = gear;
+        if (gear == Gear.LOW_GEAR) {
+            lowShifter.set(true);
+            highShifter.set(false);
+        } else {
+            lowShifter.set(false);
+            highShifter.set(true);
+        }
+    }
+
     public void resetEncoder() {
         this.encoder.reset();
     }
@@ -97,34 +122,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         DTSide.disabled = true;
     }
 
-    public static boolean getDisabled() {
-        return disabled;
-    }
-
-    public static void setDisabledState(boolean isDisabled) {
-        DTSide.disabled = isDisabled;
-    }
-    
     public void initDefaultCommand() {
-    }
-
-    public void shift() {
-        if (this.currentGear == Gear.LOW_GEAR) {
-            shift(Gear.HIGH_GEAR);
-        } else {
-            shift(Gear.LOW_GEAR);
-        }
-    }
-
-    public void shift(Gear gear) {
-        this.currentGear = gear;
-        if (gear == Gear.LOW_GEAR) {
-            lowShifter.set(true);
-            highShifter.set(false);
-        } else {
-            lowShifter.set(false);
-            highShifter.set(true);
-        }
     }
 
     public static final class Gear {
