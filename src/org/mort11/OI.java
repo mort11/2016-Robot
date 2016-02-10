@@ -45,8 +45,14 @@ public class OI {
     public static double threshold(double input) {
         if (Math.abs(input) <= 0.05) {
             return 0;
+        } 
+        //else if (FullSpeed.isEnabled_fullSpeed) {
+        //  return input;
+        //} 
+        else {
+            return speedLimit(input);
         }
-        return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
+        //return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
 
     /**
@@ -93,11 +99,13 @@ public class OI {
     }
 
     public double getLeftJoy_limit() {
-        return speedLimit(-left.getY());
+        //return speedLimit(-left.getY());
+        return threshold(-left.getY());
     }
 
     public double getRightJoy_limit() {
-        return speedLimit(right.getY());
+        //return speedLimit(right.getY());
+        return threshold(right.getY());
     }
 
     public double getLeftJoy_full() {
