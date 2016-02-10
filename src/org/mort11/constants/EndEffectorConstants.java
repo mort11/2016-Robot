@@ -8,6 +8,7 @@ package org.mort11.constants;
 public class EndEffectorConstants {
     // CAN IDs
     public static final int ARM_TALON_PORT = 0; // TODO: 2/2/16 Get port for Arm talon
+
     public static final int ROLLER_TALON_PORT = 7;
 
     // Other constants
@@ -15,4 +16,5 @@ public class EndEffectorConstants {
     public static final double EE_HEIGHT_PER_TURN = 5.0379; // inches
     public static final double INCHES_PER_PULSE = EE_HEIGHT_PER_TURN / EE_CPR;
     public static final double ROLLER_SPEED = 0.5; // Placeholder
+    public static final int ROLLER_DEGREE_PER_TICK = 360 / 512;
 }

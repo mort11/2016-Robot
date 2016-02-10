@@ -6,7 +6,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.mort11.commands.auton.*;
+import org.mort11.commands.auton.DriveArc;
+import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.IntakeRollers;
+import org.mort11.commands.ee.SpinUp;
 
 /**
  * Robot - Main Robot class
@@ -20,29 +24,31 @@ import org.mort11.commands.auton.*;
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Carl Hausman <carl@hausman.org>
- * @author Jakob Shortell <jshortell@mort11.org>
  */
 public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
 
+    Command intakeRoller;
+    Command spinUp;
+    Command driveArc;
     Command autonomousCommand;
-    Command turnDegrees;
-    Command robotTest;
     SendableChooser autonomousChooser;
 
     @Override
     public void robotInit() {
-        turnDegrees = new TurnDegrees(false, 0);
-        robotTest = new LowBarAuton();
+
+        driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
 
         oi = new OI();
+        spinUp = new SpinUp(20, false);
+        intakeRoller = new IntakeRollers(false, true);
 
         // Have operator choose autonomous mode
         autonomousChooser = new SendableChooser();
         autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
         autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
-        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(12 * Math.PI, 0.5 * Math.PI));
+        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
         SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 
@@ -53,8 +59,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         System.out.println("STARTING AUTONOMOUS");
-        //robotTest.start();
-        turnDegrees.start();
+        spinUp.start();
     }
 
     @Override

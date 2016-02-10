@@ -34,10 +34,10 @@ public class PIDLoop {
 
     public double getOutput_notStaggered(double pos) {
         double error = desired_target - pos;
-        //shift to I
+        // Shift to I
         if (Math.abs(error / pos) < 0.2) {
-//			System.out.println("I loop");
-//			System.out.println("Error: " + error);
+            // System.out.println("I loop");
+            // System.out.println("Error: " + error);
             if (!isNear) {
                 timer.start();
                 isNear = true;
@@ -48,7 +48,7 @@ public class PIDLoop {
             oldTime = currTime;
             return netError * kI;
         }
-        //P loop
+        // P loop
         else {
             return error * kP;
         }
@@ -66,18 +66,19 @@ public class PIDLoop {
         netError += error * deltaT;
         oldTime = currTime;
         double output = (error * kP + netError * kI);
-//		System.out.println("PI: " + output);
+        // System.out.println("PI: " + output);
         System.out.println("SP: " + getLocation(currTime, curr_location));
         System.out.println("error: " + error);
-        //System.out.println("Time: " + currTime);
+        // System.out.println("Time: " + currTime);
         return output;
     }
 
     public double getSP() {
         return getLocation(currTime, curr_location);
     }
-    
+
     public double getP(double curr_location) {
+        System.out.println("error:  " + (desired_target - curr_location));
         return (desired_target - curr_location) * kP;
     }
 
@@ -85,7 +86,6 @@ public class PIDLoop {
         if (time > desired_target / vel_max) {
             return desired_target;
         }
-
         return vel_max * time;
     }
 }

@@ -13,6 +13,7 @@ import org.mort11.subsystems.ee.Pneumatics;
  * @author Michael Kozak <michael.kozak@motsd.org>
  */
 public class PistonActuation extends Command {
+
     boolean isPressed;
     private Pneumatics piston = Robot.adaptor.piston;
 

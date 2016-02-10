@@ -2,30 +2,37 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.util.MORTSubsystem;
 
 /**
  * Hood - ToDo description
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
-public class Hood extends Subsystem {
+public class Hood extends Subsystem implements MORTSubsystem {
     DoubleSolenoid solenoid;
     boolean engaged;
-
     public void initDefaultCommand() {
 
     }
 
     public void popHood() {
-        solenoid.set(DoubleSolenoid.Value.kForward);
-        engaged = true;
+        if (!isDisabled) {
+            solenoid.set(DoubleSolenoid.Value.kForward);
+            engaged = true;
+        }
     }
     public void stowHood() {
-        solenoid.set(DoubleSolenoid.Value.kReverse);
         engaged = false;
+        if (!isDisabled) {
+            solenoid.set(DoubleSolenoid.Value.kReverse);
+            engaged = false;
+        }
     }
     public void toggleHood() {
-    	setSolenoid(!engaged);
+        if (!isDisabled) {
+            setSolenoid(!engaged);
+        }
     }
     
     public void setSolenoid(boolean engage) {
