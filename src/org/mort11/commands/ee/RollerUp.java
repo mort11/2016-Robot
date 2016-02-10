@@ -14,7 +14,7 @@ import org.mort11.util.PIDLoop;
  */
 public class RollerUp extends Command {
     private Intake intake = Robot.adaptor.intake;
-    private Encoder intakeEncoder = SensorDealer.getInstance().getArmEncoder();
+    private Encoder intakeEncoder = SensorDealer.getInstance().getIntakeArmEncoder();
     private PIDLoop pd;
     private double desiredAngle, currentAngle, speed;
 

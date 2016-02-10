@@ -7,26 +7,24 @@ import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
 
 /**
- * IntakeArm - Intake arm
+ * Rollers - Controls the intake roller
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class Rollers extends Subsystem {
-
-    private CANTalon rollerMotor = new CANTalon(EndEffectorConstants.ARM_TALON_PORT);
-    private Encoder rollerEnc = SensorDealer.getInstance().getShooterEncoder();
+    private CANTalon roller = new CANTalon(EndEffectorConstants.ARM_TALON_ID);
+    private Encoder rollerEnc = SensorDealer.getInstance().getRollerEncoder();
 
     public Rollers() {
         rollerEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
         rollerEnc.reset();
-}
+    }
 
     protected void initDefaultCommand() {
-
     }
 
     public void set(double speed) {
-        rollerMotor.set(speed);
+        roller.set(speed);
     }
 
     public double getDistance() {

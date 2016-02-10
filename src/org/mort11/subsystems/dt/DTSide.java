@@ -1,15 +1,13 @@
 package org.mort11.subsystems.dt;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
+import org.mort11.constants.DrivetrainConstants;
 import org.mort11.util.MORTSubsystem;
-
-import com.kauailabs.navx.frc.AHRS;
 
 /**
  * DTSide - Base class controlling drivetrain sides
@@ -25,30 +23,44 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private Gear currentGear = Gear.LOW_GEAR;
     private CANTalon motor;
     private boolean motorReverse;
-    private Solenoid lowShifter;
-    private Solenoid highShifter;
+    private DoubleSolenoid shifter;
     private Encoder encoder;
 
-    public DTSide(int motorPort, int lowShifterPort, int highSifterPort, boolean motorReverse, Encoder encoder) {
-        motor = new CANTalon(motorPort);
-        lowShifter = new Solenoid(lowShifterPort);
-        highShifter = new Solenoid(highSifterPort);
+    public DTSide(int motorPort, boolean motorReverse, Encoder encoder) {
+        this.motor = new CANTalon(motorPort);
+        this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
         this.motorReverse = motorReverse;
         this.encoder = encoder;
     }
-    
+
+    /**
+     * Reset encoder ticks
+     */
     public void resetEncoder() {
         this.encoder.reset();
     }
 
+    /**
+     * Get current speed of motor from TalonSRX
+     *
+     * @return Motor speed [Units?]
+     */
     public double getSpeed() {
         return motor.get();
     }
 
+    /**
+     * Set motor to speed
+     *
+     * @param speed Speed
+     */
     public void set(double speed) {
         motor.set(speed * (motorReverse ? -1 : 1));
     }
 
+    /**
+     * Halt motor
+     */
     public void stop() {
         motor.set(0);
     }
@@ -83,22 +95,42 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         return motor.getOutputVoltage();
     }
 
+    /**
+     * Disable the subsystem
+     */
     @Override
     public void disable() {
-        DTSide.disabled = true;
+        disabled = true;
     }
 
-    public static boolean getDisabled() {
+    /**
+     * Check if subsystem is disabled
+     *
+     * @return Subsystem state
+     */
+    @Override
+    public boolean isDisabled() {
         return disabled;
     }
 
-    public static void setDisabledState(boolean isDisabled) {
-        DTSide.disabled = isDisabled;
+    /**
+     * Re-enable subsystem that is in a disabled state
+     */
+    @Override
+    public void enable() {
+        disabled = false;
     }
-    
+
+    @Override
+    public abstract double getCurrent();
+
+    @Override
     public void initDefaultCommand() {
     }
 
+    /**
+     * Toggle between high and low gear
+     */
     public void shift() {
         if (this.currentGear == Gear.LOW_GEAR) {
             shift(Gear.HIGH_GEAR);
@@ -107,20 +139,26 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         }
     }
 
+    /**
+     * Toggle current gear
+     *
+     * @param gear Gear to shift to
+     */
     public void shift(Gear gear) {
         this.currentGear = gear;
+        // Low gear
         if (gear == Gear.LOW_GEAR) {
-            lowShifter.set(true);
-            highShifter.set(false);
-        } else {
-            lowShifter.set(false);
-            highShifter.set(true);
+            shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that low gear is solenoid kForward
+        }
+        // High gear
+        else {
+            shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that high gear is solenoid kReverse
         }
     }
 
     public static final class Gear {
-        public static final Gear HIGH_GEAR = new Gear();
-        public static final Gear LOW_GEAR = new Gear();
+        private static final Gear HIGH_GEAR = new Gear();
+        private static final Gear LOW_GEAR = new Gear();
     }
 }
 

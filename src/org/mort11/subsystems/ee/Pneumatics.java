@@ -12,13 +12,12 @@ import org.mort11.util.MORTSubsystem;
  * @author Seven Kurt <seven.kurt@motsd.org>
  */
 public class Pneumatics extends Subsystem implements MORTSubsystem {
-    DoubleSolenoid solenoid;
-    boolean engaged;
-    boolean isDisabled;
+    private DoubleSolenoid solenoid;
+    private boolean disabled, engaged;
 
     public Pneumatics(int engagedPort, int notEngagedPort) {
-        solenoid = new DoubleSolenoid(30, engagedPort, notEngagedPort);
-        engaged = false;
+        this.solenoid = new DoubleSolenoid(30, engagedPort, notEngagedPort);
+        this.engaged = false;
     }
 
     public void initDefaultCommand() {
@@ -26,14 +25,14 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
     }
 
     public void setSolenoid(boolean engage) {
-        if (isDisabled == false) {
+        if (!disabled) {
             if (engage) {
-                solenoid.set(DoubleSolenoid.Value.kForward);
+                this.solenoid.set(DoubleSolenoid.Value.kForward);
             } else {
-                solenoid.set(DoubleSolenoid.Value.kReverse);
+                this.solenoid.set(DoubleSolenoid.Value.kReverse);
             }
-            engaged = engage;
-            System.out.println("state 2: " + engage);
+            this.engaged = engage;
+            System.out.println("Piston State: " + engage);
         }
     }
 
@@ -42,6 +41,11 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
     }
 
     public void disable() {
-        isDisabled = true;
+        disabled = true;
+    }
+
+    @Override
+    public void enable() {
+
     }
 }

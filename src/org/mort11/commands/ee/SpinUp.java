@@ -22,7 +22,7 @@ public class SpinUp extends Command {
     private Shooter armMotor;
     private PIDLoop pd_arm;
     private boolean PID;
-    private Encoder shooter = SensorDealer.getInstance().getLeftDTEncoder();//SensorDealer.getInstance().getShooterEncoder(); replace with SpinUp encoder
+    private Encoder shooter = SensorDealer.getInstance().getLeftDTEncoder();//SensorDealer.getInstance().getRollerEncoder(); replace with SpinUp encoder
     private double speed_ghetto = 0;
     private double velocity;
 

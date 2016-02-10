@@ -1,7 +1,9 @@
 package org.mort11.subsystems.dt;
 
+import org.mort11.Robot;
 import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.constants.DrivetrainConstants;
+import org.mort11.constants.PDPMap;
 import org.mort11.sensors.SensorDealer;
 
 /**
@@ -14,9 +16,19 @@ import org.mort11.sensors.SensorDealer;
  */
 public class DTRight extends DTSide {
     public DTRight() {
-        super(DrivetrainConstants.DT_RIGHT_TALON_ID, DrivetrainConstants.DT_RIGHT_LOW_SHIFTER_PORT,
-                DrivetrainConstants.DT_RIGHT_HIGH_SHIFTER_PORT, true, SensorDealer.getInstance().getRightDTEncoder());
+        super(DrivetrainConstants.DT_RIGHT_TALON_ID, true, SensorDealer.getInstance().getRightDTEncoder());
         SensorDealer.getInstance().getRightDTEncoder().setDistancePerPulse(DrivetrainConstants.INCHES_PER_PULSE_RIGHT);
+    }
+
+    /**
+     * Get total current in use by all right three DT CIMs
+     *
+     * @return Total current for all right three DT CIMs
+     */
+    @Override
+    public double getCurrent() {
+        return Robot.adaptor.pdp.getCurrent(PDPMap.RIGHT_DT_1) + Robot.adaptor.pdp.getCurrent(PDPMap.RIGHT_DT_2) +
+                Robot.adaptor.pdp.getCurrent(PDPMap.RIGHT_DT_3);
     }
 
     public void initDefaultCommand() {

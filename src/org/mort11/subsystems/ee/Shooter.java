@@ -13,17 +13,18 @@ import org.mort11.util.MORTSubsystem;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class Shooter extends Subsystem implements MORTSubsystem {
-    boolean isDisabled = false;
+    private boolean disabled = false;
     private CANTalon armMotor;
+
     public Shooter() {
-        armMotor = new CANTalon(EndEffectorConstants.ARM_TALON_PORT);
+        armMotor = new CANTalon(EndEffectorConstants.ARM_TALON_ID);
     }
 
     public void initDefaultCommand() {
     }
 
     public void set(double speed) {
-        if (isDisabled == false) {
+        if (!disabled) {
             armMotor.set(speed);
         }
     }
@@ -33,7 +34,7 @@ public class Shooter extends Subsystem implements MORTSubsystem {
     }
 
     public double getDistance() {
-        return SensorDealer.getInstance().getArmEncoder().getDistance();
+        return SensorDealer.getInstance().getIntakeArmEncoder().getDistance();
     }
 
     public double getAngle() {
@@ -41,10 +42,16 @@ public class Shooter extends Subsystem implements MORTSubsystem {
     }
 
     public double getRate() {
-        return SensorDealer.getInstance().getShooterEncoder().getRate();
+        return SensorDealer.getInstance().getRollerEncoder().getRate();
     }
 
+    @Override
     public void disable() {
-        isDisabled = true;
+        this.disabled = true;
+    }
+
+    @Override
+    public void enable() {
+        this.disabled = false;
     }
 }
