@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.mort11.Robot;
 import org.mort11.constants.DrivetrainConstants;
 import org.mort11.util.MORTSubsystem;
 
@@ -21,15 +19,20 @@ import org.mort11.util.MORTSubsystem;
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private static boolean disabled = false;
     private Gear currentGear = Gear.LOW_GEAR;
-    private CANTalon motor;
-    private boolean motorReverse;
+    private CANTalon motor1, motor2, motor3;
+    private boolean motor1Reverse, motor2Reverse, motor3Reverse;
     private DoubleSolenoid shifter;
     private Encoder encoder;
 
-    public DTSide(int motorPort, boolean motorReverse, Encoder encoder) {
-        this.motor = new CANTalon(motorPort);
+    public DTSide(int motor1Port, int motor2Port, int motor3Port, boolean motor1Reverse, boolean motor2Reverse,
+                  boolean motor3Reverse, Encoder encoder) {
+        this.motor1 = new CANTalon(motor1Port);
+        this.motor2 = new CANTalon(motor2Port);
+        this.motor3 = new CANTalon(motor3Port);
         this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
-        this.motorReverse = motorReverse;
+        this.motor1Reverse = motor1Reverse;
+        this.motor2Reverse = motor2Reverse;
+        this.motor3Reverse = motor3Reverse;
         this.encoder = encoder;
     }
 
@@ -46,7 +49,8 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      * @return Motor speed [Units?]
      */
     public double getSpeed() {
-        return motor.get();
+        double avgSpeed = (motor1.get() + motor2.get() + motor3.get()) / 3; // TODO: 2/10/16 Check if we want to use just 1 motor or average of all three
+        return motor1.get();
     }
 
     /**
@@ -55,44 +59,18 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      * @param speed Speed
      */
     public void set(double speed) {
-        motor.set(speed * (motorReverse ? -1 : 1));
+        this.motor1.set(speed * (this.motor1Reverse ? -1 : 1));
+        this.motor2.set(speed * (this.motor2Reverse ? -1 : 1));
+        this.motor3.set(speed * (this.motor3Reverse ? -1 : 1));
     }
 
     /**
      * Halt motor
      */
     public void stop() {
-        motor.set(0);
-    }
-
-    /**
-     * @return Current of channel in Amps
-     */
-    public double getCurrentLeft() {
-        SmartDashboard.putNumber("Left Motor Current", Robot.adaptor.pdp.getCurrent(0));
-        return Robot.adaptor.pdp.getCurrent(0);
-    }
-
-    /**
-     * @return Current of channel in Amps
-     */
-    public double getCurrentRight() {
-        SmartDashboard.putNumber("Right Motor Current", Robot.adaptor.pdp.getCurrent(1));
-        return Robot.adaptor.pdp.getCurrent(1);
-    }
-
-    /**
-     * @return Current of talon in Amps
-     */
-    public double getTalonCurrent() {
-        return motor.getOutputCurrent();
-    }
-
-    /**
-     * @return Voltage of talon in Volts
-     */
-    public double getTalonVoltage() {
-        return motor.getOutputVoltage();
+        this.motor1.set(0);
+        this.motor2.set(0);
+        this.motor3.set(0);
     }
 
     /**
@@ -121,8 +99,35 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         disabled = false;
     }
 
+    /**
+     * Get current from PDP for DT side. Implemented in child classes
+     *
+     * @return Current being used by side [Cumulative total]
+     */
     @Override
     public abstract double getCurrent();
+
+    /**
+     * Get current being output by talon
+     *
+     * @return Output current [Not avergaged]
+     */
+    @Override
+    public double getTalonCurrent() {
+        double avgCurrent = (motor1.getOutputCurrent() + motor2.getOutputCurrent() + motor3.getOutputCurrent()) / 3; // TODO: 2/10/16 Check if we want to use just 1 motor or average of all three
+        return motor1.getOutputCurrent();
+    }
+
+    /**
+     * Get voltage being output by talon
+     *
+     * @return Output voltage [Not averaged]
+     */
+    @Override
+    public double getTalonVoltage() {
+        double avgVoltage = (motor1.getOutputVoltage() + motor2.getOutputVoltage() + motor3.getOutputVoltage()) / 3; // TODO: 2/10/16 Check if we want to use just 1 motor or average of all three
+        return motor1.getOutputVoltage();
+    }
 
     @Override
     public void initDefaultCommand() {

@@ -16,7 +16,8 @@ import org.mort11.sensors.SensorDealer;
  */
 public class DTLeft extends DTSide {
     public DTLeft() {
-        super(DrivetrainConstants.DT_LEFT_TALON_ID, false, SensorDealer.getInstance().getLeftDTEncoder());
+        super(DrivetrainConstants.DT_LEFT_TALON_ID_1, DrivetrainConstants.DT_LEFT_TALON_ID_2,
+                DrivetrainConstants.DT_LEFT_TALON_ID_3, true, true, true, SensorDealer.getInstance().getLeftDTEncoder());
         SensorDealer.getInstance().getLeftDTEncoder().setDistancePerPulse(DrivetrainConstants.INCHES_PER_PULSE_LEFT);
     }
 

@@ -8,4 +8,8 @@ public interface MORTSubsystem {
     void enable();
 
     double getCurrent();
+
+    double getTalonVoltage();
+
+    double getTalonCurrent();
 }
