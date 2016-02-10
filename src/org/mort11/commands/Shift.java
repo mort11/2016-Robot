@@ -30,6 +30,7 @@ public class Shift extends Command {
 
     @Override
     protected void end() {
+        cntr = 0;
 
     }
 
