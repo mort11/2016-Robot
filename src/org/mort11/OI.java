@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.commands.FullSpeed;
 import org.mort11.commands.Shift;
+import org.mort11.constants.DrivetrainConstants;
 import org.mort11.constants.OperatorInterfaceConstants;
 
 /**
@@ -82,11 +83,11 @@ public class OI {
 //            }
 //        }
 //        return speed;
-        if (speed >= .75) {
-            speed = 0.75;
+        if (speed >= DrivetrainConstants.SPEED_LIMIT) {
+            speed = DrivetrainConstants.SPEED_LIMIT;
         }
-        if (speed <= -.75) {
-            speed = -0.75;
+        if (speed <= -DrivetrainConstants.SPEED_LIMIT) {
+            speed = -DrivetrainConstants.SPEED_LIMIT;
         }
         return speed;
     }

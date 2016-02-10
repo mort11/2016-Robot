@@ -10,8 +10,8 @@ package org.mort11.constants;
  */
 public class OperatorInterfaceConstants {
     // USB
-    public static final int LEFT_JOYSTICK = 0; // Temp values for testing with one joystick
-    public static final int RIGHT_JOYSTICK = 1; // Temp values for testing with one joystick
+    public static final int LEFT_JOYSTICK = 0; 
+    public static final int RIGHT_JOYSTICK = 1; 
     public static final int EE_JOYSTICK = 2;
 
     // Joystick Buttons
