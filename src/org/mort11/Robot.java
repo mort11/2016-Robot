@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.SpinUp;
+import org.mort11.commands.ee.IntakeRollers;
 
 /**
  * Robot - Main Robot class
