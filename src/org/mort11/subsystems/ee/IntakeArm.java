@@ -9,46 +9,77 @@ import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
 
 /**
- * Intake - Controls the intake arm
+ * IntakeArm - Controls the intake arm
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
-public class Intake extends Subsystem implements MORTSubsystem {
+public class IntakeArm extends Subsystem implements MORTSubsystem {
     private static Encoder intakeEnc;
     private boolean disabled = false;
     private CANTalon intakeArm;
 
-    public Intake() {
-        intakeArm = new CANTalon(EndEffectorConstants.ARM_TALON_ID);
+    public IntakeArm() {
+        intakeArm = new CANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID);
         intakeEnc = SensorDealer.getInstance().getIntakeArmEncoder();
         intakeEnc.reset();
         intakeEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
     }
 
+    /**
+     * Get position of intake arm from encoder reading
+     *
+     * @return Encoder distance/ticks
+     */
     public static double getDistance() {
-        System.out.println(intakeEnc.get());
         return intakeEnc.get();
     }
 
+    /**
+     * Get position of intake arm from encoder reading as angle
+     *
+     * @return Encoder angle
+     */
     public static double getAngle() {
         return getDistance() * EndEffectorConstants.INTAKE_DEGREE_PER_TICK;
     }
 
+    @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new JoystickIntake());
     }
 
+    /**
+     * Adjust position of intake arm
+     *
+     * @param speed Amount to move arm by
+     */
     public void set(double speed) {
         if (!disabled) {
             intakeArm.set(speed);
         }
     }
 
+    /**
+     * Disable the subsystem
+     */
     @Override
     public void disable() {
         this.disabled = true;
     }
 
+    /**
+     * Check if subsystem is disabled
+     *
+     * @return Subsystem state
+     */
+    @Override
+    public boolean isDisabled() {
+        return this.disabled;
+    }
+
+    /**
+     * Re-enable subsystem that is in a disabled state
+     */
     @Override
     public void enable() {
         this.disabled = false;

@@ -104,7 +104,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      *
      * @return Current being used by side [Cumulative total]
      */
-    @Override
     public abstract double getCurrent();
 
     /**
@@ -112,7 +111,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      *
      * @return Output current [Not avergaged]
      */
-    @Override
     public double getTalonCurrent() {
         double avgCurrent = (motor1.getOutputCurrent() + motor2.getOutputCurrent() + motor3.getOutputCurrent()) / 3; // TODO: 2/10/16 Check if we want to use just 1 motor or average of all three
         return motor1.getOutputCurrent();
@@ -123,7 +121,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      *
      * @return Output voltage [Not averaged]
      */
-    @Override
     public double getTalonVoltage() {
         double avgVoltage = (motor1.getOutputVoltage() + motor2.getOutputVoltage() + motor3.getOutputVoltage()) / 3; // TODO: 2/10/16 Check if we want to use just 1 motor or average of all three
         return motor1.getOutputVoltage();

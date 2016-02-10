@@ -31,10 +31,10 @@ public class PistonActuation extends Command {
     protected void execute() {
         if (Robot.oi.piston.get()) {
             this.isPressed = true;
-            piston.setSolenoid(true);
+            piston.set(true);
         } else {
             this.isPressed = false;
-            piston.setSolenoid(false);
+            piston.set(false);
         }
     }
 

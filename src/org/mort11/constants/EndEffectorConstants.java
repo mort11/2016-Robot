@@ -7,7 +7,7 @@ package org.mort11.constants;
  */
 public class EndEffectorConstants {
     // CAN IDs
-    public static final int ARM_TALON_ID = 0; // TODO: 2/2/16 Get port for Arm talon
+    public static final int FLYWHEEL_TALON_ID = 0; // TODO: 2/2/16 Get port for Flywheel
     public static final int ROLLER_TALON_ID = 7;
 
     // PCM Slots

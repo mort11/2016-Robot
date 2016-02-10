@@ -9,7 +9,7 @@ import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
-import org.mort11.subsystems.ee.Intake;
+import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
@@ -27,7 +27,7 @@ public class HardwareAdaptor {
 
     // End Effector mechanisms
     public Rollers rollers;
-    public Intake intake;
+    public IntakeArm intake;
     public Shooter shooter;
     public Pneumatics piston;
 
@@ -44,7 +44,7 @@ public class HardwareAdaptor {
         compressor = new Compressor(HardwareConstants.PCM_ID);
 
         rollers = new Rollers();
-        intake = new Intake();
+        intake = new IntakeArm();
         shooter = new Shooter();
 
         accelerometer = new BuiltInAccelerometer();

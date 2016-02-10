@@ -11,45 +11,86 @@ import org.mort11.util.MORTSubsystem;
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Matt Turi <mturi@mort11.org>
  */
 public class Shooter extends Subsystem implements MORTSubsystem {
     private boolean disabled = false;
-    private CANTalon armMotor;
+    private CANTalon flywheel;
 
     public Shooter() {
-        armMotor = new CANTalon(EndEffectorConstants.ARM_TALON_ID);
+        this.flywheel = new CANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID);
     }
 
+    @Override
     public void initDefaultCommand() {
     }
 
+    /**
+     * Set speed of flywheel
+     *
+     * @param speed Flywheel speed
+     */
+    // TODO: 2/10/16 Flywheel speed should be regulated by a PID loop
     public void set(double speed) {
-        if (!disabled) {
-            armMotor.set(speed);
+        if (!this.disabled) {
+            this.flywheel.set(speed);
         }
     }
 
+    /**
+     * TODO: Belongs in IntakeArm
+     */
+    @Deprecated
     public boolean islimSwitch() {
         return SensorDealer.getInstance().getArmLimitSwitch().get();
     }
 
+    /**
+     * TODO: Belongs in IntakeArm
+     */
+    @Deprecated
     public double getDistance() {
         return SensorDealer.getInstance().getIntakeArmEncoder().getDistance();
     }
 
+    /**
+     * TODO: Belongs in IntakeArm
+     */
+    @Deprecated
     public double getAngle() {
         return SensorDealer.getInstance().getArmPot().get();
     }
 
-    public double getRate() {
+    /**
+     * Get speed flywheel is spinning at
+     *
+     * @return Flywheel speed
+     */
+    public double getSpeed() {
         return SensorDealer.getInstance().getRollerEncoder().getRate();
     }
 
+    /**
+     * Disable the subsystem
+     */
     @Override
     public void disable() {
         this.disabled = true;
     }
 
+    /**
+     * Check if subsystem is disabled
+     *
+     * @return Subsystem state
+     */
+    @Override
+    public boolean isDisabled() {
+        return this.disabled;
+    }
+
+    /**
+     * Re-enable subsystem that is in a disabled state
+     */
     @Override
     public void enable() {
         this.disabled = false;

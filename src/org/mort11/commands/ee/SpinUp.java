@@ -41,13 +41,13 @@ public class SpinUp extends Command {
     protected void execute() {
 
         if (PID) { //uses pid loop to SpinUp
-            double currentVelocity = spinUp.getRate();
+            double currentVelocity = spinUp.getSpeed();
             System.out.println("speed: " + currentVelocity);
             double speed = pd_arm.getP(currentVelocity);
             left.set(speed);
             SmartDashboard.putNumber("Velocity", currentVelocity);
         } else { // ghetto way of spinning up
-            double currentVelocity = spinUp.getRate();
+            double currentVelocity = spinUp.getSpeed();
             if (currentVelocity < velocity) {
                 speed_ghetto += .03;
                 System.out.println("speed if: " + speed_ghetto);

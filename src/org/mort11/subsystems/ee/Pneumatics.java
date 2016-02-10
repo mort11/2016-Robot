@@ -24,7 +24,12 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
         setDefaultCommand(new PistonActuation());
     }
 
-    public void setSolenoid(boolean engage) {
+    /**
+     * Set piston state
+     *
+     * @param engage Piston state
+     */
+    public void set(boolean engage) {
         if (!disabled) {
             if (engage) {
                 this.solenoid.set(DoubleSolenoid.Value.kForward);
@@ -40,12 +45,29 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
         return engaged;
     }
 
+    /**
+     * Disable the subsystem
+     */
+    @Override
     public void disable() {
-        disabled = true;
+        this.disabled = true;
     }
 
+    /**
+     * Check if subsystem is disabled
+     *
+     * @return Subsystem state
+     */
+    @Override
+    public boolean isDisabled() {
+        return this.disabled;
+    }
+
+    /**
+     * Re-enable subsystem that is in a disabled state
+     */
     @Override
     public void enable() {
-
+        this.disabled = false;
     }
 }

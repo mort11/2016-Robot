@@ -6,10 +6,4 @@ public interface MORTSubsystem {
     boolean isDisabled();
 
     void enable();
-
-    double getCurrent();
-
-    double getTalonVoltage();
-
-    double getTalonCurrent();
 }
