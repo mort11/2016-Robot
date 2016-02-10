@@ -31,7 +31,7 @@ public class Intake extends Subsystem implements MORTSubsystem {
     }
 
     protected void initDefaultCommand() {
-
+    	
     }
     
     public void set(double speed) {

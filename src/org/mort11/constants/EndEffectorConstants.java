@@ -6,8 +6,8 @@ package org.mort11.constants;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class EndEffectorConstants {
-    public static final int ARM_TALON_PORT = 0; // TODO: 2/2/16 Get port for Arm talon
-    public static final int ARM_TALL = 10; // TODO: 2/2/16 Fix variable names and get proper ports
+    public static final int ARM_TALON_PORT = 1; // TODO: 2/2/16 Get port for Arm talon
+    //public static final int ARM_TALL = 10; // TODO: 2/2/16 Fix variable names and get proper ports
 
     public static final int ROLLER_TALON_PORT = 7;
 
