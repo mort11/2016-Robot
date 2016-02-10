@@ -97,5 +97,8 @@ public class OI {
     public double getRightJoy() {
         return speedLimit(right.getY());
     }
+    public double getEEJoy(){
+    	return ee.getY();
+    }
 }
 
