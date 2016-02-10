@@ -1,5 +1,6 @@
 package org.mort11;
 
+import org.mort11.constants.HardwareConstants;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
@@ -44,7 +45,7 @@ public class HardwareAdaptor {
     public HardwareAdaptor() {
         pdp = new PowerDistributionPanel();
         cam = new Camera();
-        //compressor = new Compressor(HardwareConstants.PCM_ID);
+        compressor = new Compressor(HardwareConstants.PCM_ID);
 
         // Init motors
      //  intakeArmMotor = new MORTCANTalon(EndEffectorConstants.ARM_TALON_PORT, PDPMap.INTAKE_ARM);

@@ -52,8 +52,8 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
 
     public void set(double speed) {
         motor1.set(speed * (motor1Reverse ? -1 : 1)); //left:  right:
-        //motor2.set(speed * (motor2Reverse ? -1 : 1)); //left:  right:
-        //motor3.set(speed * (motor3Reverse ? -1 : 1)); //left:  right:
+        motor2.set(speed * (motor2Reverse ? -1 : 1)); //left:  right:
+        motor3.set(speed * (motor3Reverse ? -1 : 1)); //left:  right:
     }
 
     public void stop() {

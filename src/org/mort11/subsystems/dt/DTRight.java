@@ -16,7 +16,7 @@ public class DTRight extends DTSide {
     public DTRight() {
         super(DrivetrainConstants.DT_RIGHT_TALON_ID_1, DrivetrainConstants.DT_RIGHT_TALON_ID_2,
                 DrivetrainConstants.DT_RIGHT_TALON_ID_3,DrivetrainConstants.DT_RIGHT_LOW_SHIFTER_PORT,
-                DrivetrainConstants.DT_RIGHT_HIGH_SHIFTER_PORT, false, false, false,SensorDealer.getInstance().getRightDTEncoder());
+                DrivetrainConstants.DT_RIGHT_HIGH_SHIFTER_PORT, true, true, true,SensorDealer.getInstance().getRightDTEncoder());
         SensorDealer.getInstance().getRightDTEncoder().setDistancePerPulse(DrivetrainConstants.INCHES_PER_PULSE_RIGHT);
     }
 

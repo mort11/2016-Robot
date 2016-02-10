@@ -6,5 +6,5 @@ package org.mort11.constants;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class HardwareConstants {
-    public static final int PCM_ID = 30;
+    public static final int PCM_ID = 20;
 }
