@@ -136,8 +136,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      * @return Output voltage [Averaged]
      */
     public double getAvgTalonVoltage() {
-//        return (motor1.getVoltage() + motor2.getVoltage() + motor3.getVoltage()) / 3;
-        return 0;
+        return (motor1.getVoltage() + motor2.getVoltage() + motor3.getVoltage()) / 3;
     }
 
     @Override

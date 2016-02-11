@@ -27,3 +27,4 @@ bin
 gradle
 .idea
 sysProps.xml
+dist
