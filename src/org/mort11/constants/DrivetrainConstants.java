@@ -15,8 +15,8 @@ public class DrivetrainConstants {
     public static final int DT_RIGHT_TALON_ID_3 = 3;
 
     // Solenoid ports
-    public static final int DT_LOW_SHIFTER_PORT = 4;
-    public static final int DT_HIGH_SHIFTER_PORT = 5;
+    public static final int DT_LOW_SHIFTER_PORT = 0;
+    public static final int DT_HIGH_SHIFTER_PORT = 1;
 
     // Other constants
     public static final double DT_P = 0.3;

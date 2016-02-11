@@ -3,6 +3,7 @@ package org.mort11.subsystems.dt;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.Robot;
 import org.mort11.util.MORTSubsystem;
 import org.mort11.util.powermanager.MORTCANTalon;
 
@@ -16,11 +17,10 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Abi Koutha <akoutha7@gmail.com>
  */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
+    public static Gear currentGear = Gear.LOW_GEAR;
     private static boolean disabled = false;
-    private Gear currentGear = Gear.LOW_GEAR;
     private MORTCANTalon motor1, motor2, motor3;
     private boolean motor1Reverse, motor2Reverse, motor3Reverse;
-    private DoubleSolenoid shifter;
     private Encoder encoder;
 
     public DTSide(int motor1Port, int motor2Port, int motor3Port, int motor1PDPSlot, int motor2PDPSlot, int motor3PDPSlot,
@@ -29,7 +29,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         this.motor1 = new MORTCANTalon(motor1Port, motor1PDPSlot, motor1Name);
         this.motor2 = new MORTCANTalon(motor2Port, motor2PDPSlot, motor2Name);
         this.motor3 = new MORTCANTalon(motor3Port, motor3PDPSlot, motor3Name);
-//        this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
         this.motor1Reverse = motor1Reverse;
         this.motor2Reverse = motor2Reverse;
         this.motor3Reverse = motor3Reverse;
@@ -38,6 +37,34 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
 
     public static boolean getDisabled() {
         return disabled;
+    }
+
+    /**
+     * Toggle between high and low gear
+     */
+    public static void shift() {
+        if (currentGear == Gear.LOW_GEAR) {
+            shift(Gear.HIGH_GEAR);
+        } else {
+            shift(Gear.LOW_GEAR);
+        }
+    }
+
+    /**
+     * Toggle current gear
+     *
+     * @param gear Gear to shift to
+     */
+    public static void shift(Gear gear) {
+        currentGear = gear;
+        // Low gear
+        if (gear == Gear.LOW_GEAR) {
+            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that low gear is solenoid kForward
+        }
+        // High gear
+        else {
+            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that high gear is solenoid kReverse
+        }
     }
 
     /**
@@ -103,7 +130,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         disabled = false;
     }
 
-
     /**
      * Get averaged voltage being output by talon
      *
@@ -116,34 +142,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
 
     @Override
     public void initDefaultCommand() {
-    }
-
-    /**
-     * Toggle between high and low gear
-     */
-    public void shift() {
-        if (this.currentGear == Gear.LOW_GEAR) {
-            shift(Gear.HIGH_GEAR);
-        } else {
-            shift(Gear.LOW_GEAR);
-        }
-    }
-
-    /**
-     * Toggle current gear
-     *
-     * @param gear Gear to shift to
-     */
-    public void shift(Gear gear) {
-        this.currentGear = gear;
-        // Low gear
-        if (gear == Gear.LOW_GEAR) {
-            shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that low gear is solenoid kForward
-        }
-        // High gear
-        else {
-            shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that high gear is solenoid kReverse
-        }
     }
 
     public static final class Gear {

@@ -1,7 +1,5 @@
 package org.mort11.util;
 
-import edu.wpi.first.wpilibj.Timer;
-import org.mort11.Robot;
 import org.mort11.constants.DrivetrainConstants;
 
 /**
@@ -11,7 +9,6 @@ import org.mort11.constants.DrivetrainConstants;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class SpeedController {
-    public static boolean fullSpeed = false;
     public static int fsUsageCount = 0;
 
     /**
@@ -23,14 +20,9 @@ public class SpeedController {
     public static double threshold(double input) {
         if (Math.abs(input) <= 0.05) {
             return 0;
+        } else {
+            return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
         }
-        if (fullSpeed) {
-            return threshold(input);
-        }
-        if (!fullSpeed) {
-            return speedLimit(input);
-        }
-        return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
 
     /**
