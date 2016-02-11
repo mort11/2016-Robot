@@ -3,7 +3,6 @@ package org.mort11.util.powermanager;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SpeedController;
-import org.mort11.Robot;
 import org.mort11.util.MORTSubsystem;
 
 /**
@@ -13,7 +12,7 @@ import org.mort11.util.MORTSubsystem;
  */
 public class MORTCANTalon extends CANTalon implements SpeedController, MORTSubsystem {
     public String name;
-    private PowerDistributionPanel pdp = Robot.adaptor.pdp;
+    private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private int pdpSlot;
     private CANTalon talon;
     private boolean disabled = false;

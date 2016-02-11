@@ -104,22 +104,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         disabled = false;
     }
 
-    /**
-     * Get current from PDP for DT side. Implemented in child classes
-     *
-     * @return Current being used by side [Cumulative total]
-     */
-    public abstract double getCurrent();
 
-    /**
-     * Get current being output by talon
-     *
-     * @return Output current [Not avergaged]
-     */
-    public double getTalonCurrent() {
-        double avgCurrent = (motor1.getOutputCurrent() + motor2.getOutputCurrent() + motor3.getOutputCurrent()) / 3; // TODO: 2/10/16 Check if we want to use just 1 motor or average of all three
-        return motor1.getOutputCurrent();
-    }
 
     /**
      * Get voltage being output by talon

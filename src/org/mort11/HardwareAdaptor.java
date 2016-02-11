@@ -1,10 +1,7 @@
 package org.mort11;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import org.mort11.constants.HardwareConstants;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
@@ -21,9 +18,8 @@ import org.mort11.subsystems.ee.Shooter;
  */
 public class HardwareAdaptor {
     // System components
-    public PowerDistributionPanel pdp;
     public Camera cam;
-    public Compressor compressor;
+//    public Compressor compressor;
 
     // End Effector mechanisms
     public Rollers rollers;
@@ -39,17 +35,24 @@ public class HardwareAdaptor {
     public DTSide rightSide;
 
     public HardwareAdaptor() {
-        pdp = new PowerDistributionPanel();
-        cam = new Camera();
-        compressor = new Compressor(HardwareConstants.PCM_ID);
+        this.cam = new Camera();
+        System.out.println("Initted hardware");
+//        compressor = new Compressor(HardwareConstants.PCM_ID);
 
-        rollers = new Rollers();
-        intake = new IntakeArm();
-        shooter = new Shooter();
+        this.rollers = new Rollers();
+        System.out.println("rollers");
+//        this.intake = new IntakeArm();
+        System.out.println("arm");
+//        this.shooter = new Shooter();
+        System.out.println("shooter");
 
-        accelerometer = new BuiltInAccelerometer();
+        this.accelerometer = new BuiltInAccelerometer();
+        System.out.println("Acceleromter initted");
 
-        leftSide = new DTLeft();
-        rightSide = new DTRight();
+        System.out.println("DT initting");
+        this.leftSide = new DTLeft();
+        System.out.println("left");
+        this.rightSide = new DTRight();
+        System.out.println("right");
     }
 }
