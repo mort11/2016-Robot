@@ -1,6 +1,5 @@
 package org.mort11.subsystems.dt;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.constants.DrivetrainConstants;
 import org.mort11.constants.PDPConstants;
@@ -15,23 +14,11 @@ import org.mort11.sensors.SensorDealer;
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  */
 public class DTLeft extends DTSide {
-    private PowerDistributionPanel pdp = new PowerDistributionPanel();
     public DTLeft() {
         super(DrivetrainConstants.DT_LEFT_TALON_ID_1, DrivetrainConstants.DT_LEFT_TALON_ID_2,
                 DrivetrainConstants.DT_LEFT_TALON_ID_3, PDPConstants.LEFT_DT_1, PDPConstants.LEFT_DT_1, PDPConstants.LEFT_DT_1,
                 "DT_LEFT_1", "DT_LEFT_2", "DT_LEFT_3", true, true, true, SensorDealer.getInstance().getLeftDTEncoder());
         SensorDealer.getInstance().getLeftDTEncoder().setDistancePerPulse(DrivetrainConstants.INCHES_PER_PULSE_LEFT);
-    }
-
-    /**
-     * Get total current in use by all left three DT CIMs
-     *
-     * @return Total current for all left three DT CIMs
-     */
-    @Override
-    public double getCurrent() {
-        return pdp.getCurrent(PDPConstants.LEFT_DT_1) + pdp.getCurrent(PDPConstants.LEFT_DT_2) +
-                pdp.getCurrent(PDPConstants.LEFT_DT_3);
     }
 
     public void initDefaultCommand() {

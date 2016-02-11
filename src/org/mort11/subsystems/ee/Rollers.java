@@ -19,12 +19,9 @@ public class Rollers extends Subsystem implements MORTSubsystem {
     private boolean disabled;
 
     public Rollers() {
-        System.out.println("Creating obj");
         this.rollers = new MORTCANTalon(EndEffectorConstants.ROLLER_TALON_ID, PDPConstants.ROLLERS, "Rollers");
-        System.out.println("made tal");
         rollerEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
         rollerEnc.reset();
-        System.out.println("did enc");
     }
 
     @Override

@@ -1,7 +1,10 @@
 package org.mort11;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import org.mort11.constants.HardwareConstants;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
@@ -18,8 +21,9 @@ import org.mort11.subsystems.ee.Shooter;
  */
 public class HardwareAdaptor {
     // System components
+    public PowerDistributionPanel pdp;
     public Camera cam;
-//    public Compressor compressor;
+    public Compressor compressor;
 
     // End Effector mechanisms
     public Rollers rollers;
@@ -35,15 +39,16 @@ public class HardwareAdaptor {
     public DTSide rightSide;
 
     public HardwareAdaptor() {
+        this.pdp = new PowerDistributionPanel();
         this.cam = new Camera();
+        compressor = new Compressor(HardwareConstants.PCM_ID);
         System.out.println("Initted hardware");
-//        compressor = new Compressor(HardwareConstants.PCM_ID);
 
         this.rollers = new Rollers();
         System.out.println("rollers");
-//        this.intake = new IntakeArm();
+        this.intake = new IntakeArm();
         System.out.println("arm");
-//        this.shooter = new Shooter();
+        this.shooter = new Shooter();
         System.out.println("shooter");
 
         this.accelerometer = new BuiltInAccelerometer();
