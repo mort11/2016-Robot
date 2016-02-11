@@ -39,7 +39,6 @@ public class TurnDegrees extends Command {
     protected void execute() {
     	System.out.println("turning");
         if (!DTSide.getDisabled()){ // Will run when the Drivetrain is not disabled
-            //currentAngle = DTSide.getAngle(); //gets current angle of robot
             currentAngle = Math.abs(SensorDealer.getInstance().getAHRS().getYaw()); //might work better than getAngle(), must test
             System.out.println("current angle" + currentAngle);
             speed = pd.getOutput(currentAngle); //passes current angle through pid loop
@@ -60,7 +59,6 @@ public class TurnDegrees extends Command {
 
     protected boolean isFinished() {
         return SensorDealer.getInstance().getAHRS().getYaw() > desiredAngle * 0.9;
-        //return this.inThresh();
         //return (currentAngle > (desiredAngle - 1) && currentAngle < (desiredAngle + 1));
     }
 
@@ -75,9 +73,5 @@ public class TurnDegrees extends Command {
     protected void interrupted() {
     }
 
-    //used to determine if robot is close enough to target to stop
-//    protected boolean inThresh() {
-//        //placeholder values, must test
-//        return speed < .1 && speed > -.1;
-//    }
+
 }

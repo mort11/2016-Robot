@@ -22,8 +22,7 @@ import org.mort11.util.MORTSubsystem;
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private static boolean disabled = false;
     private static Gear currentGear = Gear.LOW_GEAR;
-    private static Solenoid lowShifter;
-    private static Solenoid highShifter;
+    private static Solenoid lowShifter, highShifter;
     private CANTalon motor1, motor2, motor3;
     private boolean motor1Reverse, motor2Reverse, motor3Reverse;
     private Encoder encoder;
