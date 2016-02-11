@@ -3,7 +3,6 @@ package org.mort11.subsystems.ee;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
-import org.mort11.util.MORTSubsystem;
 
 /**
  * Hood - Intake hood
@@ -11,7 +10,7 @@ import org.mort11.util.MORTSubsystem;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  * @author Matt Turi <mturi@mort11.org>
  */
-public class Hood extends Subsystem implements MORTSubsystem {
+public class Hood extends Subsystem {
     private DoubleSolenoid solenoid = new DoubleSolenoid(EndEffectorConstants.HOOD_SOLENOID_A, EndEffectorConstants.HOOD_SOLENOID_B);
     private boolean hoodUp, disabled;
 
@@ -51,32 +50,6 @@ public class Hood extends Subsystem implements MORTSubsystem {
             solenoid.set(DoubleSolenoid.Value.kReverse);
         }
         this.hoodUp = engage;
-    }
-
-    /**
-     * Disable the subsystem
-     */
-    @Override
-    public void disable() {
-        this.disabled = true;
-    }
-
-    /**
-     * Check if subsystem is disabled
-     *
-     * @return Subsystem state
-     */
-    @Override
-    public boolean isDisabled() {
-        return this.disabled;
-    }
-
-    /**
-     * Re-enable subsystem that is in a disabled state
-     */
-    @Override
-    public void enable() {
-        this.disabled = false;
     }
 
     @Override

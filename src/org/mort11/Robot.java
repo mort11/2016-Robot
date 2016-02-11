@@ -11,6 +11,8 @@ import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.SpinUp;
+import org.mort11.util.Looper;
+import org.mort11.util.powermanager.PDPUpdater;
 
 /**
  * Robot - Main Robot class
@@ -24,6 +26,7 @@ import org.mort11.commands.ee.SpinUp;
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Carl Hausman <carl@hausman.org>
+ * @author Jakob Shortell <jshortell@mort11.org>
  */
 public class Robot extends IterativeRobot {
     public static OI oi;
@@ -34,15 +37,18 @@ public class Robot extends IterativeRobot {
     Command driveArc;
     Command autonomousCommand;
     SendableChooser autonomousChooser;
+    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
 
     @Override
     public void robotInit() {
-
         driveArc = new DriveArc(1.33 * Math.PI, 0.5 * Math.PI);
 
         oi = new OI();
         spinUp = new SpinUp(20, false);
         intakeRoller = new IntakeRollers(false, true);
+
+        // Start loops
+        pdpMonitor.start();
 
         // Have operator choose autonomous mode
         autonomousChooser = new SendableChooser();
@@ -74,7 +80,9 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledInit() {
-        // None
+        // Stop loopable threads
+        pdpMonitor.stop();
+        System.out.println("Disabled. Code halted!");
     }
 
     @Override

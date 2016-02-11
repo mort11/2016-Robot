@@ -3,7 +3,6 @@ package org.mort11.subsystems.ee;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.PistonActuation;
-import org.mort11.util.MORTSubsystem;
 
 /**
  * Pneumatics - Does pneumatic things
@@ -11,7 +10,7 @@ import org.mort11.util.MORTSubsystem;
  * @author Ryan Thant <ryanthant1@gmail.com>
  * @author Seven Kurt <seven.kurt@motsd.org>
  */
-public class Pneumatics extends Subsystem implements MORTSubsystem {
+public class Pneumatics extends Subsystem {
     private DoubleSolenoid solenoid;
     private boolean disabled, engaged;
 
@@ -43,31 +42,5 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
 
     public boolean isEngaged() {
         return engaged;
-    }
-
-    /**
-     * Disable the subsystem
-     */
-    @Override
-    public void disable() {
-        this.disabled = true;
-    }
-
-    /**
-     * Check if subsystem is disabled
-     *
-     * @return Subsystem state
-     */
-    @Override
-    public boolean isDisabled() {
-        return this.disabled;
-    }
-
-    /**
-     * Re-enable subsystem that is in a disabled state
-     */
-    @Override
-    public void enable() {
-        this.disabled = false;
     }
 }

@@ -1,12 +1,13 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.EndEffectorConstants;
+import org.mort11.constants.PDPConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
+import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * IntakeArm - Controls the intake arm
@@ -16,10 +17,10 @@ import org.mort11.util.MORTSubsystem;
 public class IntakeArm extends Subsystem implements MORTSubsystem {
     private static Encoder intakeEnc;
     private boolean disabled = false;
-    private CANTalon intakeArm;
+    private MORTCANTalon intakeArm;
 
     public IntakeArm() {
-        intakeArm = new CANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID);
+        intakeArm = new MORTCANTalon(EndEffectorConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, "Intake Arm");
         intakeEnc = SensorDealer.getInstance().getIntakeArmEncoder();
         intakeEnc.reset();
         intakeEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);

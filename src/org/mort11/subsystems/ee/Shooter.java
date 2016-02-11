@@ -1,10 +1,11 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
+import org.mort11.constants.PDPConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
+import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * Shooter - Controls the flywheel
@@ -15,10 +16,10 @@ import org.mort11.util.MORTSubsystem;
  */
 public class Shooter extends Subsystem implements MORTSubsystem {
     private boolean disabled = false;
-    private CANTalon flywheel;
+    private MORTCANTalon flywheel;
 
     public Shooter() {
-        this.flywheel = new CANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID);
+        this.flywheel = new MORTCANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID, PDPConstants.FLYWHEEL, "Flywheel");
     }
 
     @Override
