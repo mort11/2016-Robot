@@ -27,6 +27,9 @@ public class SpeedController {
         if (fullSpeed) {
             return threshold(input);
         }
+        if (!fullSpeed) {
+            return speedLimit(input);
+        }
         return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
 
