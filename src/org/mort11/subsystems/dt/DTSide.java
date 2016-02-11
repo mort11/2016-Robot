@@ -1,11 +1,10 @@
 package org.mort11.subsystems.dt;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.constants.DrivetrainConstants;
 import org.mort11.util.MORTSubsystem;
-import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * DTSide - Base class controlling drivetrain sides
@@ -19,7 +18,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private static boolean disabled = false;
     private Gear currentGear = Gear.LOW_GEAR;
-    private MORTCANTalon motor1, motor2, motor3;
+    private CANTalon motor1, motor2, motor3;
     private boolean motor1Reverse, motor2Reverse, motor3Reverse;
     private DoubleSolenoid shifter;
     private Encoder encoder;
@@ -27,14 +26,18 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
     public DTSide(int motor1Port, int motor2Port, int motor3Port, int motor1PDPSlot, int motor2PDPSlot, int motor3PDPSlot,
                   String motor1Name, String motor2Name, String motor3Name, boolean motor1Reverse, boolean motor2Reverse,
                   boolean motor3Reverse, Encoder encoder) {
-        this.motor1 = new MORTCANTalon(motor1Port, motor1PDPSlot, motor1Name);
-        this.motor2 = new MORTCANTalon(motor2Port, motor2PDPSlot, motor2Name);
-        this.motor3 = new MORTCANTalon(motor3Port, motor3PDPSlot, motor3Name);
-        this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
+        this.motor1 = new CANTalon(motor1Port);
+        this.motor2 = new CANTalon(motor2Port);
+        this.motor3 = new CANTalon(motor3Port);
+        System.out.println("Initted motors");
+//        this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
+        System.out.println("Set solenoid");
         this.motor1Reverse = motor1Reverse;
         this.motor2Reverse = motor2Reverse;
         this.motor3Reverse = motor3Reverse;
+        System.out.println("Rev motors");
         this.encoder = encoder;
+        System.out.println("Init encoder");
     }
 
     public static boolean getDisabled() {
@@ -111,7 +114,8 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      * @return Output voltage [Averaged]
      */
     public double getAvgTalonVoltage() {
-        return (motor1.getVoltage() + motor2.getVoltage() + motor3.getVoltage()) / 3;
+//        return (motor1.getVoltage() + motor2.getVoltage() + motor3.getVoltage()) / 3;
+        return 0;
     }
 
     @Override

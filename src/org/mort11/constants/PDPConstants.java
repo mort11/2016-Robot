@@ -12,8 +12,8 @@ public class PDPConstants {
     public static final int LEFT_DT_2 = 1;
     public static final int LEFT_DT_3 = 2;
 
-    public static final int RIGHT_DT_1 = 3;
-    public static final int RIGHT_DT_2 = 4;
+    public static final int RIGHT_DT_1 = 12;
+    public static final int RIGHT_DT_2 = 14;
     public static final int RIGHT_DT_3 = 5;
 
     public static final int INTAKE_ARM = 6;
@@ -23,6 +23,6 @@ public class PDPConstants {
     public static final int ROLLERS = 8;
 
     // TODO: 2/10/16 Get appropriate current limits
-    public static final double MOTOR_MAX_VOLTAGE = 6;
-    public static final double MOTOR_MIN_REENABLE_VOLTAGE = 4;
+    public static final double MOTOR_MAX_VOLTAGE = 9;
+    public static final double MOTOR_MIN_REENABLE_VOLTAGE = 7;
 }

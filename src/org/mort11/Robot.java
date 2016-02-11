@@ -1,8 +1,16 @@
 package org.mort11;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.mort11.commands.auton.DriveArc;
+import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.auton.WaitTime;
+import org.mort11.util.Looper;
+import org.mort11.util.powermanager.PDPUpdater;
 
 /**
  * Robot - Main Robot class
@@ -22,23 +30,23 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
 
-    //    Command autonomousCommand;
-//    SendableChooser autonomousChooser;
-//    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
+    Command autonomousCommand;
+    SendableChooser autonomousChooser;
+    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
 
     @Override
     public void robotInit() {
         oi = new OI();
 
         // Start loops
-//        pdpMonitor.start();
+        pdpMonitor.start();
 
         // Have operator choose autonomous mode
-//        autonomousChooser = new SendableChooser();
-//        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
-//        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
-//        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
-//        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
+        autonomousChooser = new SendableChooser();
+        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
+        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
+        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
+        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     }
 
     @Override
@@ -57,13 +65,13 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-//        if (autonomousCommand != null) autonomousCommand.cancel();
+        if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     @Override
     public void disabledInit() {
         // Stop loopable threads
-//        pdpMonitor.stop();
+        pdpMonitor.stop();
         System.out.println("Disabled. Code halted!");
     }
 

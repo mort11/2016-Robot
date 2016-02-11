@@ -2,7 +2,6 @@ package org.mort11.util.powermanager;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.SpeedController;
 import org.mort11.util.MORTSubsystem;
 
 /**
@@ -10,7 +9,7 @@ import org.mort11.util.MORTSubsystem;
  *
  * @author Matt Turi <mturi@mort11.org>
  */
-public class MORTCANTalon extends CANTalon implements SpeedController, MORTSubsystem {
+public class MORTCANTalon extends CANTalon implements MORTSubsystem {
     public String name;
     private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private int pdpSlot;
@@ -28,7 +27,8 @@ public class MORTCANTalon extends CANTalon implements SpeedController, MORTSubsy
         this.talon = new CANTalon(deviceNumber);
         this.pdpSlot = pdpSlot;
         this.name = subsystemName;
-        MotorHolder.motors.add(this);
+        System.out.println(String.format("Created new MORTCANTalon [%s] [ID-%s]", name, String.valueOf(talon.getDeviceID())));
+//        MotorHolder.motors.add(this);
     }
 
     /**
@@ -36,43 +36,6 @@ public class MORTCANTalon extends CANTalon implements SpeedController, MORTSubsy
      */
     public double getCurrent() {
         return pdp.getCurrent(pdpSlot);
-    }
-
-    @Override
-    public double get() {
-        return talon.get();
-    }
-
-    @Override
-    public void set(double speed, byte syncGroup) {
-        talon.set(speed);
-    }
-
-    /**
-     * Set wrapped CANTalon to speed, unless disabled
-     *
-     * @param speed Speed to set talon to
-     */
-    @Override
-    public void set(double speed) {
-        if (!disabled) {
-            set(speed, (byte) 0);
-        }
-    }
-
-    @Override
-    public boolean getInverted() {
-        return false;
-    }
-
-    @Override
-    public void setInverted(boolean isInverted) {
-        talon.setInverted(isInverted);
-    }
-
-    @Override
-    public void pidWrite(double output) {
-        talon.pidWrite(output);
     }
 
     /**

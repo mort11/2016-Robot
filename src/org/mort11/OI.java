@@ -45,11 +45,11 @@ public class OI {
 
 
     public double getLeftJoy() {
-        return SpeedController.speedLimit(SpeedController.threshold(-leftJoystick.getY()));
+        return SpeedController.threshold(-leftJoystick.getY());
     }
 
     public double getRightJoy() {
-        return SpeedController.speedLimit(SpeedController.threshold(rightJoystick.getY()));
+        return SpeedController.threshold(rightJoystick.getY());
     }
 
     public double getEEJoy() {
