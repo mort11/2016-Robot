@@ -27,25 +27,27 @@ public class Shooter extends Subsystem implements MORTSubsystem{
 
     public void set(double speed) {
         if(isDisabled == false){
-        	armMotor.set(speed);
+        	armMotor.set(speed); //sets motor speed on arm if disabled is false
         }
     }
-
+  //returns whether or not the limit switch is on or not
     public boolean islimSwitch() {
-        return SensorDealer.getInstance().getArmLimitSwitch().get();
+        return SensorDealer.getInstance().getArmLimitSwitch().get(); //returns whether or not the limit switch is on or not
     }
 
+    // returns the distance taken from the arm encoder
     public double getDistance() {
-        return SensorDealer.getInstance().getArmEncoder().getDistance();
+        return SensorDealer.getInstance().getArmEncoder().getDistance(); 
     }
-
+// returns the angle the arm is at
     public double getAngle() {
         return SensorDealer.getInstance().getArmPot().get();
     }
+    // returns the rate the shooter is spinning at 
     public double getRate(){
     	return SensorDealer.getInstance().getShooterEncoder().getRate();
     }
-    
+    // disables the arm
     public void disable(){
     	isDisabled = true;
     }

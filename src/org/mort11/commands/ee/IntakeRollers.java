@@ -8,31 +8,38 @@ import org.mort11.subsystems.ee.Rollers;
 /**
  * IntakeRollers - Spins the intake rollers at a 
  *
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Jakob Shortell <jshortell@mort11.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Ryan Thant <ryanthant1@gmail.com>
  */
 public class IntakeRollers extends Command {
-
+	public enum Move{
+		FOREWARD, BACKWARD, STOP, 
+	}
     boolean in, out;
-    Rollers rollers = Robot.adaptor.rollers;
+    Rollers roller = Robot.adaptor.rollers;
+    Move move;
 
-    public IntakeRollers(boolean in, boolean out) {
-        this.in = in;
-        this.out = out;
-        requires(rollers);
+    public IntakeRollers(Move move) {
+    	this.move = move;
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        if (in == out) {
-            rollers.set(0);
-        } else if (in) {
-            rollers.set(EndEffectorConstants.ROLLER_SPEED);
-        } else {
-            rollers.set(-1 * EndEffectorConstants.ROLLER_SPEED);
-        }
+       switch (move){
+       		case FOREWARD:
+       			roller.set(EndEffectorConstants.ROLLER_SPEED);
+       			break;
+   
+       		case BACKWARD:
+       			roller.set(EndEffectorConstants.ROLLER_SPEED);
+       			break;
+       		case STOP:
+       			roller.set(EndEffectorConstants.ROLLER_SPEED);
+       }
     }
 
     protected boolean isFinished() {

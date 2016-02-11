@@ -11,9 +11,6 @@ import org.mort11.util.MORTSubsystem;
  */
 
 public class Hood extends Subsystem implements MORTSubsystem{
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	DoubleSolenoid sol;
 	boolean engaged;
 	boolean isDisabled = false;

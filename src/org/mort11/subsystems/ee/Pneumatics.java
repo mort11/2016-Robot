@@ -24,7 +24,7 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new PistonActuation());
     }
-
+//if engaged set solenoid to kForward
     public void setSolenoid(boolean engage) {
         if (isDisabled == false) {
             if (engage) {

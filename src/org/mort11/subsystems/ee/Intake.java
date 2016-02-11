@@ -22,12 +22,12 @@ public class Intake extends Subsystem implements MORTSubsystem {
         SensorDealer.getInstance().getArmEncoder().reset();
         SensorDealer.getInstance().getArmEncoder().setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
     }
-
+// returns the distance gotten from the arm encoder
     public static double getDistance() {
         System.out.println(SensorDealer.getInstance().getArmEncoder().get());
         return SensorDealer.getInstance().getArmEncoder().get();
     }
-
+// returns the angle of the intake
     public static double getAngle() {
         return getDistance() * EndEffectorConstants.ROLLER_DEGREE_PER_TICK;
     }
@@ -35,7 +35,7 @@ public class Intake extends Subsystem implements MORTSubsystem {
     protected void initDefaultCommand() {
     	setDefaultCommand(new JoystickIntake());
     }
-    
+    // sets the speed of the intake arm 
     public void set(double speed) {
         if (!isDisabled) {
             intakeArm.set(speed);
