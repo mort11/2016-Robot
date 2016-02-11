@@ -3,6 +3,7 @@ package org.mort11.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.OI;
+import org.mort11.util.SpeedController;
 
 /**
  * FullSpeed - Allows the robot to drive at fullSpeed for a specified amount of time in teleop
@@ -22,7 +23,7 @@ public class FullSpeed extends Command {
     public FullSpeed(double time) {
         this.duration = time;
         this.timer = new Timer();
-        OI.count_fullSpeed++;
+        SpeedController.fsUsageCount++;
     }
 
     /**
@@ -36,7 +37,7 @@ public class FullSpeed extends Command {
      * Keep full speed enabled while fullSpeedCounter is less than 1
      */
     protected void execute() {
-        if (OI.count_fullSpeed > 1) {
+        if (SpeedController.fsUsageCount > 1) {
             end();
         } else {
             fullSpeedEnabled = true;

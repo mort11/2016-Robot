@@ -2,6 +2,7 @@ package org.mort11.util;
 
 import edu.wpi.first.wpilibj.Timer;
 import org.mort11.Robot;
+import org.mort11.constants.DrivetrainConstants;
 
 /**
  * SpeedController - Functions to control speed manage
@@ -10,9 +11,8 @@ import org.mort11.Robot;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class SpeedController {
-    public static boolean fullSpeed;
-    private static int fsUsageCount;
-    private static Timer timer = new Timer();
+    public static boolean fullSpeed = false;
+    public static int fsUsageCount = 0;
 
     /**
      * Applies a deadband to the input to prevent jitter
@@ -24,6 +24,9 @@ public class SpeedController {
         if (Math.abs(input) <= 0.05) {
             return 0;
         }
+        if (fullSpeed) {
+            return threshold(input);
+        }
         return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
     }
 
@@ -34,29 +37,11 @@ public class SpeedController {
      * @return Speed limited value
      */
     public static double speedLimit(double input) {
-        if (Robot.oi.fullSpeed.get()) {
-            fullSpeed = true;
-            fsUsageCount++;
+        if (input >= DrivetrainConstants.SPEED_LIMIT) {
+            input = DrivetrainConstants.SPEED_LIMIT;
+        } else if (input <= -DrivetrainConstants.SPEED_LIMIT) {
+            input = -DrivetrainConstants.SPEED_LIMIT;
         }
-        if (fullSpeed) {
-            timer.start();
-            fullSpeed = false;
-        }
-        if (timer.get() < 10 && timer.get() > 0 && fsUsageCount <= 20) {
-            return input;
-        }
-        if (timer.get() >= 10) {
-            timer.stop();
-            timer.reset();
-            System.out.println("Full Speed Duration: " + timer.get());
-        }
-        if (!fullSpeed) {
-            if (input >= .75) {
-                input = .75;
-            } else if (input <= -.75) {
-                input = -.75;
-            }
-        }
-        return input;
+        return threshold(input);
     }
 }
