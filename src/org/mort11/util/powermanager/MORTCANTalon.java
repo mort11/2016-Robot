@@ -101,4 +101,11 @@ public class MORTCANTalon extends CANTalon implements SpeedController, MORTSubsy
     public void enable() {
         this.disabled = false;
     }
+
+    /**
+     * Get voltage
+     */
+    public double getVoltage() {
+        return this.talon.getOutputVoltage();
+    }
 }

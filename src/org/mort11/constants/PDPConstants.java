@@ -23,5 +23,6 @@ public class PDPConstants {
     public static final int ROLLERS = 8;
 
     // TODO: 2/10/16 Get appropriate current limits
-    public static final double MOTOR_MAX_CURRENT = .5;
+    public static final double MOTOR_MAX_VOLTAGE = 6;
+    public static final double MOTOR_MIN_REENABLE_VOLTAGE = 4;
 }
