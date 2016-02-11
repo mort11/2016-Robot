@@ -41,7 +41,17 @@ public class IntakeArm extends Subsystem implements MORTSubsystem {
      * @return Encoder angle
      */
     public static double getAngle() {
-        return getDistance() * EndEffectorConstants.INTAKE_DEGREE_PER_TICK;
+//        return getDistance() * EndEffectorConstants.INTAKE_DEGREE_PER_TICK;
+        return SensorDealer.getInstance().getArmPot().get();
+    }
+
+    /**
+     * Check if arm is at limit switch
+     *
+     * @return True if arm at limit switch
+     */
+    public boolean islimSwitch() {
+        return SensorDealer.getInstance().getArmLimitSwitch().get();
     }
 
     @Override

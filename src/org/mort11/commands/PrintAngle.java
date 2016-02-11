@@ -1,10 +1,11 @@
 package org.mort11.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.sensors.SensorDealer;
 
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
- * PrintAngle - Prints an angle
+ * PrintAngle - Prints the current yaw of the NavX
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
@@ -14,11 +15,11 @@ public class PrintAngle extends Command {
     }
 
     protected void initialize() {
-        SensorDealer.getInstance().getAHRS().zeroYaw();
+    	SensorDealer.getInstance().getAHRS().zeroYaw();
     }
 
     protected void execute() {
-        System.out.println(SensorDealer.getInstance().getAHRS().getYaw());
+    	System.out.println(SensorDealer.getInstance().getAHRS().getYaw());
     }
 
     protected boolean isFinished() {

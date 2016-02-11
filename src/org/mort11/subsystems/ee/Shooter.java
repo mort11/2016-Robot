@@ -39,30 +39,6 @@ public class Shooter extends Subsystem implements MORTSubsystem {
     }
 
     /**
-     * TODO: Belongs in IntakeArm
-     */
-    @Deprecated
-    public boolean islimSwitch() {
-        return SensorDealer.getInstance().getArmLimitSwitch().get();
-    }
-
-    /**
-     * TODO: Belongs in IntakeArm
-     */
-    @Deprecated
-    public double getDistance() {
-        return SensorDealer.getInstance().getIntakeArmEncoder().getDistance();
-    }
-
-    /**
-     * TODO: Belongs in IntakeArm
-     */
-    @Deprecated
-    public double getAngle() {
-        return SensorDealer.getInstance().getArmPot().get();
-    }
-
-    /**
      * Get speed flywheel is spinning at
      *
      * @return Flywheel speed

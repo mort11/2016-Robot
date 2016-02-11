@@ -4,13 +4,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.subsystems.dt.DTSide;
 
 /**
- * Shift - ToDo class description
+ * Shift - Toggles gear shift
  *
  * @author Matt Turi <mturi@mort11.org>
  */
 public class Shift extends Command {
+
     @Override
     protected void initialize() {
+
     }
 
     @Override
@@ -29,5 +31,6 @@ public class Shift extends Command {
 
     @Override
     protected void interrupted() {
+
     }
 }

@@ -11,7 +11,7 @@ import org.mort11.constants.OperatorInterfaceConstants;
 import org.mort11.util.SpeedController;
 
 /**
- * OI - Joystick mapping to buttons and other control systems
+ * OI - Joystick mapping to buttons and other math stuff
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
@@ -22,6 +22,7 @@ import org.mort11.util.SpeedController;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
+
     // Joysticks
     public Joystick leftJoystick = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
     public Joystick rightJoystick = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
@@ -29,7 +30,6 @@ public class OI {
 
     // Right drive joystick
     public Button fullSpeed = new JoystickButton(rightJoystick, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
-    public Button shift = new JoystickButton(rightJoystick, 4);
 
     // EE Joystick
     public Button piston = new JoystickButton(endEffector, OperatorInterfaceConstants.PISTON_BUTTON);
@@ -37,6 +37,7 @@ public class OI {
     public Button intakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.OUTTAKE_BUTTON);
     public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
+    public Button shift = new JoystickButton(rightJoystick, OperatorInterfaceConstants.SHIFT_BUTTON);
 
     public OI() {
         shift.whenPressed(new Shift());

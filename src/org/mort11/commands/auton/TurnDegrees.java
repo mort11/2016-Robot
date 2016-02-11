@@ -2,6 +2,7 @@ package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
@@ -51,7 +52,6 @@ public class TurnDegrees extends Command {
             System.out.println("speed" + speed);
             SmartDashboard.putNumber("Current Angle", currentAngle);
             SmartDashboard.putNumber("Speed", speed);
-
             // Clockwise turning
             if (!isReverse) {
                 left.set(speed);
@@ -81,4 +81,5 @@ public class TurnDegrees extends Command {
 
     protected void interrupted() {
     }
+
 }

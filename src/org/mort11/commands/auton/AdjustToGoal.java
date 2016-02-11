@@ -29,14 +29,11 @@ public class AdjustToGoal extends Command {
     protected void execute() {
         this.camera.setPicture();
         double x_val = camera.getX();
-
         if (x_val == -1) {
             System.out.println("Not found");
             this.isFinished = true;
         }
-
         System.out.println("Centering");
-
         if (x_val < 135) {
             this.left.set(-0.15);
             this.right.set(0.15);
@@ -49,7 +46,6 @@ public class AdjustToGoal extends Command {
             System.out.println("Centered");
             this.isFinished = true;
         }
-
         this.camera.setPicture();
     }
 

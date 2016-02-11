@@ -14,7 +14,7 @@ public class FullSpeed extends Command {
     public static boolean fullSpeedEnabled = false;
     private Timer timer;
     private double duration;
-
+    
     /**
      * Ensure that full speed (robot at max power) is only used once per match
      *
@@ -42,6 +42,7 @@ public class FullSpeed extends Command {
         } else {
             fullSpeedEnabled = true;
         }
+       //wait
     }
 
     /**
@@ -56,6 +57,7 @@ public class FullSpeed extends Command {
         timer.stop();
         timer.reset();
     }
+
 
     protected void interrupted() {
     }

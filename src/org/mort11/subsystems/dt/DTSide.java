@@ -15,6 +15,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Abi Koutha <akoutha7@gmail.com>
+ * @author Jakob Shortell <jshortell@mort11.org>
  */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     public static Gear currentGear = Gear.LOW_GEAR;
@@ -61,6 +62,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         if (gear == Gear.LOW_GEAR) {
             Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that low gear is solenoid kForward
         }
+
         // High gear
         else {
             Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that high gear is solenoid kReverse
@@ -130,13 +132,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         disabled = false;
     }
 
-    /**
-     * Get averaged voltage being output by talon
-     *
-     * @return Output voltage [Averaged]
-     */
-    public double getAvgTalonVoltage() {
-        return (motor1.getVoltage() + motor2.getVoltage() + motor3.getVoltage()) / 3;
+    public void initDefaultCommand() {
     }
 
     public static final class Gear {
