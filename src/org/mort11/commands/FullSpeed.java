@@ -1,7 +1,6 @@
 package org.mort11.commands;
 
 import org.mort11.OI;
-import org.mort11.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 

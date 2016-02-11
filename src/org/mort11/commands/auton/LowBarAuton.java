@@ -6,7 +6,9 @@ import org.mort11.Robot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
+ * LowBarAuton - Code for execution during auton
  *
+ * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class LowBarAuton extends CommandGroup {
     

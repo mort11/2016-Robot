@@ -10,9 +10,10 @@ import com.ni.vision.NIVision.Range; // "..."
 import edu.wpi.first.wpilibj.CameraServer; // "..."
 
 /**
- * This class takes a picture, finds the location of the largest object of a pretested 
- * color in terms of X and Y, and also identifies its size. These variables can also be
- * returned, and will be printed to the Riolog.
+ * Camera - takes a picture, finds the location of the largest object of a pretested 
+ * color in terms of X and Y, and also identifies its size
+ * 
+ *@author Carl Hausman <carl@hausman.org>
  */
 public class Camera extends Subsystem {
 	
@@ -117,7 +118,6 @@ public class Camera extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
     }
     
     
