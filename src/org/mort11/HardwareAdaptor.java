@@ -41,23 +41,15 @@ public class HardwareAdaptor {
     public HardwareAdaptor() {
         this.pdp = new PowerDistributionPanel();
         this.cam = new Camera();
-        compressor = new Compressor(HardwareConstants.PCM_ID);
-        System.out.println("Initted hardware");
+        this.compressor = new Compressor(HardwareConstants.PCM_ID);
 
         this.rollers = new Rollers();
-        System.out.println("rollers");
         this.intake = new IntakeArm();
-        System.out.println("arm");
         this.shooter = new Shooter();
-        System.out.println("shooter");
 
         this.accelerometer = new BuiltInAccelerometer();
-        System.out.println("Acceleromter initted");
 
-        System.out.println("DT initting");
         this.leftSide = new DTLeft();
-        System.out.println("left");
         this.rightSide = new DTRight();
-        System.out.println("right");
     }
 }
