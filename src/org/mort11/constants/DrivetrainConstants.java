@@ -26,4 +26,5 @@ public class DrivetrainConstants {
     public static final double INCHES_PER_PULSE_LEFT = 6 * Math.PI / ENC_CPR_LEFT;
     public static final double INCHES_PER_PULSE_RIGHT = 6 * Math.PI / ENC_CPR_RIGHT;
     public static final double kRobotRadius = 9.75;
+    public static final double SPEED_LIMIT = 0.75;
 }
