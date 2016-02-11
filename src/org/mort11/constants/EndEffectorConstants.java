@@ -8,8 +8,8 @@ package org.mort11.constants;
 public class EndEffectorConstants {
     public static final int ARM_TALON_PORT = 1; // TODO: 2/2/16 Get port for Arm talon
     //public static final int ARM_TALL = 10; // TODO: 2/2/16 Fix variable names and get proper ports
-
-    public static final int ROLLER_TALON_PORT = 7;
+    public static final int SHOOTER_PORT = 6;
+    public static final int ROLLER_TALON_PORT = 2;
 
     public static final int EE_CPR = 256;
     public static final double EE_HEIGHT_PER_TURN = 5.0379; // inches

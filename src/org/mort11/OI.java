@@ -36,6 +36,7 @@ public class OI {
     public Button fullSpeed = new JoystickButton(right, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
     public Button rollerUp = new JoystickButton(ee, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
     
+    
     private Timer timer;
 
     public OI() {
@@ -101,6 +102,9 @@ public class OI {
     }
     public double getEEJoy(){
     	return ee.getY();
+    }
+    public double getEE_Z() {
+    	return ee.getZ();
     }
 }
 

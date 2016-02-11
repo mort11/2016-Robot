@@ -2,6 +2,8 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import org.mort11.commands.ee.JoystickShooter;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
@@ -16,10 +18,11 @@ public class Shooter extends Subsystem implements MORTSubsystem{
     private CANTalon armMotor;
     boolean isDisabled = false;
     public Shooter() {
-        armMotor = new CANTalon(EndEffectorConstants.ARM_TALON_PORT);
+        armMotor = new CANTalon(EndEffectorConstants.SHOOTER_PORT);
     }
 
     public void initDefaultCommand() {
+    	setDefaultCommand(new JoystickShooter());
     }
 
     public void set(double speed) {
@@ -46,4 +49,5 @@ public class Shooter extends Subsystem implements MORTSubsystem{
     public void disable(){
     	isDisabled = true;
     }
+    
 }
