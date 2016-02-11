@@ -24,11 +24,11 @@ public class Rollers extends Subsystem {
     protected void initDefaultCommand() {
     	
     }
-
+//sets roller motor speed 
     public void set(double speed) {
         rollerMotor.set(speed);
     }
-
+// returns distance gotten  from encoder
     public double getDistance() {
         return rollerEnc.getDistance();
     }
