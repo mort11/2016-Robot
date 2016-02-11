@@ -7,6 +7,7 @@ import org.mort11.subsystems.LED;
 
 /**
  * @author Jakob Shortell <jshortell@mort11.org>
+ * @author Seven Kurt <seven.kurt@motsd.org>
  */
 public class LEDControl extends Command {
 
@@ -30,10 +31,24 @@ public class LEDControl extends Command {
     		led.set(255, 0, 0);
     		break;
     	case ORANGE:
-    		
+    		led.set(255,165,0);
+    		break;
+    	case YELLOW:
+    		led.set(255, 255, 0);
+    		break;
+    	case GREEN:
+    		led.set(0, 255, 0);
+    		break;
+    	case BLUE:
+    		led.set(0, 0, 255);
+    		break;
+    	case INDIGO:
+    		led.set(75, 0, 130);
+    		break;
+    	case VIOLET:
+    		led.set(238, 130, 238);
     		break;
     		
-    	
     	}
     }
 
