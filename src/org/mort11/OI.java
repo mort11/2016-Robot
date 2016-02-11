@@ -3,7 +3,6 @@ package org.mort11;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.mort11.commands.FullSpeed;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.RollerUp;
 import org.mort11.commands.ee.SpinUp;
@@ -38,7 +37,6 @@ public class OI {
     public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
 
     public OI() {
-        fullSpeed.whenPressed(new FullSpeed(10));
         spinUp.toggleWhenPressed(new SpinUp(20, false));
         intakeRoller.toggleWhenPressed(new IntakeRollers(true, false));
         outtakeRoller.toggleWhenPressed(new IntakeRollers(false, true));

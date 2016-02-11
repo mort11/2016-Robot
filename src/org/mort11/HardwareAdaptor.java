@@ -1,20 +1,18 @@
 package org.mort11;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import org.mort11.constants.HardwareConstants;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
-//import org.mort11.subsystems.ee.Intake;
 import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
-//import org.mort11.subsystems.LED;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -39,28 +37,27 @@ public class HardwareAdaptor {
     // Subsystems
     public DTSide leftSide;
     public DTSide rightSide;
-    //public LED led;
-
-    // Motors
-   // public MORTCANTalon intakeArmMotor;
 
     public HardwareAdaptor() {
-        pdp = new PowerDistributionPanel();
-        cam = new Camera();
+        this.pdp = new PowerDistributionPanel();
+        this.cam = new Camera();
         compressor = new Compressor(HardwareConstants.PCM_ID);
+        System.out.println("Initted hardware");
 
-        // Init motors
-     //  intakeArmMotor = new MORTCANTalon(EndEffectorConstants.ARM_TALON_PORT, PDPMap.INTAKE_ARM);
+        this.rollers = new Rollers();
+        System.out.println("rollers");
+        this.intake = new IntakeArm();
+        System.out.println("arm");
+        this.shooter = new Shooter();
+        System.out.println("shooter");
 
-        rollers = new Rollers();
-       //intake = new Intake("Intake", intakeArmMotor, SensorDealer.getInstance().getArmEncoder());
-        shooter = new Shooter();
-        // piston = new Pneumatics();
+        this.accelerometer = new BuiltInAccelerometer();
+        System.out.println("Acceleromter initted");
 
-        accelerometer = new BuiltInAccelerometer();
-
-        leftSide = new DTLeft();
-        rightSide = new DTRight();
-        //led = new LED();
+        System.out.println("DT initting");
+        this.leftSide = new DTLeft();
+        System.out.println("left");
+        this.rightSide = new DTRight();
+        System.out.println("right");
     }
 }

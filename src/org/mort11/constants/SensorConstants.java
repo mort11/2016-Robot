@@ -14,7 +14,7 @@ public class SensorConstants {
 
     public static final int INTAKE_ARM_ENCODER_A = 4; // TODO: 2/2/16 Get encoder port A for Arm
     public static final int INTAKE_ARM_ENCODER_B = 5; // TODO: 2/2/16 Get encoder port B for Arm
-    public static final int ARM_LIM_SWITCH_PORT = 6;
+    public static final int ARM_LIM_SWITCH_PORT = 9;
     public static final int ARM_POT = 7;
 
     public static final int SHOOTER_ENCODER_A = 6;
