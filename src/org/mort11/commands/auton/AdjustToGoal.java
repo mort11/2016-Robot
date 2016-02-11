@@ -4,25 +4,24 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 
 /**
+ * AdjustToGoal - Adjusts the robots orientation to line up with the goal
  *
+ * @author Carl Hausman <carl@hausman.org>
  */
 public class AdjustToGoal extends Command {
+    
     boolean finished = false;
 
     public AdjustToGoal() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
         requires(Robot.adaptor.leftSide);
         requires(Robot.adaptor.rightSide);
         requires(Robot.adaptor.cam);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
         //SensorDealer.getInstance().getAHRS().zeroYaw();
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         Robot.adaptor.cam.setPicture();
         System.out.println("looping");
@@ -47,17 +46,14 @@ public class AdjustToGoal extends Command {
         Robot.adaptor.cam.setPicture();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return finished;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+  
     protected void interrupted() {
     }
 }

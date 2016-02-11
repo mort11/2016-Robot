@@ -75,9 +75,5 @@ public class TurnDegrees extends Command {
     protected void interrupted() {
     }
 
-    //used to determine if robot is close enough to target to stop
-//    protected boolean inThresh() {
-//        //placeholder values, must test
-//        return speed < .1 && speed > -.1;
-//    }
+
 }
