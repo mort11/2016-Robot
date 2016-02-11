@@ -6,6 +6,8 @@ import org.mort11.Robot;
 import org.mort11.subsystems.LED;
 
 /**
+ * LEDControl - Controls the LED's
+ * 
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 public class LEDControl extends Command {
