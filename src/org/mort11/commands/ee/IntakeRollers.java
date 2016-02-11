@@ -8,6 +8,8 @@ import org.mort11.subsystems.ee.Rollers;
 /**
  * IntakeRollers - Spins the intake rollers at a 
  *
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Jakob Shortell <jshortell@mort11.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Ryan Thant <ryanthant1@gmail.com>
  */
