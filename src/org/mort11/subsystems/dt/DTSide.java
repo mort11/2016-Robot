@@ -139,10 +139,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         return (motor1.getVoltage() + motor2.getVoltage() + motor3.getVoltage()) / 3;
     }
 
-    @Override
-    public void initDefaultCommand() {
-    }
-
     public static final class Gear {
         private static final Gear HIGH_GEAR = new Gear();
         private static final Gear LOW_GEAR = new Gear();

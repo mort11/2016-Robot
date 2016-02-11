@@ -7,6 +7,15 @@ import com.ni.vision.NIVision.RawData;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image; 
+import com.ni.vision.NIVision.RawData;
+import com.ni.vision.NIVision.Range; 
+
+import edu.wpi.first.wpilibj.CameraServer; 
+
+
 /**
  * This class takes a picture, finds the location of the largest object of a pretested
  * color in terms of X and Y, and also identifies its size. These variables can also be
