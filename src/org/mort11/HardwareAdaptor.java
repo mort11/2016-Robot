@@ -9,6 +9,7 @@ import org.mort11.subsystems.ee.Intake;
 import org.mort11.subsystems.ee.Pneumatics;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
+import org.mort11.subsystems.LED;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -38,6 +39,7 @@ public class HardwareAdaptor {
     // Subsystems
     public DTSide leftSide;
     public DTSide rightSide;
+    public LED led;
 
     // Motors
    // public MORTCANTalon intakeArmMotor;
@@ -59,5 +61,6 @@ public class HardwareAdaptor {
 
         leftSide = new DTLeft();
         rightSide = new DTRight();
+        led = new LED();
     }
 }

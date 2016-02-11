@@ -17,6 +17,7 @@ import org.mort11.util.MORTSubsystem;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  * @author Abi Koutha <akoutha7@gmail.com>
+ * @author Jakob Shortell <jshortell@mort11.org>
  */
 public abstract class DTSide extends Subsystem implements MORTSubsystem {
     private static boolean disabled = false;

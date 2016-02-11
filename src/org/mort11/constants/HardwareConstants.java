@@ -7,4 +7,7 @@ package org.mort11.constants;
  */
 public class HardwareConstants {
     public static final int PCM_ID = 20;
+    public static final int RED_LIGHT = 1; //TBD
+    public static final int GREEN_LIGHT = 2;
+    public static final int BLUE_LIGHT = 3;
 }
