@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.ee.IntakeRollers;
+import org.mort11.commands.ee.IntakeRollers.Move;
+import org.mort11.commands.ee.JoystickShooter;
 
 /**
  * Robot - Main Robot class
@@ -29,6 +31,7 @@ public class Robot extends IterativeRobot {
     Command spinUp;
     Command driveArc;
     Command autonomousCommand;
+    Command joystickshoot;
     SendableChooser autonomousChooser;
 
     @Override
@@ -37,7 +40,9 @@ public class Robot extends IterativeRobot {
 
         oi = new OI();
         spinUp = new SpinUp(20, false);
-        intakeRoller = new IntakeRollers(false, true);
+        //joystickshoot = new JoystickShooter();
+        
+        //intakeRoller = new IntakeRollers(Move.FOREWARD);
 
         // Have operator choose autonomous mode
 //        autonomousChooser = new SendableChooser();
@@ -76,6 +81,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
 
     }
 

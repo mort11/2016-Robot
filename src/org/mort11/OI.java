@@ -43,12 +43,12 @@ public class OI {
     public OI() {
         timer = new Timer();
         
-        spinUp.toggleWhenPressed(new SpinUp(20, false));
+        //spinUp.toggleWhenPressed(new SpinUp(20, false));
         intakeRoller.whileHeld(new IntakeRollers(Move.FOREWARD));
         outtakeRoller.whileHeld(new IntakeRollers(Move.BACKWARD));
         intakeRoller.whenReleased(new IntakeRollers(Move.STOP));
         outtakeRoller.whenReleased(new IntakeRollers(Move.STOP));
-        rollerUp.toggleWhenPressed(new RollerUp(182)); // will keep roller up at 182 degrees when toggled 
+       // rollerUp.toggleWhenPressed(new RollerUp(182)); // will keep roller up at 182 degrees when toggled 
         //piston.toggleWhenPressed(new PistonActuation());
     }
 

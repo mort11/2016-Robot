@@ -13,7 +13,7 @@ import org.mort11.sensors.SensorDealer;
  */
 public class Rollers extends Subsystem {
 
-    private CANTalon rollerMotor = new CANTalon(6);
+    private CANTalon rollerMotor = new CANTalon(2);
     private Encoder rollerEnc = SensorDealer.getInstance().getShooterEncoder();
 
     public Rollers() {
