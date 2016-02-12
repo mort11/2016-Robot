@@ -3,7 +3,7 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.subsystems.ee.Pneumatics;
+import org.mort11.subsystems.ee.Brake;
 
 /**
  * PistonActuation - Actuates a piston
@@ -15,7 +15,7 @@ import org.mort11.subsystems.ee.Pneumatics;
 public class PistonActuation extends Command {
 
     boolean isPressed;
-    private Pneumatics piston = Robot.adaptor.piston;
+    private Brake piston = Robot.adaptor.piston;
 
     public PistonActuation() {
         requires(piston);

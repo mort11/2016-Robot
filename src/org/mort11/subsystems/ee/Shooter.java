@@ -32,7 +32,7 @@ public class Shooter extends Subsystem implements MORTSubsystem{
     }
   //returns whether or not the limit switch is on or not
     public boolean islimSwitch() {
-        return SensorDealer.getInstance().getArmLimitSwitch().get(); //returns whether or not the limit switch is on or not
+        return SensorDealer.getInstance().getArmLimitSwitch().get(); 
     }
 
     // returns the distance taken from the arm encoder

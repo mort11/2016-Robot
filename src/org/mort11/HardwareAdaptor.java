@@ -9,7 +9,7 @@ import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Intake;
-import org.mort11.subsystems.ee.Pneumatics;
+import org.mort11.subsystems.ee.Brake;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
 
@@ -27,7 +27,7 @@ public class HardwareAdaptor {
     public Rollers rollers;
     public Intake intake;
     public Shooter shooter;
-    public Pneumatics piston;
+    public Brake piston;
 
     // Navigational instruments
     public Accelerometer accelerometer;
