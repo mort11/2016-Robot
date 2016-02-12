@@ -11,12 +11,12 @@ import org.mort11.util.MORTSubsystem;
  * @author Ryan Thant <ryanthant1@gmail.com>
  * @author Seven Kurt <seven.kurt@motsd.org>
  */
-public class Pneumatics extends Subsystem implements MORTSubsystem {
+public class Brake extends Subsystem implements MORTSubsystem {
     DoubleSolenoid solenoid;
     boolean engaged;
     boolean isDisabled;
 
-    public Pneumatics(int engagedPort, int notEngagedPort) {
+    public Brake(int engagedPort, int notEngagedPort) {
         solenoid = new DoubleSolenoid(30, engagedPort, notEngagedPort);
         engaged = false;
     }
