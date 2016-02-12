@@ -30,7 +30,7 @@ public class RollerUp extends Command {
     }
 
     protected void execute() {
-        currentAngle = IntakeArm.getAngle();
+        currentAngle = intake.getAngle();
         speed = pd.getOutput(currentAngle);
         intake.set(speed);
     }

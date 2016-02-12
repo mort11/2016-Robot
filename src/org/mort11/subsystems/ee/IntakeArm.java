@@ -40,7 +40,7 @@ public class IntakeArm extends Subsystem implements MORTSubsystem {
      *
      * @return Encoder angle
      */
-    public static double getAngle() {
+    public double getAngle() {
 //        return getDistance() * EndEffectorConstants.INTAKE_DEGREE_PER_TICK;
         return SensorDealer.getInstance().getArmPot().get();
     }

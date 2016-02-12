@@ -2,7 +2,7 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.subsystems.ee.Shooter;
+import org.mort11.subsystems.ee.IntakeArm;
 
 /**
  * MotorToAngle - Move motor to angle
@@ -15,24 +15,24 @@ public class MotorToAngle extends Command {
 
     double speed = 0.5;
     double tarAng = 90;
-    private Shooter shooter = Robot.adaptor.shooter;
+    private IntakeArm intakeArm = Robot.adaptor.intake;
 
     public MotorToAngle() {
-        requires(shooter);
+        requires(intakeArm);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        if (shooter.getAngle() < tarAng) {
-            shooter.set(speed);
+        if (intakeArm.getAngle() < tarAng) {
+            intakeArm.set(speed);
         }
-        if (shooter.getAngle() > tarAng) {
-            shooter.set(-speed);
+        if (intakeArm.getAngle() > tarAng) {
+            intakeArm.set(-speed);
         }
-        if (shooter.getAngle() == tarAng) {
-            shooter.set(0);
+        if (intakeArm.getAngle() == tarAng) {
+            intakeArm.set(0);
         }
     }
 
