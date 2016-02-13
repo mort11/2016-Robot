@@ -1,27 +1,23 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.constants.PDPConstants;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
- * Rollers - Controls the intake roller
+ * Rollers - Controls the intakeArm roller
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class Rollers extends Subsystem implements MORTSubsystem {
     private MORTCANTalon rollers;
-    private Encoder rollerEnc = SensorDealer.getInstance().getRollerEncoder();
     private boolean disabled;
 
     public Rollers() {
         this.rollers = new MORTCANTalon(EndEffectorConstants.ROLLER_TALON_ID, PDPConstants.ROLLERS, "Rollers");
-        rollerEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
-        rollerEnc.reset();
+        rollers.reset();
     }
 
     @Override
@@ -29,7 +25,7 @@ public class Rollers extends Subsystem implements MORTSubsystem {
     }
 
     /**
-     * Set speed of intake rollers
+     * Set speed of intakeArm rollers
      *
      * @param speed Speed of rollers
      */
@@ -45,7 +41,7 @@ public class Rollers extends Subsystem implements MORTSubsystem {
      * @return Distance
      */
     public double getDistance() {
-        return rollerEnc.getDistance();
+        return rollers.getEncPosition();
     }
 
     /**

@@ -1,6 +1,5 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.EndEffectorConstants;
@@ -15,28 +14,25 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class IntakeArm extends Subsystem implements MORTSubsystem {
-    private static Encoder intakeEnc;
     private boolean disabled = false;
     private MORTCANTalon intakeArm;
 
     public IntakeArm() {
         intakeArm = new MORTCANTalon(EndEffectorConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, "Intake Arm");
-        intakeEnc = SensorDealer.getInstance().getIntakeArmEncoder();
-        intakeEnc.reset();
-        intakeEnc.setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
+        intakeArm.reset();
     }
 
     /**
-     * Get position of intake arm from encoder reading
+     * Get position of intakeArm arm from encoder reading
      *
      * @return Encoder distance/ticks
      */
-    public static double getDistance() {
-        return intakeEnc.get();
+    public double getDistance() {
+        return intakeArm.getEncPosition();
     }
 
     /**
-     * Get position of intake arm from encoder reading as angle
+     * Get position of intakeArm arm from encoder reading as angle
      *
      * @return Encoder angle
      */
@@ -60,7 +56,7 @@ public class IntakeArm extends Subsystem implements MORTSubsystem {
     }
 
     /**
-     * Adjust position of intake arm
+     * Adjust position of intakeArm arm
      *
      * @param speed Amount to move arm by
      */

@@ -29,7 +29,7 @@ public class HardwareAdaptor {
 
     // End Effector mechanisms
     public Rollers rollers;
-    public IntakeArm intake;
+    public IntakeArm intakeArm;
     public Shooter shooter;
 
     // Pneumatic-based systems
@@ -50,12 +50,10 @@ public class HardwareAdaptor {
         this.compressor = new Compressor(HardwareConstants.PCM_ID);
 
         this.rollers = new Rollers();
-        this.intake = new IntakeArm();
+        this.intakeArm = new IntakeArm();
         this.shooter = new Shooter();
 
         this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
-
-        accelerometer = new BuiltInAccelerometer();
 
         this.accelerometer = new BuiltInAccelerometer();
 

@@ -44,7 +44,7 @@ public class SpinUp extends Command {
             double currentVelocity = spinUp.getSpeed();
             System.out.println("speed: " + currentVelocity);
             double speed = pd_arm.getP(currentVelocity);
-            left.set(speed);
+            spinUp.set(speed);
             SmartDashboard.putNumber("Velocity", currentVelocity);
         } else { // ghetto way of spinning up
             double currentVelocity = spinUp.getSpeed();
@@ -52,10 +52,10 @@ public class SpinUp extends Command {
                 speed_ghetto += .03;
                 System.out.println("speed if: " + speed_ghetto);
                 System.out.println("velocity if: " + currentVelocity);
-                left.set(speed_ghetto);
+                spinUp.set(speed_ghetto);
             } else {
                 speed_ghetto -= .03;
-                left.set(speed_ghetto);
+                spinUp.set(speed_ghetto);
                 System.out.println("speed else: " + speed_ghetto);
                 System.out.println("velocity else: " + currentVelocity);
             }

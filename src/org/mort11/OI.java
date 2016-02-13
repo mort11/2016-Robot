@@ -30,14 +30,14 @@ public class OI {
 
     // Right drive joystick
     public Button fullSpeed = new JoystickButton(rightJoystick, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
+    public Button shift = new JoystickButton(rightJoystick, OperatorInterfaceConstants.SHIFT_BUTTON);
 
     // EE Joystick
     public Button piston = new JoystickButton(endEffector, OperatorInterfaceConstants.PISTON_BUTTON);
     public Button spinUp = new JoystickButton(endEffector, OperatorInterfaceConstants.SPIN_UP_BUTTON);
-    public Button intakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.INTAKE_BUTTON);
-    public Button outtakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.OUTTAKE_BUTTON);
+    public Button intakeRoller = new JoystickButton(rightJoystick, OperatorInterfaceConstants.INTAKE_BUTTON);
+    public Button outtakeRoller = new JoystickButton(rightJoystick, OperatorInterfaceConstants.OUTTAKE_BUTTON);
     public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
-    public Button shift = new JoystickButton(rightJoystick, OperatorInterfaceConstants.SHIFT_BUTTON);
 
     public OI() {
         shift.whenPressed(new Shift());

@@ -5,19 +5,19 @@ import org.mort11.Robot;
 import org.mort11.subsystems.ee.IntakeArm;
 
 /**
- * MotorToAngle - Move motor to angle
+ * IntakeToAngle - Move motor to angle
  *
  * @author Ryan Thant <ryanthant1@gmail.com>
  * @author Seven Kurt <seven.kurt@motsd.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
-public class MotorToAngle extends Command {
+public class IntakeToAngle extends Command {
 
     double speed = 0.5;
     double tarAng = 90;
-    private IntakeArm intakeArm = Robot.adaptor.intake;
+    private IntakeArm intakeArm = Robot.adaptor.intakeArm;
 
-    public MotorToAngle() {
+    public IntakeToAngle() {
         requires(intakeArm);
     }
 
