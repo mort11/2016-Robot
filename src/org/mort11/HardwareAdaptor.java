@@ -55,12 +55,10 @@ public class HardwareAdaptor {
 
         this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
 
-        accelerometer = new BuiltInAccelerometer();
-
         this.accelerometer = new BuiltInAccelerometer();
 
         this.leftSide = new DTLeft();
         this.rightSide = new DTRight();
-        this.led = new LED();
+        //this.led = new LED();
     }
 }

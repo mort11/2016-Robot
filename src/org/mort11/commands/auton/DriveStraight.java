@@ -33,8 +33,8 @@ public class DriveStraight extends Command {
     }
 
     protected void initialize() {
-        left.resetEncoder();
-        right.resetEncoder();
+        leftDTEncoder.reset();
+        rightDTEncoder.reset();
         SensorDealer.getInstance().getAHRS().zeroYaw();
     }
 
@@ -54,7 +54,7 @@ public class DriveStraight extends Command {
             System.out.println("angle error: " + angleError);
 
             left.set(speedLeft);
-            right.set(speedRight + 0.05 * angleError);
+            right.set(speedRight + 0.1 * angleError);
 
 
             SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
@@ -68,7 +68,7 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-        return currentDistanceLeft > distance * 0.8 && currentDistanceLeft > distance * 0.8;
+        return currentDistanceLeft > distance * 0.95 && currentDistanceLeft > distance * 0.95;
     }
 
     protected void end() {

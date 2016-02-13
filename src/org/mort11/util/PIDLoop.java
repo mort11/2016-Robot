@@ -15,7 +15,7 @@ public class PIDLoop {
     //when we can start the timer
     double currTime = 0, oldTime = 0;
     Timer timer = new Timer();
-    double vel_max = 6;
+    double vel_max = 9;
     double curr_location = 0;
 
     public PIDLoop(double target, double kP, double kI) {
