@@ -13,6 +13,7 @@ import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.IntakeArm;
+import org.mort11.subsystems.ee.Brake;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
 
@@ -31,9 +32,10 @@ public class HardwareAdaptor {
     public Rollers rollers;
     public IntakeArm intakeArm;
     public Shooter shooter;
-
+    
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
+    public Brake piston;
 
     // Navigational instruments
     public Accelerometer accelerometer;
@@ -42,7 +44,6 @@ public class HardwareAdaptor {
     public DTSide leftSide;
     public DTSide rightSide;
     public LED led;
-
 
     public HardwareAdaptor() {
         this.pdp = new PowerDistributionPanel();

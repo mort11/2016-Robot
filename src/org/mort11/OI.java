@@ -3,10 +3,9 @@ package org.mort11;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.mort11.behavior.Commands;
 import org.mort11.commands.Shift;
 import org.mort11.commands.ee.IntakeRollers;
-import org.mort11.commands.ee.RollerUp;
-import org.mort11.commands.ee.SpinUp;
 import org.mort11.constants.OperatorInterfaceConstants;
 import org.mort11.util.SpeedController;
 
@@ -40,11 +39,12 @@ public class OI {
     public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
 
     public OI() {
+        intakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.INTAKE));
+        intakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
+
+        outtakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.EXHAUST));
+        outtakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
         shift.whenPressed(new Shift());
-        spinUp.toggleWhenPressed(new SpinUp(20, false));
-        intakeRoller.toggleWhenPressed(new IntakeRollers(true, false));
-        outtakeRoller.toggleWhenPressed(new IntakeRollers(false, true));
-        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
     }
 
 

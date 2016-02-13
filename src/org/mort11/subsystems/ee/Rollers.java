@@ -3,7 +3,6 @@ package org.mort11.subsystems.ee;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.constants.PDPConstants;
-import org.mort11.util.MORTSubsystem;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -11,7 +10,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
-public class Rollers extends Subsystem implements MORTSubsystem {
+public class Rollers extends Subsystem {
     private MORTCANTalon rollers;
     private boolean disabled;
 
@@ -42,31 +41,5 @@ public class Rollers extends Subsystem implements MORTSubsystem {
      */
     public double getDistance() {
         return rollers.getEncPosition();
-    }
-
-    /**
-     * Disable the subsystem
-     */
-    @Override
-    public void disable() {
-        this.disabled = true;
-    }
-
-    /**
-     * Check if subsystem is disabled
-     *
-     * @return Subsystem state
-     */
-    @Override
-    public boolean isDisabled() {
-        return this.disabled;
-    }
-
-    /**
-     * Re-enable subsystem that is in a disabled state
-     */
-    @Override
-    public void enable() {
-        this.disabled = false;
     }
 }

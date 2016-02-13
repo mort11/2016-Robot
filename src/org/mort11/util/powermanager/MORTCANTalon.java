@@ -28,7 +28,21 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
         this.pdpSlot = pdpSlot;
         this.name = subsystemName;
         System.out.println(String.format("Created new MORTCANTalon [%s] [ID-%s]", name, String.valueOf(talon.getDeviceID())));
-//        MotorHolder.motors.add(this);
+        MotorHolder.motors.add(this);
+    }
+
+    /**
+     * Wraps talon set method and sets speed to 0 if subsystem is disabled
+     *
+     * @param speed Motor speed
+     */
+    @Override
+    public void set(double speed) {
+        if (this.disabled) {
+            talon.set(0);
+        } else {
+            talon.set(speed);
+        }
     }
 
     /**

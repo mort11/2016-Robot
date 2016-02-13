@@ -31,7 +31,7 @@ public class Hood extends Subsystem {
         if (!disabled) {
             setHood(false);
             this.hoodUp = false;
-        }
+    }
     }
 
     /**
@@ -42,7 +42,7 @@ public class Hood extends Subsystem {
             setHood(!hoodUp);
         }
     }
-
+    
     public void setHood(boolean engage) {
         if (engage) {
             solenoid.set(DoubleSolenoid.Value.kForward);
@@ -55,5 +55,9 @@ public class Hood extends Subsystem {
     @Override
     protected void initDefaultCommand() {
     }
+
+    public void disable(){
+    	this.disabled = true;
+}
 }
 

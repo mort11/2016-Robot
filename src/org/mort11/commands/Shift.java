@@ -12,7 +12,6 @@ public class Shift extends Command {
 
     @Override
     protected void initialize() {
-
     }
 
     @Override
@@ -31,6 +30,5 @@ public class Shift extends Command {
 
     @Override
     protected void interrupted() {
-
     }
 }

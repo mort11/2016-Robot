@@ -1,9 +1,9 @@
 package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.commands.ee.JoystickShooter;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.constants.PDPConstants;
-import org.mort11.util.MORTSubsystem;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -13,8 +13,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  * @author Matt Turi <mturi@mort11.org>
  */
-public class Shooter extends Subsystem implements MORTSubsystem {
-    private boolean disabled = false;
+public class Shooter extends Subsystem {
     private MORTCANTalon flywheel;
 
     public Shooter() {
@@ -23,6 +22,7 @@ public class Shooter extends Subsystem implements MORTSubsystem {
 
     @Override
     public void initDefaultCommand() {
+        setDefaultCommand(new JoystickShooter());
     }
 
     /**
@@ -32,9 +32,7 @@ public class Shooter extends Subsystem implements MORTSubsystem {
      */
     // TODO: 2/10/16 Flywheel speed should be regulated by a PID loop
     public void set(double speed) {
-        if (!this.disabled) {
-            this.flywheel.set(speed);
-        }
+        this.flywheel.set(speed);
     }
 
     /**
@@ -44,31 +42,5 @@ public class Shooter extends Subsystem implements MORTSubsystem {
      */
     public double getSpeed() {
         return flywheel.getEncVelocity();
-    }
-
-    /**
-     * Disable the subsystem
-     */
-    @Override
-    public void disable() {
-        this.disabled = true;
-    }
-
-    /**
-     * Check if subsystem is disabled
-     *
-     * @return Subsystem state
-     */
-    @Override
-    public boolean isDisabled() {
-        return this.disabled;
-    }
-
-    /**
-     * Re-enable subsystem that is in a disabled state
-     */
-    @Override
-    public void enable() {
-        this.disabled = false;
     }
 }

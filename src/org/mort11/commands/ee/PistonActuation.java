@@ -3,6 +3,7 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.Brake;
 
 /**
  * PistonActuation - Actuates a piston
@@ -14,10 +15,10 @@ import org.mort11.Robot;
 public class PistonActuation extends Command {
 
     boolean isPressed;
-//    private Pneumatics piston = new Pneumatics();
+    private Pneumatics piston = Robot.adaptor.piston;
 
     public PistonActuation() {
-//        requires(piston);
+        requires(piston);
         setInterruptible(true);
     }
 
@@ -28,9 +29,13 @@ public class PistonActuation extends Command {
      * Toggle the piston based on joystick button status
      */
     protected void execute() {
-        //            piston.set(true);
-//            piston.set(false);
-        this.isPressed = Robot.oi.piston.get();
+        System.out.println("Execute");
+        if (Robot.oi.piston.get()) {
+            System.out.println("piston is pressed");
+            piston.setSolenoid(true);
+        } else {
+            piston.setSolenoid(false);
+        }
     }
 
     protected boolean isFinished() {

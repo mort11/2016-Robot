@@ -7,25 +7,24 @@ package org.mort11.behavior;
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 
-	
 public class Commands {
-	// Positions for the hood
-    public enum HoodRequest { 
-        NONE, POP, STOW, DISABLED
+    // Positions for the hood
+    public enum HoodRequest {
+        POP, STOW
     }
 
     // Motor state for roller
     public enum RollerRequest {
-        NONE, INTAKE, EXHAUST, DISABLED
+        INTAKE, EXHAUST, STOP
     }
 
     // Preset angles for the Arm
     public enum IntakeArmPresets {
-        NONE, STORED, DOWN, GROUND, MANUAL_CTRL, DISABLED
+        STORED, DOWN, GROUND, MANUAL_CTRL, STOP
     }
 
     // Motor state for the fly wheel
     public enum FlywheelRequest {
-        NONE, STOP, START, DISABLED
+        STOP, START
     }
 }

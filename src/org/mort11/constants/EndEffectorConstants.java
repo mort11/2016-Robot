@@ -1,7 +1,7 @@
 package org.mort11.constants;
 
 /**
- * EndEffectorConstants - Constants for the Drivetrain. Uses CAN bus for IDs on final robot
+ * EndEffectorConstants - Constants for the End Effector. Uses CAN bus for IDs on final robot
  *
  * @author Matt Turi <mturi@mort11.org>
  */
