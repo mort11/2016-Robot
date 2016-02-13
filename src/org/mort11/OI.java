@@ -55,7 +55,7 @@ public class OI {
     }
 
     public double getRightJoy() {
-        return SpeedController.threshold(rightJoystick.getY());
+        return SpeedController.threshold(-rightJoystick.getY());
     }
 
     public double getEEJoy() {

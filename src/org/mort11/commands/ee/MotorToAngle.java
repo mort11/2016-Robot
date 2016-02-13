@@ -25,15 +25,15 @@ public class MotorToAngle extends Command {
     }
 
     protected void execute() {
-        if (shooter.getAngle() < tarAng) {
-            shooter.set(speed);
-        }
-        if (shooter.getAngle() > tarAng) {
-            shooter.set(-speed);
-        }
-        if (shooter.getAngle() == tarAng) {
-            shooter.set(0);
-        }
+//        if (shooter.getAngle() < tarAng) {
+//            shooter.set(speed);
+//        }
+//        if (shooter.getAngle() > tarAng) {
+//            shooter.set(-speed);
+//        }
+//        if (shooter.getAngle() == tarAng) {
+//            shooter.set(0);
+//        }
     }
 
     protected boolean isFinished() {
