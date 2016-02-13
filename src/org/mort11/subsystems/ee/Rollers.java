@@ -12,7 +12,6 @@ import org.mort11.util.powermanager.MORTCANTalon;
  */
 public class Rollers extends Subsystem {
     private MORTCANTalon rollers;
-    private boolean disabled;
 
     public Rollers() {
         this.rollers = new MORTCANTalon(EndEffectorConstants.ROLLER_TALON_ID, PDPConstants.ROLLERS, "Rollers");
@@ -29,9 +28,7 @@ public class Rollers extends Subsystem {
      * @param speed Speed of rollers
      */
     public void set(double speed) {
-        if (!disabled) {
-            rollers.set(speed);
-        }
+        rollers.set(speed);
     }
 
     /**

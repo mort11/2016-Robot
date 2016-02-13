@@ -5,7 +5,6 @@ import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.constants.PDPConstants;
 import org.mort11.sensors.SensorDealer;
-import org.mort11.util.MORTSubsystem;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -13,8 +12,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
-public class IntakeArm extends Subsystem implements MORTSubsystem {
-    private boolean disabled = false;
+public class IntakeArm extends Subsystem {
     private MORTCANTalon intakeArm;
 
     public IntakeArm() {
@@ -37,7 +35,6 @@ public class IntakeArm extends Subsystem implements MORTSubsystem {
      * @return Encoder angle
      */
     public double getAngle() {
-//        return getDistance() * EndEffectorConstants.INTAKE_DEGREE_PER_TICK;
         return SensorDealer.getInstance().getArmPot().get();
     }
 
@@ -61,34 +58,6 @@ public class IntakeArm extends Subsystem implements MORTSubsystem {
      * @param speed Amount to move arm by
      */
     public void set(double speed) {
-        if (!disabled) {
-            intakeArm.set(speed);
-        }
-    }
-
-    /**
-     * Disable the subsystem
-     */
-    @Override
-    public void disable() {
-        this.disabled = true;
-    }
-
-    /**
-     * Check if subsystem is disabled
-     *
-     * @return Subsystem state
-     */
-    @Override
-    public boolean isDisabled() {
-        return this.disabled;
-    }
-
-    /**
-     * Re-enable subsystem that is in a disabled state
-     */
-    @Override
-    public void enable() {
-        this.disabled = false;
+        intakeArm.set(speed);
     }
 }

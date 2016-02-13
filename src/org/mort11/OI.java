@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.behavior.Commands;
 import org.mort11.commands.Shift;
 import org.mort11.commands.ee.IntakeRollers;
+import org.mort11.commands.ee.RollerUp;
+import org.mort11.commands.ee.SpinUp;
 import org.mort11.constants.OperatorInterfaceConstants;
 import org.mort11.util.SpeedController;
 
@@ -34,8 +36,8 @@ public class OI {
     // EE Joystick
     public Button piston = new JoystickButton(endEffector, OperatorInterfaceConstants.PISTON_BUTTON);
     public Button spinUp = new JoystickButton(endEffector, OperatorInterfaceConstants.SPIN_UP_BUTTON);
-    public Button intakeRoller = new JoystickButton(rightJoystick, OperatorInterfaceConstants.INTAKE_BUTTON);
-    public Button outtakeRoller = new JoystickButton(rightJoystick, OperatorInterfaceConstants.OUTTAKE_BUTTON);
+    public Button intakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.INTAKE_BUTTON);
+    public Button outtakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.OUTTAKE_BUTTON);
     public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
 
     public OI() {
@@ -44,7 +46,11 @@ public class OI {
 
         outtakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.EXHAUST));
         outtakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
+
         shift.whenPressed(new Shift());
+
+        spinUp.toggleWhenPressed(new SpinUp(20, false));
+        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
     }
 
 
@@ -53,7 +59,7 @@ public class OI {
     }
 
     public double getRightJoy() {
-        return SpeedController.threshold(rightJoystick.getY());
+        return SpeedController.threshold(-rightJoystick.getY());
     }
 
     public double getEEJoy() {
