@@ -7,14 +7,16 @@ package org.mort11.constants;
  */
 public class DrivetrainConstants {
     // CAN IDs
-    public static final int DT_LEFT_TALON_ID = 1;
-    public static final int DT_RIGHT_TALON_ID = 2;
+    public static final int DT_LEFT_TALON_ID_1 = 10;
+    public static final int DT_LEFT_TALON_ID_2 = 9;
+    public static final int DT_LEFT_TALON_ID_3 = 8;
+    public static final int DT_RIGHT_TALON_ID_1 = 5;
+    public static final int DT_RIGHT_TALON_ID_2 = 4;
+    public static final int DT_RIGHT_TALON_ID_3 = 3;
 
     // Solenoid ports
-    public static final int DT_LEFT_LOW_SHIFTER_PORT = 4;
-    public static final int DT_LEFT_HIGH_SHIFTER_PORT = 5;
-    public static final int DT_RIGHT_LOW_SHIFTER_PORT = 6;
-    public static final int DT_RIGHT_HIGH_SHIFTER_PORT = 7;
+    public static final int DT_LOW_SHIFTER_PORT = 0;
+    public static final int DT_HIGH_SHIFTER_PORT = 1;
 
     // Other constants
     public static final double DT_P = 0.3;
@@ -24,4 +26,5 @@ public class DrivetrainConstants {
     public static final double INCHES_PER_PULSE_LEFT = 6 * Math.PI / ENC_CPR_LEFT;
     public static final double INCHES_PER_PULSE_RIGHT = 6 * Math.PI / ENC_CPR_RIGHT;
     public static final double kRobotRadius = 9.75;
+    public static final double SPEED_LIMIT = 0.75;
 }

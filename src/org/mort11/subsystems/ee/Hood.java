@@ -2,44 +2,58 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.constants.EndEffectorConstants;
 
 /**
- * Hood - ToDo description
+ * Hood - Intake hood
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Matt Turi <mturi@mort11.org>
  */
 public class Hood extends Subsystem {
-    DoubleSolenoid solenoid;
-    boolean engaged;
+    private DoubleSolenoid solenoid = new DoubleSolenoid(EndEffectorConstants.HOOD_SOLENOID_A, EndEffectorConstants.HOOD_SOLENOID_B);
+    private boolean hoodUp, disabled;
 
-    public void initDefaultCommand() {
-
-    }
-
+    /**
+     * Set hood to up position
+     */
     public void popHood() {
-        solenoid.set(DoubleSolenoid.Value.kForward);
-        engaged = true;
+        if (!disabled) {
+            setHood(true);
+            this.hoodUp = true;
+        }
     }
+
+    /**
+     * Set hood to stowed position
+     */
     public void stowHood() {
-        solenoid.set(DoubleSolenoid.Value.kReverse);
-        engaged = false;
+        if (!disabled) {
+            setHood(false);
+            this.hoodUp = false;
+        }
     }
+
+    /**
+     * Toggle hood state between stowed and up
+     */
     public void toggleHood() {
-    	setSolenoid(!engaged);
+        if (!disabled) {
+            setHood(!hoodUp);
+        }
     }
-    
-    public void setSolenoid(boolean engage) {
+
+    public void setHood(boolean engage) {
         if (engage) {
             solenoid.set(DoubleSolenoid.Value.kForward);
         } else {
             solenoid.set(DoubleSolenoid.Value.kReverse);
         }
-        engaged = engage;
-        System.out.println("state 2: " + engage);
+        this.hoodUp = engage;
     }
 
-    public boolean isEngaged() {
-        return engaged;
+    @Override
+    protected void initDefaultCommand() {
     }
 }
 

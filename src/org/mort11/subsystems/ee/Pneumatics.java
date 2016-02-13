@@ -11,26 +11,33 @@ import org.mort11.commands.ee.PistonActuation;
  * @author Seven Kurt <seven.kurt@motsd.org>
  */
 public class Pneumatics extends Subsystem {
-    DoubleSolenoid solenoid;
-    boolean engaged;
+    private DoubleSolenoid solenoid;
+    private boolean disabled, engaged;
 
     public Pneumatics(int engagedPort, int notEngagedPort) {
-        solenoid = new DoubleSolenoid(30, engagedPort, notEngagedPort);
-        engaged = false;
+        this.solenoid = new DoubleSolenoid(30, engagedPort, notEngagedPort);
+        this.engaged = false;
     }
 
     public void initDefaultCommand() {
         setDefaultCommand(new PistonActuation());
     }
 
-    public void setSolenoid(boolean engage) {
-        if (engage) {
-            solenoid.set(DoubleSolenoid.Value.kForward);
-        } else {
-            solenoid.set(DoubleSolenoid.Value.kReverse);
+    /**
+     * Set piston state
+     *
+     * @param engage Piston state
+     */
+    public void set(boolean engage) {
+        if (!disabled) {
+            if (engage) {
+                this.solenoid.set(DoubleSolenoid.Value.kForward);
+            } else {
+                this.solenoid.set(DoubleSolenoid.Value.kReverse);
+            }
+            this.engaged = engage;
+            System.out.println("Piston State: " + engage);
         }
-        engaged = engage;
-        System.out.println("state 2: " + engage);
     }
 
     public boolean isEngaged() {

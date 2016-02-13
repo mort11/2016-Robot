@@ -2,6 +2,7 @@ package org.mort11.subsystems.dt;
 
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.constants.DrivetrainConstants;
+import org.mort11.constants.PDPConstants;
 import org.mort11.sensors.SensorDealer;
 
 /**
@@ -14,8 +15,9 @@ import org.mort11.sensors.SensorDealer;
  */
 public class DTLeft extends DTSide {
     public DTLeft() {
-        super(DrivetrainConstants.DT_LEFT_TALON_ID, DrivetrainConstants.DT_LEFT_LOW_SHIFTER_PORT,
-                DrivetrainConstants.DT_LEFT_HIGH_SHIFTER_PORT, false, SensorDealer.getInstance().getLeftDTEncoder());
+        super(DrivetrainConstants.DT_LEFT_TALON_ID_1, DrivetrainConstants.DT_LEFT_TALON_ID_2,
+                DrivetrainConstants.DT_LEFT_TALON_ID_3, PDPConstants.LEFT_DT_1, PDPConstants.LEFT_DT_2, PDPConstants.LEFT_DT_3,
+                "DT_LEFT_1", "DT_LEFT_2", "DT_LEFT_3", true, true, true, SensorDealer.getInstance().getLeftDTEncoder());
         SensorDealer.getInstance().getLeftDTEncoder().setDistancePerPulse(DrivetrainConstants.INCHES_PER_PULSE_LEFT);
     }
 

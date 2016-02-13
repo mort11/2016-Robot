@@ -1,18 +1,20 @@
 package org.mort11;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import org.mort11.constants.DrivetrainConstants;
+import org.mort11.constants.HardwareConstants;
 import org.mort11.subsystems.Camera;
+import org.mort11.subsystems.LED;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
-import org.mort11.subsystems.ee.Intake;
-import org.mort11.subsystems.ee.Pneumatics;
+import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
-
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -27,9 +29,11 @@ public class HardwareAdaptor {
 
     // End Effector mechanisms
     public Rollers rollers;
-    public Intake intake;
+    public IntakeArm intake;
     public Shooter shooter;
-    public Pneumatics piston;
+
+    // Pneumatic-based systems
+    public DoubleSolenoid shifter;
 
     // Navigational instruments
     public Accelerometer accelerometer;
@@ -37,26 +41,24 @@ public class HardwareAdaptor {
     // Subsystems
     public DTSide leftSide;
     public DTSide rightSide;
+    public LED led;
 
-    // Motors
-   // public MORTCANTalon intakeArmMotor;
 
     public HardwareAdaptor() {
-        pdp = new PowerDistributionPanel();
-        cam = new Camera();
-        //compressor = new Compressor(HardwareConstants.PCM_ID);
+        this.pdp = new PowerDistributionPanel();
+        this.cam = new Camera();
+        this.compressor = new Compressor(HardwareConstants.PCM_ID);
 
-        // Init motors
-     //  intakeArmMotor = new MORTCANTalon(EndEffectorConstants.ARM_TALON_PORT, PDPMap.INTAKE_ARM);
+        this.rollers = new Rollers();
+        this.intake = new IntakeArm();
+        this.shooter = new Shooter();
 
-        rollers = new Rollers();
-       //intake = new Intake("Intake", intakeArmMotor, SensorDealer.getInstance().getArmEncoder());
-        shooter = new Shooter();
-        // piston = new Pneumatics();
+        this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
 
-        accelerometer = new BuiltInAccelerometer();
+        this.accelerometer = new BuiltInAccelerometer();
 
-        leftSide = new DTLeft();
-        rightSide = new DTRight();
+        this.leftSide = new DTLeft();
+        this.rightSide = new DTRight();
+        //this.led = new LED();
     }
 }

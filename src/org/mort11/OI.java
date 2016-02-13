@@ -1,11 +1,14 @@
 package org.mort11;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.mort11.commands.Shift;
+import org.mort11.commands.ee.IntakeRollers;
+import org.mort11.commands.ee.RollerUp;
+import org.mort11.commands.ee.SpinUp;
 import org.mort11.constants.OperatorInterfaceConstants;
-import org.mort11.commands.FullSpeed;
+import org.mort11.util.SpeedController;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -19,89 +22,44 @@ import org.mort11.commands.FullSpeed;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
-//    protected static boolean enabled_fullSpeed;
-    public static int count_fullSpeed = 0;
-    
-    public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
-    public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
-    public Joystick right = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
-    
-    public Button piston = new JoystickButton(ee, OperatorInterfaceConstants.PISTON_BUTTON);
-    public Button intakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.INTAKE_BUTTON);
-    public Button outtakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.OUTTAKE_BUTTON);
-    public Button fullSpeed = new JoystickButton(right, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
-    private Timer timer;
+
+    // Joysticks
+    public Joystick leftJoystick = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
+    public Joystick rightJoystick = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
+    public Joystick endEffector = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
+
+    // Right drive joystick
+    public Button fullSpeed = new JoystickButton(rightJoystick, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
+
+    // EE Joystick
+    public Button piston = new JoystickButton(endEffector, OperatorInterfaceConstants.PISTON_BUTTON);
+    public Button spinUp = new JoystickButton(endEffector, OperatorInterfaceConstants.SPIN_UP_BUTTON);
+    public Button intakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.INTAKE_BUTTON);
+    public Button outtakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.OUTTAKE_BUTTON);
+    public Button stopRoller = new JoystickButton(endEffector, 2);
+    public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
+    public Button shift = new JoystickButton(rightJoystick, OperatorInterfaceConstants.SHIFT_BUTTON);
 
     public OI() {
-        timer = new Timer();
-        fullSpeed.whenPressed(new FullSpeed(10)); // allows robot to drive at fullSpeed for a specified amount of time
+        shift.whenPressed(new Shift());
+        spinUp.toggleWhenPressed(new SpinUp(20, false));
+        intakeRoller.toggleWhenPressed(new IntakeRollers(true, false));
+        outtakeRoller.toggleWhenPressed(new IntakeRollers(false, true));
+        stopRoller.toggleWhenPressed(new IntakeRollers(true,true));
+        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
     }
 
 
-    public static double threshold(double input) {
-        if (Math.abs(input) <= 0.05) {
-            return 0;
-        }
-        return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
+    public double getLeftJoy() {
+        return SpeedController.threshold(-leftJoystick.getY());
     }
 
-    /**
-     * Limits top speed of robot to avoid brownouts
-     *
-     * @param speed Current speed received from Joystick or other control module
-     * @return Speed limited value
-     */
-    public static double speedLimit(double speed) {
-//        System.out.println(Robot.oi.timer.get());
-//        if (Robot.oi.fullSpeed.get()) {
-//            enabled_fullSpeed = true;
-//            count_fullSpeed++;
-//        }
-//        if (enabled_fullSpeed) {
-//            Robot.oi.timer.start();
-//            enabled_fullSpeed = false;
-//        }
-//        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count_fullSpeed <= 20) {
-//            return speed;
-//        }
-//        if (Robot.oi.timer.get() >= 10) {
-//            //count = 2;
-//            Robot.oi.timer.stop();
-//            Robot.oi.timer.reset();
-//            System.out.println("timer: " + Robot.oi.timer.get());
-//        }
-//        if (!enabled_fullSpeed) {
-//            if (speed >= .75) {
-//                speed = .75;
-//            }
-//            if (speed <= -.75) {
-//                speed = -.75;
-//            }
-//        }
-//        return speed;
-          if (speed >= .75) {
-              speed = 0.75;
-          }
-          if (speed <= -.75) {
-              speed = -0.75;
-          }
-          return speed;
+    public double getRightJoy() {
+        return SpeedController.threshold(-rightJoystick.getY());
     }
 
-    public double getLeftJoy_limit() {
-        return speedLimit(-left.getY());
-    }
-
-    public double getRightJoy_limit() {
-        return speedLimit(right.getY());
-    }
-    
-    public double getLeftJoy_full() {
-        return threshold(-left.getY());
-    }
-
-    public double getRightJoy_full() {
-        return threshold(right.getY());
+    public double getEEJoy() {
+        return SpeedController.threshold(endEffector.getY());
     }
 }
 
