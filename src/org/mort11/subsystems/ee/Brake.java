@@ -1,8 +1,9 @@
 package org.mort11.subsystems.ee;
 
+import org.mort11.commands.ee.ActuateBrake;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.commands.ee.PistonActuation;
 
 /**
  * Pneumatics - Does pneumatic things
@@ -20,7 +21,7 @@ public class Brake extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new PistonActuation());
+        setDefaultCommand(new ActuateBrake());
     }
 
     /**

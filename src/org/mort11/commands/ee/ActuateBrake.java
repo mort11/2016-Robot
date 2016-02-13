@@ -1,36 +1,50 @@
 package org.mort11.commands.ee;
 
+
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.Robot;
+import org.mort11.subsystems.ee.Brake;
 
 /**
+ * PistonActuation - Actuates a piston
  *
+ * @author Matt Turi <mturi@mort11.org>
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Michael Kozak <michael.kozak@motsd.org>
  */
 public class ActuateBrake extends Command {
 
+    boolean isPressed;
+    private Brake brake = Robot.adaptor.piston;
+
     public ActuateBrake() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.adaptor.piston);
+        setInterruptible(true);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * Toggle the piston based on joystick button status
+     */
     protected void execute() {
+        System.out.println("Execute");
+        if (Robot.oi.piston.get()) {
+            System.out.println("piston is pressed");
+            brake.set(true);
+        } else {
+            brake.set(false);
+        }
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }

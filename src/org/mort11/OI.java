@@ -65,5 +65,9 @@ public class OI {
     public double getEEJoy() {
         return SpeedController.threshold(endEffector.getY());
     }
+    
+    public double getEE_Z() {
+    	return endEffector.getZ();
+    }
 }
 
