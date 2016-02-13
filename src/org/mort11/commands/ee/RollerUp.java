@@ -13,7 +13,7 @@ import org.mort11.util.PIDLoop;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class RollerUp extends Command {
-    private IntakeArm intake = Robot.adaptor.intake;
+    private IntakeArm intake = Robot.adaptor.intakeArm;
     private Encoder intakeEncoder = SensorDealer.getInstance().getIntakeArmEncoder();
     private PIDLoop pd;
     private double desiredAngle, currentAngle, speed;
@@ -30,7 +30,7 @@ public class RollerUp extends Command {
     }
 
     protected void execute() {
-        currentAngle = IntakeArm.getAngle();
+        currentAngle = intake.getAngle();
         speed = pd.getOutput(currentAngle);
         intake.set(speed);
     }

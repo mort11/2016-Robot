@@ -6,14 +6,14 @@ import org.mort11.Robot;
 public class JoystickIntake extends Command {
 
     public JoystickIntake() {
-        requires(Robot.adaptor.intake);
+        requires(Robot.adaptor.intakeArm);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        Robot.adaptor.intake.set(Robot.oi.getEEJoy());
+        Robot.adaptor.intakeArm.set(Robot.oi.getEEJoy());
     }
 
     protected boolean isFinished() {
