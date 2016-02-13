@@ -36,6 +36,7 @@ public class OI {
     public Button spinUp = new JoystickButton(endEffector, OperatorInterfaceConstants.SPIN_UP_BUTTON);
     public Button intakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.OUTTAKE_BUTTON);
+    public Button stopRoller = new JoystickButton(endEffector, 2);
     public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
     public Button shift = new JoystickButton(rightJoystick, OperatorInterfaceConstants.SHIFT_BUTTON);
 
@@ -44,6 +45,7 @@ public class OI {
         spinUp.toggleWhenPressed(new SpinUp(20, false));
         intakeRoller.toggleWhenPressed(new IntakeRollers(true, false));
         outtakeRoller.toggleWhenPressed(new IntakeRollers(false, true));
+        stopRoller.toggleWhenPressed(new IntakeRollers(true,true));
         rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
     }
 

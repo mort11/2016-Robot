@@ -34,6 +34,10 @@ public class IntakeArm extends Subsystem implements MORTSubsystem {
     public static double getDistance() {
         return intakeEnc.get();
     }
+    
+    public double getTalDist() {
+    	return intakeArm.get();
+    }
 
     /**
      * Get position of intake arm from encoder reading as angle

@@ -72,4 +72,8 @@ public class Shooter extends Subsystem implements MORTSubsystem {
     public void enable() {
         this.disabled = false;
     }
+    
+    public double getAngle() {
+    	return 0;
+    }
 }
