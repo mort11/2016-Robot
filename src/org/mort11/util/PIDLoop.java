@@ -88,4 +88,8 @@ public class PIDLoop {
         }
         return vel_max * time;
     }
+    
+    public boolean timeElapsed(double multiplier) {
+    	return timer.get() > multiplier * (desired_target/vel_max);
+    }
 }
