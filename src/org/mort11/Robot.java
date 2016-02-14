@@ -10,6 +10,7 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.util.Looper;
+import org.mort11.util.auto.AutoCommand;
 import org.mort11.util.powermanager.PDPUpdater;
 
 /**
@@ -31,7 +32,8 @@ public class Robot extends IterativeRobot {
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
 
     Command autonomousCommand;
-    SendableChooser autonomousChooser;
+    SendableChooser autoModes;
+    SendableChooser portcullis;
 
     // TODO: 2/11/16 Check MAX and MIN-REENABLE voltage values
     Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
@@ -44,11 +46,17 @@ public class Robot extends IterativeRobot {
         pdpMonitor.start();
 
         // Have operator choose autonomous mode
-        autonomousChooser = new SendableChooser();
-        autonomousChooser.addDefault("Do Nothing for 10s", new WaitTime(10));
-        autonomousChooser.addObject("Drive Straight [20in.]", new DriveStraight(20));
-        autonomousChooser.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
-        SmartDashboard.putData("Autonomous Mode", autonomousChooser);
+        autoModes = new SendableChooser();
+        autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
+        autoModes.addObject("Drive Straight [20in.]", new DriveStraight(20));
+        autoModes.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
+
+        portcullis = new SendableChooser();
+        portcullis.addDefault("Portcullis", new WaitTime(0));
+        portcullis.addObject("No Portcullis", new WaitTime(0));
+
+        SmartDashboard.putData("Auto Mode", autoModes);
+        SmartDashboard.putData("Portcullis", portcullis);
     }
 
     @Override
@@ -58,6 +66,15 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         System.out.println("STARTING AUTONOMOUS");
+        Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};
+        autonomousCommand = new AutoCommand(autoCommands);
+
+        System.out.println("Running auto commands:");
+        for (Command autoCommand : autoCommands) {
+            System.out.println(autoCommand);
+        }
+
+        autonomousCommand.start();
     }
 
     @Override
