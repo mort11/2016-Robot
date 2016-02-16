@@ -4,12 +4,15 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.mort11.constants.OperatorInterfaceConstants;
-import org.mort11.commands.ee.SpinUp;
+
+import org.mort11.behavior.Commands;
+import org.mort11.commands.dt.Shift;
+import org.mort11.commands.ee.FullSpin;
 import org.mort11.commands.ee.IntakeRollers;
-import org.mort11.commands.ee.IntakeRollers.Move;
-import org.mort11.commands.ee.PistonActuation;
 import org.mort11.commands.ee.RollerUp;
+import org.mort11.commands.ee.SpinUp;
+import org.mort11.constants.OperatorInterfaceConstants;
+import org.mort11.util.SpeedController;
 
 /**
  * OI - Joystick mapping to buttons and other math stuff
@@ -23,40 +26,41 @@ import org.mort11.commands.ee.RollerUp;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
-    protected static boolean enabled_fullSpeed, enabled_spin, enabled_intake;
+    private static boolean enabled;
     private static int count = 0;
-    
     public Joystick ee = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
     public Joystick left = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
     public Joystick right = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
-    
     public Button piston = new JoystickButton(ee, OperatorInterfaceConstants.PISTON_BUTTON);
-    public Button spinUp = new JoystickButton(ee, OperatorInterfaceConstants.SPIN_UP_BUTTON);
-    public Button intakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.INTAKE_BUTTON);
-    public Button outtakeRoller = new JoystickButton(ee, OperatorInterfaceConstants.OUTTAKE_BUTTON);
-    public Button fullSpeed = new JoystickButton(right, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
-    public Button rollerUp = new JoystickButton(ee, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
-    
-    
-    private Timer timer;
+
+    // Joysticks
+    public Joystick leftJoystick = new Joystick(OperatorInterfaceConstants.LEFT_JOYSTICK);
+    public Joystick rightJoystick = new Joystick(OperatorInterfaceConstants.RIGHT_JOYSTICK);
+    public Joystick endEffector = new Joystick(OperatorInterfaceConstants.EE_JOYSTICK);
+
+    // Right drive joystick
+    public Button fullSpeed = new JoystickButton(rightJoystick, OperatorInterfaceConstants.FULL_SPEED_BUTTON);
+    public Button shift = new JoystickButton(rightJoystick, OperatorInterfaceConstants.SHIFT_BUTTON);
+
+    // EE Joystick
+    public Button piston = new JoystickButton(endEffector, OperatorInterfaceConstants.PISTON_BUTTON);
+    public Button spinUp = new JoystickButton(endEffector, OperatorInterfaceConstants.SPIN_UP_BUTTON);
+    public Button spin = new JoystickButton(endEffector, 3);
+    public Button intakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.INTAKE_BUTTON);
+    public Button outtakeRoller = new JoystickButton(endEffector, OperatorInterfaceConstants.OUTTAKE_BUTTON);
+    public Button rollerUp = new JoystickButton(endEffector, OperatorInterfaceConstants.ROLLER_UP_BUTTON);
 
     public OI() {
-        timer = new Timer();
-        
-        //spinUp.toggleWhenPressed(new SpinUp(20, false));
-        intakeRoller.whileHeld(new IntakeRollers(Move.FOREWARD));
-        outtakeRoller.whileHeld(new IntakeRollers(Move.BACKWARD));
-        intakeRoller.whenReleased(new IntakeRollers(Move.STOP));
-        outtakeRoller.whenReleased(new IntakeRollers(Move.STOP));
-       // rollerUp.toggleWhenPressed(new RollerUp(182)); // will keep roller up at 182 degrees when toggled 
-        //piston.toggleWhenPressed(new PistonActuation());
-    }
+        intakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.INTAKE));
+        intakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
 
-    public static double threshold(double input) {
-        if (Math.abs(input) <= 0.05) {
-            return 0;
-        }
-        return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
+        outtakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.EXHAUST));
+        outtakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
+        //spin.whenPressed(new FullSpin());
+        //shift.whenPressed(new Shift());
+
+        spinUp.toggleWhenPressed(new SpinUp(20, false));
+        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
     }
 
     /**
@@ -68,12 +72,12 @@ public class OI {
     public static double speedLimit(double speed) {
         System.out.println(Robot.oi.timer.get());
         if (Robot.oi.fullSpeed.get()) {
-            enabled_fullSpeed = true;
+            enabled = true;
             count++;
         }
-        if (enabled_fullSpeed) {
+        if (enabled) {
             Robot.oi.timer.start();
-            enabled_fullSpeed = false;
+            enabled = false;
         }
         if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 20) {
             return speed;
@@ -84,7 +88,7 @@ public class OI {
             Robot.oi.timer.reset();
             System.out.println("timer: " + Robot.oi.timer.get());
         }
-        if (!enabled_fullSpeed) {
+        if (!enabled) {
             if (speed >= .75) {
                 speed = .75;
             }
@@ -96,17 +100,19 @@ public class OI {
     }
 
     public double getLeftJoy() {
-        return speedLimit(-left.getY());
+        return SpeedController.threshold(-leftJoystick.getY());
     }
 
     public double getRightJoy() {
-        return speedLimit(right.getY());
+        return SpeedController.threshold(-rightJoystick.getY());
     }
-    public double getEEJoy(){
-    	return ee.getY();
+
+    public double getEEJoy() {
+        return SpeedController.threshold(endEffector.getY());
     }
+    
     public double getEE_Z() {
-    	return ee.getZ();
+    	return endEffector.getZ();
     }
 }
 

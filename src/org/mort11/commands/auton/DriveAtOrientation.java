@@ -39,19 +39,19 @@ public class DriveAtOrientation extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getIsDisabled()){ // disable method integration
-        //currentOrientation = navx.getAngle();
-        if (isUrgent) {
-            //use high urgency pid loop
-            //speed_left = pd_left.getOutputHigh(currentOrientation);
-            //speed_right = pd_right.getOutputHigh(currentOrientation);
-        } else {
-            //use low urgency pid loop
-            //speed_left = pd_left.getOutputHigh(currentOrientation);
-            //speed_right = pd_right.getOutputHigh(currentOrientation);
-        }
-        left.set(speed_left);
-        right.set(speed_right);
+        if (!DTSide.getDisabled()) { // // Will run when the Drivetrain is not disabled
+            //currentOrientation = navx.getAngle();
+            if (isUrgent) {
+                //use high urgency pid loop
+                //speed_left = pd_left.getOutputHigh(currentOrientation);
+                //speed_right = pd_right.getOutputHigh(currentOrientation);
+            } else {
+                //use low urgency pid loop
+                //speed_left = pd_left.getOutputHigh(currentOrientation);
+                //speed_right = pd_right.getOutputHigh(currentOrientation);
+            }
+            left.set(speed_left);
+            right.set(speed_right);
         } else {
             end();
         }

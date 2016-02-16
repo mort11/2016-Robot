@@ -1,22 +1,24 @@
 package org.mort11.commands.ee;
 
+import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
+ * 
+ * @author chsahit
  *
  */
 public class JoystickIntake extends Command {
 
     public JoystickIntake() {
-    	requires(Robot.adaptor.intake);
+        requires(Robot.adaptor.intakeArm);
     }
+
     protected void initialize() {
     }
-    
+
     protected void execute() {
-    	Robot.adaptor.intake.set(Robot.oi.getEEJoy());
+        Robot.adaptor.intakeArm.set(Robot.oi.getEEJoy());
     }
 
     protected boolean isFinished() {

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.sensors.SensorDealer;
-import org.mort11.subsystems.ee.Intake;
+import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.util.PIDLoop;
 
 /**
@@ -13,8 +13,8 @@ import org.mort11.util.PIDLoop;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class RollerUp extends Command {
-    private Intake intake = Robot.adaptor.intake;
-    private Encoder intakeEncoder = SensorDealer.getInstance().getArmEncoder();
+    private IntakeArm intake = Robot.adaptor.intakeArm;
+    private Encoder intakeEncoder = SensorDealer.getInstance().getIntakeArmEncoder();
     private PIDLoop pd;
     private double desiredAngle, currentAngle, speed;
 
@@ -30,7 +30,7 @@ public class RollerUp extends Command {
     }
 
     protected void execute() {
-        currentAngle = Intake.getAngle();
+        currentAngle = intake.getAngle();
         speed = pd.getOutput(currentAngle);
         intake.set(speed);
     }

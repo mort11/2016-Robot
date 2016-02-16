@@ -31,44 +31,48 @@ public class SpinUp extends Command {
         requires(left);
         pd_arm = new PIDLoop(velocity, 0.03, 0); // Placeholder values
         this.PID = PID;
-
     }
 
+    // Called just before this Command runs the first time
     protected void initialize() {
-        DTSide.resetEncoders(); // replace with SpinUp encoder 
+//        DTSide.resetEncoders(); // replace with SpinUp encoder
     }
 
+    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
         if (PID) { //uses pid loop to SpinUp
-            double currentVelocity = spinUp.getRate();
+            double currentVelocity = spinUp.getSpeed();
             System.out.println("speed: " + currentVelocity);
             double speed = pd_arm.getP(currentVelocity);
-            left.set(speed);
+            spinUp.set(speed);
             SmartDashboard.putNumber("Velocity", currentVelocity);
         } else { // ghetto way of spinning up
-            double currentVelocity = spinUp.getRate();
+            double currentVelocity = spinUp.getSpeed();
             if (currentVelocity < velocity) {
                 speed_ghetto += .03;
                 System.out.println("speed if: " + speed_ghetto);
                 System.out.println("velocity if: " + currentVelocity);
-                left.set(speed_ghetto);
+                spinUp.set(speed_ghetto);
             } else {
                 speed_ghetto -= .03;
-                left.set(speed_ghetto);
+                spinUp.set(speed_ghetto);
                 System.out.println("speed else: " + speed_ghetto);
                 System.out.println("velocity else: " + currentVelocity);
             }
         }
     }
 
+    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }
 
+    // Called once after isFinished returns true
     protected void end() {
     }
 
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }

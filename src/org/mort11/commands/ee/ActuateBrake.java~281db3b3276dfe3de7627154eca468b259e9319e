@@ -12,31 +12,41 @@ import org.mort11.subsystems.ee.Brake;
  * @author Seven Kurt <seven.kurt@motsd.org>
  * @author Michael Kozak <michael.kozak@motsd.org>
  */
-public class PistonActuation extends Command {
+public class ActuateBrake extends Command {
 
     boolean isPressed;
+<<<<<<< HEAD:src/org/mort11/commands/ee/ActuateBrake.java:src/org/mort11/commands/ee/ActuateBrake.java
+    private Brake brake = Robot.adaptor.piston;
+=======
     private Brake piston = Robot.adaptor.piston;
+>>>>>>> 281db3b3276dfe3de7627154eca468b259e9319e:src/org/mort11/commands/ee/PistonActuation.java:src/org/mort11/commands/ee/PistonActuation.java
 
-    public PistonActuation() {
-        requires(piston);
+    public ActuateBrake() {
+        requires(Robot.adaptor.piston);
         setInterruptible(true);
     }
 
     protected void initialize() {
     }
 
+    /**
+     * Toggle the piston based on joystick button status
+     */
     protected void execute() {
         System.out.println("Execute");
         if (Robot.oi.piston.get()) {
             System.out.println("piston is pressed");
-            piston.setSolenoid(true);
+            brake.set(true);
         } else {
+<<<<<<< HEAD:src/org/mort11/commands/ee/ActuateBrake.java:src/org/mort11/commands/ee/ActuateBrake.java
+            brake.set(false);
+=======
             piston.setSolenoid(false);
+>>>>>>> 281db3b3276dfe3de7627154eca468b259e9319e:src/org/mort11/commands/ee/PistonActuation.java:src/org/mort11/commands/ee/PistonActuation.java
         }
     }
 
     protected boolean isFinished() {
-        System.out.println("isfinished");
         return true;
     }
 

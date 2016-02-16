@@ -5,7 +5,7 @@ import org.mort11.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *@author chsahit
  */
 public class JoystickShooter extends Command {
 
@@ -21,6 +21,7 @@ public class JoystickShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//System.out.println("robot out: " + Robot.oi.getEE_Z());
     	Robot.adaptor.shooter.set(Robot.oi.getEE_Z());
     }
 

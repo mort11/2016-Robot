@@ -1,9 +1,7 @@
 package org.mort11.sensors;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.CounterBase;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.*;
 import org.mort11.constants.SensorConstants;
 
 /**
@@ -16,18 +14,22 @@ public class SensorDealer {
     private static SensorDealer instance;
     private Encoder leftDriveTrain;
     private Encoder rightDriveTrain;
-    private Encoder arm;
+    private Encoder intakeArm;
     private Encoder shooter;
     private AnalogPotentiometer armPot;
     private DigitalInput armLimitSwitch;
+    private AHRS ahrs;
 
     private SensorDealer() {
-        leftDriveTrain = new Encoder(SensorConstants.DT_ENCODER_LEFT_A, SensorConstants.DT_ENCODER_LEFT_B, false, CounterBase.EncodingType.k4X);
+        leftDriveTrain = new Encoder(SensorConstants.DT_ENCODER_LEFT_A, SensorConstants.DT_ENCODER_LEFT_B, true, CounterBase.EncodingType.k4X);
+        leftDriveTrain.setDistancePerPulse(140/25918);
         rightDriveTrain = new Encoder(SensorConstants.DT_ENCODER_RIGHT_A, SensorConstants.DT_ENCODER_RIGHT_B, false, CounterBase.EncodingType.k4X);
-        arm = new Encoder(SensorConstants.ARM_ENCODER_A, SensorConstants.ARM_ENCODER_B, false, CounterBase.EncodingType.k4X);
-        shooter = new Encoder(SensorConstants.ROLLER_ENCODER_A, SensorConstants.ROLLER_ENCODER_B, false, CounterBase.EncodingType.k4X);
+        rightDriveTrain.setDistancePerPulse(140/25918);
+        intakeArm = new Encoder(SensorConstants.INTAKE_ARM_ENCODER_A, SensorConstants.INTAKE_ARM_ENCODER_B, false, CounterBase.EncodingType.k4X);
+        shooter = new Encoder(SensorConstants.SHOOTER_ENCODER_A, SensorConstants.SHOOTER_ENCODER_B, false, CounterBase.EncodingType.k4X);
         armPot = new AnalogPotentiometer(SensorConstants.ARM_POT);
         armLimitSwitch = new DigitalInput(SensorConstants.ARM_LIM_SWITCH_PORT);
+        ahrs = new AHRS(SPI.Port.kMXP);
     }
 
     public static SensorDealer getInstance() {
@@ -38,26 +40,30 @@ public class SensorDealer {
     }
 
     public Encoder getLeftDTEncoder() {
-        return leftDriveTrain;
+        return this.leftDriveTrain;
     }
 
     public Encoder getRightDTEncoder() {
-        return rightDriveTrain;
+        return this.rightDriveTrain;
     }
 
-    public Encoder getArmEncoder() {
-        return arm;
+    public Encoder getIntakeArmEncoder() {
+        return this.intakeArm;
     }
 
-    public Encoder getShooterEncoder() {
-        return shooter;
+    public Encoder getRollerEncoder() {
+        return this.shooter;
     }
 
     public AnalogPotentiometer getArmPot() {
-        return armPot;
+        return this.armPot;
     }
 
     public DigitalInput getArmLimitSwitch() {
-        return armLimitSwitch;
+        return this.armLimitSwitch;
+    }
+
+    public AHRS getAHRS() {
+        return this.ahrs;
     }
 }
