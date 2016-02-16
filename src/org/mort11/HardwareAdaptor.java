@@ -54,7 +54,8 @@ public class HardwareAdaptor {
         this.intakeArm = new IntakeArm();
         this.shooter = new Shooter();
 
-        this.shifter = new DoubleSolenoid(DrivetrainConstants.DT_LOW_SHIFTER_PORT, DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
+//        this.shifter = new DoubleSolenoid(HardwareConstants.PCM_ID, DrivetrainConstants.DT_LOW_SHIFTER_PORT, 
+//        		DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
 
         this.accelerometer = new BuiltInAccelerometer();
 

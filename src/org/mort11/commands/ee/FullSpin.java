@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *@author chsahit
  */
-public class JoystickShooter extends Command {
+public class FullSpin extends Command {
 
-    public JoystickShooter() {
+    public FullSpin() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.adaptor.shooter);
@@ -21,8 +21,7 @@ public class JoystickShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//System.out.println("robot out: " + Robot.oi.getEE_Z());
-    	Robot.adaptor.shooter.set(Robot.oi.getEE_Z());
+    	Robot.adaptor.shooter.set(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -14,10 +14,12 @@ import org.mort11.util.powermanager.MORTCANTalon;
  */
 public class IntakeArm extends Subsystem {
     private MORTCANTalon intakeArm;
-
+    private double initPos;
+    double scaling = 90/1142;
     public IntakeArm() {
         intakeArm = new MORTCANTalon(EndEffectorConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, "Intake Arm");
         intakeArm.reset();
+        initPos = intakeArm.getEncPosition();
     }
 
     /**
@@ -35,7 +37,7 @@ public class IntakeArm extends Subsystem {
      * @return Encoder angle
      */
     public double getAngle() {
-        return SensorDealer.getInstance().getArmPot().get();
+        return (intakeArm.getEncPosition() - initPos) * scaling;
     }
 
     /**

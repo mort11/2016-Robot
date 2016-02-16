@@ -15,14 +15,16 @@ import org.mort11.util.powermanager.MORTCANTalon;
  */
 public class Shooter extends Subsystem {
     private MORTCANTalon flywheel;
-
+    double initEncoderValue;
+    double scalingFactor = 1;
     public Shooter() {
         this.flywheel = new MORTCANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID, PDPConstants.FLYWHEEL, "Flywheel");
+        initEncoderValue = flywheel.getEncPosition();
     }
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new JoystickShooter());
+       setDefaultCommand(new JoystickShooter());
     }
 
     /**
@@ -33,6 +35,7 @@ public class Shooter extends Subsystem {
     // TODO: 2/10/16 Flywheel speed should be regulated by a PID loop
     public void set(double speed) {
         this.flywheel.set(speed);
+        //System.out.println("outputting: " + flywheel.get() );
     }
 
     /**
@@ -45,6 +48,6 @@ public class Shooter extends Subsystem {
     }
     
     public double getAngle() {
-    	return 0;
+    	return flywheel.getEncPosition();
     }
 }

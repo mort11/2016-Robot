@@ -16,12 +16,13 @@ import org.mort11.subsystems.ee.Rollers;
  * @author Jakob Shortell <jshortell@mort11.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author chsahit
  */
 public class IntakeRollers extends Command {
     Rollers roller = Robot.adaptor.rollers;
     Commands.RollerRequest rollerRequest;
     double time = -1;
-    Timer timer;
+    Timer timer = new Timer();
     public IntakeRollers(Commands.RollerRequest rollerRequest) {
         this.rollerRequest = rollerRequest;
         requires(roller);

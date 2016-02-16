@@ -36,14 +36,14 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      *
      * @param speed Motor speed
      */
-    @Override
-    public void set(double speed) {
-        if (this.disabled) {
-            talon.set(0);
-        } else {
-            talon.set(speed);
-        }
-    }
+//    @Override
+//    public void set(double speed) {
+//        if (this.disabled) {
+//            talon.set(0);
+//        } else {
+//            talon.set(speed);
+//        }
+//    }
 
     /**
      * @return Current of given PDP channel

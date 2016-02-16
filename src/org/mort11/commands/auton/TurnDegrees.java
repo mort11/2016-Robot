@@ -68,7 +68,7 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return SensorDealer.getInstance().getAHRS().getYaw() > desiredAngle * 0.9;
+        return SensorDealer.getInstance().getAHRS().getYaw() > desiredAngle *0.98;
     }
 
     protected void end() {

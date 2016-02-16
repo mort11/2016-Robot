@@ -3,6 +3,11 @@ package org.mort11.commands.ee;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 
+/**
+ * 
+ * @author chsahit
+ *
+ */
 public class JoystickIntake extends Command {
 
     public JoystickIntake() {

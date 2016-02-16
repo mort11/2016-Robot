@@ -44,11 +44,15 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
      * Toggle between high and low gear
      */
     public static void shift() {
-        if (currentGear == Gear.LOW_GEAR) {
-            shift(Gear.HIGH_GEAR);
-        } else {
-            shift(Gear.LOW_GEAR);
-        }
+    	System.out.println("calling method");
+    	boolean high = Robot.adaptor.shifter.get() == DoubleSolenoid.Value.kForward;
+    	System.out.println(high);
+    	if(high) {
+    		Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse);
+    	} else {
+    		Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward);
+    	}
+    	
     }
 
     /**
@@ -60,12 +64,12 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         currentGear = gear;
         // Low gear
         if (gear == Gear.LOW_GEAR) {
-            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that low gear is solenoid kForward
+            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that low gear is solenoid kForward
         }
 
         // High gear
         else {
-            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that high gear is solenoid kReverse
+            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that high gear is solenoid kReverse
         }
     }
 

@@ -1,6 +1,8 @@
-package org.mort11.commands;
+package org.mort11.commands.dt;
 
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.mort11.Robot;
 import org.mort11.subsystems.dt.DTSide;
 
 /**
@@ -12,6 +14,7 @@ public class Shift extends Command {
 
     @Override
     protected void initialize() {
+    	System.out.println("calling command");
     }
 
     @Override
