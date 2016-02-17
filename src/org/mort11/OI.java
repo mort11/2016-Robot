@@ -4,6 +4,23 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
+=======
+import org.mort11.commands.ee.PistonActuation;
+import org.mort11.commands.ee.MotorToAngle;
+import org.mort11.util.TeleopConstants;
+import org.mort11.subsystems.dt.DT;
+ 		
+>>>>>>> ff2541f2f511a88973d3aad641851c8cd4226270
+=======
+>>>>>>> 71aec0c941fc3f0a86872790a1014caf2b6d8718
+=======
 
 import org.mort11.behavior.Commands;
 import org.mort11.commands.dt.Shift;
@@ -11,6 +28,7 @@ import org.mort11.commands.ee.FullSpin;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.RollerUp;
 import org.mort11.commands.ee.SpinUp;
+>>>>>>> 60dd0b09bbbcdeb91e63404ddf2dfc76cc2a939f
 import org.mort11.constants.OperatorInterfaceConstants;
 import org.mort11.util.SpeedController;
 
@@ -54,6 +72,35 @@ public class OI {
         intakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.INTAKE));
         intakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
 
+<<<<<<< HEAD
+    public static double threshold(double input) {
+<<<<<<< HEAD
+=======
+import org.mort11.commands.ee.PistonActuation;
+import org.mort11.util.TeleopConstants;
+
+public class OI{
+	public Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
+	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
+	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);	
+	public Button piston = new JoystickButton(ee, TeleopConstants.PISTON_BUTTON);
+	Button intakeRoll = new JoystickButton(ee, TeleopConstants.INTAKE_BUTTON);
+	Button outtakeRoll = new JoystickButton(ee, TeleopConstants.OUTTAKE_BUTTON);
+
+	public OI() {
+		
+	}
+ 	
+
+    public static double doThreshold(double input) {
+>>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
+=======
+>>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
+        if (Math.abs(input) <= 0.05) {
+            return 0;
+        }
+        return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
+=======
         outtakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.EXHAUST));
         outtakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
         //spin.whenPressed(new FullSpin());
@@ -61,6 +108,7 @@ public class OI {
 
         spinUp.toggleWhenPressed(new SpinUp(20, false));
         rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
+>>>>>>> 60dd0b09bbbcdeb91e63404ddf2dfc76cc2a939f
     }
 
     /**
