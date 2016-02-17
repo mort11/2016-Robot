@@ -70,33 +70,33 @@ public class OI {
      * @return Speed limited value
      */
     public static double speedLimit(double speed) {
-        System.out.println(Robot.oi.timer.get());
-        if (Robot.oi.fullSpeed.get()) {
-            enabled = true;
-            count++;
-        }
-        if (enabled) {
-            Robot.oi.timer.start();
-            enabled = false;
-        }
-        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 20) {
-            return speed;
-        }
-        if (Robot.oi.timer.get() >= 10) {
-            //count = 2;
-            Robot.oi.timer.stop();
-            Robot.oi.timer.reset();
-            System.out.println("timer: " + Robot.oi.timer.get());
-        }
-        if (!enabled) {
-            if (speed >= .75) {
-                speed = .75;
-            }
-            if (speed <= -.75) {
-                speed = -.75;
-            }
-        }
-        return speed;
+//        System.out.println(Robot.oi.timer.get());
+//        if (Robot.oi.fullSpeed.get()) {
+//            enabled = true;
+//            count++;
+//        }
+//        if (enabled) {
+//            Robot.oi.timer.start();
+//            enabled = false;
+//        }
+//        if (Robot.oi.timer.get() < 10 && Robot.oi.timer.get() > 0 && count <= 20) {
+//            return speed;
+//        }
+//        if (Robot.oi.timer.get() >= 10) {
+//            //count = 2;
+//            Robot.oi.timer.stop();
+//            Robot.oi.timer.reset();
+//            System.out.println("timer: " + Robot.oi.timer.get());
+//        }
+//        if (!enabled) {
+//            if (speed >= .75) {
+//                speed = .75;
+//            }
+//            if (speed <= -.75) {
+//                speed = -.75;
+//            }
+//        }
+//        return speed;
     }
 
     public double getLeftJoy() {
