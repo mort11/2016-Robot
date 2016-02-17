@@ -43,7 +43,6 @@ public class TurnDegrees extends Command {
     }
 
     protected void execute() {
-        //currentAngle = DTSide.getAngle(); //gets current angle of robot
         currentAngle = Math.abs(SensorDealer.getInstance().getAHRS().getYaw()); //might work better than getAngle(), must test
         System.out.println("current angle" + currentAngle);
         speed = pd.getOutput(currentAngle); //passes current angle through pid loop

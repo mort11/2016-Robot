@@ -21,8 +21,8 @@ public class DTConstants {
     // Other constants
     public static final int ENC_CPR_LEFT = 2381; // Tick count from kop robot on left side, ports 2,3
     public static final int ENC_CPR_RIGHT = -2358; // Tick count from kop robot on right side, ports 0,1
-    public static final double INCHES_PER_PULSE_LEFT = 6 * Math.PI / ENC_CPR_LEFT;
-    public static final double INCHES_PER_PULSE_RIGHT = 6 * Math.PI / ENC_CPR_RIGHT;
+    public static final double INCHES_PER_PULSE_LEFT = 140/25918; //numbers from the practice bot
+    public static final double INCHES_PER_PULSE_RIGHT = 140/25918; //numbers from the practice bot
     public static final double kRobotRadius = 9.75;
     public static final double SPEED_LIMIT = 0.75;
 }

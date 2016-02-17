@@ -1,7 +1,7 @@
 package org.mort11.constants;
 
 /**
- * TeleopConstants - ToDo class description
+ * TeleopConstants - Constants for Teleop Operations
  *
  * @author Matt Turi <mturi@mort11.org>
  */
