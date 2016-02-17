@@ -1,6 +1,7 @@
 package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.EEConstants;
 import org.mort11.constants.PDPConstants;
@@ -18,7 +19,6 @@ public class Intake extends Subsystem {
         intakeArm = new MORTCANTalon(EEConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, false);
         intakeArm.reset();
     }
-
     /**
      * Returns the distance gotten from the arm encoder
      * @return Distance arm has traveled
@@ -27,7 +27,6 @@ public class Intake extends Subsystem {
         System.out.println(intakeArm.get());
         return intakeArm.getEncPosition();
     }
-
     /**
      * Returns the angle of the intake
      * @return Angle of intake
@@ -38,15 +37,15 @@ public class Intake extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new JoystickIntake());
+    	setDefaultCommand(new JoystickIntake());
     }
-
     /**
      * Set the speed of the intake arm
      *
      * @param speed Speed
      */
     public void set(double speed) {
-        intakeArm.set(speed);
-    }
+            intakeArm.set(speed);
+        }
+
 }

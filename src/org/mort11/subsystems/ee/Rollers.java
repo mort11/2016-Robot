@@ -16,7 +16,7 @@ public class Rollers extends Subsystem {
     public Rollers() {
         this.rollers = new MORTCANTalon(EEConstants.ROLLER_TALON_ID, PDPConstants.ROLLERS, false);
         rollers.reset();
-    }
+}
 
     @Override
     protected void initDefaultCommand() {

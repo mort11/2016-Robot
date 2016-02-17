@@ -34,7 +34,6 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
-
     // TODO: 2/11/16 Check MAX and MIN-REENABLE voltage values
     Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
 
@@ -43,7 +42,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // Start loops
-        pdpMonitor.start();
+        //pdpMonitor.start();
 
         // Have operator choose autonomous mode
         autoModes = new SendableChooser();
