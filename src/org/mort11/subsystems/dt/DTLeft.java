@@ -17,7 +17,7 @@ public class DTLeft extends DTSide {
     public DTLeft() {
         super(DTConstants.DT_LEFT_TALON_ID_1, DTConstants.DT_LEFT_TALON_ID_2,
                 DTConstants.DT_LEFT_TALON_ID_3, PDPConstants.LEFT_DT_1, PDPConstants.LEFT_DT_2, PDPConstants.LEFT_DT_3,
-                "DT_LEFT_1", "DT_LEFT_2", "DT_LEFT_3", true, true, true, SensorDealer.getInstance().getLeftDTEncoder());
+                true, true, true, SensorDealer.getInstance().getLeftDTEncoder());
         SensorDealer.getInstance().getLeftDTEncoder().setDistancePerPulse(DTConstants.INCHES_PER_PULSE_LEFT);
     }
 

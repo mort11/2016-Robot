@@ -19,18 +19,13 @@ import org.mort11.util.powermanager.MORTCANTalon;
 public abstract class DTSide extends Subsystem {
     public static Gear currentGear = Gear.LOW_GEAR;
     private MORTCANTalon motor1, motor2, motor3;
-    private boolean motor1Reverse, motor2Reverse, motor3Reverse;
     private Encoder encoder;
 
     public DTSide(int motor1Port, int motor2Port, int motor3Port, int motor1PDPSlot, int motor2PDPSlot, int motor3PDPSlot,
-                  String motor1Name, String motor2Name, String motor3Name, boolean motor1Reverse, boolean motor2Reverse,
-                  boolean motor3Reverse, Encoder encoder) {
-        this.motor1 = new MORTCANTalon(motor1Port, motor1PDPSlot, motor1Name);
-        this.motor2 = new MORTCANTalon(motor2Port, motor2PDPSlot, motor2Name);
-        this.motor3 = new MORTCANTalon(motor3Port, motor3PDPSlot, motor3Name);
-        this.motor1Reverse = motor1Reverse;
-        this.motor2Reverse = motor2Reverse;
-        this.motor3Reverse = motor3Reverse;
+                  boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse, Encoder encoder) {
+        this.motor1 = new MORTCANTalon(motor1Port, motor1PDPSlot, motor1Reverse);
+        this.motor2 = new MORTCANTalon(motor2Port, motor2PDPSlot, motor2Reverse);
+        this.motor3 = new MORTCANTalon(motor3Port, motor3PDPSlot, motor3Reverse);
         this.encoder = encoder;
     }
 
@@ -86,9 +81,9 @@ public abstract class DTSide extends Subsystem {
      * @param speed Speed
      */
     public void set(double speed) {
-        this.motor1.set(speed * (this.motor1Reverse ? -1 : 1));
-        this.motor2.set(speed * (this.motor2Reverse ? -1 : 1));
-        this.motor3.set(speed * (this.motor3Reverse ? -1 : 1));
+        this.motor1.set(speed);
+        this.motor2.set(speed);
+        this.motor3.set(speed);
     }
 
     /**

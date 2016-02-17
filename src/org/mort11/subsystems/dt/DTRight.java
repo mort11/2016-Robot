@@ -17,7 +17,7 @@ public class DTRight extends DTSide {
     public DTRight() {
         super(DTConstants.DT_RIGHT_TALON_ID_1, DTConstants.DT_RIGHT_TALON_ID_2,
                 DTConstants.DT_RIGHT_TALON_ID_3, PDPConstants.RIGHT_DT_1, PDPConstants.RIGHT_DT_2, PDPConstants.RIGHT_DT_3,
-                "DT_RIGHT_1", "DT_RIGHT_2", "DT_RIGHT_3", false, false, false, SensorDealer.getInstance().getRightDTEncoder());
+                false, false, false, SensorDealer.getInstance().getRightDTEncoder());
         SensorDealer.getInstance().getRightDTEncoder().setDistancePerPulse(DTConstants.INCHES_PER_PULSE_RIGHT);
     }
 
