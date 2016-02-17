@@ -5,10 +5,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
 =======
 import org.mort11.RobotMap;
+=======
+
+import org.mort11.commands.ee.JoystickIntake;
+>>>>>>> 60dd0b09bbbcdeb91e63404ddf2dfc76cc2a939f
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.MORTSubsystem;
@@ -55,19 +60,23 @@ public class Intake extends Subsystem implements MORTSubsystem {
         SensorDealer.getInstance().getArmEncoder().reset();
         SensorDealer.getInstance().getArmEncoder().setDistancePerPulse(EndEffectorConstants.INCHES_PER_PULSE);
     }
-
-    protected void initDefaultCommand() {
-
-    }
-
-    public double getDistance() {
+// returns the distance gotten from the arm encoder
+    public static double getDistance() {
         System.out.println(SensorDealer.getInstance().getArmEncoder().get());
         return SensorDealer.getInstance().getArmEncoder().get();
 >>>>>>> 71aec0c941fc3f0a86872790a1014caf2b6d8718
     }
+// returns the angle of the intake
+    public static double getAngle() {
+        return getDistance() * EndEffectorConstants.ROLLER_DEGREE_PER_TICK;
+    }
 
+    protected void initDefaultCommand() {
+    	setDefaultCommand(new JoystickIntake());
+    }
+    // sets the speed of the intake arm 
     public void set(double speed) {
-        if (isDisabled == false) {
+        if (!isDisabled) {
             intakeArm.set(speed);
         }
     }

@@ -1,45 +1,65 @@
 package org.mort11.commands.ee;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.mort11.Robot;
+import org.mort11.behavior.Commands;
+import org.mort11.behavior.Commands.RollerRequest;
 import org.mort11.constants.EndEffectorConstants;
 import org.mort11.subsystems.ee.Rollers;
 
 /**
- * IntakeRollers - Spins the intake rollers at a 
+ * IntakeRollers - Spins the intake rollers at a
  *
+ * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Jakob Shortell <jshortell@mort11.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  * @author Ryan Thant <ryanthant1@gmail.com>
+ * @author chsahit
  */
 public class IntakeRollers extends Command {
-
-    boolean in, out;
-    Rollers rollers = Robot.adaptor.rollers;
-
-    public IntakeRollers(boolean in, boolean out) {
-        this.in = in;
-        this.out = out;
-        requires(rollers);
+    Rollers roller = Robot.adaptor.rollers;
+    Commands.RollerRequest rollerRequest;
+    double time = -1;
+    Timer timer = new Timer();
+    public IntakeRollers(Commands.RollerRequest rollerRequest) {
+        this.rollerRequest = rollerRequest;
+        requires(roller);
+        setInterruptible(true);
+    }
+    
+    public IntakeRollers(double time) {
+    	this(RollerRequest.EXHAUST);
+    	this.time = time;
+    	timer = new Timer();
     }
 
     protected void initialize() {
+    	timer.start();
     }
 
     protected void execute() {
-        if (in == out) {
-            rollers.set(0);
-        } else if (in) {
-            rollers.set(EndEffectorConstants.ROLLER_SPEED);
-        } else {
-            rollers.set(-1 * EndEffectorConstants.ROLLER_SPEED);
+        switch (rollerRequest) {
+            case INTAKE:
+                roller.set(EndEffectorConstants.ROLLER_SPEED);
+                break;
+            case EXHAUST:
+                roller.set(-EndEffectorConstants.ROLLER_SPEED);
+                break;
+            case STOP:
+                roller.set(0);
         }
     }
 
     protected boolean isFinished() {
-        return false;
+        return timer.get() > time;
     }
 
     protected void end() {
+    	if(time != -1) {
+    		roller.set(0);
+    	}
     }
 
     protected void interrupted() {

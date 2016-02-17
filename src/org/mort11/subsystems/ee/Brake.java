@@ -11,11 +11,12 @@ import org.mort11.util.MORTSubsystem;
  * @author Ryan Thant <ryanthant1@gmail.com>
  * @author Seven Kurt <seven.kurt@motsd.org>
  */
-public class Pneumatics extends Subsystem implements MORTSubsystem {
+public class Brake extends Subsystem implements MORTSubsystem {
     DoubleSolenoid solenoid;
     boolean engaged;
     boolean isDisabled;
 
+<<<<<<< HEAD:src/org/mort11/subsystems/ee/Pneumatics.java
     public Pneumatics(int engagedPort, int notEngagedPort) {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -24,6 +25,9 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
         sol = new DoubleSolenoid(30,engagedPort, notEngagedPort);
 >>>>>>> 830d2dde43e2d35cf89f028ef516f6ec618b4fa7
 =======
+=======
+    public Brake(int engagedPort, int notEngagedPort) {
+>>>>>>> 60dd0b09bbbcdeb91e63404ddf2dfc76cc2a939f:src/org/mort11/subsystems/ee/Brake.java
         solenoid = new DoubleSolenoid(30, engagedPort, notEngagedPort);
 >>>>>>> 419908c65a86f490a546220fe1565cd093d66b4e
         engaged = false;
@@ -32,7 +36,7 @@ public class Pneumatics extends Subsystem implements MORTSubsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new PistonActuation());
     }
-
+//if engaged set solenoid to kForward
     public void setSolenoid(boolean engage) {
         if (isDisabled == false) {
             if (engage) {

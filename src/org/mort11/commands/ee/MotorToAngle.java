@@ -1,7 +1,9 @@
 package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Shooter;
 
 /**
@@ -10,30 +12,33 @@ import org.mort11.subsystems.ee.Shooter;
  * @author Ryan Thant <ryanthant1@gmail.com>
  * @author Seven Kurt <seven.kurt@motsd.org>
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ * @author chsahit
  */
 public class MotorToAngle extends Command {
 
-    double speed = .5;
+    double speed = 0.5;
     double tarAng = 90;
-    private Shooter shooter = Robot.adaptor.shooter;
+    private IntakeArm Intake = Robot.adaptor.intakeArm;
 
     public MotorToAngle() {
-        requires(shooter);
+        requires(Intake);
     }
 
     protected void initialize() {
+    	this.setInterruptible(true);
     }
 
     protected void execute() {
-        if (shooter.getAngle() < tarAng) {
-            shooter.set(speed);
-        }
-        if (shooter.getAngle() > tarAng) {
-            shooter.set(-speed);
-        }
-        if (shooter.getAngle() == tarAng) {
-            shooter.set(0);
-        }
+    	System.out.println("shooter angle: " + Intake.getAngle());
+//        if (shooter.getAngle() < tarAng) {
+//            shooter.set(speed);
+//        }
+//        if (shooter.getAngle() > tarAng) {
+//            shooter.set(-speed);
+//        }
+//        if (shooter.getAngle() == tarAng) {
+//            shooter.set(0);
+//    }
     }
 
     protected boolean isFinished() {
