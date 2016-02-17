@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.Robot;
-import org.mort11.util.MORTSubsystem;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -17,9 +16,8 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Abi Koutha <akoutha7@gmail.com>
  * @author Jakob Shortell <jshortell@mort11.org>
  */
-public abstract class DTSide extends Subsystem implements MORTSubsystem {
+public abstract class DTSide extends Subsystem {
     public static Gear currentGear = Gear.LOW_GEAR;
-    private static boolean disabled = false;
     private MORTCANTalon motor1, motor2, motor3;
     private boolean motor1Reverse, motor2Reverse, motor3Reverse;
     private Encoder encoder;
@@ -34,10 +32,6 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         this.motor2Reverse = motor2Reverse;
         this.motor3Reverse = motor3Reverse;
         this.encoder = encoder;
-    }
-
-    public static boolean getDisabled() {
-        return disabled;
     }
 
     /**
@@ -60,12 +54,12 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         currentGear = gear;
         // Low gear
         if (gear == Gear.LOW_GEAR) {
-            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that low gear is solenoid kForward
+            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that low gear is solenoid kForward
         }
 
         // High gear
         else {
-            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that high gear is solenoid kReverse
+            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that high gear is solenoid kReverse
         }
     }
 
@@ -106,32 +100,7 @@ public abstract class DTSide extends Subsystem implements MORTSubsystem {
         this.motor3.set(0);
     }
 
-    /**
-     * Disable the subsystem
-     */
     @Override
-    public void disable() {
-        disabled = true;
-    }
-
-    /**
-     * Check if subsystem is disabled
-     *
-     * @return Subsystem state
-     */
-    @Override
-    public boolean isDisabled() {
-        return disabled;
-    }
-
-    /**
-     * Re-enable subsystem that is in a disabled state
-     */
-    @Override
-    public void enable() {
-        disabled = false;
-    }
-
     public void initDefaultCommand() {
     }
 

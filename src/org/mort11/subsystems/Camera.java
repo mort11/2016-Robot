@@ -116,6 +116,4 @@ public class Camera extends Subsystem {
     public void initDefaultCommand() {
 
     }
-
-
 }

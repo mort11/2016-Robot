@@ -73,7 +73,6 @@ public class Robot extends IterativeRobot {
         for (Command autoCommand : autoCommands) {
             System.out.println(autoCommand);
         }
-
         autonomousCommand.start();
     }
 

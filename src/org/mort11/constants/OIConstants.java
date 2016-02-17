@@ -1,14 +1,14 @@
 package org.mort11.constants;
 
 /**
- * OperatorInterfaceConstants - Button mappings for Driver and Operator joysticks
+ * OIConstants - Button mappings for Driver and Operator joysticks
  *
  * @author Matt Turi <mturi@mort11.org>
  * @author Seven Kurt <seven.kurt@motsd.org>
  * @author Michael Kozak <michael.kozak@motsd.org>
  * @author Ryan Thant <ryanthant1@gmail.com>
  */
-public class OperatorInterfaceConstants {
+public class OIConstants {
     // USB
     public static final int LEFT_JOYSTICK = 0;
     public static final int RIGHT_JOYSTICK = 1;

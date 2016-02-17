@@ -2,7 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickShooter;
-import org.mort11.constants.EndEffectorConstants;
+import org.mort11.constants.EEConstants;
 import org.mort11.constants.PDPConstants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
@@ -15,14 +15,17 @@ import org.mort11.util.powermanager.MORTCANTalon;
  */
 public class Shooter extends Subsystem {
     private MORTCANTalon flywheel;
+    double initEncoderValue;
+    double scalingFactor = 1;
 
     public Shooter() {
-        this.flywheel = new MORTCANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID, PDPConstants.FLYWHEEL, "Flywheel");
+        this.flywheel = new MORTCANTalon(EEConstants.FLYWHEEL_TALON_ID, PDPConstants.FLYWHEEL, false);
+        initEncoderValue = flywheel.getEncPosition();
     }
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new JoystickShooter());
+       setDefaultCommand(new JoystickShooter());
     }
 
     /**
@@ -45,6 +48,6 @@ public class Shooter extends Subsystem {
     }
     
     public double getAngle() {
-    	return 0;
+    	return flywheel.getEncPosition();
     }
 }

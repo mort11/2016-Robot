@@ -1,11 +1,11 @@
 package org.mort11.constants;
 
 /**
- * DrivetrainConstants - Constants for the Drivetrain. Uses CAN bus for IDs on final robot
+ * DTConstants - Constants for the Drivetrain. Uses CAN bus for IDs on final robot
  *
  * @author Matt Turi <mturi@mort11.org>
  */
-public class DrivetrainConstants {
+public class DTConstants {
     // CAN IDs
     public static final int DT_LEFT_TALON_ID_1 = 10;
     public static final int DT_LEFT_TALON_ID_2 = 9;

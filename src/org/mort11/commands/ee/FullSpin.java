@@ -5,13 +5,14 @@ import org.mort11.Robot;
 import org.mort11.subsystems.ee.Shooter;
 
 /**
- * JoystickShooter - Run flywheel at joystick value
+ * FullSpin - Spin the flywheel at full speed
+ *
  * @author chsahit
  */
-public class JoystickShooter extends Command {
+public class FullSpin extends Command {
     private Shooter shooter = Robot.adaptor.shooter;
 
-    public JoystickShooter() {
+    public FullSpin() {
         requires(shooter);
     }
 
@@ -21,7 +22,7 @@ public class JoystickShooter extends Command {
 
     @Override
     protected void execute() {
-        shooter.set(Robot.oi.getEE_Z());
+        shooter.set(-1);
     }
 
     @Override

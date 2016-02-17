@@ -3,7 +3,7 @@ package org.mort11.commands.auton;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.constants.DrivetrainConstants;
+import org.mort11.constants.DTConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.Logger;
@@ -73,9 +73,9 @@ public class DriveArc extends Command {
     private double[] arc_calc(double arc_length, double theta) {
         double centerRadius = Math.abs(arc_length / theta);
         double right_radius = centerRadius -
-                DrivetrainConstants.kRobotRadius * Math.signum(arc_length);
+                DTConstants.kRobotRadius * Math.signum(arc_length);
         double left_radius = centerRadius +
-                DrivetrainConstants.kRobotRadius * Math.signum(arc_length);
+                DTConstants.kRobotRadius * Math.signum(arc_length);
         System.out.println("Right radius: " + right_radius * theta);
         System.out.println("Left radius: " + left_radius * theta);
         return (new double[]{right_radius * theta, left_radius * theta});
