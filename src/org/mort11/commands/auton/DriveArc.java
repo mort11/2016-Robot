@@ -43,20 +43,14 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()) { // // Will run when the Drivetrain is not disabled
-            rightDist = SensorDealer.getInstance().getRightDTEncoder().getDistance();
-            double rightVel = pidRight.getOutput(rightDist);
-            leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
-            double leftVel = pidLeft.getOutput(leftDist);
-            rightSide.set(rightVel);
-            leftSide.set(leftVel);
-            Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
-                    + "," + rightDist + "," + pidRight.getSP() + "," + rightVel);
-        } else {
-            leftSide.stop();
-            rightSide.stop();
-            end();
-        }
+        rightDist = SensorDealer.getInstance().getRightDTEncoder().getDistance();
+        double rightVel = pidRight.getOutput(rightDist);
+        leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
+        double leftVel = pidLeft.getOutput(leftDist);
+        rightSide.set(rightVel);
+        leftSide.set(leftVel);
+        Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
+                + "," + rightDist + "," + pidRight.getSP() + "," + rightVel);
     }
 
     protected boolean isFinished() {
