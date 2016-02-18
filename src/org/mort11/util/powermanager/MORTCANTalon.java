@@ -24,9 +24,13 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      */
     public MORTCANTalon(int deviceNumber, int pdpSlot, boolean reverse) {
         super(deviceNumber);
+        System.out.println("init  dev");
         this.pdpSlot = pdpSlot;
         this.reverse = reverse;
+        System.out.println("vars");
         MotorHolder.motors.add(this);
+        System.out.println("added");
+        System.out.println(String.format("New Dev [%s]", String.valueOf(deviceNumber)));
     }
 
     /**

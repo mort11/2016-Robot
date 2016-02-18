@@ -1,10 +1,9 @@
 package org.mort11.subsystems.ee;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickShooter;
 import org.mort11.constants.EEConstants;
-import org.mort11.constants.PDPConstants;
-import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * Shooter - Controls the flywheel
@@ -14,18 +13,21 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class Shooter extends Subsystem {
-    private MORTCANTalon flywheel;
     double initEncoderValue;
     double scalingFactor = 1;
+    private CANTalon flywheel;
 
     public Shooter() {
-        this.flywheel = new MORTCANTalon(EEConstants.FLYWHEEL_TALON_ID, PDPConstants.FLYWHEEL, false);
+        System.out.println("initing flywheel");
+        this.flywheel = new CANTalon(EEConstants.FLYWHEEL_TALON_ID);
+        System.out.println("sett enc");
         initEncoderValue = flywheel.getEncPosition();
+        System.out.println("done");
     }
 
     @Override
     public void initDefaultCommand() {
-       setDefaultCommand(new JoystickShooter());
+        setDefaultCommand(new JoystickShooter());
     }
 
     /**
@@ -46,8 +48,8 @@ public class Shooter extends Subsystem {
     public double getSpeed() {
         return flywheel.getEncVelocity();
     }
-    
+
     public double getAngle() {
-    	return flywheel.getEncPosition();
+        return flywheel.getEncPosition();
     }
 }
