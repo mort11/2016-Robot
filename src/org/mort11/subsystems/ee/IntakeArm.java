@@ -2,6 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.Robot;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;

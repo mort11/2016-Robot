@@ -11,6 +11,7 @@ import org.mort11.util.MORTSubsystem;
  */
 public class MORTCANTalon extends CANTalon implements MORTSubsystem {
     private PowerDistributionPanel pdp = new PowerDistributionPanel();
+    private int pdpSlot;
     private boolean disabled = false;
     private boolean reverse;
 
@@ -22,6 +23,7 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      */
     public MORTCANTalon(int deviceNumber, boolean reverse) {
         super(deviceNumber);
+        this.pdpSlot = pdpSlot;
         this.reverse = reverse;
         MotorHolder.motors.add(this);
     }
@@ -38,6 +40,10 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
         } else {
             super.set(this.reverse ? speed * -1 : speed);
         }
+    }
+
+    public double getCurrent() {
+        return this.pdp.getCurrent(pdpSlot);
     }
 
     /**
