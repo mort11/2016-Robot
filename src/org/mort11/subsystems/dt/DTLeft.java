@@ -1,6 +1,7 @@
 package org.mort11.subsystems.dt;
 
 import org.mort11.commands.dt.DriveLinearLeft;
+import org.mort11.constants.Constants;
 import org.mort11.sensors.SensorDealer;
 
 /**
@@ -13,10 +14,10 @@ import org.mort11.sensors.SensorDealer;
  */
 public class DTLeft extends DTSide {
     public DTLeft() {
-        super(DTConstants.DT_LEFT_TALON_ID_1, DTConstants.DT_LEFT_TALON_ID_2,
-                DTConstants.DT_LEFT_TALON_ID_3, PDPConstants.LEFT_DT_1, PDPConstants.LEFT_DT_2, PDPConstants.LEFT_DT_3,
+        super(Constants.DT_LEFT_TALON_ID_1, Constants.DT_LEFT_TALON_ID_2,
+                Constants.DT_LEFT_TALON_ID_3, Constants.LEFT_DT_1, Constants.LEFT_DT_2, Constants.LEFT_DT_3,
                 true, true, true, SensorDealer.getInstance().getLeftDTEncoder());
-        SensorDealer.getInstance().getLeftDTEncoder().setDistancePerPulse(DTConstants.INCHES_PER_PULSE_LEFT);
+        SensorDealer.getInstance().getLeftDTEncoder().setDistancePerPulse(Constants.INCHES_PER_PULSE_LEFT);
     }
 
     public void initDefaultCommand() {

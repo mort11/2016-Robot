@@ -1,6 +1,7 @@
 package org.mort11.subsystems.dt;
 
 import org.mort11.commands.dt.DriveLinearRight;
+import org.mort11.constants.Constants;
 import org.mort11.sensors.SensorDealer;
 
 /**
@@ -13,10 +14,10 @@ import org.mort11.sensors.SensorDealer;
  */
 public class DTRight extends DTSide {
     public DTRight() {
-        super(DTConstants.DT_RIGHT_TALON_ID_1, DTConstants.DT_RIGHT_TALON_ID_2,
-                DTConstants.DT_RIGHT_TALON_ID_3, PDPConstants.RIGHT_DT_1, PDPConstants.RIGHT_DT_2, PDPConstants.RIGHT_DT_3,
+        super(Constants.DT_RIGHT_TALON_ID_1, Constants.DT_RIGHT_TALON_ID_2,
+                Constants.DT_RIGHT_TALON_ID_3, Constants.RIGHT_DT_1, Constants.RIGHT_DT_2, Constants.RIGHT_DT_3,
                 false, false, false, SensorDealer.getInstance().getRightDTEncoder());
-        SensorDealer.getInstance().getRightDTEncoder().setDistancePerPulse(DTConstants.INCHES_PER_PULSE_RIGHT);
+        SensorDealer.getInstance().getRightDTEncoder().setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT);
     }
 
     public void initDefaultCommand() {

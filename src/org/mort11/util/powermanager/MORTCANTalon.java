@@ -21,7 +21,7 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      * @param deviceNumber CAN ID for talon
      * @param reverse      Reverse motor
      */
-    public MORTCANTalon(int deviceNumber, boolean reverse) {
+    public MORTCANTalon(int deviceNumber, int pdpSlot, boolean reverse) {
         super(deviceNumber);
         this.pdpSlot = pdpSlot;
         this.reverse = reverse;

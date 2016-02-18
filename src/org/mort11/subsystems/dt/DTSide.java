@@ -1,7 +1,9 @@
 package org.mort11.subsystems.dt;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.Robot;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -18,11 +20,11 @@ public abstract class DTSide extends Subsystem {
     private MORTCANTalon motor1, motor2, motor3;
     private Encoder encoder;
 
-    public DTSide(int motor1Port, int motor2Port, int motor3Port, boolean motor1Reverse, boolean motor2Reverse,
-                  boolean motor3Reverse, Encoder encoder) {
-        this.motor1 = new MORTCANTalon(motor1Port, motor1Reverse);
-        this.motor2 = new MORTCANTalon(motor2Port, motor2Reverse);
-        this.motor3 = new MORTCANTalon(motor3Port, motor3Reverse);
+    public DTSide(int motor1Port, int motor2Port, int motor3Port, int pdpSlot1, int pdpSlot2, int pdpSlot3,
+                  boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse, Encoder encoder) {
+        this.motor1 = new MORTCANTalon(motor1Port, pdpSlot1, motor1Reverse);
+        this.motor2 = new MORTCANTalon(motor2Port, pdpSlot2, motor2Reverse);
+        this.motor3 = new MORTCANTalon(motor3Port, pdpSlot3, motor3Reverse);
         this.encoder = encoder;
     }
 
@@ -34,8 +36,10 @@ public abstract class DTSide extends Subsystem {
     public static void shift(Gear gear) {
         switch (gear) {
             case LOW:
+                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse);
                 break;
             case HIGH:
+                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward);
                 break;
         }
     }
