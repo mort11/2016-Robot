@@ -1,7 +1,5 @@
 package org.mort11.util;
 
-import org.mort11.constants.DTConstants;
-
 /**
  * SpeedController - Functions to control speed manage
  *

@@ -70,8 +70,8 @@ public class DriveStraight extends Command {
     }
 
     protected void end() {
-        left.stop();
-        right.stop();
+        left.halt();
+        right.halt();
         left.resetEncoder();
         right.resetEncoder();
     }

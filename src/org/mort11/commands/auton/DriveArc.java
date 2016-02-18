@@ -3,7 +3,6 @@ package org.mort11.commands.auton;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.constants.DTConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.Logger;

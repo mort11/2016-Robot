@@ -2,8 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
-import org.mort11.constants.EEConstants;
-import org.mort11.constants.PDPConstants;
+import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -15,7 +14,7 @@ public class Intake extends Subsystem {
     private MORTCANTalon intakeArm;
 
     public Intake() {
-        intakeArm = new MORTCANTalon(EEConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, false);
+        intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, false);
         intakeArm.reset();
     }
 
@@ -33,7 +32,7 @@ public class Intake extends Subsystem {
      * @return Angle of intake
      */
     public double getAngle() {
-        return getDistance() * EEConstants.INTAKE_DEGREE_PER_TICK;
+        return getDistance() * Constants.INTAKE_DEGREE_PER_TICK;
     }
 
     @Override

@@ -66,8 +66,8 @@ public class DrivePID extends Command {
 
     protected void end() {
         Logger.close();
-        right.stop();
-        left.stop();
+        right.halt();
+        left.halt();
         rightEncoder.reset();
         leftEncoder.reset();
     }

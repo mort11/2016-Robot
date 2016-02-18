@@ -1,8 +1,6 @@
 package org.mort11.subsystems.dt;
 
 import org.mort11.commands.dt.DriveLinearLeft;
-import org.mort11.constants.DTConstants;
-import org.mort11.constants.PDPConstants;
 import org.mort11.sensors.SensorDealer;
 
 /**

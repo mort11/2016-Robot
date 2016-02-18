@@ -1,7 +1,5 @@
 package org.mort11.util.powermanager;
 
-import org.mort11.constants.PDPConstants;
-
 import java.util.ArrayList;
 
 /**
