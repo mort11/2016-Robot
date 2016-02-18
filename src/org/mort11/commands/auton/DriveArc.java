@@ -3,7 +3,7 @@ package org.mort11.commands.auton;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
+import org.mort11.constants.Constants;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
@@ -42,9 +42,9 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
-        rightDist = SensorDealer.getInstance().getRightDTEncoder().getDistance();
+        rightDist = DTSide.getEncRight().getDistance();
         double rightVel = pidRight.getOutput(rightDist);
-        leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
+        leftDist = DTSide.getEncLeft().getDistance();
         double leftVel = pidLeft.getOutput(leftDist);
         rightSide.set(rightVel);
         leftSide.set(leftVel);
@@ -66,9 +66,9 @@ public class DriveArc extends Command {
     private double[] arc_calc(double arc_length, double theta) {
         double centerRadius = Math.abs(arc_length / theta);
         double right_radius = centerRadius -
-                DTConstants.kRobotRadius * Math.signum(arc_length);
+                Constants.kRobotRadius * Math.signum(arc_length);
         double left_radius = centerRadius +
-                DTConstants.kRobotRadius * Math.signum(arc_length);
+                Constants.kRobotRadius * Math.signum(arc_length);
         System.out.println("Right radius: " + right_radius * theta);
         System.out.println("Left radius: " + left_radius * theta);
         return (new double[]{right_radius * theta, left_radius * theta});

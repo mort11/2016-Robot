@@ -1,8 +1,6 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.Robot;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;
@@ -15,7 +13,6 @@ import org.mort11.util.powermanager.MORTCANTalon;
 public class IntakeArm extends Subsystem {
     private MORTCANTalon intakeArm;
     private double initPos;
-    private DigitalInput limSwitch;
 
     public IntakeArm() {
         intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, false);

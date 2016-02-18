@@ -1,9 +1,7 @@
 package org.mort11;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import org.mort11.constants.Constants;
 import org.mort11.subsystems.Camera;
@@ -12,7 +10,6 @@ import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.IntakeArm;
-import org.mort11.subsystems.ee.IntakeBrake;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
 
@@ -37,11 +34,9 @@ public class HardwareAdaptor {
     public DoubleSolenoid intakeBrakeSolenoid;
     public DoubleSolenoid hood;
 
-    // Brake mechanism
-    public IntakeBrake intakeBrake;
-
     // Navigational instruments
     public Accelerometer accelerometer;
+    public AHRS ahrs;
 
     // Subsystems
     public DTSide leftSide;
@@ -62,6 +57,7 @@ public class HardwareAdaptor {
         this.hood = new DoubleSolenoid(Constants.PCM_ID, Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);
 
         this.accelerometer = new BuiltInAccelerometer();
+        this.ahrs = new AHRS(SPI.Port.kMXP);
 
         this.leftSide = new DTLeft();
         this.rightSide = new DTRight();

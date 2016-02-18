@@ -1,9 +1,11 @@
 package org.mort11.subsystems.dt;
 
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.Robot;
+import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -17,15 +19,15 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 public abstract class DTSide extends Subsystem {
+    private static Encoder encLeft = new Encoder(Constants.DT_ENCODER_LEFT_A, Constants.DT_ENCODER_LEFT_B, true, CounterBase.EncodingType.k4X);
+    private static Encoder encRight = new Encoder(Constants.DT_ENCODER_RIGHT_A, Constants.DT_ENCODER_RIGHT_B, true, CounterBase.EncodingType.k4X);
     private MORTCANTalon motor1, motor2, motor3;
-    private Encoder encoder;
 
     public DTSide(int motor1Port, int motor2Port, int motor3Port, int pdpSlot1, int pdpSlot2, int pdpSlot3,
-                  boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse, Encoder encoder) {
+                  boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse) {
         this.motor1 = new MORTCANTalon(motor1Port, pdpSlot1, motor1Reverse);
         this.motor2 = new MORTCANTalon(motor2Port, pdpSlot2, motor2Reverse);
         this.motor3 = new MORTCANTalon(motor3Port, pdpSlot3, motor3Reverse);
-        this.encoder = encoder;
     }
 
     /**
@@ -44,20 +46,22 @@ public abstract class DTSide extends Subsystem {
         }
     }
 
+    public static Encoder getEncLeft() {
+        return encLeft;
+    }
+
+    public static Encoder getEncRight() {
+        return encRight;
+    }
+
     /**
      * Reset encoder ticks
      */
     public void resetEncoder() {
-        this.encoder.reset();
-    }
-
-    /**
-     * Get current speed of motor from TalonSRX
-     *
-     * @return Motor speed [Units?]
-     */
-    public double getSpeed() {
-        return this.encoder.get();
+        encLeft.setDistancePerPulse(Constants.INCHES_PER_PULSE_LEFT);
+        encRight.setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT);
+        encLeft.reset();
+        encRight.reset();
     }
 
     /**
