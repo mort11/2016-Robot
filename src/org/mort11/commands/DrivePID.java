@@ -3,7 +3,6 @@ package org.mort11.commands;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
@@ -26,8 +25,9 @@ public class DrivePID extends Command {
 
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
-    private Encoder leftEncoder = SensorDealer.getInstance().getLeftDTEncoder();
-    private Encoder rightEncoder = SensorDealer.getInstance().getRightDTEncoder();
+    private Encoder leftEncoder = DTSide.getEncLeft();
+    private Encoder rightEncoder = DTSide.getEncRight();
+
     public DrivePID() {
         requires(left);
         requires(right);
@@ -66,8 +66,8 @@ public class DrivePID extends Command {
 
     protected void end() {
         Logger.close();
-        right.stop();
-        left.stop();
+        right.halt();
+        left.halt();
         rightEncoder.reset();
         leftEncoder.reset();
     }

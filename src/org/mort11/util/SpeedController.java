@@ -1,6 +1,6 @@
 package org.mort11.util;
 
-import org.mort11.constants.DTConstants;
+import org.mort11.constants.Constants;
 
 /**
  * SpeedController - Functions to control speed manage
@@ -32,10 +32,10 @@ public class SpeedController {
      * @return Speed limited value
      */
     public static double speedLimit(double input) {
-        if (input >= DTConstants.SPEED_LIMIT) {
-            input = DTConstants.SPEED_LIMIT;
-        } else if (input <= -DTConstants.SPEED_LIMIT) {
-            input = -DTConstants.SPEED_LIMIT;
+        if (input >= Constants.SPEED_LIMIT) {
+            input = Constants.SPEED_LIMIT;
+        } else if (input <= -Constants.SPEED_LIMIT) {
+            input = -Constants.SPEED_LIMIT;
         }
         return threshold(input);
     }

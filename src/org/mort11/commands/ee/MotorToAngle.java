@@ -3,7 +3,6 @@ package org.mort11.commands.ee;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.subsystems.ee.IntakeArm;
-import org.mort11.subsystems.ee.Shooter;
 import org.mort11.util.PIDLoop;
 
 /**
@@ -23,6 +22,10 @@ public class MotorToAngle extends Command {
         requires(intake);
         this.target = target;
         intake_pid = new PIDLoop(target, 0.01, 0.01,2.5);
+    }
+
+    public MotorToAngle() {
+        requires(intake);
     }
 
     @Override

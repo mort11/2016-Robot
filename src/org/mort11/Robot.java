@@ -9,9 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.WaitTime;
-import org.mort11.util.Looper;
 import org.mort11.util.auto.AutoCommand;
-import org.mort11.util.powermanager.PDPUpdater;
 
 /**
  * Robot - Main Robot class
@@ -34,15 +32,16 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
+
     // TODO: 2/11/16 Check MAX and MIN-REENABLE voltage values
-    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
+//    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
 
     @Override
     public void robotInit() {
         oi = new OI();
 
         // Start loops
-        //pdpMonitor.start();
+//        pdpMonitor.start();
 
         // Have operator choose autonomous mode
         autoModes = new SendableChooser();
@@ -89,7 +88,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledInit() {
         // Stop loopable threads
-        pdpMonitor.stop();
+//        pdpMonitor.stop();
         System.out.println("Disabled. Code halted!");
     }
 

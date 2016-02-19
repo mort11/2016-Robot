@@ -144,8 +144,8 @@ class SerialIO
             ex.printStackTrace();
         }
 
-        byte[] stream_command = new byte['Ā'];
-        byte[] integration_control_command = new byte['Ā'];
+        byte[] stream_command = new byte['c'];
+        byte[] integration_control_command = new byte['c'];
         IMUProtocol.StreamResponse response = new IMUProtocol.StreamResponse();
         AHRSProtocol.IntegrationControl integration_control = new AHRSProtocol.IntegrationControl();
         AHRSProtocol.IntegrationControl integration_control_response = new AHRSProtocol.IntegrationControl();

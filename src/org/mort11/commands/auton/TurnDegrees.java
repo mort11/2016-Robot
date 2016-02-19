@@ -3,7 +3,6 @@ package org.mort11.commands.auton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
@@ -39,11 +38,12 @@ public class TurnDegrees extends Command {
      * Resets the yaw so current angle is accurate
      */
     protected void initialize() {
-        SensorDealer.getInstance().getAHRS().reset();
+        Robot.adaptor.ahrs.reset();
     }
 
     protected void execute() {
-        currentAngle = Math.abs(SensorDealer.getInstance().getAHRS().getYaw()); //might work better than getAngle(), must test
+        //currentAngle = DTSide.getAngle(); //gets current angle of robot
+        currentAngle = Math.abs(Robot.adaptor.ahrs.getYaw()); //might work better than getAngle(), must test
         System.out.println("current angle" + currentAngle);
         speed = pd.getOutput(currentAngle); //passes current angle through pid loop
         System.out.println("speed" + speed);
@@ -62,7 +62,7 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return SensorDealer.getInstance().getAHRS().getYaw() > desiredAngle * 0.98;
+        return Robot.adaptor.ahrs.getYaw() > desiredAngle * 0.98;
     }
 
     protected void end() {
@@ -70,7 +70,7 @@ public class TurnDegrees extends Command {
         right.set(0);
         left.resetEncoder();
         right.resetEncoder();
-        SensorDealer.getInstance().getAHRS().reset();
+        Robot.adaptor.ahrs.reset();
     }
 
     protected void interrupted() {

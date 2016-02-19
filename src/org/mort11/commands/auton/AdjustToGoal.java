@@ -2,7 +2,6 @@ package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTSide;
 
@@ -24,7 +23,7 @@ public class AdjustToGoal extends Command {
     }
 
     protected void initialize() {
-        SensorDealer.getInstance().getAHRS().zeroYaw();
+        Robot.adaptor.ahrs.zeroYaw();
     }
 
     protected void execute() {

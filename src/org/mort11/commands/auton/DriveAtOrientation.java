@@ -47,8 +47,8 @@ public class DriveAtOrientation extends Command {
     }
 
     protected void end() {
-        left.stop();
-        right.stop();
+        left.halt();
+        right.halt();
     }
 
     protected void interrupted() {

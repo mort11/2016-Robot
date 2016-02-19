@@ -1,9 +1,11 @@
 package org.mort11.subsystems.dt;
 
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.Robot;
+import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -17,62 +19,49 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 public abstract class DTSide extends Subsystem {
-    public static Gear currentGear = Gear.LOW_GEAR;
+    private static Encoder encLeft = new Encoder(Constants.DT_ENCODER_LEFT_A, Constants.DT_ENCODER_LEFT_B, true, CounterBase.EncodingType.k4X);
+    private static Encoder encRight = new Encoder(Constants.DT_ENCODER_RIGHT_A, Constants.DT_ENCODER_RIGHT_B, true, CounterBase.EncodingType.k4X);
     private MORTCANTalon motor1, motor2, motor3;
-    private Encoder encoder;
 
-    public DTSide(int motor1Port, int motor2Port, int motor3Port, int motor1PDPSlot, int motor2PDPSlot, int motor3PDPSlot,
-                  boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse, Encoder encoder) {
-        this.motor1 = new MORTCANTalon(motor1Port, motor1PDPSlot, motor1Reverse);
-        this.motor2 = new MORTCANTalon(motor2Port, motor2PDPSlot, motor2Reverse);
-        this.motor3 = new MORTCANTalon(motor3Port, motor3PDPSlot, motor3Reverse);
-        this.encoder = encoder;
+    public DTSide(int motor1Port, int motor2Port, int motor3Port, int pdpSlot1, int pdpSlot2, int pdpSlot3,
+                  boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse) {
+        this.motor1 = new MORTCANTalon(motor1Port, pdpSlot1, motor1Reverse);
+        this.motor2 = new MORTCANTalon(motor2Port, pdpSlot2, motor2Reverse);
+        this.motor3 = new MORTCANTalon(motor3Port, pdpSlot3, motor3Reverse);
     }
 
     /**
-     * Toggle between high and low gear
-     */
-    public static void shift() {
-        if (currentGear == Gear.LOW_GEAR) {
-            shift(Gear.HIGH_GEAR);
-        } else {
-            shift(Gear.LOW_GEAR);
-        }
-    }
-
-    /**
-     * Toggle current gear
+     * Shifts the current gear
      *
-     * @param gear Gear to shift to
+     * @param gear Gear to shift to [High, Low]
      */
     public static void shift(Gear gear) {
-        currentGear = gear;
-        // Low gear
-        if (gear == Gear.LOW_GEAR) {
-            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse); // TODO: 2/10/16 Check that low gear is solenoid kForward
+        switch (gear) {
+            case LOW:
+                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse);
+                break;
+            case HIGH:
+                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward);
+                break;
         }
+    }
 
-        // High gear
-        else {
-            Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward); // TODO: 2/10/16 Check that high gear is solenoid kReverse
-        }
+    public static Encoder getEncLeft() {
+        return encLeft;
+    }
+
+    public static Encoder getEncRight() {
+        return encRight;
     }
 
     /**
      * Reset encoder ticks
      */
     public void resetEncoder() {
-        this.encoder.reset();
-    }
-
-    /**
-     * Get current speed of motor from TalonSRX
-     *
-     * @return Motor speed [Units?]
-     */
-    public double getSpeed() {
-        double avgSpeed = (motor1.get() + motor2.get() + motor3.get()) / 3; // TODO: 2/10/16 Check if we want to use just 1 motor or average of all three
-        return motor1.get();
+        encLeft.setDistancePerPulse(Constants.INCHES_PER_PULSE_LEFT);
+        encRight.setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT);
+        encLeft.reset();
+        encRight.reset();
     }
 
     /**
@@ -89,7 +78,7 @@ public abstract class DTSide extends Subsystem {
     /**
      * Halt motor
      */
-    public void stop() {
+    public void halt() {
         this.motor1.set(0);
         this.motor2.set(0);
         this.motor3.set(0);
@@ -99,9 +88,8 @@ public abstract class DTSide extends Subsystem {
     public void initDefaultCommand() {
     }
 
-    public static final class Gear {
-        private static final Gear HIGH_GEAR = new Gear();
-        private static final Gear LOW_GEAR = new Gear();
+    public enum Gear {
+        LOW, HIGH
     }
 }
 

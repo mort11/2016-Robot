@@ -1,11 +1,8 @@
 package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.Robot;
 import org.mort11.commands.ee.JoystickIntake;
-import org.mort11.constants.EEConstants;
-import org.mort11.constants.PDPConstants;
-import org.mort11.sensors.SensorDealer;
+import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -15,25 +12,14 @@ import org.mort11.util.powermanager.MORTCANTalon;
  */
 public class IntakeArm extends Subsystem {
     private MORTCANTalon intakeArm;
-    private IntakeBrake intakeBrake;
     private double initPos;
     double scaling;
     public IntakeArm() {
-        intakeArm = new MORTCANTalon(EEConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, false);
-        intakeBrake = Robot.adaptor.intakeBrake;
+        intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, false);
         intakeArm.reset();
         initPos = intakeArm.getEncPosition();
         System.out.println("init pos: "  + initPos);
         scaling = 90/1142;
-    }
-
-    /**
-     * Get position of intakeArm arm from encoder reading
-     *
-     * @return Encoder distance/ticks
-     */
-    public double getDistance() {
-        return intakeArm.getEncPosition();
     }
 
     /**
@@ -46,12 +32,14 @@ public class IntakeArm extends Subsystem {
     }
 
     /**
-     * Check if arm is at limit switch
+     * Returns the distance gotten from the arm encoder
      *
-     * @return True if arm at limit switch
+     * @return Distance arm has traveled
      */
-    public boolean islimSwitch() {
-        return SensorDealer.getInstance().getArmLimitSwitch().get();
+    public double getDistance() {
+        System.out.println(intakeArm.get());
+
+        return intakeArm.getEncPosition();
     }
 
     @Override
@@ -65,13 +53,10 @@ public class IntakeArm extends Subsystem {
      * @param speed Amount to move arm by
      */
     public void set(double speed) {
-        // Engage or disengage brake depending on current requested speed
-        if (speed > 0) {
-            intakeBrake.disengage();
-        } else {
-            intakeBrake.engage();
-        }
-
         intakeArm.set(speed);
+    }
+
+    public void reset() {
+        intakeArm.reset();
     }
 }

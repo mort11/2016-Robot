@@ -1,21 +1,17 @@
 package org.mort11;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import org.mort11.constants.DTConstants;
-import org.mort11.constants.HardwareConstants;
+import org.mort11.constants.Constants;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.LED;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
+import org.mort11.subsystems.ee.Flywheel;
 import org.mort11.subsystems.ee.IntakeArm;
-import org.mort11.subsystems.ee.IntakeBrake;
 import org.mort11.subsystems.ee.Rollers;
-import org.mort11.subsystems.ee.Shooter;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -31,18 +27,16 @@ public class HardwareAdaptor {
     // End Effector mechanisms
     public Rollers rollers;
     public IntakeArm intakeArm;
-    public Shooter shooter;
+    public Flywheel flywheel;
 
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
     public DoubleSolenoid intakeBrakeSolenoid;
     public DoubleSolenoid hood;
 
-    // Brake mechanism
-    public IntakeBrake intakeBrake;
-
     // Navigational instruments
     public Accelerometer accelerometer;
+    public AHRS ahrs;
 
     // Subsystems
     public DTSide leftSide;
@@ -52,17 +46,19 @@ public class HardwareAdaptor {
     public HardwareAdaptor() {
         this.pdp = new PowerDistributionPanel();
         this.cam = new Camera();
-        this.compressor = new Compressor(HardwareConstants.PCM_ID);
+        this.compressor = new Compressor(Constants.PCM_ID);
+        this.compressor.start();
 
         this.rollers = new Rollers();
         this.intakeArm = new IntakeArm();
-        this.shooter = new Shooter();
+        this.flywheel = new Flywheel();
 
-        this.shifter = new DoubleSolenoid(HardwareConstants.PCM_ID, DTConstants.DT_LOW_SHIFTER_PORT, DTConstants.DT_HIGH_SHIFTER_PORT);
-        this.intakeBrakeSolenoid = new DoubleSolenoid(HardwareConstants.PCM_ID, 0, 0); // TODO: 2/16/16 Get ports for intake arm brake
-        this.hood = new DoubleSolenoid(HardwareConstants.PCM_ID, 1, 1); // TODO: 2/16/16  Get ports for hood popper
+        this.shifter = new DoubleSolenoid(Constants.PCM_ID, Constants.DT_LOW_SHIFTER_PORT, Constants.DT_HIGH_SHIFTER_PORT);
+        this.intakeBrakeSolenoid = new DoubleSolenoid(Constants.PCM_ID, Constants.INTAKE_ARM_BRAKE_A, Constants.INTAKE_ARM_BRAKE_B);
+        this.hood = new DoubleSolenoid(Constants.PCM_ID, Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);
 
         this.accelerometer = new BuiltInAccelerometer();
+        this.ahrs = new AHRS(SPI.Port.kMXP);
 
         this.leftSide = new DTLeft();
         this.rightSide = new DTRight();
