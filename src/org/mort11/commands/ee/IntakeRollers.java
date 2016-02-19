@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.behavior.Commands;
+import org.mort11.constants.Constants;
 import org.mort11.subsystems.ee.Rollers;
 
 /**
@@ -53,10 +54,10 @@ public class IntakeRollers extends Command {
     protected void execute() {
         switch (rollerRequest) {
             case INTAKE:
-                roller.set(EEConstants.ROLLER_SPEED);
+                roller.set(Constants.ROLLER_SPEED);
                 break;
             case EXHAUST:
-                roller.set(-EEConstants.ROLLER_SPEED);
+                roller.set(-Constants.ROLLER_SPEED);
                 break;
             case STOP:
                 roller.set(0);

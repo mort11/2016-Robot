@@ -11,7 +11,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class IntakeArm extends Subsystem {
-    private MORTCANTalon intakeArm;
+    public MORTCANTalon intakeArm;
     private double initPos;
 
     public IntakeArm() {
