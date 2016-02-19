@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.util.auto.AutoCommand;
 
 /**
@@ -81,7 +82,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-    	new MotorToAngle(90).start();
+        new MotorToAngle(90).start();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
