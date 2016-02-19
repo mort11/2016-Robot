@@ -2,7 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.constants.EndEffectorConstants;
+import org.mort11.constants.Constants;
 
 /**
  * Hood - Intake hood
@@ -11,7 +11,7 @@ import org.mort11.constants.EndEffectorConstants;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class Hood extends Subsystem {
-    private DoubleSolenoid solenoid = new DoubleSolenoid(EndEffectorConstants.HOOD_SOLENOID_A, EndEffectorConstants.HOOD_SOLENOID_B);
+    private DoubleSolenoid solenoid = new DoubleSolenoid(Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);
     private boolean hoodUp, disabled;
 
     /**

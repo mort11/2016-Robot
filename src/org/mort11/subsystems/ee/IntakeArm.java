@@ -2,8 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
-import org.mort11.constants.EndEffectorConstants;
-import org.mort11.constants.PDPConstants;
+import org.mort11.constants.Constants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.powermanager.MORTCANTalon;
 
@@ -13,11 +12,11 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class IntakeArm extends Subsystem {
+    double scaling;
     private MORTCANTalon intakeArm;
     private double initPos;
-    double scaling;
     public IntakeArm() {
-        intakeArm = new MORTCANTalon(EndEffectorConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, "Intake Arm");
+        intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, "Intake Arm");
         intakeArm.reset();
         initPos = intakeArm.getEncPosition();
         System.out.println("init pos: "  + initPos);
