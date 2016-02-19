@@ -2,7 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickShooter;
-import org.mort11.constants.EndEffectorConstants;
+import org.mort11.constants.EEConstants;
 import org.mort11.constants.PDPConstants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
@@ -17,8 +17,9 @@ public class Shooter extends Subsystem {
     private MORTCANTalon flywheel;
     double initEncoderValue;
     double scalingFactor = 1;
+
     public Shooter() {
-        this.flywheel = new MORTCANTalon(EndEffectorConstants.FLYWHEEL_TALON_ID, PDPConstants.FLYWHEEL, "Flywheel");
+        this.flywheel = new MORTCANTalon(EEConstants.FLYWHEEL_TALON_ID, PDPConstants.FLYWHEEL, false);
         initEncoderValue = flywheel.getEncPosition();
     }
 
@@ -35,7 +36,6 @@ public class Shooter extends Subsystem {
     // TODO: 2/10/16 Flywheel speed should be regulated by a PID loop
     public void set(double speed) {
         this.flywheel.set(speed);
-        //System.out.println("outputting: " + flywheel.get() );
     }
 
     /**

@@ -12,19 +12,16 @@ import java.util.Date;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class Logger {
-
-    static PrintWriter writer;
-    static Date date;
+    private static PrintWriter writer;
 
     public static void init(String filepath) {
-        date = new Date();
+        Date date = new Date();
         try {
             writer = new PrintWriter(filepath + "_" + new Timestamp(date.getTime()), "UTF-8");
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
-
 
     public static void writeString(String msg) {
         writer.write(msg + "\n");

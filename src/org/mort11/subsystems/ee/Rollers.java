@@ -1,7 +1,7 @@
 package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.constants.EndEffectorConstants;
+import org.mort11.constants.EEConstants;
 import org.mort11.constants.PDPConstants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
@@ -14,9 +14,9 @@ public class Rollers extends Subsystem {
     private MORTCANTalon rollers;
 
     public Rollers() {
-        this.rollers = new MORTCANTalon(EndEffectorConstants.ROLLER_TALON_ID, PDPConstants.ROLLERS, "Rollers");
+        this.rollers = new MORTCANTalon(EEConstants.ROLLER_TALON_ID, PDPConstants.ROLLERS, false);
         rollers.reset();
-    }
+}
 
     @Override
     protected void initDefaultCommand() {

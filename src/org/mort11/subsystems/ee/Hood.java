@@ -2,7 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.constants.EndEffectorConstants;
+import org.mort11.Robot;
 
 /**
  * Hood - Intake hood
@@ -11,38 +11,32 @@ import org.mort11.constants.EndEffectorConstants;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class Hood extends Subsystem {
-    private DoubleSolenoid solenoid = new DoubleSolenoid(EndEffectorConstants.HOOD_SOLENOID_A, EndEffectorConstants.HOOD_SOLENOID_B);
-    private boolean hoodUp, disabled;
+    private DoubleSolenoid solenoid = Robot.adaptor.hood;
+    private boolean hoodUp;
 
     /**
      * Set hood to up position
      */
     public void popHood() {
-        if (!disabled) {
-            setHood(true);
-            this.hoodUp = true;
-        }
+        setHood(true);
+        this.hoodUp = true;
     }
 
     /**
      * Set hood to stowed position
      */
     public void stowHood() {
-        if (!disabled) {
-            setHood(false);
-            this.hoodUp = false;
-    }
+        setHood(false);
+        this.hoodUp = false;
     }
 
     /**
      * Toggle hood state between stowed and up
      */
     public void toggleHood() {
-        if (!disabled) {
-            setHood(!hoodUp);
-        }
+        setHood(!hoodUp);
     }
-    
+
     public void setHood(boolean engage) {
         if (engage) {
             solenoid.set(DoubleSolenoid.Value.kForward);
@@ -55,9 +49,5 @@ public class Hood extends Subsystem {
     @Override
     protected void initDefaultCommand() {
     }
-
-    public void disable(){
-    	this.disabled = true;
-}
 }
 

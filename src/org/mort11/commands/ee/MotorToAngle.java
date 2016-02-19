@@ -1,7 +1,6 @@
 package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.mort11.Robot;
 import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Shooter;
@@ -16,7 +15,6 @@ import org.mort11.util.PIDLoop;
  * @author chsahit
  */
 public class MotorToAngle extends Command {
-
     double speed = 0.5;
     double target = 90,angle,error;
     private IntakeArm intake = Robot.adaptor.intakeArm;
@@ -27,10 +25,12 @@ public class MotorToAngle extends Command {
         intake_pid = new PIDLoop(target, 0.01, 0.01,2.5);
     }
 
+    @Override
     protected void initialize() {
-    	this.setInterruptible(true);
+        this.setInterruptible(true);
     }
 
+    @Override
     protected void execute() {
     	//System.out.println("shooter angle: " + Intake.getAngle());
     	System.out.println(intake.getAngle());
@@ -43,25 +43,18 @@ public class MotorToAngle extends Command {
     	System.out.println("setting: " + output);
 
     	intake.set(output);
-    	//intake.set(0.2);
-//        if (shooter.getAngle() < tarAng) {
-//            shooter.set(speed);
-//        }
-//        if (shooter.getAngle() > tarAng) {
-//            shooter.set(-speed);
-//        }
-//        if (shooter.getAngle() == tarAng) {
-//            shooter.set(0);
-//    }
     }
 
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
+    @Override
     protected void end() {
     }
 
+    @Override
     protected void interrupted() {
     }
 }

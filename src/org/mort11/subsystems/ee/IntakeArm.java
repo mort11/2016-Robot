@@ -1,8 +1,9 @@
 package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.Robot;
 import org.mort11.commands.ee.JoystickIntake;
-import org.mort11.constants.EndEffectorConstants;
+import org.mort11.constants.EEConstants;
 import org.mort11.constants.PDPConstants;
 import org.mort11.sensors.SensorDealer;
 import org.mort11.util.powermanager.MORTCANTalon;
@@ -14,10 +15,12 @@ import org.mort11.util.powermanager.MORTCANTalon;
  */
 public class IntakeArm extends Subsystem {
     private MORTCANTalon intakeArm;
+    private IntakeBrake intakeBrake;
     private double initPos;
     double scaling;
     public IntakeArm() {
-        intakeArm = new MORTCANTalon(EndEffectorConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, "Intake Arm");
+        intakeArm = new MORTCANTalon(EEConstants.INTAKE_ARM_TALON_ID, PDPConstants.INTAKE_ARM, false);
+        intakeBrake = Robot.adaptor.intakeBrake;
         intakeArm.reset();
         initPos = intakeArm.getEncPosition();
         System.out.println("init pos: "  + initPos);
@@ -62,6 +65,13 @@ public class IntakeArm extends Subsystem {
      * @param speed Amount to move arm by
      */
     public void set(double speed) {
+        // Engage or disengage brake depending on current requested speed
+        if (speed > 0) {
+            intakeBrake.disengage();
+        } else {
+            intakeBrake.engage();
+        }
+
         intakeArm.set(speed);
     }
 }

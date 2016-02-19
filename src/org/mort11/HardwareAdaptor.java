@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import org.mort11.constants.DrivetrainConstants;
+import org.mort11.constants.DTConstants;
 import org.mort11.constants.HardwareConstants;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.LED;
@@ -13,7 +13,7 @@ import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.IntakeArm;
-import org.mort11.subsystems.ee.Brake;
+import org.mort11.subsystems.ee.IntakeBrake;
 import org.mort11.subsystems.ee.Rollers;
 import org.mort11.subsystems.ee.Shooter;
 
@@ -32,10 +32,14 @@ public class HardwareAdaptor {
     public Rollers rollers;
     public IntakeArm intakeArm;
     public Shooter shooter;
-    
+
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
-    public Brake piston;
+    public DoubleSolenoid intakeBrakeSolenoid;
+    public DoubleSolenoid hood;
+
+    // Brake mechanism
+    public IntakeBrake intakeBrake;
 
     // Navigational instruments
     public Accelerometer accelerometer;
@@ -54,8 +58,9 @@ public class HardwareAdaptor {
         this.intakeArm = new IntakeArm();
         this.shooter = new Shooter();
 
-//        this.shifter = new DoubleSolenoid(HardwareConstants.PCM_ID, DrivetrainConstants.DT_LOW_SHIFTER_PORT, 
-//        		DrivetrainConstants.DT_HIGH_SHIFTER_PORT);
+        this.shifter = new DoubleSolenoid(HardwareConstants.PCM_ID, DTConstants.DT_LOW_SHIFTER_PORT, DTConstants.DT_HIGH_SHIFTER_PORT);
+        this.intakeBrakeSolenoid = new DoubleSolenoid(HardwareConstants.PCM_ID, 0, 0); // TODO: 2/16/16 Get ports for intake arm brake
+        this.hood = new DoubleSolenoid(HardwareConstants.PCM_ID, 1, 1); // TODO: 2/16/16  Get ports for hood popper
 
         this.accelerometer = new BuiltInAccelerometer();
 

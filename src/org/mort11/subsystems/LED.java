@@ -11,7 +11,6 @@ import org.mort11.constants.HardwareConstants;
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 public class LED extends Subsystem {
-
     private PWM red, green, blue;
 
     public LED() {
@@ -20,6 +19,7 @@ public class LED extends Subsystem {
         blue = new PWM(HardwareConstants.BLUE_LIGHT);
     }
 
+    @Override
     public void initDefaultCommand() {
     }
 

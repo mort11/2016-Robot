@@ -1,7 +1,7 @@
 package org.mort11.constants;
 
 /**
- * SensorConstants - Constants for various se nsors
+ * SensorConstants - Constants for various sensors
  *
  * @author Matt Turi <mturi@mort11.org>
  */
