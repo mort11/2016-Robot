@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  *
  * @author Matt Turi <mturi@mort11.org>
  */
-public class MORTCANTalon {
+public class MORTCANTalon extends CANTalon {
     private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private int pdpSlot;
     private boolean disabled = false;
@@ -22,7 +22,7 @@ public class MORTCANTalon {
      * @param reverse      Reverse motor
      */
     public MORTCANTalon(int deviceNumber, int pdpSlot, boolean reverse) {
-        this.talon = new CANTalon(deviceNumber);
+        super(deviceNumber);
         this.pdpSlot = pdpSlot;
         this.reverse = reverse;
     }
