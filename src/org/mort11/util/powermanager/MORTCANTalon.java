@@ -14,6 +14,7 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
     private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private int pdpSlot;
     private boolean disabled = false;
+    private boolean reverse;
 
     /**
      * Creates a CANTalon that controls a single motor
@@ -21,10 +22,10 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      * @param deviceNumber CAN ID for talon
      * @param pdpSlot      int of PDP slot motor is connected to
      */
-    public MORTCANTalon(int deviceNumber, int pdpSlot, String subsystemName) {
+    public MORTCANTalon(int deviceNumber, int pdpSlot, boolean reverse) {
         super(deviceNumber);
         this.pdpSlot = pdpSlot;
-        this.name = subsystemName;
+        this.reverse = reverse;
         System.out.println(String.format("Created new MORTCANTalon [%s] [ID-%s]", name, String.valueOf(super.getDeviceID())));
     }
 
@@ -35,7 +36,7 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      */
     @Override
     public void set(double speed) {
-        super.set(speed);
+        super.set(this.reverse ? speed * -1 : speed);
     }
 
     /**
