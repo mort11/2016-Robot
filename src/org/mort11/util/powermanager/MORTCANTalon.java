@@ -13,7 +13,6 @@ public class MORTCANTalon extends CANTalon {
     private int pdpSlot;
     private boolean disabled = false;
     private boolean reverse;
-    private CANTalon talon;
 
     /**
      * Creates a CANTalon that controls a single motor
@@ -34,9 +33,9 @@ public class MORTCANTalon extends CANTalon {
      */
     public void set(double speed) {
         if (this.disabled) {
-            this.talon.set(0);
+            super.set(0);
         } else {
-            this.talon.set(this.reverse ? speed * -1 : speed);
+            super.set(this.reverse ? speed * -1 : speed);
         }
     }
 
@@ -71,6 +70,6 @@ public class MORTCANTalon extends CANTalon {
      * Get voltage
      */
     public double getVoltage() {
-        return this.talon.getOutputVoltage();
+        return super.getOutputVoltage();
     }
 }
