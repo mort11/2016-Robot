@@ -9,9 +9,9 @@ import org.mort11.subsystems.LED;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
+import org.mort11.subsystems.ee.Flywheel;
 import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Rollers;
-import org.mort11.subsystems.ee.Shooter;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -27,7 +27,7 @@ public class HardwareAdaptor {
     // End Effector mechanisms
     public Rollers rollers;
     public IntakeArm intakeArm;
-    public Shooter shooter;
+    public Flywheel flywheel;
 
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
@@ -51,7 +51,7 @@ public class HardwareAdaptor {
 
         this.rollers = new Rollers();
         this.intakeArm = new IntakeArm();
-        this.shooter = new Shooter();
+        this.flywheel = new Flywheel();
 
         this.shifter = new DoubleSolenoid(Constants.PCM_ID, Constants.DT_LOW_SHIFTER_PORT, Constants.DT_HIGH_SHIFTER_PORT);
         this.intakeBrakeSolenoid = new DoubleSolenoid(Constants.PCM_ID, Constants.INTAKE_ARM_BRAKE_A, Constants.INTAKE_ARM_BRAKE_B);

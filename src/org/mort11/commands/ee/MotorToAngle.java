@@ -29,14 +29,14 @@ public class MotorToAngle extends Command {
     @Override
     protected void execute() {
         System.out.println("shooter angle: " + Intake.getAngle());
-//        if (shooter.getAngle() < tarAng) {
-//            shooter.set(speed);
+//        if (flywheel.getAngle() < tarAng) {
+//            flywheel.set(speed);
 //        }
-//        if (shooter.getAngle() > tarAng) {
-//            shooter.set(-speed);
+//        if (flywheel.getAngle() > tarAng) {
+//            flywheel.set(-speed);
 //        }
-//        if (shooter.getAngle() == tarAng) {
-//            shooter.set(0);
+//        if (flywheel.getAngle() == tarAng) {
+//            flywheel.set(0);
 //    }
     }
 

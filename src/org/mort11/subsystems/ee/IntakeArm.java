@@ -30,6 +30,16 @@ public class IntakeArm extends Subsystem {
         return (intakeArm.getEncPosition() - initPos) * scaling;
     }
 
+    /**
+     * Returns the distance gotten from the arm encoder
+     *
+     * @return Distance arm has traveled
+     */
+    public double getDistance() {
+        System.out.println(intakeArm.get());
+        return intakeArm.getEncPosition();
+    }
+
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new JoystickIntake());

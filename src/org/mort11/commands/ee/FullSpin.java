@@ -2,7 +2,7 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.subsystems.ee.Shooter;
+import org.mort11.subsystems.ee.Flywheel;
 
 /**
  * FullSpin - Spin the flywheel at full speed
@@ -10,10 +10,10 @@ import org.mort11.subsystems.ee.Shooter;
  * @author chsahit
  */
 public class FullSpin extends Command {
-    private Shooter shooter = Robot.adaptor.shooter;
+    private Flywheel flywheel = Robot.adaptor.flywheel;
 
     public FullSpin() {
-        requires(shooter);
+        requires(flywheel);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class FullSpin extends Command {
 
     @Override
     protected void execute() {
-        shooter.set(-1);
+        flywheel.set(-1);
     }
 
     @Override

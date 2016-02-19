@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
 import org.mort11.subsystems.dt.DTSide;
-import org.mort11.subsystems.ee.Shooter;
+import org.mort11.subsystems.ee.Flywheel;
 import org.mort11.util.PIDLoop;
 
 /**
@@ -15,9 +15,9 @@ import org.mort11.util.PIDLoop;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class SpinUp extends Command {
-    private Shooter spinUp = Robot.adaptor.shooter;
+    private Flywheel spinUp = Robot.adaptor.flywheel;
     private DTSide left = Robot.adaptor.leftSide; //replace/remove with SpinUp stuff
-    private Shooter armMotor;
+    private Flywheel armMotor;
     private PIDLoop pd_arm;
     private boolean PID;
     private double speed_ghetto = 0;

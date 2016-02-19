@@ -2,17 +2,17 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.subsystems.ee.Shooter;
+import org.mort11.subsystems.ee.Flywheel;
 
 /**
  * JoystickShooter - Run flywheel at joystick value
  * @author chsahit
  */
 public class JoystickShooter extends Command {
-    private Shooter shooter = Robot.adaptor.shooter;
+    private Flywheel flywheel = Robot.adaptor.flywheel;
 
     public JoystickShooter() {
-        requires(shooter);
+        requires(flywheel);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class JoystickShooter extends Command {
 
     @Override
     protected void execute() {
-        shooter.set(Robot.oi.getEE_Z());
+        flywheel.set(Robot.oi.getEE_Z());
     }
 
     @Override
