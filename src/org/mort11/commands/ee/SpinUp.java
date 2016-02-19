@@ -1,10 +1,8 @@
 package org.mort11.commands.ee;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Shooter;
 import org.mort11.util.PIDLoop;
@@ -22,7 +20,6 @@ public class SpinUp extends Command {
     private Shooter armMotor;
     private PIDLoop pd_arm;
     private boolean PID;
-    private Encoder shooter = SensorDealer.getInstance().getLeftDTEncoder();//SensorDealer.getInstance().getShooterEncoder(); replace with SpinUp encoder
     private double speed_ghetto = 0;
     private double velocity;
 

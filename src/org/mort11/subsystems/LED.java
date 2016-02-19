@@ -20,6 +20,7 @@ public class LED extends Subsystem {
         blue = new PWM(Constants.BLUE_LIGHT);
     }
 
+    @Override
     public void initDefaultCommand() {
     }
 

@@ -1,9 +1,7 @@
 package org.mort11;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import org.mort11.constants.Constants;
 import org.mort11.subsystems.Camera;
@@ -31,13 +29,14 @@ public class HardwareAdaptor {
     public Rollers rollers;
     public IntakeArm intakeArm;
     public Shooter shooter;
-    
+
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
     public Brake piston;
 
     // Navigational instruments
     public Accelerometer accelerometer;
+    public AHRS ahrs;
 
     // Subsystems
     public DTSide leftSide;
@@ -53,11 +52,11 @@ public class HardwareAdaptor {
         this.intakeArm = new IntakeArm();
         this.shooter = new Shooter();
 
-//        this.shifter = new DoubleSolenoid(Constants.PCM_ID, Constants.DT_LOW_SHIFTER_PORT,
-//        		Constants.DT_HIGH_SHIFTER_PORT);
+        this.shifter = new DoubleSolenoid(Constants.PCM_ID, Constants.DT_LOW_SHIFTER_PORT, Constants.DT_HIGH_SHIFTER_PORT);
 
         this.accelerometer = new BuiltInAccelerometer();
-
+        this.ahrs = new AHRS(SPI.Port.kMXP);
+        
         this.leftSide = new DTLeft();
         this.rightSide = new DTRight();
         this.led = new LED();

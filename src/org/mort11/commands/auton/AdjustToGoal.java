@@ -23,7 +23,6 @@ public class AdjustToGoal extends Command {
     }
 
     protected void initialize() {
-        //SensorDealer.getInstance().getAHRS().zeroYaw();
     }
 
     protected void execute() {

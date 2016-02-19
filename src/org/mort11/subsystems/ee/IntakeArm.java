@@ -3,7 +3,6 @@ package org.mort11.subsystems.ee;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -12,15 +11,22 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class IntakeArm extends Subsystem {
-    double scaling;
     private MORTCANTalon intakeArm;
     private double initPos;
+
     public IntakeArm() {
-        intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, "Intake Arm");
+        this.intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, "Intake Arm");
+        this.intakeArm.reset();
+        this.initPos = intakeArm.getEncPosition();
+        System.out.println("init pos: " + initPos);
+
+    }
+
+    /**
+     * Calls internal CANTalon encoder's reset method
+     */
+    public void reset() {
         intakeArm.reset();
-        initPos = intakeArm.getEncPosition();
-        System.out.println("init pos: "  + initPos);
-        scaling = 90/1142;
     }
 
     /**
@@ -38,17 +44,10 @@ public class IntakeArm extends Subsystem {
      * @return Encoder angle
      */
     public double getAngle() {
-        return ((intakeArm.getEncPosition() - initPos) * 90/1142); //:'(
+        return ((intakeArm.getEncPosition() - initPos) * 90 / 1142); //:'(
     }
 
-    /**
-     * Check if arm is at limit switch
-     *
-     * @return True if arm at limit switch
-     */
-    public boolean islimSwitch() {
-        return SensorDealer.getInstance().getArmLimitSwitch().get();
-    }
+    // TODO: 2/19/2016 Rewrite limit switch code here when Mr. Thant finishes mounting lim switch
 
     @Override
     protected void initDefaultCommand() {

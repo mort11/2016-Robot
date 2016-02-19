@@ -14,7 +14,6 @@ import org.mort11.util.powermanager.MORTCANTalon;
  */
 public class Shooter extends Subsystem {
     double initEncoderValue;
-    double scalingFactor = 1;
     private MORTCANTalon flywheel;
 
     public Shooter() {

@@ -2,7 +2,6 @@ package org.mort11.subsystems.dt;
 
 import org.mort11.commands.dt.DriveLinearRight;
 import org.mort11.constants.Constants;
-import org.mort11.sensors.SensorDealer;
 
 /**
  * DTRight - Subsystem controlling right drivetrain side
@@ -16,10 +15,10 @@ public class DTRight extends DTSide {
     public DTRight() {
         super(Constants.DT_RIGHT_TALON_ID_1, Constants.DT_RIGHT_TALON_ID_2,
                 Constants.DT_RIGHT_TALON_ID_3, Constants.RIGHT_DT_1, Constants.RIGHT_DT_2, Constants.RIGHT_DT_3,
-                "DT_RIGHT_1", "DT_RIGHT_2", "DT_RIGHT_3", false, false, false, SensorDealer.getInstance().getRightDTEncoder());
-        SensorDealer.getInstance().getRightDTEncoder().setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT);
+                false, false, false);
     }
 
+    @Override
     public void initDefaultCommand() {
         setDefaultCommand(new DriveLinearRight());
     }

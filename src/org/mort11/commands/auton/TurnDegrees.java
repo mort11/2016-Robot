@@ -1,10 +1,9 @@
 package org.mort11.commands.auton;
 
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
@@ -21,6 +20,7 @@ public class TurnDegrees extends Command {
     private double desiredAngle; // Angle that the robot will turn by
     private double currentAngle; // Current orientation of robot
     private boolean isReverse; // Allows the robot to turn counterclockwise if set to true
+    private AHRS ahrs = Robot.adaptor.ahrs;
 
     /**
      * Takes desired angle for turning, must be positive, and boolean for turn direction
@@ -40,43 +40,39 @@ public class TurnDegrees extends Command {
      * Resets the yaw so current angle is accurate
      */
     protected void initialize() {
-        SensorDealer.getInstance().getAHRS().reset();
+        this.ahrs.reset();
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()) {
-            //currentAngle = DTSide.getAngle(); //gets current angle of robot
-            currentAngle = Math.abs(SensorDealer.getInstance().getAHRS().getYaw()); //might work better than getAngle(), must test
-            System.out.println("current angle" + currentAngle);
-            speed = pd.getOutput(currentAngle); //passes current angle through pid loop
-            System.out.println("speed" + speed);
-            SmartDashboard.putNumber("Current Angle", currentAngle);
-            SmartDashboard.putNumber("Speed", speed);
-            // Clockwise turning
-            if (!isReverse) {
-                left.set(speed);
-                right.set(-speed);
-            }
-            // Counterclockwise turning
-            else {
-                left.set(-speed);
-                right.set(speed);
-            }
-        } else {
-            end();
+        //currentAngle = DTSide.getAngle(); //gets current angle of robot
+        currentAngle = Math.abs(this.ahrs.getYaw()); //might work better than getAngle(), must test
+        System.out.println("current angle" + currentAngle);
+        speed = pd.getOutput(currentAngle); //passes current angle through pid loop
+        System.out.println("speed" + speed);
+        SmartDashboard.putNumber("Current Angle", currentAngle);
+        SmartDashboard.putNumber("Speed", speed);
+        // Clockwise turning
+        if (!isReverse) {
+            left.set(speed);
+            right.set(-speed);
+        }
+        // Counterclockwise turning
+        else {
+            left.set(-speed);
+            right.set(speed);
         }
     }
 
     protected boolean isFinished() {
-        return SensorDealer.getInstance().getAHRS().getYaw() > desiredAngle *0.98;
+        return this.ahrs.getYaw() > desiredAngle * 0.98;
     }
 
     protected void end() {
         left.set(0);
         right.set(0);
-        left.resetEncoder();
-        right.resetEncoder();
-        SensorDealer.getInstance().getAHRS().reset();
+        left.resetEncoders();
+        right.resetEncoders();
+        this.ahrs.reset();
     }
 
     protected void interrupted() {

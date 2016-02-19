@@ -1,10 +1,10 @@
 package org.mort11.commands.auton;
 
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
@@ -21,8 +21,9 @@ public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
     private PIDLoop pd_left, pd_right;
-    private Encoder leftDTEncoder = SensorDealer.getInstance().getLeftDTEncoder();
-    private Encoder rightDTEncoder = SensorDealer.getInstance().getRightDTEncoder();
+    private Encoder leftDTEncoder = DTSide.getEncoderLeft();
+    private Encoder rightDTEncoder = DTSide.getEncoderRight();
+    private AHRS ahrs = Robot.adaptor.ahrs;
 
     public DriveStraight(double distance) {
         requires(left);
@@ -35,49 +36,45 @@ public class DriveStraight extends Command {
     protected void initialize() {
         leftDTEncoder.reset();
         rightDTEncoder.reset();
-        SensorDealer.getInstance().getAHRS().zeroYaw();
+        this.ahrs.zeroYaw();
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()) {
-            currentDistanceLeft = leftDTEncoder.getDistance();
-            currentDistanceRight = rightDTEncoder.getDistance();
-            System.out.println("left: " + currentDistanceLeft);
-            System.out.println("Right " + currentDistanceRight);
-            double speedLeft = pd_left.getOutput(currentDistanceLeft);
-            double speedRight = pd_right.getOutput(currentDistanceRight);
+        currentDistanceLeft = leftDTEncoder.getDistance();
+        currentDistanceRight = rightDTEncoder.getDistance();
+        System.out.println("left: " + currentDistanceLeft);
+        System.out.println("Right " + currentDistanceRight);
+        double speedLeft = pd_left.getOutput(currentDistanceLeft);
+        double speedRight = pd_right.getOutput(currentDistanceRight);
 
-            double angleError = SensorDealer.getInstance().getAHRS().getYaw() % 360;
-            if (angleError > 180) {
-                angleError = Math.abs(360 - angleError);
-            }
-            System.out.println("angle error: " + angleError);
-
-            left.set(speedLeft - 0.05 * angleError);
-            right.set(speedRight + 0.05 * angleError);
-
-
-            SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
-            SmartDashboard.putNumber("Right Distance", currentDistanceRight);
-            SmartDashboard.putNumber("Left Speed", speedLeft);
-            SmartDashboard.putNumber("Right Speed", speedRight);
-            SmartDashboard.putNumber("Angle Disp", angleError);
-        } else {
-            end();
+        double angleError = this.ahrs.getYaw() % 360;
+        if (angleError > 180) {
+            angleError = Math.abs(360 - angleError);
         }
+        System.out.println("angle error: " + angleError);
+
+        left.set(speedLeft - 0.05 * angleError);
+        right.set(speedRight + 0.05 * angleError);
+
+
+        SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
+        SmartDashboard.putNumber("Right Distance", currentDistanceRight);
+        SmartDashboard.putNumber("Left Speed", speedLeft);
+        SmartDashboard.putNumber("Right Speed", speedRight);
+        SmartDashboard.putNumber("Angle Disp", angleError);
     }
 
     protected boolean isFinished() {
-    	return (Math.abs(distance - currentDistanceLeft) < 2 && 
-    				Math.abs(distance - currentDistanceRight) < 2) ||
-    			(pd_left.timeElapsed(1.1));
+        return (Math.abs(distance - currentDistanceLeft) < 2 &&
+                Math.abs(distance - currentDistanceRight) < 2) ||
+                (pd_left.timeElapsed(1.1));
     }
 
     protected void end() {
-        left.stop();
-        right.stop();
-        left.resetEncoder();
-        right.resetEncoder();
+        left.halt();
+        right.halt();
+        left.resetEncoders();
+        right.resetEncoders();
     }
 
     protected void interrupted() {

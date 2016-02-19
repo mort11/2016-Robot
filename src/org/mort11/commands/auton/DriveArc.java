@@ -1,10 +1,10 @@
 package org.mort11.commands.auton;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.constants.Constants;
-import org.mort11.sensors.SensorDealer;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.Logger;
 import org.mort11.util.PIDLoop;
@@ -23,6 +23,8 @@ public class DriveArc extends Command {
     double rightDist, leftDist;
     private DTSide rightSide = Robot.adaptor.rightSide;
     private DTSide leftSide = Robot.adaptor.leftSide;
+    private Encoder leftEncoder = DTSide.getEncoderLeft();
+    private Encoder rightEncoder = DTSide.getEncoderRight();
 
     public DriveArc(double arcLength, double turnRadius) {
         requires(leftSide);
@@ -43,20 +45,14 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
-        if (!DTSide.getDisabled()) { // // Will run when the Drivetrain is not disabled
-            rightDist = SensorDealer.getInstance().getRightDTEncoder().getDistance();
-            double rightVel = pidRight.getOutput(rightDist);
-            leftDist = SensorDealer.getInstance().getLeftDTEncoder().getDistance();
-            double leftVel = pidLeft.getOutput(leftDist);
-            rightSide.set(rightVel);
-            leftSide.set(leftVel);
-            Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
-                    + "," + rightDist + "," + pidRight.getSP() + "," + rightVel);
-        } else {
-            leftSide.stop();
-            rightSide.stop();
-            end();
-        }
+        rightDist = this.rightEncoder.getDistance();
+        double rightVel = pidRight.getOutput(rightDist);
+        leftDist = this.leftEncoder.getDistance();
+        double leftVel = pidLeft.getOutput(leftDist);
+        rightSide.set(rightVel);
+        leftSide.set(leftVel);
+        Logger.writeString(timer.get() + "," + leftDist + "," + pidLeft.getSP() + "," + leftVel
+                + "," + rightDist + "," + pidRight.getSP() + "," + rightVel);
     }
 
     protected boolean isFinished() {
