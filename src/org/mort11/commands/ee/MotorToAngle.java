@@ -15,10 +15,10 @@ import org.mort11.subsystems.ee.IntakeArm;
 public class MotorToAngle extends Command {
     double speed = 0.5;
     double tarAng = 90;
-    private IntakeArm Intake = Robot.adaptor.intakeArm;
+    private IntakeArm intake = Robot.adaptor.intakeArm;
 
     public MotorToAngle() {
-        requires(Intake);
+        requires(intake);
     }
 
     @Override
@@ -28,16 +28,16 @@ public class MotorToAngle extends Command {
 
     @Override
     protected void execute() {
-        System.out.println("shooter angle: " + Intake.getAngle());
-//        if (flywheel.getAngle() < tarAng) {
-//            flywheel.set(speed);
-//        }
-//        if (flywheel.getAngle() > tarAng) {
-//            flywheel.set(-speed);
-//        }
-//        if (flywheel.getAngle() == tarAng) {
-//            flywheel.set(0);
-//    }
+        System.out.println("Intake Arm Angle: " + intake.getAngle());
+        if (intake.getAngle() < tarAng) {
+            intake.set(speed);
+        }
+        if (intake.getAngle() > tarAng) {
+            intake.set(-speed);
+        }
+        if (intake.getAngle() == tarAng) {
+            intake.set(0);
+        }
     }
 
     @Override

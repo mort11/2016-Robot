@@ -11,7 +11,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class IntakeArm extends Subsystem {
-    public MORTCANTalon intakeArm;
+    private MORTCANTalon intakeArm;
     private double initPos;
 
     public IntakeArm() {
@@ -37,6 +37,7 @@ public class IntakeArm extends Subsystem {
      */
     public double getDistance() {
         System.out.println(intakeArm.get());
+
         return intakeArm.getEncPosition();
     }
 
@@ -52,5 +53,9 @@ public class IntakeArm extends Subsystem {
      */
     public void set(double speed) {
         intakeArm.set(speed);
+    }
+
+    public void reset() {
+        intakeArm.reset();
     }
 }

@@ -11,25 +11,25 @@ import org.mort11.util.PIDLoop;
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  */
 public class RollerUp extends Command {
-    private IntakeArm intake = Robot.adaptor.intakeArm;
+    private IntakeArm intakeArm = Robot.adaptor.intakeArm;
     private PIDLoop pd;
     private double desiredAngle, currentAngle, speed;
 
     public RollerUp(double Angle) {
-        requires(intake);
+        requires(intakeArm);
         this.desiredAngle = Angle;
         pd = new PIDLoop(desiredAngle, .01, 0);
     }
 
     protected void initialize() {
-        Robot.adaptor.intakeArm.intakeArm.reset();
+        intakeArm.reset();
 
     }
 
     protected void execute() {
-        currentAngle = intake.getAngle();
+        currentAngle = intakeArm.getAngle();
         speed = pd.getOutput(currentAngle);
-        intake.set(speed);
+        intakeArm.set(speed);
     }
 
     protected boolean isFinished() {
@@ -37,8 +37,8 @@ public class RollerUp extends Command {
     }
 
     protected void end() {
-        intake.set(0);
-        Robot.adaptor.intakeArm.intakeArm.reset();
+        intakeArm.set(0);
+        intakeArm.reset();
     }
 
     protected void interrupted() {
