@@ -3,8 +3,8 @@ package org.mort11.commands.ee;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.behavior.Commands;
-import org.mort11.behavior.Commands.RollerRequest;
+import org.mort11.commands.SubsystemStates;
+import org.mort11.commands.SubsystemStates.RollerRequest;
 import org.mort11.constants.Constants;
 import org.mort11.subsystems.ee.Rollers;
 
@@ -19,11 +19,11 @@ import org.mort11.subsystems.ee.Rollers;
  */
 public class IntakeRollers extends Command {
     Rollers roller = Robot.adaptor.rollers;
-    Commands.RollerRequest rollerRequest;
+    SubsystemStates.RollerRequest rollerRequest;
     double time = -1;
     Timer timer = new Timer();
 
-    public IntakeRollers(Commands.RollerRequest rollerRequest) {
+    public IntakeRollers(SubsystemStates.RollerRequest rollerRequest) {
         this.rollerRequest = rollerRequest;
         requires(roller);
         setInterruptible(true);

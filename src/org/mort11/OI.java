@@ -3,7 +3,7 @@ package org.mort11;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.mort11.behavior.Commands;
+import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.RollerUp;
 import org.mort11.commands.ee.SpinUp;
@@ -40,11 +40,11 @@ public class OI {
     public Button rollerUp = new JoystickButton(endEffector, Constants.ROLLER_UP_BUTTON);
 
     public OI() {
-        intakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.INTAKE));
-        intakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
+        intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
+        intakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
 
-        outtakeRoller.whileHeld(new IntakeRollers(Commands.RollerRequest.EXHAUST));
-        outtakeRoller.whenReleased(new IntakeRollers(Commands.RollerRequest.STOP));
+        outtakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.EXHAUST));
+        outtakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
         //spin.whenPressed(new FullSpin());
         //shift.whenPressed(new Shift());
 
