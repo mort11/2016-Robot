@@ -52,6 +52,7 @@ public class IntakeRollers extends Command {
 
     @Override
     protected void execute() {
+    	System.out.println("rolling");
         switch (rollerRequest) {
             case INTAKE:
                 roller.set(Constants.ROLLER_SPEED);

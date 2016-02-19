@@ -22,7 +22,7 @@ public class MotorToAngle extends Command {
     public MotorToAngle(double target) {
         requires(intake);
         this.target = target;
-        intake_pid = new PIDLoop(target, 0.01, 0.01, 2.5);
+        intake_pid = new PIDLoop(target, 0.01, 0.01, 1.5);
     }
 
     public MotorToAngle() {
@@ -36,12 +36,11 @@ public class MotorToAngle extends Command {
 
     @Override
     protected void execute() {
-        //System.out.println("shooter angle: " + Intake.getAngle());
-        System.out.println(intake.getAngle());
+//        System.out.println("shooter angle: " + intake.getAngle());
         angle = intake.getAngle();
         double output = intake_pid.getOutput(angle);
-        if (output > 0.5) {
-            output = 0.5;
+        if (output > 0.3) {
+            output = 0.3;
         }
         System.out.println("error " + (target - angle));
         System.out.println("setting: " + output);

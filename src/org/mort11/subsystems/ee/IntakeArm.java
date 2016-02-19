@@ -1,9 +1,10 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
-import org.mort11.util.powermanager.MORTCANTalon;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * IntakeArm - Controls the intake arm
@@ -11,12 +12,11 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class IntakeArm extends Subsystem {
-    private MORTCANTalon intakeArm;
+    private CANTalon intakeArm;
     private double initPos;
     double scaling;
     public IntakeArm() {
-        intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, false);
-        intakeArm.reset();
+        intakeArm = new CANTalon(Constants.INTAKE_ARM_TALON_ID);
         initPos = intakeArm.getEncPosition();
         System.out.println("init pos: "  + initPos);
         scaling = 90/1142;
@@ -28,7 +28,8 @@ public class IntakeArm extends Subsystem {
      * @return Encoder angle
      */
     public double getAngle() {
-        return ((intakeArm.getEncPosition() - initPos) * 90/1142); //:'(
+    	//System.out.println("ticks: "  + intakeArm.getEncPosition());
+        return ((intakeArm.getEncPosition() - initPos) * 0.09); //:'(
     }
 
     /**
