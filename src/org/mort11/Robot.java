@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-    	new MotorToAngle().start();
+    	new MotorToAngle(45).start();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
