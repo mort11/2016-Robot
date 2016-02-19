@@ -3,6 +3,7 @@ package org.mort11;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import org.mort11.behavior.Commands;
 import org.mort11.commands.dt.shifting.ShiftDown;
 import org.mort11.commands.dt.shifting.ShiftUp;
@@ -24,6 +25,7 @@ import org.mort11.util.SpeedController;
  * @author Ryan O'Toole <ryan.otoole@motsd.org>
  */
 public class OI {
+
     // Joysticks
     public Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK);
     public Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK);

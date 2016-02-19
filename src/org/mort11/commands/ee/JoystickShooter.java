@@ -6,6 +6,7 @@ import org.mort11.subsystems.ee.Flywheel;
 
 /**
  * JoystickShooter - Run flywheel at joystick value
+ * 
  * @author chsahit
  */
 public class JoystickShooter extends Command {

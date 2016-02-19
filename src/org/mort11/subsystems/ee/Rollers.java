@@ -15,7 +15,7 @@ public class Rollers extends Subsystem {
     public Rollers() {
         this.rollers = new MORTCANTalon(Constants.ROLLER_TALON_ID, Constants.ROLLERS, false);
         rollers.reset();
-    }
+}
 
     @Override
     protected void initDefaultCommand() {
