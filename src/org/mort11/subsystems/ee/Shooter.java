@@ -2,8 +2,7 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickShooter;
-import org.mort11.constants.EEConstants;
-import org.mort11.constants.PDPConstants;
+import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
