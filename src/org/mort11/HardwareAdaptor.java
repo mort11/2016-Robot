@@ -47,6 +47,7 @@ public class HardwareAdaptor {
         this.pdp = new PowerDistributionPanel();
         this.cam = new Camera();
         this.compressor = new Compressor(Constants.PCM_ID);
+        this.compressor.start();
 
         this.rollers = new Rollers();
         this.intakeArm = new IntakeArm();
