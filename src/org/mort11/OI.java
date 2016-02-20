@@ -7,6 +7,8 @@ import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.dt.shifting.Shift;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.SpinUp;
+import org.mort11.commands.ee.JoystickIntake;
+import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.constants.Constants;
 import org.mort11.util.SpeedController;
 
@@ -38,8 +40,10 @@ public class OI {
     public Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
     public Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
-//    public Button rollerUp = new JoystickButton(endEffector, Constants.ROLLER_UP_BUTTON);
-
+    public Button armInterrupt = new JoystickButton(endEffector, Constants.ARM_INTERRUPT);
+    public Button armToNinety = new JoystickButton(endEffector, Constants.ARM_TO_90);
+    public Button armToZero = new JoystickButton(endEffector, Constants.ARM_TO_0);
+    
     public OI() {
         intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
         intakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
@@ -52,6 +56,9 @@ public class OI {
 
         spinUp.toggleWhenPressed(new SpinUp(20, false));
 //        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
+        armInterrupt.whenPressed(new JoystickIntake()); // Allows for manual movement of the intake arm when pressed
+        armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
+        armToZero.whenPressed(new MotorToAngle(0)); // Moves the intake arm to 0 degrees when pressed
     }
 
     public double getLeftJoy() {
@@ -70,4 +77,3 @@ public class OI {
         return (endEffector.getZ() + 1) / 2;
     }
 }
-

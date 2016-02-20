@@ -19,6 +19,7 @@ public class JoystickIntake extends Command {
 
     @Override
     protected void initialize() {
+    	this.setInterruptible(true);
     }
 
     @Override
