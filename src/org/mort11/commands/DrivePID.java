@@ -10,10 +10,10 @@ import org.mort11.util.PIDLoop;
 /**
  * DrivePID - Drive linear within PID confines
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matt Turi <mturi@mort11.org>
- * @author Ryan Thant <ryanthant1@gmail.com>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Sahit Chintalapudi
+ * @author Matt Turi
+ * @author Ryan Thant
+ * @author Matthew Krzyzanowski
  */
 public class DrivePID extends Command {
     PIDLoop loopFunction_left;

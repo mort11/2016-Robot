@@ -8,7 +8,7 @@ import java.util.Collections;
 /**
  * MotorHolder - Holds the MORTCANTalon objects
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class MotorHolder implements Loopable {
     public static ArrayList<MORTCANTalon> motors = new ArrayList<>();

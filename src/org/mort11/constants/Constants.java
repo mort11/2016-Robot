@@ -3,7 +3,7 @@ package org.mort11.constants;
 /**
  * Constants - All the robot constants
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class Constants {
     // TODO: 2/18/16 Check all ports in this class with electrical

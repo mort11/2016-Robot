@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * PDPMonitor - Monitors PDP currents and disabled overdrawing subsystems
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class PDPMonitor {
     public static void manage() {

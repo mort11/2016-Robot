@@ -7,8 +7,8 @@ import org.mort11.constants.Constants;
 /**
  * Hood - Intake hood
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matt Turi <mturi@mort11.org>
+ * @author Sahit Chintalapudi
+ * @author Matt Turi
  */
 public class Hood extends Subsystem {
     private DoubleSolenoid solenoid = new DoubleSolenoid(Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);

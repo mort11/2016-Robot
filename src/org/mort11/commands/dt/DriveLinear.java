@@ -6,8 +6,8 @@ import org.mort11.subsystems.dt.DTSide;
 /**
  * DriveLinear - Base command for controlling left and right drivetrain movement
  *
- * @author gridbug <wmarshall@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author gridbug
+ * @author Matthew Krzyzanowski
  */
 public abstract class DriveLinear extends Command {
     protected DTSide side;

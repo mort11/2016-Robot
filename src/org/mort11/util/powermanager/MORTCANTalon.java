@@ -7,7 +7,7 @@ import org.mort11.util.MORTSubsystem;
 /**
  * MORTCANTalon - Implementation of CANTalon with ability to monitor current draw
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class MORTCANTalon extends CANTalon implements MORTSubsystem {
     private PowerDistributionPanel pdp = new PowerDistributionPanel();

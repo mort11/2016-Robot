@@ -12,7 +12,7 @@ import org.mort11.util.PIDLoop;
 /**
  * DriveArc - Drives in an arc
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class DriveArc extends Command {
     double arcLength, turnRadius;

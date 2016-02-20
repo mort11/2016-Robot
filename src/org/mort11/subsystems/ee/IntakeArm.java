@@ -8,7 +8,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
 /**
  * IntakeArm - Controls the intake arm
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class IntakeArm extends Subsystem {
     private MORTCANTalon intakeArm;
