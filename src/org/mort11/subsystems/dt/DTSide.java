@@ -1,11 +1,10 @@
 package org.mort11.subsystems.dt;
 
-import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.Robot;
-import org.mort11.constants.Constants;
+import org.mort11.commands.SubsystemStates;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -19,23 +18,26 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 public abstract class DTSide extends Subsystem {
-    private static Encoder encLeft = new Encoder(Constants.DT_ENCODER_LEFT_A, Constants.DT_ENCODER_LEFT_B, true, CounterBase.EncodingType.k4X);
-    private static Encoder encRight = new Encoder(Constants.DT_ENCODER_RIGHT_A, Constants.DT_ENCODER_RIGHT_B, true, CounterBase.EncodingType.k4X);
     private MORTCANTalon motor1, motor2, motor3;
+    private Encoder encoder;
 
-    public DTSide(int motor1Port, int motor2Port, int motor3Port, int pdpSlot1, int pdpSlot2, int pdpSlot3,
-                  boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse) {
+    public DTSide(
+            int motor1Port, int motor2Port, int motor3Port,
+            int pdpSlot1, int pdpSlot2, int pdpSlot3,
+            boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse,
+            Encoder encoder) {
         this.motor1 = new MORTCANTalon(motor1Port, pdpSlot1, motor1Reverse);
         this.motor2 = new MORTCANTalon(motor2Port, pdpSlot2, motor2Reverse);
         this.motor3 = new MORTCANTalon(motor3Port, pdpSlot3, motor3Reverse);
+        this.encoder = encoder;
     }
 
     /**
-     * Shifts the current gear
+     * Toggle current gear
      *
-     * @param gear Gear to shift to [High, Low]
+     * @param gear Gear to shift to
      */
-    public static void shift(Gear gear) {
+    public static void shift(SubsystemStates.Gear gear) {
         switch (gear) {
             case LOW:
                 Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse);
@@ -46,22 +48,20 @@ public abstract class DTSide extends Subsystem {
         }
     }
 
-    public static Encoder getEncLeft() {
-        return encLeft;
-    }
-
-    public static Encoder getEncRight() {
-        return encRight;
-    }
-
     /**
      * Reset encoder ticks
      */
     public void resetEncoder() {
-        encLeft.setDistancePerPulse(Constants.INCHES_PER_PULSE_LEFT);
-        encRight.setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT);
-        encLeft.reset();
-        encRight.reset();
+        this.encoder.reset();
+    }
+
+    /**
+     * Get current speed of motor from TalonSRX
+     *
+     * @return Motor speed [Units?]
+     */
+    public double getSpeed() {
+        return motor1.get();
     }
 
     /**
@@ -82,14 +82,6 @@ public abstract class DTSide extends Subsystem {
         this.motor1.set(0);
         this.motor2.set(0);
         this.motor3.set(0);
-    }
-
-    @Override
-    public void initDefaultCommand() {
-    }
-
-    public enum Gear {
-        LOW, HIGH
     }
 }
 

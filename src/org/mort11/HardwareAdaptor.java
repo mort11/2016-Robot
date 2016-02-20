@@ -31,12 +31,14 @@ public class HardwareAdaptor {
 
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
-    public DoubleSolenoid intakeBrakeSolenoid;
-    public DoubleSolenoid hood;
 
     // Navigational instruments
     public Accelerometer accelerometer;
     public AHRS ahrs;
+
+    // Sensors
+    public Encoder leftDTEncoder;
+    public Encoder rightDTEncoder;
 
     // Subsystems
     public DTSide leftSide;
@@ -47,21 +49,23 @@ public class HardwareAdaptor {
         this.pdp = new PowerDistributionPanel();
         this.cam = new Camera();
         this.compressor = new Compressor(Constants.PCM_ID);
-        this.compressor.start();
 
         this.rollers = new Rollers();
         this.intakeArm = new IntakeArm();
         this.flywheel = new Flywheel();
 
         this.shifter = new DoubleSolenoid(Constants.PCM_ID, Constants.DT_LOW_SHIFTER_PORT, Constants.DT_HIGH_SHIFTER_PORT);
-        this.intakeBrakeSolenoid = new DoubleSolenoid(Constants.PCM_ID, Constants.INTAKE_ARM_BRAKE_A, Constants.INTAKE_ARM_BRAKE_B);
-        this.hood = new DoubleSolenoid(Constants.PCM_ID, Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);
 
         this.accelerometer = new BuiltInAccelerometer();
         this.ahrs = new AHRS(SPI.Port.kMXP);
 
-        this.leftSide = new DTLeft();
-        this.rightSide = new DTRight();
+        this.leftDTEncoder = new Encoder(Constants.DT_ENCODER_LEFT_A, Constants.DT_ENCODER_LEFT_B, true, CounterBase.EncodingType.k4X);
+        this.leftDTEncoder.setDistancePerPulse(Constants.INCHES_PER_PULSE_LEFT);
+        this.rightDTEncoder = new Encoder(Constants.DT_ENCODER_RIGHT_A, Constants.DT_ENCODER_RIGHT_B, false, CounterBase.EncodingType.k4X);
+        this.rightDTEncoder.setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT);
+
+        this.leftSide = new DTLeft(leftDTEncoder);
+        this.rightSide = new DTRight(rightDTEncoder);
         this.led = new LED();
     }
 }

@@ -32,7 +32,6 @@ public class SpinUp extends Command {
 
     @Override
     protected void initialize() {
-//        DTSide.resetEncoders(); // replace with SpinUp encoder
     }
 
     @Override
@@ -47,14 +46,14 @@ public class SpinUp extends Command {
             double currentVelocity = spinUp.getSpeed();
             if (currentVelocity < velocity) {
                 speed_ghetto += .03;
-                System.out.println("speed if: " + speed_ghetto);
-                System.out.println("velocity if: " + currentVelocity);
+//                System.out.println("speed if: " + speed_ghetto);
+//                System.out.println("velocity if: " + currentVelocity);
                 spinUp.set(speed_ghetto);
             } else {
                 speed_ghetto -= .03;
                 spinUp.set(speed_ghetto);
-                System.out.println("speed else: " + speed_ghetto);
-                System.out.println("velocity else: " + currentVelocity);
+//                System.out.println("speed else: " + speed_ghetto);
+//                System.out.println("velocity else: " + currentVelocity);
             }
         }
     }

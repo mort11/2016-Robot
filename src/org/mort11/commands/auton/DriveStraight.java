@@ -1,5 +1,6 @@
 package org.mort11.commands.auton;
 
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,8 +21,9 @@ public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
     private PIDLoop pd_left, pd_right;
-    private Encoder leftDTEncoder = DTSide.getEncLeft();
-    private Encoder rightDTEncoder = DTSide.getEncRight();
+    private Encoder leftDTEncoder = Robot.adaptor.leftDTEncoder;
+    private Encoder rightDTEncoder = Robot.adaptor.rightDTEncoder;
+    private AHRS ahrs = Robot.adaptor.ahrs;
 
     public DriveStraight(double distance) {
         requires(left);
@@ -34,7 +36,7 @@ public class DriveStraight extends Command {
     protected void initialize() {
         leftDTEncoder.reset();
         rightDTEncoder.reset();
-        Robot.adaptor.ahrs.zeroYaw();
+        this.ahrs.zeroYaw();
     }
 
     protected void execute() {
@@ -45,7 +47,7 @@ public class DriveStraight extends Command {
         double speedLeft = pd_left.getOutput(currentDistanceLeft);
         double speedRight = pd_right.getOutput(currentDistanceRight);
 
-        double angleError = Robot.adaptor.ahrs.getYaw() % 360;
+        double angleError = this.ahrs.getYaw() % 360;
         if (angleError > 180) {
             angleError = Math.abs(360 - angleError);
         }

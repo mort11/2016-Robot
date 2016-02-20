@@ -1,5 +1,6 @@
 package org.mort11.commands.auton;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
@@ -22,6 +23,8 @@ public class DriveArc extends Command {
     double rightDist, leftDist;
     private DTSide rightSide = Robot.adaptor.rightSide;
     private DTSide leftSide = Robot.adaptor.leftSide;
+    private Encoder leftEncoder = Robot.adaptor.leftDTEncoder;
+    private Encoder rightEncoder = Robot.adaptor.rightDTEncoder;
 
     public DriveArc(double arcLength, double turnRadius) {
         requires(leftSide);
@@ -42,9 +45,9 @@ public class DriveArc extends Command {
     }
 
     protected void execute() {
-        rightDist = DTSide.getEncRight().getDistance();
+        rightDist = this.rightEncoder.getDistance();
         double rightVel = pidRight.getOutput(rightDist);
-        leftDist = DTSide.getEncLeft().getDistance();
+        leftDist = this.leftEncoder.getDistance();
         double leftVel = pidLeft.getOutput(leftDist);
         rightSide.set(rightVel);
         leftSide.set(leftVel);

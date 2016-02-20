@@ -1,13 +1,13 @@
-package org.mort11.behavior;
+package org.mort11.commands;
 
 /**
- * Commands - ToDo class description
+ * SubsystemStates - Defines all possible states a given subsystem can be in
  *
  * @author Matt Turi <mturi@mort11.org>
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 
-public class Commands {
+public class SubsystemStates {
     // Positions for the hood
     public enum HoodRequest {
         POP, STOW
@@ -26,5 +26,9 @@ public class Commands {
     // Motor state for the fly wheel
     public enum FlywheelRequest {
         STOP, START
+    }
+
+    public enum Gear {
+        LOW, HIGH
     }
 }

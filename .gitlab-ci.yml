@@ -4,4 +4,5 @@
 
 robotBuild:
   script:
+    - "ant compile"
     - "ant jar"

@@ -22,8 +22,6 @@ public class RollerUp extends Command {
     }
 
     protected void initialize() {
-        intakeArm.reset();
-
     }
 
     protected void execute() {
@@ -38,7 +36,6 @@ public class RollerUp extends Command {
 
     protected void end() {
         intakeArm.set(0);
-        intakeArm.reset();
     }
 
     protected void interrupted() {

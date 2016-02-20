@@ -17,7 +17,7 @@ public class Flywheel extends Subsystem {
     private MORTCANTalon flywheel;
 
     public Flywheel() {
-        this.flywheel = new MORTCANTalon(Constants.FLYWHEEL_TALON_ID, Constants.FLYWHEEL, false);
+        this.flywheel = new MORTCANTalon(Constants.FLYWHEEL_TALON_ID, Constants.PDP_FLYWHEEL, false);
         initEncoderValue = flywheel.getEncPosition();
     }
 
@@ -34,6 +34,7 @@ public class Flywheel extends Subsystem {
     // TODO: 2/10/16 Flywheel speed should be regulated by a PID loop
     public void set(double speed) {
         this.flywheel.set(speed);
+        //System.out.println("outputting: " + flywheel.get() );
     }
 
     /**

@@ -1,10 +1,9 @@
 package org.mort11.subsystems.ee;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
-
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * IntakeArm - Controls the intake arm
@@ -12,14 +11,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class IntakeArm extends Subsystem {
-    private CANTalon intakeArm;
+    private MORTCANTalon intakeArm;
     private double initPos;
-    double scaling;
+
     public IntakeArm() {
-        intakeArm = new CANTalon(Constants.INTAKE_ARM_TALON_ID);
-        initPos = intakeArm.getEncPosition();
-        System.out.println("init pos: "  + initPos);
-        scaling = 90/1142;
+        this.intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.PDP_INTAKE_ARM, false);
+        this.initPos = intakeArm.getEncPosition();
+        System.out.println("init pos: " + initPos);
     }
 
     /**
@@ -28,20 +26,12 @@ public class IntakeArm extends Subsystem {
      * @return Encoder angle
      */
     public double getAngle() {
-    	//System.out.println("ticks: "  + intakeArm.getEncPosition());
+        //System.out.println("ticks: "  + intakeArm.getEncPosition());
         return ((intakeArm.getEncPosition() - initPos) * 0.09); //:'(
     }
 
-    /**
-     * Returns the distance gotten from the arm encoder
-     *
-     * @return Distance arm has traveled
-     */
-    public double getDistance() {
-        System.out.println(intakeArm.get());
 
-        return intakeArm.getEncPosition();
-    }
+    // TODO: 2/19/2016 Rewrite limit switch code here when Mr. Thant finishes mounting lim switch
 
     @Override
     protected void initDefaultCommand() {
@@ -55,9 +45,5 @@ public class IntakeArm extends Subsystem {
      */
     public void set(double speed) {
         intakeArm.set(speed);
-    }
-
-    public void reset() {
-        intakeArm.reset();
     }
 }

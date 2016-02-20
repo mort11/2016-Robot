@@ -48,27 +48,27 @@ public class Constants {
     /**
      * Joystick Buttons
      */
-    public static final int INTAKE_BUTTON = 4;
+    public static final int INTAKE_BUTTON = 3;
     public static final int OUTTAKE_BUTTON = 5;
     public static final int FULL_SPEED_BUTTON = 11;
     public static final int SPIN_UP_BUTTON = 3;
     public static final int ROLLER_UP_BUTTON = 1;
-    public static final int SHIFT_UP_BUTTON = 2; // TODO: 2/18/16 Get this button
+    public static final int SHIFT_UP_BUTTON = 3; // TODO: 2/18/16 Get this button
     public static final int SHIFT_DOWN_BUTTON = 2; // TODO: 2/18/16 Get this button
 
     /**
      * PDP Slots
      * THESE ARE FOR THE PRACTICE BOT PDP
      */
-    public static final int LEFT_DT_1 = 0;
-    public static final int LEFT_DT_2 = 1;
-    public static final int LEFT_DT_3 = 2;
-    public static final int RIGHT_DT_1 = 15;
-    public static final int RIGHT_DT_2 = 14;
-    public static final int RIGHT_DT_3 = 13;
-    public static final int INTAKE_ARM = 7;
-    public static final int FLYWHEEL = 3;
-    public static final int ROLLERS = 8;
+    public static final int PDP_LEFT_DT_1 = 0;
+    public static final int PDP_LEFT_DT_2 = 1;
+    public static final int PDP_LEFT_DT_3 = 2;
+    public static final int PDP_RIGHT_DT_1 = 15;
+    public static final int PDP_RIGHT_DT_2 = 14;
+    public static final int PDP_RIGHT_DT_3 = 13;
+    public static final int PDP_INTAKE_ARM = 7;
+    public static final int PDP_FLYWHEEL = 3;
+    public static final int PDP_ROLLERS = 8;
 
     /**
      * Sensor ports
