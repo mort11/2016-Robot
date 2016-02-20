@@ -4,7 +4,6 @@ import org.mort11.util.Loopable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * MotorHolder - Holds the MORTCANTalon objects
@@ -16,11 +15,6 @@ public class MotorHolder implements Loopable {
 
     @Override
     public void update() {
-        Collections.sort(motors, new Comparator<MORTCANTalon>() {
-            @Override
-            public int compare(MORTCANTalon talon1, MORTCANTalon talon2) {
-                return (int) (talon1.getVoltage() - talon2.getVoltage());
-            }
-        });
+        Collections.sort(motors, (talon1, talon2) -> (int) (talon1.getVoltage() - talon2.getVoltage()));
     }
 }

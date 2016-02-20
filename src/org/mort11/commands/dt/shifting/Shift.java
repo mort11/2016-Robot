@@ -5,7 +5,7 @@ import org.mort11.commands.SubsystemStates;
 import org.mort11.subsystems.dt.DTSide;
 
 /**
- * Shift - Todo file description
+ * Shift - Shift transmission
  *
  * @author Matt Turi
  */
@@ -32,7 +32,6 @@ public class Shift extends Command {
 
     @Override
     protected void end() {
-
     }
 
     @Override

@@ -2,38 +2,37 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.Flywheel;
 
 /**
  *@author chsahit
  */
 public class FullSpin extends Command {
+    private Flywheel flywheel = Robot.adaptor.flywheel;
 
     public FullSpin() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(Robot.adaptor.flywheel);
+        requires(this.flywheel);
     }
 
-    // Called just before this Command runs the first time
+    @Override
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    @Override
     protected void execute() {
-        Robot.adaptor.flywheel.set(-1);
+        this.flywheel.set(-1);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    @Override
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    @Override
     protected void interrupted() {
     }
 }

@@ -26,14 +26,16 @@ public abstract class DTSide extends Subsystem {
             int pdpSlot1, int pdpSlot2, int pdpSlot3,
             boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse,
             Encoder encoder) {
-        this.motor1 = new MORTCANTalon(motor1Port, pdpSlot1, motor3Reverse);
+        this.motor1 = new MORTCANTalon(motor1Port, pdpSlot1, motor1Reverse);
         this.motor2 = new MORTCANTalon(motor2Port, pdpSlot2, motor2Reverse);
-        this.motor3 = new MORTCANTalon(motor3Port, pdpSlot3, motor1Reverse);
+        this.motor3 = new MORTCANTalon(motor3Port, pdpSlot3, motor3Reverse);
         this.encoder = encoder;
     }
 
     /**
-     * Toggle between high and low gear
+     * Toggle current gear
+     *
+     * @param gear Gear to shift to
      */
     public static void shift(SubsystemStates.Gear gear) {
         switch (gear) {

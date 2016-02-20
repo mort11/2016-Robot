@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.commands.SubsystemStates;
-import org.mort11.commands.SubsystemStates.RollerRequest;
 import org.mort11.constants.Constants;
 import org.mort11.subsystems.ee.Rollers;
 
@@ -29,16 +28,18 @@ public class IntakeRollers extends Command {
         setInterruptible(true);
     }
 
-    public IntakeRollers(double time) {
-        this(RollerRequest.EXHAUST);
+    public IntakeRollers(double time, SubsystemStates.RollerRequest direction) {
+        this(direction);
         this.time = time;
         timer = new Timer();
     }
 
+    @Override
     protected void initialize() {
         timer.start();
     }
 
+    @Override
     protected void execute() {
         switch (rollerRequest) {
             case INTAKE:
@@ -52,6 +53,7 @@ public class IntakeRollers extends Command {
         }
     }
 
+    @Override
     protected boolean isFinished() {
         return timer.get() > time;
     }

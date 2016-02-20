@@ -45,8 +45,4 @@ public class Flywheel extends Subsystem {
     public double getSpeed() {
         return flywheel.getEncVelocity();
     }
-
-    public double getAngle() {
-        return flywheel.getEncPosition();
-    }
 }

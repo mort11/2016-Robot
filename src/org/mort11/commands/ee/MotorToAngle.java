@@ -26,41 +26,40 @@ public class MotorToAngle extends Command {
         intake_pid = new PIDLoop(target, 0.01, 0.01, 2.5);
     }
 
+    public MotorToAngle() {
+        requires(intake);
+    }
+
+    @Override
     protected void initialize() {
         this.setInterruptible(true);
     }
 
+    @Override
     protected void execute() {
-        //System.out.println("flywheel angle: " + Intake.getAngle());
+        //System.out.println("shooter angle: " + Intake.getAngle());
         System.out.println(intake.getAngle());
         angle = intake.getAngle();
         double output = intake_pid.getOutput(angle);
         if (output > 0.5) {
             output = 0.5;
         }
-//    	System.out.println("error " + (target - angle));
-//    	System.out.println("setting: " + output);
+        System.out.println("error " + (target - angle));
+        System.out.println("setting: " + output);
 
         intake.set(output);
-        //intake.set(0.2);
-//        if (flywheel.getAngle() < tarAng) {
-//            flywheel.set(speed);
-//        }
-//        if (flywheel.getAngle() > tarAng) {
-//            flywheel.set(-speed);
-//        }
-//        if (flywheel.getAngle() == tarAng) {
-//            flywheel.set(0);
-//    }
     }
 
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
+    @Override
     protected void end() {
     }
 
+    @Override
     protected void interrupted() {
     }
 }

@@ -28,8 +28,8 @@ public class DriveStraight extends Command {
     public DriveStraight(double distance) {
         requires(left);
         requires(right);
-        pd_left = new PIDLoop(distance, .01, 0); // Placeholder values, must test
-        pd_right = new PIDLoop(distance, .01, 0); // Placeholder values, must test
+        pd_left = new PIDLoop(distance, .01, 0); 
+        pd_right = new PIDLoop(distance, .01, 0); 
         this.distance = distance;
     }
 

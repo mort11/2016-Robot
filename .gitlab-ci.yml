@@ -1,0 +1,7 @@
+# before_script:
+#   - rm -r ~/wpilib
+#   - git clone https://github.com/bob80333/wpilib-mirror.git ~/wpilib
+
+robotBuild:
+  script:
+    - "ant jar"

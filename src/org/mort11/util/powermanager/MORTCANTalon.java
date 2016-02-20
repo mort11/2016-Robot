@@ -12,7 +12,6 @@ import org.mort11.util.MORTSubsystem;
 public class MORTCANTalon extends CANTalon implements MORTSubsystem {
     private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private int pdpSlot;
-    private CANTalon talon;
     private boolean disabled = false;
     private boolean reverse;
 
@@ -79,6 +78,6 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      * Get voltage
      */
     public double getVoltage() {
-        return this.talon.getOutputVoltage();
+        return super.getOutputVoltage();
     }
 }

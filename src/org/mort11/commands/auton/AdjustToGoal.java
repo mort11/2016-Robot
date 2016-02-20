@@ -23,6 +23,7 @@ public class AdjustToGoal extends Command {
     }
 
     protected void initialize() {
+        Robot.adaptor.ahrs.zeroYaw();
     }
 
     protected void execute() {
