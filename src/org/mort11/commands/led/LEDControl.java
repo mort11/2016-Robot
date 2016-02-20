@@ -2,6 +2,7 @@ package org.mort11.commands.led;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
+import org.mort11.commands.SubsystemStates;
 import org.mort11.subsystems.LED;
 
 /**
@@ -12,10 +13,10 @@ import org.mort11.subsystems.LED;
  */
 public class LEDControl extends Command {
 
-    Light light;
+    SubsystemStates.Light light;
     LED led = Robot.adaptor.led;
 
-    public LEDControl(Light light) {
+    public LEDControl(SubsystemStates.Light light) {
         this.light = light;
     }
 
@@ -57,9 +58,5 @@ public class LEDControl extends Command {
     }
 
     protected void interrupted() {
-    }
-
-    public enum Light {
-        RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET
     }
 }

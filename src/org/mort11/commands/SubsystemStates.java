@@ -31,4 +31,8 @@ public class SubsystemStates {
     public enum Gear {
         LOW, HIGH
     }
+
+    public enum Light {
+        RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET
+    }
 }
