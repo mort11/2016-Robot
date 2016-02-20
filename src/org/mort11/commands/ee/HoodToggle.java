@@ -1,33 +1,26 @@
 package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.mort11.commands.SubsystemStates;
+import org.mort11.subsystems.ee.Hood;
 
 /**
- * Hood - ToDo class description
+ * HoodToggle - Toggles the hood
  *
  * @author Matt Turi
  */
-public class Hood extends Command {
-    private SubsystemStates.HoodRequest hood;
-
-    public Hood(SubsystemStates.HoodRequest direction) {
-        this.hood = direction;
-    }
-
+public class HoodToggle extends Command {
     @Override
     protected void initialize() {
-
     }
 
     @Override
     protected void execute() {
-
+        Hood.toggleHood();
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override
@@ -37,6 +30,5 @@ public class Hood extends Command {
 
     @Override
     protected void interrupted() {
-
     }
 }

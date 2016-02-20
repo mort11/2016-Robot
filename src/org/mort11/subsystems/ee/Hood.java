@@ -2,17 +2,18 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.Robot;
 import org.mort11.commands.SubsystemStates;
-import org.mort11.constants.Constants;
 
 /**
- * Hood - Intake hood
+ * HoodToggle - Intake hood
  *
  * @author Sahit Chintalapudi
  * @author Matt Turi
  */
 public class Hood extends Subsystem {
-    private static DoubleSolenoid solenoid = new DoubleSolenoid(Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);
+    private static DoubleSolenoid solenoid = Robot.adaptor.hood;
+    private static boolean hoodUp = true;
 
     public static void setHood(SubsystemStates.HoodRequest hoodRequest) {
         switch (hoodRequest) {
@@ -23,6 +24,15 @@ public class Hood extends Subsystem {
                 solenoid.set(DoubleSolenoid.Value.kReverse);
                 break;
         }
+    }
+
+    public static void toggleHood() {
+        if (hoodUp) {
+            solenoid.set(DoubleSolenoid.Value.kForward);
+        } else {
+            solenoid.set(DoubleSolenoid.Value.kReverse);
+        }
+        hoodUp = !hoodUp;
     }
 
     @Override
