@@ -57,10 +57,12 @@ public class OI {
     }
 
     public double getLeftJoy() {
+    	System.out.println("left is: " + -leftJoystick.getY());
         return SpeedController.threshold(-leftJoystick.getY());
     }
 
     public double getRightJoy() {
+    	System.out.println("right is: " + -rightJoystick.getY());
         return SpeedController.threshold(-rightJoystick.getY());
     }
 

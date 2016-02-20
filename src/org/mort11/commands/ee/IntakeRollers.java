@@ -52,12 +52,13 @@ public class IntakeRollers extends Command {
 
     @Override
     protected void execute() {
-    	System.out.println("rolling");
         switch (rollerRequest) {
             case INTAKE:
+            	System.out.println("intaking");
                 roller.set(Constants.ROLLER_SPEED);
                 break;
             case EXHAUST:
+            	System.out.println("exhausting");
                 roller.set(-Constants.ROLLER_SPEED);
                 break;
             case STOP:
@@ -67,6 +68,7 @@ public class IntakeRollers extends Command {
 
     @Override
     protected boolean isFinished() {
+    	System.out.println();
         return timer.get() > time;
     }
 

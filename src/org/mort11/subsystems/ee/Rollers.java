@@ -1,8 +1,9 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.Constants;
-import org.mort11.util.powermanager.MORTCANTalon;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Rollers - Controls the intakeArm roller
@@ -10,11 +11,10 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class Rollers extends Subsystem {
-    private MORTCANTalon rollers;
+    private CANTalon rollers;
 
     public Rollers() {
-        this.rollers = new MORTCANTalon(Constants.ROLLER_TALON_ID, Constants.ROLLERS, false);
-        rollers.reset();
+        this.rollers = new CANTalon(Constants.ROLLER_TALON_ID);
 }
 
     @Override
@@ -28,6 +28,7 @@ public class Rollers extends Subsystem {
      */
     public void set(double speed) {
         rollers.set(speed);
+        System.out.println("getting roller speed: " + rollers.get());
     }
 
     /**

@@ -42,8 +42,8 @@ public class MotorToAngle extends Command {
         if (output > 0.3) {
             output = 0.3;
         }
-        System.out.println("error " + (target - angle));
-        System.out.println("setting: " + output);
+        //System.out.println("error " + (target - angle));
+        //System.out.println("setting: " + output);
 
         intake.set(output);
     }
