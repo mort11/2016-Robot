@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.dt.shifting.Shift;
+import org.mort11.commands.ee.Hood;
 import org.mort11.commands.ee.IntakeRollers;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.constants.Constants;
@@ -22,7 +23,6 @@ import org.mort11.util.SpeedController;
  * @author Ryan O'Toole
  */
 public class OI {
-
     // Joysticks
     public Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK);
     public Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK);
@@ -38,7 +38,8 @@ public class OI {
     public Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
     public Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
-//    public Button rollerUp = new JoystickButton(endEffector, Constants.ROLLER_UP_BUTTON);
+    public Button hoodUp = new JoystickButton(endEffector, Constants.HOOD_UP);
+    public Button hoodDown = new JoystickButton(endEffector, Constants.HOOD_DOWN);
 
     public OI() {
         intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
@@ -51,6 +52,8 @@ public class OI {
         shiftDown.whenPressed(new Shift(SubsystemStates.Gear.LOW));
 
         spinUp.toggleWhenPressed(new SpinUp(20, false));
+        hoodUp.whenPressed(new Hood(SubsystemStates.HoodRequest.POP));
+        hoodDown.whenPressed(new Hood(SubsystemStates.HoodRequest.STOW));
 //        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
     }
 
