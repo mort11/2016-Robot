@@ -86,7 +86,7 @@ public class Constants {
     public static final int INTAKE_ARM_ENCODER_B = 5;
 
     // Arm limit switch
-    public static final int ARM_LIM_SWITCH_PORT = 9;
+    public static final int ARM_LIM_SWITCH_PORT = 4;
 
     // Flywheel
     public static final int FLYWHEEL_ENCODER_A = 6;
