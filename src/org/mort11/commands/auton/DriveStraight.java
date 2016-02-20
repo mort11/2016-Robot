@@ -11,9 +11,9 @@ import org.mort11.util.PIDLoop;
 /**
  * DriveStraight - Drive in a (mostly) straight line
  *
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Jeffrey Pastilha <jpmail967@yahoo.com>
+ * @author Matthew Krzyzanowski
+ * @author Sahit Chintalapudi
+ * @author Jeffrey Pastilha
  */
 public class DriveStraight extends Command {
     double currentDistanceLeft, currentDistanceRight;

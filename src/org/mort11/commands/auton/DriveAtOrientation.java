@@ -8,7 +8,7 @@ import org.mort11.util.PIDLoop;
 /**
  * DriveAtOrientation - Drives at orientation
  *
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Matthew Krzyzanowski
  */
 public class DriveAtOrientation extends Command {
     private DTSide left = Robot.adaptor.leftSide;

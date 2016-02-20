@@ -10,12 +10,12 @@ import org.mort11.util.powermanager.MORTCANTalon;
 /**
  * DTSide - Base class controlling drivetrain sides
  *
- * @author gridbug <wmarshall@mort11.org>
- * @author Matt Turi <mturi@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Jeffrey Pastilha <jpmail967@yahoo.com>
- * @author Abi Koutha <akoutha7@gmail.com>
- * @author Jakob Shortell <jshortell@mort11.org>
+ * @author gridbug
+ * @author Matt Turi
+ * @author Matthew Krzyzanowski
+ * @author Jeffrey Pastilha
+ * @author Abi Koutha
+ * @author Jakob Shortell
  */
 public abstract class DTSide extends Subsystem {
     private MORTCANTalon motor1, motor2, motor3;

@@ -14,16 +14,16 @@ import org.mort11.util.auto.AutoCommand;
 /**
  * Robot - Main Robot class
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matt Turi <mturi@mort11.org>
- * @author Ryan Thant <ryanthant1@gmail.com>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Seven Kurt <seven.kurt@motsd.org>
- * @author Michael Kozak <michael.kozak@motsd.org>
- * @author Jeffrey Pastilha <jpmail967@yahoo.com>
- * @author Ryan O'Toole <ryan.otoole@motsd.org>
- * @author Carl Hausman <carl@hausman.org>
- * @author Jakob Shortell <jshortell@mort11.org>
+ * @author Sahit Chintalapudi
+ * @author Matt Turi
+ * @author Ryan Thant
+ * @author Matthew Krzyzanowski
+ * @author Seven Kurt
+ * @author Michael Kozak
+ * @author Jeffrey Pastilha
+ * @author Ryan O'Toole
+ * @author Carl Hausman
+ * @author Jakob Shortell
  */
 public class Robot extends IterativeRobot {
     public static OI oi;

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * AutoCommand - Todo file description
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class AutoCommand extends CommandGroup {
     public AutoCommand(Command[] commands) {

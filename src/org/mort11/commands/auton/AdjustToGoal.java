@@ -8,7 +8,7 @@ import org.mort11.subsystems.dt.DTSide;
 /**
  * AdjustToGoal - Adjust robot to goal
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class AdjustToGoal extends Command {
     private boolean isFinished = false;

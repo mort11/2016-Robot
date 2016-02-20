@@ -16,7 +16,7 @@ import org.mort11.subsystems.ee.Rollers;
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class HardwareAdaptor {
     // System components

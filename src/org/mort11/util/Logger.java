@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Logger - Utility for writing log files to RoboRIO for later use
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class Logger {
     private static PrintWriter writer;

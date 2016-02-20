@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * LEDFader - Fades LEDs from one color to the next
  *
- * @author Not Matt Turi <notmturi@mort11.org>
+ * @author Matt Turi
  */
 public class LEDFader {
     private Color fading = Color.yellow;

@@ -7,8 +7,8 @@ import org.mort11.constants.Constants;
 /**
  * LED - Subsystem for LED's
  *
- * @author Seven Kurt <seven.kurt@motsd.org>
- * @author Jakob Shortell <jshortell@mort11.org>
+ * @author Seven Kurt
+ * @author Jakob Shortell
  */
 public class LED extends Subsystem {
 

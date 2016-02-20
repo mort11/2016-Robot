@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * PIDLoop - Takes params of target and PID constants and returns motor outputs
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class PIDLoop {
     double desired_target;

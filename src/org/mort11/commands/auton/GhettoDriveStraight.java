@@ -7,7 +7,7 @@ import org.mort11.Robot;
 /**
  * GhettoDriveStraight - Drives ghetto-ly straight
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class GhettoDriveStraight extends Command {
     double time;

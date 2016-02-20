@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * DisplayCurrents - Displays currents from specified PDP channels
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Sahit Chintalapudi
+ * @author Matthew Krzyzanowski
  */
 public class DisplayCurrents extends Command {
     private PowerDistributionPanel pdp = new PowerDistributionPanel();

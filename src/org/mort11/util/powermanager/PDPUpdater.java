@@ -5,7 +5,7 @@ import org.mort11.util.Loopable;
 /**
  * PDPUpdater - Calls update method against PDPMonitor
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class PDPUpdater implements Loopable {
     @Override

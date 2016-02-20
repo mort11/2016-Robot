@@ -15,13 +15,13 @@ import org.mort11.util.SpeedController;
 /**
  * OI - Joystick mapping to buttons and other math stuff
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Matt Turi <mturi@mort11.org>
- * @author Ryan Thant <ryanthant1@gmail.com>
- * @author Seven Kurt <seven.kurt@motsd.org>
- * @author Michael Kozak <michael.kozak@motsd.org>
- * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ * @author Sahit Chintalapudi
+ * @author Matthew Krzyzanowski
+ * @author Matt Turi
+ * @author Ryan Thant
+ * @author Seven Kurt
+ * @author Michael Kozak
+ * @author Ryan O'Toole
  */
 public class OI {
 

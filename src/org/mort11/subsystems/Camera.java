@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Camera - takes a picture, finds the location of the largest object of a pretested
  * color in terms of X and Y, and also identifies its size
  *
- * @author Carl Hausman <carl@hausman.org>
+ * @author Carl Hausman
  */
 public class Camera extends Subsystem {
 

@@ -7,7 +7,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
 /**
  * Rollers - Controls the intakeArm roller
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class Rollers extends Subsystem {
     private MORTCANTalon rollers;

@@ -7,8 +7,8 @@ import org.mort11.subsystems.LED;
 /**
  * LEDControl - Controls the LED's
  *
- * @author Jakob Shortell <jshortell@mort11.org>
- * @author Seven Kurt <seven.kurt@motsd.org>
+ * @author Jakob Shortell
+ * @author Seven Kurt
  */
 public class LEDControl extends Command {
 

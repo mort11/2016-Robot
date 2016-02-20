@@ -10,9 +10,9 @@ import org.mort11.util.PIDLoop;
 /**
  * SpinUp - Spins up flywheel to a specified RPM
  *
- * @author Seven Kurt <seven.kurt@motsd.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Seven Kurt
+ * @author Matthew Krzyzanowski
+ * @author Sahit Chintalapudi
  */
 public class SpinUp extends Command {
     private Flywheel spinUp = Robot.adaptor.flywheel;

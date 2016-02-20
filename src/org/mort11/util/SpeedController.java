@@ -5,8 +5,8 @@ import org.mort11.constants.Constants;
 /**
  * SpeedController - Functions to control speed manage
  *
- * @author Matt Turi <mturi@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Matt Turi
+ * @author Matthew Krzyzanowski
  */
 public class SpeedController {
     public static int fsUsageCount = 0;
