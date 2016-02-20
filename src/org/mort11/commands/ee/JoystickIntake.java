@@ -22,7 +22,13 @@ public class JoystickIntake extends Command {
 
     @Override
     protected void execute() {
-        intakeArm.set(Robot.oi.getEEJoy());
+    	//if its safe to move the switch then sure, if not then don't move it
+    	if(intakeArm.isLimitSwitch() && Robot.oi.getEEJoy() > 0) {
+    		System.out.println("unsafe to move the arm upwards!!");
+    		intakeArm.set(0);
+    	} else {
+    		intakeArm.set(Robot.oi.getEEJoy());
+    	}
     }
 
     @Override

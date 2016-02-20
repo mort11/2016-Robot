@@ -4,6 +4,7 @@ import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,8 +16,10 @@ public class IntakeArm extends Subsystem {
     private CANTalon intakeArm;
     private double initPos;
     double scaling;
+    private DigitalInput limswitch;
     public IntakeArm() {
         intakeArm = new CANTalon(Constants.INTAKE_ARM_TALON_ID);
+        limswitch = new DigitalInput(Constants.ARM_LIM_SWITCH_PORT);
         initPos = intakeArm.getEncPosition();
         System.out.println("init pos: "  + initPos);
         scaling = 90/1142;
@@ -42,7 +45,14 @@ public class IntakeArm extends Subsystem {
 
         return intakeArm.getEncPosition();
     }
-
+    
+    /**
+     * Tells if the intake has been driven too far back
+     * @return whether the limit switch has been struck
+     */
+    public boolean isLimitSwitch() {
+    	return limswitch.get();
+    }
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new JoystickIntake());
