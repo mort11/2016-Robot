@@ -15,18 +15,9 @@ public class IntakeArm extends Subsystem {
     private double initPos;
 
     public IntakeArm() {
-        this.intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.INTAKE_ARM, "Intake Arm");
-        this.intakeArm.reset();
+        this.intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.PDP_INTAKE_ARM, false);
         this.initPos = intakeArm.getEncPosition();
         System.out.println("init pos: " + initPos);
-
-    }
-
-    /**
-     * Calls internal CANTalon encoder's reset method
-     */
-    public void reset() {
-        intakeArm.reset();
     }
 
     /**

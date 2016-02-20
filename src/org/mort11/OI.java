@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.commands.SubsystemStates;
+import org.mort11.commands.dt.shifting.Shift;
 import org.mort11.commands.ee.IntakeRollers;
-import org.mort11.commands.ee.RollerUp;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.constants.Constants;
 import org.mort11.util.SpeedController;
@@ -30,14 +30,15 @@ public class OI {
 
     // Right drive joystick
     public Button fullSpeed = new JoystickButton(rightJoystick, Constants.FULL_SPEED_BUTTON);
-    public Button shift = new JoystickButton(rightJoystick, Constants.SHIFT_UP_BUTTON);
+
+    public Button shiftUp = new JoystickButton(rightJoystick, Constants.SHIFT_UP_BUTTON);
+    public Button shiftDown = new JoystickButton(rightJoystick, Constants.SHIFT_DOWN_BUTTON);
 
     // EE Joystick
     public Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
-    public Button spin = new JoystickButton(endEffector, 3);
     public Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
-    public Button rollerUp = new JoystickButton(endEffector, Constants.ROLLER_UP_BUTTON);
+//    public Button rollerUp = new JoystickButton(endEffector, Constants.ROLLER_UP_BUTTON);
 
     public OI() {
         intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
@@ -45,13 +46,13 @@ public class OI {
 
         outtakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.EXHAUST));
         outtakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
-        //spin.whenPressed(new FullSpin());
-        //shift.whenPressed(new Shift());
+
+        shiftUp.whenPressed(new Shift(SubsystemStates.Gear.HIGH));
+        shiftDown.whenPressed(new Shift(SubsystemStates.Gear.LOW));
 
         spinUp.toggleWhenPressed(new SpinUp(20, false));
-        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
+//        rollerUp.toggleWhenPressed(new RollerUp(182)); // Keep roller up at 182 degrees when toggled
     }
-
 
     public double getLeftJoy() {
         return SpeedController.threshold(-leftJoystick.getY());
@@ -64,9 +65,9 @@ public class OI {
     public double getEEJoy() {
         return SpeedController.threshold(endEffector.getY());
     }
-    
+
     public double getEE_Z() {
-    	return endEffector.getZ();
+        return endEffector.getZ();
     }
 }
 

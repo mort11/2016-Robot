@@ -23,8 +23,8 @@ public class DriveArc extends Command {
     double rightDist, leftDist;
     private DTSide rightSide = Robot.adaptor.rightSide;
     private DTSide leftSide = Robot.adaptor.leftSide;
-    private Encoder leftEncoder = DTSide.getEncoderLeft();
-    private Encoder rightEncoder = DTSide.getEncoderRight();
+    private Encoder leftEncoder = Robot.adaptor.leftDTEncoder;
+    private Encoder rightEncoder = Robot.adaptor.rightDTEncoder;
 
     public DriveArc(double arcLength, double turnRadius) {
         requires(leftSide);

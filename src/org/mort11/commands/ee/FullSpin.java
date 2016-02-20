@@ -1,8 +1,7 @@
 package org.mort11.commands.ee;
 
-import org.mort11.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.Robot;
 
 /**
  *@author chsahit
@@ -12,7 +11,7 @@ public class FullSpin extends Command {
     public FullSpin() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.adaptor.shooter);
+        requires(Robot.adaptor.flywheel);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +20,7 @@ public class FullSpin extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.adaptor.shooter.set(-1);
+        Robot.adaptor.flywheel.set(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -9,10 +9,9 @@ import org.mort11.subsystems.LED;
 import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTRight;
 import org.mort11.subsystems.dt.DTSide;
-import org.mort11.subsystems.ee.Brake;
+import org.mort11.subsystems.ee.Flywheel;
 import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Rollers;
-import org.mort11.subsystems.ee.Shooter;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -28,15 +27,18 @@ public class HardwareAdaptor {
     // End Effector mechanisms
     public Rollers rollers;
     public IntakeArm intakeArm;
-    public Shooter shooter;
+    public Flywheel flywheel;
 
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
-    public Brake piston;
 
     // Navigational instruments
     public Accelerometer accelerometer;
     public AHRS ahrs;
+
+    // Sensors
+    public Encoder leftDTEncoder;
+    public Encoder rightDTEncoder;
 
     // Subsystems
     public DTSide leftSide;
@@ -50,15 +52,20 @@ public class HardwareAdaptor {
 
         this.rollers = new Rollers();
         this.intakeArm = new IntakeArm();
-        this.shooter = new Shooter();
+        this.flywheel = new Flywheel();
 
         this.shifter = new DoubleSolenoid(Constants.PCM_ID, Constants.DT_LOW_SHIFTER_PORT, Constants.DT_HIGH_SHIFTER_PORT);
 
         this.accelerometer = new BuiltInAccelerometer();
         this.ahrs = new AHRS(SPI.Port.kMXP);
-        
-        this.leftSide = new DTLeft();
-        this.rightSide = new DTRight();
+
+        this.leftDTEncoder = new Encoder(Constants.DT_ENCODER_LEFT_A, Constants.DT_ENCODER_LEFT_B, true, CounterBase.EncodingType.k4X);
+        this.leftDTEncoder.setDistancePerPulse(Constants.INCHES_PER_PULSE_LEFT);
+        this.rightDTEncoder = new Encoder(Constants.DT_ENCODER_RIGHT_A, Constants.DT_ENCODER_RIGHT_B, false, CounterBase.EncodingType.k4X);
+        this.rightDTEncoder.setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT);
+
+        this.leftSide = new DTLeft(leftDTEncoder);
+        this.rightSide = new DTRight(rightDTEncoder);
         this.led = new LED();
     }
 }

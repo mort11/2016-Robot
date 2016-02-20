@@ -10,11 +10,11 @@ import org.mort11.util.MORTSubsystem;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class MORTCANTalon extends CANTalon implements MORTSubsystem {
-    public String name;
     private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private int pdpSlot;
     private CANTalon talon;
     private boolean disabled = false;
+    private boolean reverse;
 
     /**
      * Creates a CANTalon that controls a single motor
@@ -22,13 +22,10 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      * @param deviceNumber CAN ID for talon
      * @param pdpSlot      int of PDP slot motor is connected to
      */
-    public MORTCANTalon(int deviceNumber, int pdpSlot, String subsystemName) {
+    public MORTCANTalon(int deviceNumber, int pdpSlot, boolean reverse) {
         super(deviceNumber);
-        this.talon = new CANTalon(deviceNumber);
         this.pdpSlot = pdpSlot;
-        this.name = subsystemName;
-        System.out.println(String.format("Created new MORTCANTalon [%s] [ID-%s]", name, String.valueOf(talon.getDeviceID())));
-        MotorHolder.motors.add(this);
+        this.reverse = reverse;
     }
 
     /**
@@ -36,14 +33,14 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      *
      * @param speed Motor speed
      */
-//    @Override
-//    public void set(double speed) {
-//        if (this.disabled) {
-//            talon.set(0);
-//        } else {
-//            talon.set(speed);
-//        }
-//    }
+    @Override
+    public void set(double speed) {
+        if (this.disabled) {
+            super.set(0);
+        } else {
+            super.set(this.reverse ? speed * -1 : speed);
+        }
+    }
 
     /**
      * @return Current of given PDP channel

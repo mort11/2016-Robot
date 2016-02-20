@@ -2,8 +2,6 @@ package org.mort11.commands.dt;
 
 import org.mort11.Robot;
 
-import static org.mort11.Robot.oi;
-
 /**
  * DriveLinearLeft - Controls left drivetrain movement
  *
@@ -16,7 +14,8 @@ public class DriveLinearLeft extends DriveLinear {
         super(Robot.adaptor.leftSide);
     }
 
+    @Override
     protected double getSpeed() {
-        return oi.getLeftJoy();
+        return Robot.oi.getLeftJoy();
     }
 }

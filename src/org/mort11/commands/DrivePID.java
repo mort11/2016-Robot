@@ -25,8 +25,8 @@ public class DrivePID extends Command {
 
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
-    private Encoder leftEncoder = DTSide.getEncoderLeft();
-    private Encoder rightEncoder = DTSide.getEncoderRight();
+    private Encoder leftEncoder = Robot.adaptor.leftDTEncoder;
+    private Encoder rightEncoder = Robot.adaptor.rightDTEncoder;
 
     public DrivePID() {
         requires(left);

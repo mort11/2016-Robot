@@ -27,4 +27,8 @@ public class SubsystemStates {
     public enum FlywheelRequest {
         STOP, START
     }
+
+    public enum Gear {
+        LOW, HIGH
+    }
 }

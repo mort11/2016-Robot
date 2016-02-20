@@ -1,25 +1,28 @@
-package org.mort11.commands.dt;
+package org.mort11.commands.dt.shifting;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-import org.mort11.Robot;
+import org.mort11.commands.SubsystemStates;
 import org.mort11.subsystems.dt.DTSide;
 
 /**
- * Shift - Toggles gear shift
+ * Shift - Todo file description
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class Shift extends Command {
+    private SubsystemStates.Gear gear;
+
+    public Shift(SubsystemStates.Gear gear) {
+        this.gear = gear;
+    }
 
     @Override
     protected void initialize() {
-    	System.out.println("calling command");
     }
 
     @Override
     protected void execute() {
-        DTSide.shift();
+        DTSide.shift(gear);
     }
 
     @Override
@@ -29,9 +32,11 @@ public class Shift extends Command {
 
     @Override
     protected void end() {
+
     }
 
     @Override
     protected void interrupted() {
+
     }
 }

@@ -6,18 +6,18 @@ import org.mort11.constants.Constants;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
- * Shooter - Controls the flywheel
+ * Flywheel - Controls the flywheel
  *
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
  * @author Matt Turi <mturi@mort11.org>
  */
-public class Shooter extends Subsystem {
+public class Flywheel extends Subsystem {
     double initEncoderValue;
     private MORTCANTalon flywheel;
 
-    public Shooter() {
-        this.flywheel = new MORTCANTalon(Constants.FLYWHEEL_TALON_ID, Constants.FLYWHEEL, "Flywheel");
+    public Flywheel() {
+        this.flywheel = new MORTCANTalon(Constants.FLYWHEEL_TALON_ID, Constants.PDP_FLYWHEEL, false);
         initEncoderValue = flywheel.getEncPosition();
     }
 

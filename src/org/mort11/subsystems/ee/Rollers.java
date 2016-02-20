@@ -13,8 +13,7 @@ public class Rollers extends Subsystem {
     private MORTCANTalon rollers;
 
     public Rollers() {
-        this.rollers = new MORTCANTalon(Constants.ROLLER_TALON_ID, Constants.ROLLERS, "Rollers");
-        rollers.reset();
+        this.rollers = new MORTCANTalon(Constants.ROLLER_TALON_ID, Constants.PDP_ROLLERS, false);
     }
 
     @Override

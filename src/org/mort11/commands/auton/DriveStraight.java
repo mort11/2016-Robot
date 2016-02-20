@@ -21,8 +21,8 @@ public class DriveStraight extends Command {
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
     private PIDLoop pd_left, pd_right;
-    private Encoder leftDTEncoder = DTSide.getEncoderLeft();
-    private Encoder rightDTEncoder = DTSide.getEncoderRight();
+    private Encoder leftDTEncoder = Robot.adaptor.leftDTEncoder;
+    private Encoder rightDTEncoder = Robot.adaptor.rightDTEncoder;
     private AHRS ahrs = Robot.adaptor.ahrs;
 
     public DriveStraight(double distance) {
@@ -73,8 +73,8 @@ public class DriveStraight extends Command {
     protected void end() {
         left.halt();
         right.halt();
-        left.resetEncoders();
-        right.resetEncoders();
+        left.resetEncoder();
+        right.resetEncoder();
     }
 
     protected void interrupted() {
