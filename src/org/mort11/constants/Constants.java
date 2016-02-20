@@ -52,8 +52,7 @@ public class Constants {
     public static final int ROLLER_UP_BUTTON = 1;
     public static final int SHIFT_UP_BUTTON = 3;
     public static final int SHIFT_DOWN_BUTTON = 2;
-    public static final int HOOD_UP = 8;// TODO: 2/20/16
-    public static final int HOOD_DOWN = 9; // TODO: 2/20/16
+    public static final int HOOD_UP = 8;
 
     /**
      * PDP Slots
