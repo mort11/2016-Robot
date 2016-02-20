@@ -23,6 +23,7 @@ public class Logger {
         }
     }
 
+
     public static void writeString(String msg) {
         writer.write(msg + "\n");
     }
