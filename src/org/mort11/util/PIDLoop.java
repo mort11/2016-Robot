@@ -90,6 +90,6 @@ public class PIDLoop {
     }
     
     public boolean timeElapsed(double multiplier) {
-    	return timer.get() > multiplier * (desired_target/vel_max);
+    	return timer.get() > Math.abs(multiplier * (desired_target/vel_max));
     }
 }

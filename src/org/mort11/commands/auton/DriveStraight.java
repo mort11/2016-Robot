@@ -28,15 +28,18 @@ public class DriveStraight extends Command {
     public DriveStraight(double distance) {
         requires(left);
         requires(right);
-        pd_left = new PIDLoop(distance, .01, 0); 
-        pd_right = new PIDLoop(distance, .01, 0); 
+        pd_left = new PIDLoop(distance, .01, 0,1.2); 
+        pd_right = new PIDLoop(distance, .01, 0,1.2);        
         this.distance = distance;
-    }
-
-    protected void initialize() {
         leftDTEncoder.reset();
         rightDTEncoder.reset();
         this.ahrs.zeroYaw();
+    }
+
+    protected void initialize() {
+    	System.out.println("init yaw: " + ahrs.getYaw());
+    	System.out.println("init d_left: " + leftDTEncoder.getDistance());
+    	System.out.println("init d_right: " + rightDTEncoder.getDistance());
     }
 
     protected void execute() {

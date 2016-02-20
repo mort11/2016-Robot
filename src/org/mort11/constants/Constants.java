@@ -108,8 +108,8 @@ public class Constants {
     public static final int INTAKE_DEGREE_PER_TICK = 360 / 512;
     public static final int ENC_CPR_LEFT = 2381; // Tick count from kop robot on left side, ports 2,3
     public static final int ENC_CPR_RIGHT = -2358; // Tick count from kop robot on right side, ports 0,1
-    public static final double INCHES_PER_PULSE_LEFT = 6 * Math.PI / ENC_CPR_LEFT;
-    public static final double INCHES_PER_PULSE_RIGHT = 6 * Math.PI / ENC_CPR_RIGHT;
+    public static final double INCHES_PER_PULSE_LEFT = 36.0/1505.0;
+    public static final double INCHES_PER_PULSE_RIGHT = 36.0/2898.0;
     public static final double kRobotRadius = 9.75;
     public static final double SPEED_LIMIT = 0.75;
     public static final double MOTOR_MAX_VOLTAGE = 9; // TODO: 2/18/16 Get appropriate current limits
