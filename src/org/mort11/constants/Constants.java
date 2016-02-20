@@ -6,7 +6,6 @@ package org.mort11.constants;
  * @author Matt Turi
  */
 public class Constants {
-    // TODO: 2/18/16 Check all ports in this class with electrical
     /**
      * Talon CAN IDs
      */
@@ -53,8 +52,8 @@ public class Constants {
     public static final int FULL_SPEED_BUTTON = 11;
     public static final int SPIN_UP_BUTTON = 3;
     public static final int ROLLER_UP_BUTTON = 1;
-    public static final int SHIFT_UP_BUTTON = 3; // TODO: 2/18/16 Get this button
-    public static final int SHIFT_DOWN_BUTTON = 2; // TODO: 2/18/16 Get this button
+    public static final int SHIFT_UP_BUTTON = 3;
+    public static final int SHIFT_DOWN_BUTTON = 2;
 
     /**
      * PDP Slots
