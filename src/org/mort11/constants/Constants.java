@@ -55,6 +55,9 @@ public class Constants {
     public static final int ROLLER_UP_BUTTON = 1;
     public static final int SHIFT_UP_BUTTON = 3; // TODO: 2/18/16 Get this button
     public static final int SHIFT_DOWN_BUTTON = 2; // TODO: 2/18/16 Get this button
+    public static final int ARM_INTERRUPT = 1; //placeholder
+    public static final int ARM_TO_90 = 0; //placeholder
+    public static final int ARM_TO_0 = 0; //placeholder
 
     /**
      * PDP Slots
