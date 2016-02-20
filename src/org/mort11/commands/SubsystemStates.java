@@ -33,6 +33,6 @@ public class SubsystemStates {
     }
 
     public enum Light {
-        RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET
+        RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE
     }
 }
