@@ -10,7 +10,6 @@ import org.mort11.util.MORTSubsystem;
  * @author Matt Turi <mturi@mort11.org>
  */
 public class MORTCANTalon extends CANTalon implements MORTSubsystem {
-    public String name;
     private PowerDistributionPanel pdp = new PowerDistributionPanel();
     private int pdpSlot;
     private boolean disabled = false;
@@ -26,7 +25,6 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
         super(deviceNumber);
         this.pdpSlot = pdpSlot;
         this.reverse = reverse;
-        System.out.println(String.format("Created new MORTCANTalon [%s] [ID-%s]", name, String.valueOf(super.getDeviceID())));
     }
 
     /**
@@ -36,7 +34,11 @@ public class MORTCANTalon extends CANTalon implements MORTSubsystem {
      */
     @Override
     public void set(double speed) {
-        super.set(this.reverse ? speed * -1 : speed);
+        if (this.disabled) {
+            super.set(0);
+        } else {
+            super.set(this.reverse ? speed * -1 : speed);
+        }
     }
 
     /**

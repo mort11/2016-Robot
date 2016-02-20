@@ -3,7 +3,7 @@ package org.mort11.commands.ee;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.behavior.Commands;
+import org.mort11.commands.SubsystemStates;
 import org.mort11.constants.Constants;
 import org.mort11.subsystems.ee.Rollers;
 
@@ -18,29 +18,18 @@ import org.mort11.subsystems.ee.Rollers;
  */
 public class IntakeRollers extends Command {
     Rollers roller = Robot.adaptor.rollers;
-    Commands.RollerRequest rollerRequest;
+    SubsystemStates.RollerRequest rollerRequest;
     double time = -1;
     Timer timer = new Timer();
 
-    /**
-     * Run intake rollers indefinitely in specified direction
-     *
-     * @param rollerRequest Roller mode [Intake, Exhaust, None]
-     */
-    public IntakeRollers(Commands.RollerRequest rollerRequest) {
+    public IntakeRollers(SubsystemStates.RollerRequest rollerRequest) {
         this.rollerRequest = rollerRequest;
         requires(roller);
         setInterruptible(true);
     }
 
-    /**
-     * Run intake rollers for specified time in specified direction
-     *
-     * @param time             Time to run
-     * @param requestDirection Roller mode [Intake, Exhaust, None]
-     */
-    public IntakeRollers(double time, Commands.RollerRequest requestDirection) {
-        this(requestDirection);
+    public IntakeRollers(double time, SubsystemStates.RollerRequest direction) {
+        this(direction);
         this.time = time;
         timer = new Timer();
     }
@@ -72,7 +61,6 @@ public class IntakeRollers extends Command {
         return timer.get() > time;
     }
 
-    @Override
     protected void end() {
         if (time != -1) {
             roller.set(0);

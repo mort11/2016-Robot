@@ -1,21 +1,28 @@
 package org.mort11.commands.dt.shifting;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.commands.SubsystemStates;
 import org.mort11.subsystems.dt.DTSide;
 
 /**
- * ShiftDown - ToDo class description
+ * Shift - Shift transmission
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
-public class ShiftDown extends Command {
+public class Shift extends Command {
+    private SubsystemStates.Gear gear;
+
+    public Shift(SubsystemStates.Gear gear) {
+        this.gear = gear;
+    }
+
     @Override
     protected void initialize() {
     }
 
     @Override
     protected void execute() {
-        DTSide.shift(DTSide.Gear.LOW);
+        DTSide.shift(gear);
     }
 
     @Override

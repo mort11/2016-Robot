@@ -5,15 +5,13 @@ import org.mort11.Robot;
 import org.mort11.subsystems.ee.Flywheel;
 
 /**
- * FullSpin - Spin the flywheel at full speed
- *
- * @author chsahit
+ *@author chsahit
  */
 public class FullSpin extends Command {
     private Flywheel flywheel = Robot.adaptor.flywheel;
 
     public FullSpin() {
-        requires(flywheel);
+        requires(this.flywheel);
     }
 
     @Override
@@ -22,7 +20,7 @@ public class FullSpin extends Command {
 
     @Override
     protected void execute() {
-        flywheel.set(-1);
+        this.flywheel.set(-1);
     }
 
     @Override

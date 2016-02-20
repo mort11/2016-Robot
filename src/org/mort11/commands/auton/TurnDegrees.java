@@ -1,5 +1,6 @@
 package org.mort11.commands.auton;
 
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.mort11.Robot;
@@ -19,6 +20,7 @@ public class TurnDegrees extends Command {
     private double desiredAngle; // Angle that the robot will turn by
     private double currentAngle; // Current orientation of robot
     private boolean isReverse; // Allows the robot to turn counterclockwise if set to true
+    private AHRS ahrs = Robot.adaptor.ahrs;
 
     /**
      * Takes desired angle for turning, must be positive, and boolean for turn direction
@@ -38,12 +40,12 @@ public class TurnDegrees extends Command {
      * Resets the yaw so current angle is accurate
      */
     protected void initialize() {
-        Robot.adaptor.ahrs.reset();
+        this.ahrs.reset();
     }
 
     protected void execute() {
         //currentAngle = DTSide.getAngle(); //gets current angle of robot
-        currentAngle = Math.abs(Robot.adaptor.ahrs.getYaw()); //might work better than getAngle(), must test
+        currentAngle = Math.abs(this.ahrs.getYaw()); //might work better than getAngle(), must test
         System.out.println("current angle" + currentAngle);
         speed = pd.getOutput(currentAngle); //passes current angle through pid loop
         System.out.println("speed" + speed);
@@ -62,7 +64,7 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.adaptor.ahrs.getYaw() > desiredAngle * 0.98;
+        return this.ahrs.getYaw() > desiredAngle * 0.98;
     }
 
     protected void end() {
@@ -70,7 +72,7 @@ public class TurnDegrees extends Command {
         right.set(0);
         left.resetEncoder();
         right.resetEncoder();
-        Robot.adaptor.ahrs.reset();
+        this.ahrs.reset();
     }
 
     protected void interrupted() {

@@ -6,12 +6,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.WaitTime;
-import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.util.auto.AutoCommand;
 
 /**
@@ -44,7 +41,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // Start loops
-//        pdpMonitor.start();
+        //pdpMonitor.start();
 
         // Have operator choose autonomous mode
         autoModes = new SendableChooser();
@@ -55,7 +52,7 @@ public class Robot extends IterativeRobot {
         portcullis = new SendableChooser();
         portcullis.addDefault("Portcullis", new WaitTime(0));
         portcullis.addObject("No Portcullis", new WaitTime(0));
-        
+
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
     }
@@ -67,13 +64,14 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         System.out.println("STARTING AUTONOMOUS");
-        //Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};
-        autonomousCommand = new LowBarLowGoal();
+        Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};
+        autonomousCommand = new AutoCommand(autoCommands);
 
         System.out.println("Running auto commands:");
-//        for (Command autoCommand : autoCommands) {
-//            System.out.println(autoCommand);
-//        }
+        for (Command autoCommand : autoCommands) {
+            System.out.println(autoCommand);
+        }
+
         autonomousCommand.start();
     }
 
@@ -91,7 +89,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledInit() {
         // Stop loopable threads
-//        pdpMonitor.stop();
+        // pdpMonitor.stop();
         System.out.println("Disabled. Code halted!");
     }
 

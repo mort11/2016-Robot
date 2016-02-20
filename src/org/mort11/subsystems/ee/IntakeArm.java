@@ -1,11 +1,13 @@
 package org.mort11.subsystems.ee;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * IntakeArm - Controls the intake arm
@@ -31,20 +33,11 @@ public class IntakeArm extends Subsystem {
      * @return Encoder angle
      */
     public double getAngle() {
-    	//System.out.println("ticks: "  + intakeArm.getEncPosition());
+        //System.out.println("ticks: "  + intakeArm.getEncPosition());
         return ((intakeArm.getEncPosition() - initPos) * 0.09); //:'(
     }
 
-    /**
-     * Returns the distance gotten from the arm encoder
-     *
-     * @return Distance arm has traveled
-     */
-    public double getDistance() {
-        System.out.println(intakeArm.get());
 
-        return intakeArm.getEncPosition();
-    }
     
     /**
      * Tells if the intake has been driven too far back
@@ -53,6 +46,8 @@ public class IntakeArm extends Subsystem {
     public boolean isLimitSwitch() {
     	return limswitch.get();
     }
+    // TODO: 2/19/2016 Rewrite limit switch code here when Mr. Thant finishes mounting lim switch
+
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new JoystickIntake());
@@ -65,9 +60,5 @@ public class IntakeArm extends Subsystem {
      */
     public void set(double speed) {
         intakeArm.set(speed);
-    }
-
-    public void reset() {
-        intakeArm.reset();
     }
 }

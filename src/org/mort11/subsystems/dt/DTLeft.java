@@ -1,5 +1,6 @@
 package org.mort11.subsystems.dt;
 
+import edu.wpi.first.wpilibj.Encoder;
 import org.mort11.commands.dt.DriveLinearLeft;
 import org.mort11.constants.Constants;
 
@@ -12,10 +13,17 @@ import org.mort11.constants.Constants;
  * @author Jeffrey Pastilha <jpmail967@yahoo.com>
  */
 public class DTLeft extends DTSide {
-    public DTLeft() {
-        super(Constants.DT_LEFT_TALON_ID_1, Constants.DT_LEFT_TALON_ID_2,
-                Constants.DT_LEFT_TALON_ID_3, Constants.LEFT_DT_1, Constants.LEFT_DT_2, Constants.LEFT_DT_3,
-                true, true, true);
+    public DTLeft(Encoder encoder) {
+        super(
+                Constants.DT_LEFT_TALON_ID_1,
+                Constants.DT_LEFT_TALON_ID_2,
+                Constants.DT_LEFT_TALON_ID_3,
+                Constants.PDP_LEFT_DT_1,
+                Constants.PDP_LEFT_DT_2,
+                Constants.PDP_LEFT_DT_3,
+                true, true, true,
+                encoder
+        );
     }
 
     @Override

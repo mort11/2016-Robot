@@ -1,9 +1,8 @@
 package org.mort11.subsystems;
 
-import org.mort11.constants.Constants;
-
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.constants.Constants;
 
 /**
  * LED - Subsystem for LED's
@@ -12,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Jakob Shortell <jshortell@mort11.org>
  */
 public class LED extends Subsystem {
+
     private PWM red, green, blue;
 
     public LED() {

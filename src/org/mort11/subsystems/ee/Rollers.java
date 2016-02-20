@@ -1,9 +1,8 @@
 package org.mort11.subsystems.ee;
 
-import org.mort11.constants.Constants;
-
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.mort11.constants.Constants;
+import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * Rollers - Controls the intakeArm roller
@@ -11,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Sahit Chintalapudi <schintalapudi@mort11.org>
  */
 public class Rollers extends Subsystem {
-    private CANTalon rollers;
+    private MORTCANTalon rollers;
 
     public Rollers() {
-        this.rollers = new CANTalon(Constants.ROLLER_TALON_ID);
-}
+        this.rollers = new MORTCANTalon(Constants.ROLLER_TALON_ID, Constants.PDP_ROLLERS, false);
+    }
 
     @Override
     protected void initDefaultCommand() {
