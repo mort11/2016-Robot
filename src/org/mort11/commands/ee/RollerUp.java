@@ -8,7 +8,7 @@ import org.mort11.util.PIDLoop;
 /**
  * RollerUp - Keeps the roller up at a constant angle
  *
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Matthew Krzyzanowski
  */
 public class RollerUp extends Command {
     private IntakeArm intakeArm = Robot.adaptor.intakeArm;

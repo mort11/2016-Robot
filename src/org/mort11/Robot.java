@@ -7,25 +7,27 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.led.LEDControl;
 import org.mort11.util.auto.AutoCommand;
 
 /**
  * Robot - Main Robot class
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matt Turi <mturi@mort11.org>
- * @author Ryan Thant <ryanthant1@gmail.com>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Seven Kurt <seven.kurt@motsd.org>
- * @author Michael Kozak <michael.kozak@motsd.org>
- * @author Jeffrey Pastilha <jpmail967@yahoo.com>
- * @author Ryan O'Toole <ryan.otoole@motsd.org>
- * @author Carl Hausman <carl@hausman.org>
- * @author Jakob Shortell <jshortell@mort11.org>
+ * @author Sahit Chintalapudi
+ * @author Matt Turi
+ * @author Ryan Thant
+ * @author Matthew Krzyzanowski
+ * @author Seven Kurt
+ * @author Michael Kozak
+ * @author Jeffrey Pastilha
+ * @author Ryan O'Toole
+ * @author Carl Hausman
+ * @author Jakob Shortell
  */
 public class Robot extends IterativeRobot {
     public static OI oi;
@@ -34,6 +36,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
+    LEDControl LED;
 
     // TODO: 2/11/16 Check MAX and MIN-REENABLE voltage values
 //    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
@@ -41,6 +44,8 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
         oi = new OI();
+        LED = new LEDControl(SubsystemStates.Light.YELLOW);
+        
 
         // Start loops
         //pdpMonitor.start();
@@ -57,6 +62,9 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
+        
+        
+        
     }
 
     @Override
@@ -64,6 +72,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
     }
 
+    @Override
     public void autonomousInit() {
 //        System.out.println("STARTING AUTONOMOUS");
 //        Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};

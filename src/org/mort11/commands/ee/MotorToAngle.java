@@ -8,9 +8,9 @@ import org.mort11.util.PIDLoop;
 /**
  * MotorToAngle - Move motor to angle
  *
- * @author Ryan Thant <ryanthant1@gmail.com>
- * @author Seven Kurt <seven.kurt@motsd.org>
- * @author Ryan O'Toole <ryan.otoole@motsd.org>
+ * @author Ryan Thant
+ * @author Seven Kurt
+ * @author Ryan O'Toole
  * @author chsahit
  */
 public class MotorToAngle extends Command {

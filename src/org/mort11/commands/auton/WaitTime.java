@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * WaitTime - Waits for a specified amount of time
  *
- * @author Matt Turi <mturi@mort11.org>
+ * @author Matt Turi
  */
 public class WaitTime extends Command {
     Timer timer;

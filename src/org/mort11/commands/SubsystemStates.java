@@ -3,8 +3,8 @@ package org.mort11.commands;
 /**
  * SubsystemStates - Defines all possible states a given subsystem can be in
  *
- * @author Matt Turi <mturi@mort11.org>
- * @author Jakob Shortell <jshortell@mort11.org>
+ * @author Matt Turi
+ * @author Jakob Shortell
  */
 
 public class SubsystemStates {
@@ -30,5 +30,9 @@ public class SubsystemStates {
 
     public enum Gear {
         LOW, HIGH
+    }
+
+    public enum Light {
+        RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE
     }
 }

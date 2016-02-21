@@ -10,7 +10,7 @@ import org.mort11.util.PIDLoop;
 /**
  * TurnDegrees - Turn x degrees
  *
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Matthew Krzyzanowski
  */
 public class TurnDegrees extends Command {
     private PIDLoop pd;

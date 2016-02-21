@@ -8,9 +8,9 @@ import org.mort11.util.powermanager.MORTCANTalon;
 /**
  * Flywheel - Controls the flywheel
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Matt Turi <mturi@mort11.org>
+ * @author Sahit Chintalapudi
+ * @author Matthew Krzyzanowski
+ * @author Matt Turi
  */
 public class Flywheel extends Subsystem {
     double initEncoderValue;

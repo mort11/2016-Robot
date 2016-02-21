@@ -7,10 +7,10 @@ import org.mort11.constants.Constants;
 /**
  * DTRight - Subsystem controlling right drivetrain side
  *
- * @author gridbug <wmarshall@mort11.org>
- * @author Matt Turi <mturi@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
- * @author Jeffrey Pastilha <jpmail967@yahoo.com>
+ * @author gridbug
+ * @author Matt Turi
+ * @author Matthew Krzyzanowski
+ * @author Jeffrey Pastilha
  */
 public class DTRight extends DTSide {
     public DTRight(Encoder encoder) {

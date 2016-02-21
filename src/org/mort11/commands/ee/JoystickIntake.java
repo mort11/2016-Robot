@@ -8,7 +8,6 @@ import org.mort11.subsystems.ee.IntakeArm;
  * JoystickIntake - Does joystick intaking
  *
  * @author chsahit
- *
  */
 public class JoystickIntake extends Command {
     private IntakeArm intakeArm = Robot.adaptor.intakeArm;
@@ -19,6 +18,7 @@ public class JoystickIntake extends Command {
 
     @Override
     protected void initialize() {
+    	this.setInterruptible(true);
     }
 
     @Override

@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * LowBarAuton - Does the Low bar auton
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author Sahit Chintalapudi
+ * @author Matthew Krzyzanowski
  */
 public class LowBarAuton extends CommandGroup {
     public LowBarAuton() {

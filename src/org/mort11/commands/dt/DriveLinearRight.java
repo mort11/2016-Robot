@@ -5,8 +5,8 @@ import org.mort11.Robot;
 /**
  * DriveLinearRight - Controls right drivetrain movement
  *
- * @author gridbug <wmarshall@mort11.org>
- * @author Matthew Krzyzanowski <matthew.krzyzanowski@gmail.com>
+ * @author gridbug
+ * @author Matthew Krzyzanowski
  */
 public class DriveLinearRight extends DriveLinear {
 

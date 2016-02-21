@@ -8,7 +8,7 @@ import org.mort11.commands.ee.MotorToAngle;
 /**
  * LowBarLowGoal - Oh baby a triple
  *
- * @author Sahit Chintalapudi <schintalapudi@mort11.org>
+ * @author Sahit Chintalapudi
  */
 public class LowBarLowGoal extends CommandGroup {
     public LowBarLowGoal() {
