@@ -1,5 +1,10 @@
 package org.mort11.commands.auton;
 
+import org.mort11.commands.SubsystemStates.RollerRequest;
+import org.mort11.commands.ee.IntakeRollers;
+import org.mort11.commands.ee.MotorToAngle;
+import org.mort11.commands.ee.SpinUp;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -10,9 +15,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class LowBarAuton extends CommandGroup {
     public LowBarAuton() {
-        System.out.println("Starting LowBar auton");
-        addSequential(new DriveStraight(96));
-        addSequential(new TurnDegrees(false, 90));
-        addSequential(new AdjustToGoal());
+    	addParallel(new MotorToAngle(80));
+        addSequential(new WaitTime(3.5));
+        addSequential(new DriveStraight(256));
+        addSequential(new TurnDegrees(false, 55));
+        addParallel(new SpinUp(10000, true));
+        addSequential(new WaitTime(4));
+        addSequential(new IntakeRollers(1, RollerRequest.INTAKE));
     }
 }
