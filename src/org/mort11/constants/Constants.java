@@ -6,7 +6,6 @@ package org.mort11.constants;
  * @author Matt Turi
  */
 public class Constants {
-    // TODO: 2/18/16 Check all ports in this class with electrical
     /**
      * Talon CAN IDs
      */
@@ -28,8 +27,6 @@ public class Constants {
     public static final int DT_HIGH_SHIFTER_PORT = 1;
     public static final int HOOD_SOLENOID_A = 2;
     public static final int HOOD_SOLENOID_B = 3;
-    public static final int INTAKE_ARM_BRAKE_A = 5;
-    public static final int INTAKE_ARM_BRAKE_B = 6;
 
     /**
      * LED PWMs
@@ -58,7 +55,8 @@ public class Constants {
     public static final int ARM_INTERRUPT = 1; //placeholder
     public static final int ARM_TO_90 = 0; //placeholder
     public static final int ARM_TO_0 = 0; //placeholder
-
+    public static final int HOOD_UP = 8;
+    
     /**
      * PDP Slots
      * THESE ARE FOR THE PRACTICE BOT PDP

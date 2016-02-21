@@ -62,6 +62,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
     }
 
+    @Override
     public void autonomousInit() {
         System.out.println("STARTING AUTONOMOUS");
         Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};

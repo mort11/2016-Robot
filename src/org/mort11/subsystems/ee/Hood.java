@@ -2,48 +2,37 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.constants.Constants;
+import org.mort11.Robot;
+import org.mort11.commands.SubsystemStates;
 
 /**
- * Hood - Intake hood
+ * HoodToggle - Intake hood
  *
  * @author Sahit Chintalapudi
  * @author Matt Turi
  */
 public class Hood extends Subsystem {
-    private DoubleSolenoid solenoid = new DoubleSolenoid(Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);
-    private boolean hoodUp;
+    private static DoubleSolenoid solenoid = Robot.adaptor.hood;
+    private static boolean hoodUp = true;
 
-    /**
-     * Set hood to up position
-     */
-    public void popHood() {
-            setHood(true);
-            this.hoodUp = true;
+    public static void setHood(SubsystemStates.HoodRequest hoodRequest) {
+        switch (hoodRequest) {
+            case POP:
+                solenoid.set(DoubleSolenoid.Value.kForward);
+                break;
+            case STOW:
+                solenoid.set(DoubleSolenoid.Value.kReverse);
+                break;
+        }
     }
 
-    /**
-     * Set hood to stowed position
-     */
-    public void stowHood() {
-            setHood(false);
-            this.hoodUp = false;
-    }
-
-    /**
-     * Toggle hood state between stowed and up
-     */
-    public void toggleHood() {
-            setHood(!hoodUp);
-    }
-    
-    public void setHood(boolean engage) {
-        if (engage) {
+    public static void toggleHood() {
+        if (hoodUp) {
             solenoid.set(DoubleSolenoid.Value.kForward);
         } else {
             solenoid.set(DoubleSolenoid.Value.kReverse);
         }
-        this.hoodUp = engage;
+        hoodUp = !hoodUp;
     }
 
     @Override

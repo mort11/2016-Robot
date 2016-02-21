@@ -44,7 +44,7 @@ public class FieldMapper extends JPanel implements ActionListener, KeyListener {
 
     }
 
-    public static void main(String arge[]) {
+    public static void main(String args[]) {
         JFrame f = new JFrame();
         FieldMapper s = new FieldMapper();
         f.add(s);
