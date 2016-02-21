@@ -6,14 +6,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.WaitTime;
-import org.mort11.commands.ee.SpinUp;
-import org.mort11.commands.led.LEDControl;
 import org.mort11.util.auto.AutoCommand;
 
 /**
@@ -37,19 +32,10 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
-    LEDControl LED;
-
-    // TODO: 2/11/16 Check MAX and MIN-REENABLE voltage values
-//    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
 
     @Override
     public void robotInit() {
         oi = new OI();
-        LED = new LEDControl(SubsystemStates.Light.YELLOW);
-        
-
-        // Start loops
-        //pdpMonitor.start();
 
         // Have operator choose autonomous mode
         autoModes = new SendableChooser();
@@ -58,14 +44,12 @@ public class Robot extends IterativeRobot {
         autoModes.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
 
         portcullis = new SendableChooser();
+        // TODO: 2/21/2016 Write auto commands for these
         portcullis.addDefault("Portcullis", new WaitTime(0));
         portcullis.addObject("No Portcullis", new WaitTime(0));
 
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
-        
-        
-        
     }
 
     @Override
@@ -75,15 +59,14 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
-//        System.out.println("STARTING AUTONOMOUS");
-//        Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};
-//        autonomousCommand = new AutoCommand(autoCommands);
-//
-//        System.out.println("Running auto commands:");
-//        for (Command autoCommand : autoCommands) {
-//            System.out.println(autoCommand);
-//        }
-    	autonomousCommand = new LowBarLowGoal();
+        System.out.println("STARTING AUTONOMOUS");
+        Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};
+        autonomousCommand = new AutoCommand(autoCommands);
+
+        System.out.println("Running auto commands:");
+        for (Command autoCommand : autoCommands) {
+            System.out.println(autoCommand);
+        }
         autonomousCommand.start();
     }
 
@@ -94,15 +77,11 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-        //new MotorToAngle(90).start();
-    	//new SpinUp(10000, true);
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     @Override
     public void disabledInit() {
-        // Stop loopable threads
-        // pdpMonitor.stop();
         System.out.println("Disabled. Code halted!");
     }
 

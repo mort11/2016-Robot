@@ -1,12 +1,9 @@
 package org.mort11.subsystems.ee;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
-
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
@@ -15,16 +12,15 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi
  */
 public class IntakeArm extends Subsystem {
-    private CANTalon intakeArm;
+    private MORTCANTalon intakeArm;
     private double initPos;
-    double scaling;
     private DigitalInput limswitch;
+
     public IntakeArm() {
-        intakeArm = new CANTalon(Constants.INTAKE_ARM_TALON_ID);
+        intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.PDP_INTAKE_ARM, false);
         limswitch = new DigitalInput(Constants.ARM_LIM_SWITCH_PORT);
         initPos = intakeArm.getEncPosition();
         System.out.println("init pos: "  + initPos);
-        scaling = 90/1142;
     }
 
     /**

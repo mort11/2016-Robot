@@ -5,11 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.dt.shifting.Shift;
-import org.mort11.commands.ee.HoodToggle;
-import org.mort11.commands.ee.IntakeRollers;
-import org.mort11.commands.ee.SpinUp;
-import org.mort11.commands.ee.JoystickIntake;
-import org.mort11.commands.ee.MotorToAngle;
+import org.mort11.commands.ee.*;
 import org.mort11.constants.Constants;
 import org.mort11.util.SpeedController;
 
@@ -34,18 +30,18 @@ public class OI {
     // Right drive joystick
     public Button fullSpeed = new JoystickButton(rightJoystick, Constants.FULL_SPEED_BUTTON);
 
+    public Button shiftDown = new JoystickButton(leftJoystick, Constants.SHIFT_DOWN_BUTTON);
     public Button shiftUp = new JoystickButton(rightJoystick, Constants.SHIFT_UP_BUTTON);
-    public Button shiftDown = new JoystickButton(rightJoystick, Constants.SHIFT_DOWN_BUTTON);
 
     // EE Joystick
     public Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
     public Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
-    public Button toggleHood = new JoystickButton(endEffector, Constants.HOOD_UP);
+    public Button hoodToggle = new JoystickButton(endEffector, Constants.TOGGLE_HOOD);
     public Button armInterrupt = new JoystickButton(endEffector, Constants.ARM_INTERRUPT);
     public Button armToNinety = new JoystickButton(endEffector, Constants.ARM_TO_90);
     public Button armToZero = new JoystickButton(endEffector, Constants.ARM_TO_0);
-    
+
     public OI() {
         intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
         intakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
@@ -56,8 +52,8 @@ public class OI {
         shiftUp.whenPressed(new Shift(SubsystemStates.Gear.HIGH));
         shiftDown.whenPressed(new Shift(SubsystemStates.Gear.LOW));
 
-        spinUp.toggleWhenPressed(new SpinUp(1000, true));
-        toggleHood.whenPressed(new HoodToggle());
+        spinUp.toggleWhenPressed(new SpinUp(90000, true));
+        hoodToggle.whenPressed(new HoodToggle());
         armInterrupt.whenPressed(new JoystickIntake()); // Allows for manual movement of the intake arm when pressed
         armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
         armToZero.whenPressed(new MotorToAngle(0)); // Moves the intake arm to 0 degrees when pressed
@@ -76,7 +72,7 @@ public class OI {
     }
 
     public double getEE_Z() {
-        return (endEffector.getZ() + 1) / 2;
+        return (-endEffector.getThrottle() + 1) / 2;
     }
 }
 
