@@ -2,6 +2,7 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.mort11.Robot;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Flywheel;
@@ -22,6 +23,7 @@ public class SpinUp extends Command {
     private boolean PID;
     private double speed_ghetto = 0;
     private double velocity;
+    double curr_vel,voltage_command;
 
     public SpinUp(double velocity, boolean PID) {
         this.velocity = velocity;
@@ -37,11 +39,18 @@ public class SpinUp extends Command {
     @Override
     protected void execute() {
         if (PID) { //uses pid loop to SpinUp
-            double currentVelocity = spinUp.getSpeed();
-            System.out.println("speed: " + currentVelocity);
-            double speed = pd_arm.getP(currentVelocity);
-            spinUp.set(speed);
-            SmartDashboard.putNumber("Velocity", currentVelocity);
+        	curr_vel = spinUp.getSpeed() ;
+        	System.out.println("RPM = " + curr_vel);
+        	double delta_rpm = (velocity - curr_vel) * 0.000001;
+        	voltage_command = voltage_command+delta_rpm;
+        	if(voltage_command > 1) {
+        		voltage_command = 1;
+        	} else if (voltage_command < 0) {
+        		voltage_command = 0;
+        	}
+        	System.out.println("voltage_command = " + voltage_command);
+        	spinUp.set(voltage_command);
+            //SmartDashboard.putNumber("Velocity", currentVelocity);
         } else { // ghetto way of spinning up
             double currentVelocity = spinUp.getSpeed();
             if (currentVelocity < velocity) {

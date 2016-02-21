@@ -68,6 +68,6 @@ public class HardwareAdaptor {
 
         this.leftSide = new DTLeft(leftDTEncoder);
         this.rightSide = new DTRight(rightDTEncoder);
-        this.led = new LED();
+        //this.led = new LED();
     }
 }

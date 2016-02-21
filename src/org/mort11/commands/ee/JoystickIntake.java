@@ -11,9 +11,16 @@ import org.mort11.subsystems.ee.IntakeArm;
  */
 public class JoystickIntake extends Command {
     private IntakeArm intakeArm = Robot.adaptor.intakeArm;
-
+    private boolean posControl;
+    private double desiredLocation;
+    private double maxDown = 1;
     public JoystickIntake() {
-        requires(intakeArm);
+        this(false);
+    }
+    
+    public JoystickIntake(boolean posControl) {
+    	requires(intakeArm);
+        this.posControl = posControl;
     }
 
     @Override
@@ -23,6 +30,12 @@ public class JoystickIntake extends Command {
 
     @Override
     protected void execute() {
+    	if(posControl) {
+    		desiredLocation = (-maxDown/2) * Robot.oi.getEEJoy() + maxDown/2;
+    		System.out.println("desired location: " + desiredLocation);
+    		intakeArm.set((desiredLocation - intakeArm.getAngle()) * 0.01);
+    		return;
+    	}
     	//if its safe to move the switch then sure, if not then don't move it
     	if(!intakeArm.isLimitSwitch() && -Robot.oi.getEEJoy() > 0) {
     		System.out.println("unsafe to move the arm upwards!!");

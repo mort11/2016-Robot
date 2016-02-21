@@ -12,6 +12,7 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.led.LEDControl;
 import org.mort11.util.auto.AutoCommand;
 
@@ -94,6 +95,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopInit() {
         //new MotorToAngle(90).start();
+    	//new SpinUp(10000, true);
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
