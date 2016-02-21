@@ -6,9 +6,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.led.LEDControl;
 import org.mort11.util.auto.AutoCommand;
 
 /**
@@ -32,6 +35,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
+    LEDControl LED;
 
     // TODO: 2/11/16 Check MAX and MIN-REENABLE voltage values
 //    Looper pdpMonitor = new Looper("PDPMonitor", new PDPUpdater(), 1 / 200.0); // Update PDP monitor every 20ms
@@ -39,6 +43,8 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
         oi = new OI();
+        LED = new LEDControl(SubsystemStates.Light.YELLOW);
+        
 
         // Start loops
         //pdpMonitor.start();
@@ -55,6 +61,9 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
+        
+        
+        
     }
 
     @Override
