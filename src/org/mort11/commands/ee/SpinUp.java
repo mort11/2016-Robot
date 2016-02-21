@@ -1,12 +1,11 @@
 package org.mort11.commands.ee;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.mort11.Robot;
-import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Flywheel;
 import org.mort11.util.PIDLoop;
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * SpinUp - Spins up flywheel to a specified RPM

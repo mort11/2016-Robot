@@ -31,9 +31,9 @@ public class Constants {
     /**
      * LED PWMs
      */
-    public static final int RED_LIGHT = 1;
-    public static final int GREEN_LIGHT = 2;
-    public static final int BLUE_LIGHT = 3;
+    public static final int RED_LIGHT = 2;
+    public static final int GREEN_LIGHT = 1;
+    public static final int BLUE_LIGHT = 0;
 
     /**
      * DS Joystick ports
@@ -45,18 +45,24 @@ public class Constants {
     /**
      * Joystick Buttons
      */
+    // Right Drive stick
+    public static final int SHIFT_UP_BUTTON = 7;
+
+    // Left Joystick
+    public static final int SHIFT_DOWN_BUTTON = 7;
+
+    // EE Stick
     public static final int INTAKE_BUTTON = 3;
     public static final int OUTTAKE_BUTTON = 5;
     public static final int FULL_SPEED_BUTTON = 11;
-    public static final int SPIN_UP_BUTTON = 3;
-    public static final int ROLLER_UP_BUTTON = 1;
-    public static final int SHIFT_UP_BUTTON = 3; // TODO: 2/18/16 Get this button
-    public static final int SHIFT_DOWN_BUTTON = 2; // TODO: 2/18/16 Get this button
-    public static final int ARM_INTERRUPT = 1; //placeholder
-    public static final int ARM_TO_90 = 0; //placeholder
-    public static final int ARM_TO_0 = 0; //placeholder
-    public static final int HOOD_UP = 8;
-    
+    public static final int SPIN_UP_BUTTON = 4;
+    public static final int TOGGLE_HOOD = 2;
+
+    // TODO: 2/21/2016 Figure out what buttons Ally wants these presets mapped to
+    public static final int ARM_INTERRUPT = 8;
+    public static final int ARM_TO_90 = 10;
+    public static final int ARM_TO_0 = 12;
+
     /**
      * PDP Slots
      * THESE ARE FOR THE PRACTICE BOT PDP
@@ -109,8 +115,8 @@ public class Constants {
     public static final int INTAKE_DEGREE_PER_TICK = 360 / 512;
     public static final int ENC_CPR_LEFT = 2381; // Tick count from kop robot on left side, ports 2,3
     public static final int ENC_CPR_RIGHT = -2358; // Tick count from kop robot on right side, ports 0,1
-    public static final double INCHES_PER_PULSE_LEFT = 36.0/1505.0;
-    public static final double INCHES_PER_PULSE_RIGHT = 36.0/2898.0;
+    public static final double INCHES_PER_PULSE_LEFT = 36.0 / 1505.0;
+    public static final double INCHES_PER_PULSE_RIGHT = 36.0 / 2898.0;
     public static final double kRobotRadius = 9.75;
     public static final double SPEED_LIMIT = 0.75;
     public static final double MOTOR_MAX_VOLTAGE = 9; // TODO: 2/18/16 Get appropriate current limits
