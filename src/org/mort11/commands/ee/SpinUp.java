@@ -17,19 +17,22 @@ import org.mort11.util.PIDLoop;
  */
 public class SpinUp extends Command {
     private Flywheel spinUp = Robot.adaptor.flywheel;
-    private DTSide left = Robot.adaptor.leftSide; //replace/remove with SpinUp stuff
     private Flywheel armMotor;
     private PIDLoop pd_arm;
     private boolean PID;
     private double speed_ghetto = 0;
     private double velocity;
-    double curr_vel,voltage_command;
+    double curr_vel,voltage_command,per_error;
 
     public SpinUp(double velocity, boolean PID) {
         this.velocity = velocity;
-        requires(left);
+        requires(spinUp);
         pd_arm = new PIDLoop(velocity, 0.03, 0); // Placeholder values
         this.PID = PID;
+    }
+    
+    public SpinUp() {
+    	this(1000,true);
     }
 
     @Override
@@ -40,7 +43,7 @@ public class SpinUp extends Command {
     protected void execute() {
         if (PID) { //uses pid loop to SpinUp
         	curr_vel = spinUp.getSpeed() ;
-        	System.out.println("RPM = " + curr_vel);
+        	//System.out.println("RPM = " + curr_vel);
         	double delta_rpm = (velocity - curr_vel) * 0.000001;
         	voltage_command = voltage_command+delta_rpm;
         	if(voltage_command > 1) {
@@ -48,9 +51,15 @@ public class SpinUp extends Command {
         	} else if (voltage_command < 0) {
         		voltage_command = 0;
         	}
-        	System.out.println("voltage_command = " + voltage_command);
+        	//System.out.println("voltage_command = " + voltage_command);
         	spinUp.set(voltage_command);
-            //SmartDashboard.putNumber("Velocity", currentVelocity);
+        	per_error = Math.abs((velocity - curr_vel)/velocity);
+        	if(per_error < 0.1) {
+        		SmartDashboard.putString("RPM", "you're there!");
+        	} else {
+        		System.out.println("percent error shooter: " + per_error);
+        	}
+            //SmartDashboard.putNu1mber("Velocity", currentVelocity);
         } else { // ghetto way of spinning up
             double currentVelocity = spinUp.getSpeed();
             if (currentVelocity < velocity) {
@@ -74,6 +83,7 @@ public class SpinUp extends Command {
 
     @Override
     protected void end() {
+    	spinUp.set(0);
     }
 
     @Override

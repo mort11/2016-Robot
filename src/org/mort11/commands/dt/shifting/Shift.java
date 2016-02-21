@@ -22,6 +22,7 @@ public class Shift extends Command {
 
     @Override
     protected void execute() {
+    	System.out.println("shifting gears");
         DTSide.shift(gear);
     }
 

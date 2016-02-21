@@ -19,7 +19,7 @@ public class LowBarAuton extends CommandGroup {
         addSequential(new WaitTime(3.5));
         addSequential(new DriveStraight(256));
         addSequential(new TurnDegrees(false, 55));
-        addParallel(new SpinUp(10000, true));
+        addParallel(new SpinUp());
         addSequential(new WaitTime(4));
         addSequential(new IntakeRollers(1, RollerRequest.INTAKE));
     }

@@ -38,6 +38,7 @@ public abstract class DTSide extends Subsystem {
      * @param gear Gear to shift to
      */
     public static void shift(SubsystemStates.Gear gear) {
+    	System.out.println("shifting gears");
         switch (gear) {
             case LOW:
                 Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse);

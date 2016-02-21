@@ -12,6 +12,7 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.led.LEDControl;
 import org.mort11.util.auto.AutoCommand;
@@ -63,6 +64,7 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
+        SmartDashboard.putString("RPM", "too slow!");
         
         
         
@@ -94,8 +96,8 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-        //new MotorToAngle(90).start();
-    	//new SpinUp(10000, true);
+//       new MotorToAngle(90).start();
+    	//new SpinUp(20000, true).start();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 

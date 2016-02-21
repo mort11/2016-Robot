@@ -56,7 +56,7 @@ public class OI {
         shiftUp.whenPressed(new Shift(SubsystemStates.Gear.HIGH));
         shiftDown.whenPressed(new Shift(SubsystemStates.Gear.LOW));
 
-        spinUp.toggleWhenPressed(new SpinUp(1000, true));
+        spinUp.toggleWhenPressed(new SpinUp(20000, true));
         toggleHood.whenPressed(new HoodToggle());
         armInterrupt.whenPressed(new JoystickIntake()); // Allows for manual movement of the intake arm when pressed
         armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed

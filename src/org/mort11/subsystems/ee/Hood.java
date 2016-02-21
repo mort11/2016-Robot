@@ -27,6 +27,7 @@ public class Hood extends Subsystem {
     }
 
     public static void toggleHood() {
+    	System.out.println("new state is: " + hoodUp);
         if (hoodUp) {
             solenoid.set(DoubleSolenoid.Value.kForward);
         } else {

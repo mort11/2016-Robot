@@ -23,7 +23,7 @@ public class Flywheel extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new JoystickShooter());
+        //setDefaultCommand(new JoystickShooter());
     }
 
     /**
