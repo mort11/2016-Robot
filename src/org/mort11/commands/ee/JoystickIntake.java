@@ -13,7 +13,7 @@ public class JoystickIntake extends Command {
     private IntakeArm intakeArm = Robot.adaptor.intakeArm;
     private boolean posControl;
     private double desiredLocation;
-    private double maxDown = 1;
+    private double maxDown = 100;
     public JoystickIntake() {
         this(false);
     }

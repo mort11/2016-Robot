@@ -83,18 +83,20 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-//       new MotorToAngle(90).start();
-    	//new SpinUp(20000, true).start();
+       //new MotorToAngle(90).start();
+    	//new SpinUp(98000, true).start();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     @Override
     public void disabledInit() {
+    	new SpinUp(0,true).start();
         System.out.println("Disabled. Code halted!");
     }
 
     @Override
     public void teleopPeriodic() {
+
         Scheduler.getInstance().run();
     }
 
