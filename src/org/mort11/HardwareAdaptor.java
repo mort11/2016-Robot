@@ -45,6 +45,7 @@ public class HardwareAdaptor {
     public DTSide leftSide;
     public DTSide rightSide;
     public LED led;
+    //public NetworkTable = new 
 
     public HardwareAdaptor() {
         this.pdp = new PowerDistributionPanel();
@@ -68,7 +69,7 @@ public class HardwareAdaptor {
 
         this.leftSide = new DTLeft(leftDTEncoder);
         this.rightSide = new DTRight(rightDTEncoder);
-        //this.led = new LED();
+        this.led = new LED();
     }
 
 }
