@@ -50,12 +50,13 @@ public class SpinUp extends Command {
         	} else if (voltage_command < 0) {
         		voltage_command = 0;
         	}
-        	//System.out.println("voltage_command = " + voltage_command);
+        	System.out.println("voltage_command = " + voltage_command);
         	spinUp.set(voltage_command);
         	per_error = Math.abs((velocity - curr_vel)/velocity);
-        	if(per_error < 0.1) {
-        		SmartDashboard.putString("RPM", "you're there!");
+        	if(per_error < 0.05) {
+        		SmartDashboard.putString("RPM", "there!");
         	} else {
+        		SmartDashboard.putString("RPM", "not there!");
         		System.out.println("percent error shooter: " + per_error);
         	}
             //SmartDashboard.putNu1mber("Velocity", currentVelocity);
