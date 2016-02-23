@@ -15,6 +15,7 @@ import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.led.LEDControl;
+import org.mort11.util.Logger;
 import org.mort11.util.auto.AutoCommand;
 import org.mort11.commands.led.Rainbow;
 
@@ -41,6 +42,7 @@ public class Robot extends IterativeRobot {
     SendableChooser autoModes;
     SendableChooser portcullis;
     NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
+    NetworkTable table_location = NetworkTable.getTable("locations");
 
     @Override
     public void robotInit() {
@@ -80,7 +82,8 @@ public class Robot extends IterativeRobot {
 //        for (Command autoCommand : autoCommands) {
 //            System.out.println(autoCommand);
 //        }
-    	autonomousCommand = new LowBarLowGoal();
+    	Logger.init("/home/lvuser/back2");
+    	autonomousCommand = new DriveStraight(-50);
         autonomousCommand.start();
     }
 
