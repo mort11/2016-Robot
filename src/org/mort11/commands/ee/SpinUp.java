@@ -28,18 +28,25 @@ public class SpinUp extends Command {
         requires(spinUp);
         pd_arm = new PIDLoop(velocity, 0.03, 0); // Placeholder values
         this.PID = PID;
+        setInterruptible(true);
     }
     
     public SpinUp() {
-    	this(1000,true);
+    	this(96000,true);
     }
 
     @Override
     protected void initialize() {
+    	setInterruptible(true);
     }
 
     @Override
     protected void execute() {
+    	if(this.velocity == 0) {
+    		spinUp.set(0);
+    		System.out.println("stopping");
+    		return;
+    	}
         if (PID) { //uses pid loop to SpinUp
         	curr_vel = spinUp.getSpeed() ;
         	//System.out.println("RPM = " + curr_vel);
@@ -53,7 +60,7 @@ public class SpinUp extends Command {
         	System.out.println("voltage_command = " + voltage_command);
         	spinUp.set(voltage_command);
         	per_error = Math.abs((velocity - curr_vel)/velocity);
-        	if(per_error < 0.05) {
+        	if(per_error < 0.02) {
         		SmartDashboard.putString("RPM", "there!");
         	} else {
         		SmartDashboard.putString("RPM", "not there!");
@@ -83,10 +90,13 @@ public class SpinUp extends Command {
 
     @Override
     protected void end() {
+    	System.out.println("ending");
     	spinUp.set(0);
     }
 
     @Override
     protected void interrupted() {
+    	System.out.println("ending");
+    	spinUp.set(0);
     }
 }

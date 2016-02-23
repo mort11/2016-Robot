@@ -6,8 +6,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.commands.ee.SpinUp;
@@ -65,14 +67,15 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
-        System.out.println("STARTING AUTONOMOUS");
-        Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};
-        autonomousCommand = new AutoCommand(autoCommands);
-
-        System.out.println("Running auto commands:");
-        for (Command autoCommand : autoCommands) {
-            System.out.println(autoCommand);
-        }
+//        System.out.println("STARTING AUTONOMOUS");
+//        Command[] autoCommands = new Command[]{(Command) autoModes.getSelected(), (Command) portcullis.getSelected()};
+//        autonomousCommand = new AutoCommand(autoCommands);
+//
+//        System.out.println("Running auto commands:");
+//        for (Command autoCommand : autoCommands) {
+//            System.out.println(autoCommand);
+//        }
+    	autonomousCommand = new LowBarLowGoal();
         autonomousCommand.start();
     }
 
