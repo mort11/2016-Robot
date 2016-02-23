@@ -3,6 +3,8 @@ package org.mort11;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+
 import org.mort11.constants.Constants;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.LED;
@@ -12,6 +14,7 @@ import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.ee.Flywheel;
 import org.mort11.subsystems.ee.IntakeArm;
 import org.mort11.subsystems.ee.Rollers;
+import org.mort11.Robot;;
 
 /**
  * HardwareAdaptor - Instantiation of most subsystems, system hardware, and misc.
@@ -45,6 +48,12 @@ public class HardwareAdaptor {
     public DTSide leftSide;
     public DTSide rightSide;
     public LED led;
+    
+    //NetworkTable
+    //NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
+    public double[] areas, centerX, centerY, width, height, solidity;
+    double[] defaultValue = new double[0];
+    Robot robot = new Robot();
 
     public HardwareAdaptor() {
         this.pdp = new PowerDistributionPanel();
@@ -69,6 +78,15 @@ public class HardwareAdaptor {
         this.leftSide = new DTLeft(leftDTEncoder);
         this.rightSide = new DTRight(rightDTEncoder);
         this.led = new LED();
+        
+        this.areas = this.robot.table.getNumberArray("area", defaultValue);
+        this.centerX = this.robot.table.getNumberArray("centerX", defaultValue);
+        this.centerY = this.robot.table.getNumberArray("centerY", defaultValue);
+        this.width = this.robot.table.getNumberArray("width", defaultValue);
+        this.height = this.robot.table.getNumberArray("height", defaultValue);
+        this.solidity = this.robot.table.getNumberArray("solidity", defaultValue);
+        
+        
     }
 
 }

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -34,10 +35,12 @@ import org.mort11.commands.led.Rainbow;
 public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
+    //NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
 
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
+    NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
 
     @Override
     public void robotInit() {
@@ -58,7 +61,6 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
         SmartDashboard.putString("RPM", "too slow!");
-        
         
         
     }
@@ -114,6 +116,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void testPeriodic() {
         LiveWindow.run();
-       // new Rainbow();
+       System.out.println(adaptor.centerX[0]);
     }
 }
