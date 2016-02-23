@@ -15,9 +15,15 @@ public class LEDControl extends Command {
 
     SubsystemStates.Light light;
     LED led = Robot.adaptor.led;
+    
 
     public LEDControl(SubsystemStates.Light light) {
         this.light = light;
+        requires(led);
+    }
+    
+    public void setLEDColor(SubsystemStates.Light light) {
+    	this.light = light;
     }
 
     protected void initialize() {

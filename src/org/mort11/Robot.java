@@ -13,6 +13,7 @@ import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.commands.led.LEDControl;
 import org.mort11.util.auto.AutoCommand;
+import org.mort11.commands.led.Rainbow;
 
 /**
  * Robot - Main Robot class
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         oi = new OI();
 
+       // new Rainbow();
         // Have operator choose autonomous mode
         autoModes = new SendableChooser();
         autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
@@ -54,6 +56,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
         SmartDashboard.putString("RPM", "too slow!");
+        
         
         
     }
@@ -106,5 +109,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void testPeriodic() {
         LiveWindow.run();
+       // new Rainbow();
     }
 }
