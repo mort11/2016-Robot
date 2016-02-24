@@ -3,6 +3,7 @@ package org.mort11;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.dt.shifting.Shift;
 import org.mort11.commands.ee.*;
@@ -41,6 +42,7 @@ public class OI {
     public Button armInterrupt = new JoystickButton(endEffector, Constants.ARM_INTERRUPT);
     public Button armToNinety = new JoystickButton(endEffector, Constants.ARM_TO_90);
     public Button armToZero = new JoystickButton(endEffector, Constants.ARM_TO_0);
+    public Button shooterButton = new JoystickButton(endEffector, 1);
 
     public OI() {
         intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
@@ -58,6 +60,8 @@ public class OI {
         armInterrupt.whenPressed(new JoystickIntake(true)); // Allows for manual movement of the intake arm when pressed
         armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
         armToZero.whenPressed(new MotorToAngle(0)); // Moves the intake arm to 0 degrees when pressed
+        shooterButton.whenPressed(new Shoot());
+
     }
 
     public double getLeftJoy() {

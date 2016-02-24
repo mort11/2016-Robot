@@ -13,7 +13,7 @@ import org.mort11.commands.SubsystemStates;
  */
 public class Hood extends Subsystem {
     private static DoubleSolenoid solenoid = Robot.adaptor.hood;
-    private static boolean hoodUp = true;
+    private static boolean hoodUp = false;
 
     public static void setHood(SubsystemStates.HoodRequest hoodRequest) {
         switch (hoodRequest) {
