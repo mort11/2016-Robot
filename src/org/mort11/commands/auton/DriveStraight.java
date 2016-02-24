@@ -66,8 +66,8 @@ public class DriveStraight extends Command {
         }
         System.out.println("angle error: " + angleError);
 
-        left.set(speedLeft - 0.01 * angleError);
-        right.set(speedRight + 0.01 * angleError);
+        left.set(speedLeft - 0.02 * angleError);
+        right.set(speedRight + 0.02 * angleError);
 
 
         SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);

@@ -40,7 +40,7 @@ public class IntakeArm extends Subsystem {
      * @return whether the limit switch has been struck
      */
     public boolean isLimitSwitch() {
-    	return limswitch.get();
+    	return false;
     }
     // TODO: 2/19/2016 Rewrite limit switch code here when Mr. Thant finishes mounting lim switch
 

@@ -1,5 +1,13 @@
 package org.mort11;
 
+import org.mort11.commands.auton.DriveArc;
+import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.auton.LowBarAuton;
+import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.HoodToggle;
+import org.mort11.commands.ee.SpinUp;
+import org.mort11.util.Logger;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -7,17 +15,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.auton.LowBarLowGoal;
-import org.mort11.commands.auton.WaitTime;
-import org.mort11.commands.ee.MotorToAngle;
-import org.mort11.commands.ee.SpinUp;
-import org.mort11.commands.led.LEDControl;
-import org.mort11.util.Logger;
-import org.mort11.util.auto.AutoCommand;
-import org.mort11.commands.led.Rainbow;
 
 /**
  * Robot - Main Robot class
@@ -82,8 +79,8 @@ public class Robot extends IterativeRobot {
 //        for (Command autoCommand : autoCommands) {
 //            System.out.println(autoCommand);
 //        }
-    	Logger.init("/home/lvuser/back2");
-    	autonomousCommand = new DriveStraight(-50);
+    	Logger.init("/home/lvuser/auton_test1");
+    	autonomousCommand = new LowBarAuton();
         autonomousCommand.start();
     }
 
@@ -96,6 +93,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
        //new MotorToAngle(90).start();
     	//new SpinUp(98000, true).start();
+    	//new HoodToggle().start();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
