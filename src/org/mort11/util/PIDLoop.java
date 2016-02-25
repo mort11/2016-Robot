@@ -15,7 +15,7 @@ public class PIDLoop {
     //when we can start the timer
     double currTime = 0, oldTime = 0;
     Timer timer = new Timer();
-    double vel_max = 9;
+    double vel_max = 1;
     double curr_location = 0;
 
     public PIDLoop(double target, double kP, double kI) {
@@ -24,11 +24,12 @@ public class PIDLoop {
         this.kI = kI;
     }
 
-    public PIDLoop(double target, double kP, double kI, double multiplier) {
-        this.desired_target = target;
-        this.kP = kP;
-        this.kI = kI;
-        this.vel_max = multiplier * vel_max;
+    public PIDLoop(double target, double kP, double kI, double velocity) {
+        this(target, kP, kI);
+        if(target < 0 && velocity  > 0) {
+        	velocity *= -1;
+        }
+        this.vel_max = velocity * vel_max;
     }
 
 
