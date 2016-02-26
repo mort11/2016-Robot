@@ -32,8 +32,8 @@ public class DriveStraight extends Command {
     public DriveStraight(double distance) {
         requires(left);
         requires(right);
-        pd_left = new PIDLoop(distance, .01, 0.01,1.2); 
-        pd_right = new PIDLoop(distance, .01, 0.01,1.2);        
+        pd_left = new PIDLoop(distance, .01, 0.01,10.8); 
+        pd_right = new PIDLoop(distance, .01, 0.01,10.8);        
         this.distance = distance;
         leftDTEncoder.reset();
         rightDTEncoder.reset();
