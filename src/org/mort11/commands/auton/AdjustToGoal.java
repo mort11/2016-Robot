@@ -30,7 +30,7 @@ public class AdjustToGoal extends Command {
         this.camera.setPicture();
         double x_val = camera.getX();
         if (x_val == -1) {
-            System.out.println("Not found");
+//            System.out.println("Not found");
             this.isFinished = true;
         }
 //        System.out.println("Centering");

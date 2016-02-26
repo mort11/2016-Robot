@@ -1,4 +1,4 @@
-package org.mort11.util;
+package org.mort11.subsystems.nav;
 
 public class LineRay {
 }

@@ -64,7 +64,7 @@ public class DriveStraight extends Command {
         if (angleError > 180) {
             angleError = Math.abs(360 - angleError);
         }
-        System.out.println("angle error: " + angleError);
+//        System.out.println("angle error: " + angleError);
 
         left.set(speedLeft - 0.02 * angleError);
         right.set(speedRight + 0.02 * angleError);

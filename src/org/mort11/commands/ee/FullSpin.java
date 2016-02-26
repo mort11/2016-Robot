@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.subsystems.ee.Flywheel;
 
-/**
+/** 
+ * FullSpin - Spins up the flywheel to fullspeed
+ * 
  *@author chsahit
  */
 public class FullSpin extends Command {

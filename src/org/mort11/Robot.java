@@ -100,7 +100,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledInit() {
     	new SpinUp(0,true).start();
-        System.out.println("Disabled. Code halted!");
+//        System.out.println("Disabled. Code halted!");
     }
 
     @Override
@@ -111,12 +111,12 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void testInit() {
-        System.out.println("Starting test mode...");
+//        System.out.println("Starting test mode...");
     }
 
     @Override
     public void testPeriodic() {
         LiveWindow.run();
-       System.out.println(adaptor.centerX[0]);
+//       System.out.println(adaptor.centerX[0]);
     }
 }
