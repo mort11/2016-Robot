@@ -29,7 +29,7 @@ public class WaitForColorChange extends Command {
     }
 
     protected boolean isFinished() {
-        System.out.println("WaitTime finished!");
+//        System.out.println("WaitTime finished!");
         return (timer.get() > timeToWait);
     }
 
@@ -37,6 +37,6 @@ public class WaitForColorChange extends Command {
     }
 
     protected void interrupted() {
-        System.out.println("Interrupted WaitTime command!");
+//        System.out.println("Interrupted WaitTime command!");
     }
 }

@@ -20,7 +20,7 @@ public class IntakeArm extends Subsystem {
         intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.PDP_INTAKE_ARM, false);
         limswitch = new DigitalInput(Constants.ARM_LIM_SWITCH_PORT);
         initPos = intakeArm.getEncPosition();
-        System.out.println("init pos: "  + initPos);
+//        System.out.println("init pos: "  + initPos);
     }
 
     /**

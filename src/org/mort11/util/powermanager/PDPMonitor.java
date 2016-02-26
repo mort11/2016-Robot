@@ -17,7 +17,7 @@ public class PDPMonitor {
 
     private static void checkOverdraw(ArrayList<MORTCANTalon> motors) {
         motors.stream().filter(motor -> motor.getVoltage() > Constants.MOTOR_MAX_VOLTAGE).forEach(motor -> {
-            System.out.println(String.format("Voltage at [%s]. Should disable!", Double.toString(motor.getVoltage())));
+//            System.out.println(String.format("Voltage at [%s]. Should disable!", Double.toString(motor.getVoltage())));
             //motor.disable();
         });
     }

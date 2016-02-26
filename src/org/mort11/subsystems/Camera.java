@@ -95,7 +95,7 @@ public class Camera extends Subsystem {
              * Measure tote location
              */
             Location_X = NIVision.imaqMeasureParticle(thresh, largest_particle, 0, NIVision.MeasurementType.MT_CENTER_OF_MASS_X);
-            System.out.println("location X " + Location_X); // prints final location to riolog
+//            System.out.println("location X " + Location_X); // prints final location to riolog
         }
 
         i++; // increases value of i by one

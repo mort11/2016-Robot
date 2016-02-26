@@ -32,8 +32,8 @@ public class JoystickIntake extends Command {
     protected void execute() {
     	if(posControl) {    		
     		desiredLocation = (-maxDown/2) * Robot.oi.getEEJoy() + maxDown/2;
-    		System.out.println("desired location: " + desiredLocation);
-    		System.out.println("curr location: " + intakeArm.getAngle());
+//    		System.out.println("desired location: " + desiredLocation);
+//    		System.out.println("curr location: " + intakeArm.getAngle());
     		intakeArm.set((desiredLocation - intakeArm.getAngle()) * 0.01);
     		return;
     	}

@@ -33,17 +33,17 @@ public class AdjustToGoal extends Command {
             System.out.println("Not found");
             this.isFinished = true;
         }
-        System.out.println("Centering");
+//        System.out.println("Centering");
         if (x_val < 135) {
             this.left.set(-0.15);
             this.right.set(0.15);
-            System.out.println("Too far right");
+//            System.out.println("Too far right");
         } else if (x_val > 185) {
             this.left.set(0.15);
             this.right.set(-0.15);
-            System.out.println("Too far left");
+//            System.out.println("Too far left");
         } else {
-            System.out.println("Centered");
+//            System.out.println("Centered");
             this.isFinished = true;
         }
         this.camera.setPicture();

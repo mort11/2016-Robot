@@ -26,7 +26,7 @@ public class LED extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-    	System.out.println("Shyte been defaulted");
+//    	System.out.println("Shyte been defaulted");
         setDefaultCommand(new LEDControl(SubsystemStates.Light.YELLOW));
     }
 
