@@ -16,18 +16,17 @@ import org.mort11.constants.Constants;
 public class LED extends Subsystem {
 
     private PWM red, green, blue;
-    
+
     public LED() {
         red = new PWM(Constants.RED_LIGHT);
         green = new PWM(Constants.GREEN_LIGHT);
         blue = new PWM(Constants.BLUE_LIGHT);
-       
+
     }
 
     @Override
     public void initDefaultCommand() {
-//    	System.out.println("Shyte been defaulted");
-        setDefaultCommand(new LEDControl(SubsystemStates.Light.YELLOW));
+        setDefaultCommand(new LEDControl(SubsystemStates.Light.YELLOW, 0));
     }
 
     public void set(int r, int g, int b) {
