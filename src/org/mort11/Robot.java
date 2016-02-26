@@ -1,13 +1,5 @@
 package org.mort11;
 
-import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.auton.LowBarAuton;
-import org.mort11.commands.auton.WaitTime;
-import org.mort11.commands.ee.HoodToggle;
-import org.mort11.commands.ee.SpinUp;
-import org.mort11.util.Logger;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -15,6 +7,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.mort11.commands.auton.DriveArc;
+import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.auton.LowBarAuton;
+import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.SpinUp;
+import org.mort11.util.Logger;
 
 /**
  * Robot - Main Robot class
@@ -34,12 +32,11 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
     //NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
-
+//    NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport");
+    public static NetworkTable table_location = NetworkTable.getTable("locations");
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
-    NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
-    NetworkTable table_location = NetworkTable.getTable("locations");
 
     @Override
     public void robotInit() {
