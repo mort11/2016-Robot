@@ -1,5 +1,6 @@
 package org.mort11.commands.led;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.commands.SubsystemStates;
@@ -10,25 +11,38 @@ import org.mort11.subsystems.LED;
  *
  * @author Jakob Shortell
  * @author Seven Kurt
+ * @author Matt Turi
  */
 public class LEDControl extends Command {
+    private SubsystemStates.Light light;
+    private LED led = Robot.adaptor.led;
+    private double duration = 0;
+    private Timer durationTimer = new Timer();
 
-    SubsystemStates.Light light;
-    LED led = Robot.adaptor.led;
-    
+    /**
+     * Set LED color for given duration
+     *
+     * @param light    LED color
+     * @param duration Duration to stay lit. Pass in 0 to run infinitely
+     */
+    public LEDControl(SubsystemStates.Light light, double duration) {
+        assert duration >= 0; // Ensure that duration is greater than or equal to 0 seconds
 
-    public LEDControl(SubsystemStates.Light light) {
-        this.light = light;
         requires(led);
-    }
-    
-    public void setLEDColor(SubsystemStates.Light light) {
-    	this.light = light;
+
+        this.light = light;
+        this.duration = duration;
+
+        if (duration > 0) {
+            this.durationTimer.start();
+        }
     }
 
+    @Override
     protected void initialize() {
     }
 
+    @Override
     protected void execute() {
         switch (light) {
             case RED:
@@ -53,13 +67,23 @@ public class LEDControl extends Command {
         }
     }
 
+    @Override
     protected boolean isFinished() {
-        return false;
+        if (this.duration == 0) {
+            return false;
+        } else if (this.durationTimer.get() < this.duration) {
+            return false;
+        }
+        this.durationTimer.stop();
+        this.durationTimer.reset();
+        return true;
     }
 
+    @Override
     protected void end() {
     }
 
+    @Override
     protected void interrupted() {
     }
 }

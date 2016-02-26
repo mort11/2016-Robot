@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Matt Turi
  */
 public class WaitTime extends Command {
-    Timer timer;
-    double timeToWait;
+    private Timer timer;
+    private double timeToWait;
 
     public WaitTime(double timeToWait) {
         timer = new Timer();
@@ -18,25 +18,27 @@ public class WaitTime extends Command {
         setInterruptible(true);
     }
 
-
+    @Override
     protected void initialize() {
         timer.start();
     }
 
 
+    @Override
     protected void execute() {
         // Wait
     }
 
+    @Override
     protected boolean isFinished() {
-//        System.out.println("WaitTime finished!");
         return (timer.get() > timeToWait);
     }
 
+    @Override
     protected void end() {
     }
 
+    @Override
     protected void interrupted() {
-//        System.out.println("Interrupted WaitTime command!");
     }
 }
