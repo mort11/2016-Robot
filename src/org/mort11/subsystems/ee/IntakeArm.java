@@ -1,10 +1,11 @@
 package org.mort11.subsystems.ee;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.commands.ee.JoystickIntake;
 import org.mort11.constants.Constants;
-import org.mort11.util.powermanager.MORTCANTalon;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * IntakeArm - Controls the intake arm
@@ -12,12 +13,13 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Sahit Chintalapudi
  */
 public class IntakeArm extends Subsystem {
-    private MORTCANTalon intakeArm;
+    private CANTalon intakeArm;
     private double initPos;
     private DigitalInput limswitch;
-
+    double angle;
+    int timesCalled = 0;
     public IntakeArm() {
-        intakeArm = new MORTCANTalon(Constants.INTAKE_ARM_TALON_ID, Constants.PDP_INTAKE_ARM, false);
+        intakeArm = new CANTalon(Constants.INTAKE_ARM_TALON_ID);
         limswitch = new DigitalInput(Constants.ARM_LIM_SWITCH_PORT);
         initPos = intakeArm.getEncPosition();
         System.out.println("init pos: "  + initPos);
@@ -29,8 +31,12 @@ public class IntakeArm extends Subsystem {
      * @return Encoder angle
      */
     public double getAngle() {
-        //System.out.println("ticks: "  + intakeArm.getEncPosition());
-        return ((intakeArm.getEncPosition() - initPos) * 0.09); //:'(
+    	//System.out.println("analog out:" + intakeArm.getAnalogInRaw());
+        System.out.println("ticks: "  + intakeArm.getEncPosition() + " times called: " + timesCalled);
+    	//System.out.println("angle in intakearm class: " + angle;
+    	angle = ((intakeArm.getEncPosition() - initPos) * 0.09); //:'(
+    	timesCalled++;
+        return angle; //:'(
     }
 
 

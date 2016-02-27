@@ -94,12 +94,13 @@ public class Robot extends IterativeRobot {
        //new MotorToAngle(90).start();
     	//new SpinUp(98000, true).start();
     	//new HoodToggle().start();
+    	System.out.println("normal output: " + adaptor.intakeArm.getAngle());
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     @Override
     public void disabledInit() {
-    	new SpinUp(0,true).start();
+    	//new SpinUp(0,true).start();
         System.out.println("Disabled. Code halted!");
     }
 
@@ -107,6 +108,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
 
         Scheduler.getInstance().run();
+        System.out.println(adaptor.intakeArm.getAngle() + " norm input");
     }
 
     @Override
