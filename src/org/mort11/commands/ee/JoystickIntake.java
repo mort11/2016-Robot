@@ -39,21 +39,30 @@ public class JoystickIntake extends Command {
     protected void execute() {
     	if(posControl) {    		
     		desiredLocation = (-maxDown/2) * Robot.oi.getEEJoy() + maxDown/2;
+    		desiredLocation -=5;
     		if(desiredLocation > 105) {
     			desiredLocation = 105;
+    		} else if (desiredLocation < 0) {
+    			desiredLocation = 0;
     		}
     		System.out.println("desired location: " + desiredLocation);
     		System.out.println("curr location: " + intakeArm.getAngle());
     		System.out.println("getting curr");
     		error = desiredLocation - intakeArm.getAngle();
-    		output = error * 0.01;    		    		
+    		output = error * 0.015;    		    		
     		thistime = timer.get();
     		neterror += (thistime - lasttime) * error;
+    		if(neterror > 30) {
+    			neterror = 30;
+    		} else if (neterror < -30) {
+    			neterror = -30;
+    		}
+    		System.out.println("I gain: " + (neterror * 0.01));
     		output += (neterror * 0.01);
-    		if(output > 0.5) {
-    			output = 0.5;
-    		} else if (output < -0.5) {
-    			output = -0.5;
+    		if(output > 0.2) {
+    			output = 0.2;
+    		} else if (output < -1) {
+    			output = -1;
     		}
     		System.out.println("output: " + output);
     		intakeArm.set(output);

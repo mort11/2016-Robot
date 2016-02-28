@@ -23,7 +23,7 @@ public class MotorToAngle extends Command {
     public MotorToAngle(double target) {
         requires(intake);
         this.target = target;
-        intake_pid = new PIDLoop(target, 0.02, 0.01, 2);
+        intake_pid = new PIDLoop(target, 0.025, 0.01, 2);
     }
 
     public MotorToAngle() {

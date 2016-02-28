@@ -32,8 +32,8 @@ public class DriveStraight extends Command {
     public DriveStraight(double distance) {
         requires(left);
         requires(right);
-        pd_left = new PIDLoop(distance, .01, 0.01,10.8); 
-        pd_right = new PIDLoop(distance, .01, 0.01,10.8);        
+        pd_left = new PIDLoop(distance, .01, 0.01,12.8); 
+        pd_right = new PIDLoop(distance, .01, 0.01,12.8);        
         this.distance = distance;
         leftDTEncoder.reset();
         rightDTEncoder.reset();
@@ -58,7 +58,7 @@ public class DriveStraight extends Command {
         double speedRight = pd_right.getOutput(currentDistanceRight);     
         Logger.writeString(timer.get()+","+currentDistanceLeft+","+speedLeft+","+currentDistanceRight+","+speedRight);
         System.out.println("speed left: " + speedLeft);
-        System.out.println("speed left: " + speedRight);
+        System.out.println("speed right: " + speedRight);
         
         double angleError = this.ahrs.getYaw() % 360;
         if (angleError > 180) {
@@ -66,8 +66,8 @@ public class DriveStraight extends Command {
         }
         System.out.println("angle error: " + angleError);
 
-        left.set(speedLeft - 0.02 * angleError);
-        right.set(speedRight + 0.02 * angleError);
+        left.set(speedLeft /*- 0.03 * angleError*/);
+        right.set(speedRight /*+ 0.03 * angleError*/);
 
 
         SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);

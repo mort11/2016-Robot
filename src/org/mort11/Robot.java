@@ -2,10 +2,8 @@ package org.mort11;
 
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.auton.LowBarAuton;
+import org.mort11.commands.auton.Pos4Auton;
 import org.mort11.commands.auton.WaitTime;
-import org.mort11.commands.ee.HoodToggle;
-import org.mort11.commands.ee.SpinUp;
 import org.mort11.util.Logger;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -80,7 +78,7 @@ public class Robot extends IterativeRobot {
 //            System.out.println(autoCommand);
 //        }
     	Logger.init("/home/lvuser/auton_test1");
-    	autonomousCommand = new LowBarAuton();
+    	autonomousCommand = new DriveStraight(40);
         autonomousCommand.start();
     }
 
@@ -94,7 +92,8 @@ public class Robot extends IterativeRobot {
        //new MotorToAngle(90).start();
     	//new SpinUp(98000, true).start();
     	//new HoodToggle().start();
-    	System.out.println("normal output: " + adaptor.intakeArm.getAngle());
+    	//System.out.println("normal output: " + adaptor.intakeArm.getAngle());
+    	System.out.println("right: " + adaptor.rightDTEncoder.get());
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
