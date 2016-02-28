@@ -1,0 +1,24 @@
+How to perform a system check:
+
+I. Drivetrain check
+    1. Run left side with left Joystick, look at the encoder output
+    2. Run right side with right Joystick, look at the encoder output
+    3. Click button on grip of joystick to shift gears (listen for it)
+    4. Repeat 1&2
+II. Shooter Check
+    1. Spin up with button 11
+    2. Actuate hood with button 2 over the thumb position
+    3. Click it again to put the hood down
+    4. Stop the wheel by pressing 11 again
+III. Intake Check
+    1. Cry cause something will break before you even start
+    2. Make sure the intake starts upright
+    3. Press button 8 to go into manual
+    4. Watch the output and makes sure "curr position" corresponds roughly
+        to where the intake is
+    5. Actuate the intake fully up and fully down
+    6. Press button 12 to bring the intake back up
+IV. Cleanup
+    1. Make sure the air valve is closed
+    2. Get a new battery in there
+    3. Yay you did it!
