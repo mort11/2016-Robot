@@ -6,7 +6,10 @@ import org.mort11.subsystems.dt.DTSide;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * DriveForwardToGoal - Drive up to goal using camera
  *
+ * @author Jakob Shortell
+ * @author Matt Krzyzanowski
  */
 public class DriveForwardToGoal extends Command {
 
@@ -19,11 +22,9 @@ public class DriveForwardToGoal extends Command {
         requires(right);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (Robot.table.getNumberArray("area", new double[]{}).length == 0) {
             System.out.println("Not found");
@@ -45,17 +46,13 @@ public class DriveForwardToGoal extends Command {
         }
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return isFinished;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }

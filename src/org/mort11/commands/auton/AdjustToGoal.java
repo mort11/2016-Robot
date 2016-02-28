@@ -4,10 +4,13 @@ import org.mort11.HardwareAdaptor;
 import org.mort11.Robot;
 import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTSide;
+
 /**
- * AdjustToGoal - Adjust robot to goal
+ * AdjustToGoal - Adjust robot to goal using the camera
  *
  * @author Sahit Chintalapudi
+ * @author Jakob Shortell
+ * @author Matt Krzyzanowski
  */
 public class AdjustToGoal extends Command {
     private boolean isFinished = false;
@@ -18,7 +21,7 @@ public class AdjustToGoal extends Command {
         requires(right);
     }
     protected void initialize() {
-//        Robot.adaptor.ahrs.zeroYaw();
+        
     }
     protected void execute() {
         if (Robot.table.getNumberArray("centerX", new double[]{}).length == 0) {
@@ -26,11 +29,7 @@ public class AdjustToGoal extends Command {
             this.isFinished = true;
             return;
         }
-//        for(double area : adaptor.areas){
-//        	if(area > adaptor.areas[1]){
-//        		
-//        	}
-//        }
+
         System.out.println("Centering"); 
         if (Robot.table.getNumberArray("centerX", new double[]{})[0] < 150) {
             this.left.set(-0.25);

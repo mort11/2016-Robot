@@ -35,13 +35,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
     public static OI oi;
-    //NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
     public static NetworkTable table;
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
-    //public static final NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
     
     NetworkTable table_location;
 
@@ -68,12 +66,7 @@ public class Robot extends IterativeRobot {
         
         table = NetworkTable.getTable("GRIP/myContoursReport");
         table_location = NetworkTable.getTable("locations");
-//        this.areas = table.getNumberArray("area", defaultValue);
-//        this.centerX = table.getNumberArray("centerX", defaultValue);
-//        this.centerY = table.getNumberArray("centerY", defaultValue);
-//        this.width = table.getNumberArray("width", defaultValue);
-//        this.height = table.getNumberArray("height", defaultValue);
-//        this.solidity = table.getNumberArray("solidity", defaultValue);
+
       
     }
 
