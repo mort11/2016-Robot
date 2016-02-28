@@ -15,7 +15,7 @@ public class HoodToggle extends Command {
 
     @Override
     protected void execute() {
-    	System.out.println("toggling");
+//    	System.out.println("toggling");
         Hood.toggleHood();
     }
 

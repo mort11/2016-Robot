@@ -44,7 +44,7 @@ public class SpinUp extends Command {
     protected void execute() {
     	if(this.velocity == 0) {
     		spinUp.set(0);
-    		System.out.println("stopping");
+//    		System.out.println("stopping");
     		return;
     	}
         if (PID) { //uses pid loop to SpinUp
@@ -57,14 +57,14 @@ public class SpinUp extends Command {
         	} else if (voltage_command < 0) {
         		voltage_command = 0;
         	}
-        	System.out.println("voltage_command = " + voltage_command);
+//        	System.out.println("voltage_command = " + voltage_command);
         	spinUp.set(voltage_command);
         	per_error = Math.abs((velocity - curr_vel)/velocity);
         	if(per_error < 0.02) {
         		SmartDashboard.putString("RPM", "there!");
         	} else {
         		SmartDashboard.putString("RPM", "not there!");
-        		System.out.println("percent error shooter: " + per_error);
+//        		System.out.println("percent error shooter: " + per_error);
         	}
             //SmartDashboard.putNu1mber("Velocity", currentVelocity);
         } else { // ghetto way of spinning up
@@ -90,13 +90,13 @@ public class SpinUp extends Command {
 
     @Override
     protected void end() {
-    	System.out.println("ending");
+//    	System.out.println("ending");
     	spinUp.set(0);
     }
 
     @Override
     protected void interrupted() {
-    	System.out.println("ending");
+//    	System.out.println("ending");
     	spinUp.set(0);
     }
 }

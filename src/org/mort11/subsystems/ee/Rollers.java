@@ -27,7 +27,7 @@ public class Rollers extends Subsystem {
      */
     public void set(double speed) {
         rollers.set(speed);
-        System.out.println("getting roller speed: " + rollers.get());
+//        System.out.println("getting roller speed: " + rollers.get());
     }
 
     /**

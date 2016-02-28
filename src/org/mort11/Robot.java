@@ -1,10 +1,15 @@
 package org.mort11;
 
+import org.mort11.commands.auton.AdjustToGoal;
+import org.mort11.commands.auton.CamAuton;
 import org.mort11.commands.auton.DriveArc;
+import org.mort11.commands.auton.DriveForwardToGoal;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.Pos4Auton;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.util.Logger;
+import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.SpinUp;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -30,15 +35,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
     public static OI oi;
-    public static HardwareAdaptor adaptor = new HardwareAdaptor();
     //NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
-
+    public static HardwareAdaptor adaptor = new HardwareAdaptor();
+    public static NetworkTable table;
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
-    NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
-    NetworkTable table_location = NetworkTable.getTable("locations");
+    //public static final NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
+    
+    NetworkTable table_location;
 
+    
     @Override
     public void robotInit() {
         oi = new OI();
@@ -59,7 +66,15 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Portcullis", portcullis);
         SmartDashboard.putString("RPM", "too slow!");
         
-        
+        table = NetworkTable.getTable("GRIP/myContoursReport");
+        table_location = NetworkTable.getTable("locations");
+//        this.areas = table.getNumberArray("area", defaultValue);
+//        this.centerX = table.getNumberArray("centerX", defaultValue);
+//        this.centerY = table.getNumberArray("centerY", defaultValue);
+//        this.width = table.getNumberArray("width", defaultValue);
+//        this.height = table.getNumberArray("height", defaultValue);
+//        this.solidity = table.getNumberArray("solidity", defaultValue);
+      
     }
 
     @Override
@@ -80,6 +95,11 @@ public class Robot extends IterativeRobot {
     	Logger.init("/home/lvuser/auton_test1");
     	autonomousCommand = new DriveStraight(40);
         autonomousCommand.start();
+//    	Logger.init("/home/lvuser/auton_test1");
+//    	autonomousCommand = new LowBarAuton();
+//    	new AdjustToGoal().start();
+//    	new DriveForwardToGoal().start();
+//    	new CamAuton().start();
     }
 
     @Override
@@ -101,6 +121,8 @@ public class Robot extends IterativeRobot {
     public void disabledInit() {
     	//new SpinUp(0,true).start();
         System.out.println("Disabled. Code halted!");
+    	new SpinUp(0,true).start();
+//        System.out.println("Disabled. Code halted!");
     }
 
     @Override
@@ -114,12 +136,12 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void testInit() {
-        System.out.println("Starting test mode...");
+//        System.out.println("Starting test mode...");
     }
 
     @Override
     public void testPeriodic() {
         LiveWindow.run();
-       System.out.println(adaptor.centerX[0]);
+//       System.out.println(adaptor.centerX[0]);
     }
 }

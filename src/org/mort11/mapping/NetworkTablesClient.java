@@ -24,7 +24,7 @@ public class NetworkTablesClient {
                         .log(Level.SEVERE, null, ex);
             }
             double x = table.getNumber("LeftDT Dist", 0.0);
-            System.out.println(x);
+//            System.out.println(x);
         }
     }
 }

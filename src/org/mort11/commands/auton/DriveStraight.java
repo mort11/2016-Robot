@@ -42,9 +42,9 @@ public class DriveStraight extends Command {
     }
 
     protected void initialize() {
-    	System.out.println("init yaw: " + ahrs.getYaw());
-    	System.out.println("init d_left: " + leftDTEncoder.getDistance());
-    	System.out.println("init d_right: " + rightDTEncoder.getDistance());
+//    	System.out.println("init yaw: " + ahrs.getYaw());
+//    	System.out.println("init d_left: " + leftDTEncoder.getDistance());
+//    	System.out.println("init d_right: " + rightDTEncoder.getDistance());
     	Logger.writeString("time,left dist,speed left,right dist,right speed");
     	timer.start();
     }
@@ -52,8 +52,8 @@ public class DriveStraight extends Command {
     protected void execute() {
         currentDistanceLeft = leftDTEncoder.getDistance();
         currentDistanceRight = rightDTEncoder.getDistance();
-        System.out.println("left: " + currentDistanceLeft);
-        System.out.println("Right " + currentDistanceRight);
+//        System.out.println("left: " + currentDistanceLeft);
+//        System.out.println("Right " + currentDistanceRight);
         double speedLeft = pd_left.getOutput(currentDistanceLeft);
         double speedRight = pd_right.getOutput(currentDistanceRight);     
         Logger.writeString(timer.get()+","+currentDistanceLeft+","+speedLeft+","+currentDistanceRight+","+speedRight);
@@ -64,7 +64,7 @@ public class DriveStraight extends Command {
         if (angleError > 180) {
             angleError = Math.abs(360 - angleError);
         }
-        System.out.println("angle error: " + angleError);
+//        System.out.println("angle error: " + angleError);
 
         left.set(speedLeft /*- 0.03 * angleError*/);
         right.set(speedRight /*+ 0.03 * angleError*/);

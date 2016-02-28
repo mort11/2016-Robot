@@ -68,7 +68,7 @@ public class PIDLoop {
         oldTime = currTime;
         double output = (error * kP + netError * kI);
         // System.out.println("PI: " + output);
-        System.out.println("SP: " + getLocation(currTime, curr_location));
+//        System.out.println("SP: " + getLocation(currTime, curr_location));
         //System.out.println("error: " + error);
         // System.out.println("Time: " + currTime);
         return output;
@@ -79,7 +79,7 @@ public class PIDLoop {
     }
 
     public double getP(double curr_location) {
-        System.out.println("error:  " + (desired_target - curr_location));
+//        System.out.println("error:  " + (desired_target - curr_location));
         return (desired_target - curr_location) * kP;
     }
 

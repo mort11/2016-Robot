@@ -37,7 +37,7 @@ public class MotorToAngle extends Command {
 
     @Override
     protected void execute() {
-        System.out.println("intake angle: " + intake.getAngle());
+//        System.out.println("intake angle: " + intake.getAngle());
         angle = intake.getAngle();
         double output = intake_pid.getOutput(angle);
         if (output > 0.5) {

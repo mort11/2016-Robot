@@ -46,9 +46,9 @@ public class TurnDegrees extends Command {
     protected void execute() {
         //currentAngle = DTSide.getAngle(); //gets current angle of robot
         currentAngle = Math.abs(this.ahrs.getYaw()); //might work better than getAngle(), must test
-        System.out.println("current angle" + currentAngle);
+//        System.out.println("current angle" + currentAngle);
         speed = pd.getOutput(currentAngle); //passes current angle through pid loop
-        System.out.println("speed" + speed);
+//        System.out.println("speed" + speed);
         SmartDashboard.putNumber("Current Angle", currentAngle);
         SmartDashboard.putNumber("Speed", speed);
         // Clockwise turning
