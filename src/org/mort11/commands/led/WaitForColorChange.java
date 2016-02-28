@@ -1,4 +1,4 @@
-package org.mort11.commands.auton;
+package org.mort11.commands.led;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  * @author Matt Turi
  */
-public class WaitTime extends Command {
+public class WaitForColorChange extends Command {
     Timer timer;
     double timeToWait;
 
-    public WaitTime(double timeToWait) {
+    public WaitForColorChange(double timeToWait) {
         timer = new Timer();
         this.timeToWait = timeToWait;
         setInterruptible(true);

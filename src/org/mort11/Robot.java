@@ -12,7 +12,6 @@ import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarAuton;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.SpinUp;
-import org.mort11.commands.led.Rainbow;
 import org.mort11.util.Logger;
 
 /**
@@ -32,8 +31,9 @@ import org.mort11.util.Logger;
 public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
-    public static NetworkTable tableLocation = NetworkTable.getTable("locations");
-
+    //NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
+//    NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport");
+    public static NetworkTable table_location = NetworkTable.getTable("locations");
     Command autonomousCommand;
     SendableChooser autoModes;
     SendableChooser portcullis;
@@ -42,21 +42,23 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         oi = new OI();
 
+       // new Rainbow();
+        // Have operator choose autonomous mode
         autoModes = new SendableChooser();
-
         autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
         autoModes.addObject("Drive Straight [20in.]", new DriveStraight(20));
         autoModes.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
 
         portcullis = new SendableChooser();
-
         // TODO: 2/21/2016 Write auto commands for these
         portcullis.addDefault("Portcullis", new WaitTime(0));
         portcullis.addObject("No Portcullis", new WaitTime(0));
 
         SmartDashboard.putData("Auto Mode", autoModes);
         SmartDashboard.putData("Portcullis", portcullis);
-        SmartDashboard.putString("RPM", "Too slow!");
+        SmartDashboard.putString("RPM", "too slow!");
+        
+        
     }
 
     @Override
@@ -74,8 +76,8 @@ public class Robot extends IterativeRobot {
 //        for (Command autoCommand : autoCommands) {
 //            System.out.println(autoCommand);
 //        }
-        Logger.init("/home/lvuser/auton_test1");
-        autonomousCommand = new LowBarAuton();
+    	Logger.init("/home/lvuser/auton_test1");
+    	autonomousCommand = new LowBarAuton();
         autonomousCommand.start();
     }
 
@@ -86,28 +88,32 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
+       //new MotorToAngle(90).start();
+    	//new SpinUp(98000, true).start();
+    	//new HoodToggle().start();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     @Override
     public void disabledInit() {
-        new SpinUp(0, true).start(); // Stop flywheel
-        new Rainbow().start();
-        System.out.println("Stopped flywheel");
-        System.out.println("Robot disabled. Code halted!");
+    	new SpinUp(0,true).start();
+//        System.out.println("Disabled. Code halted!");
     }
 
     @Override
     public void teleopPeriodic() {
+
         Scheduler.getInstance().run();
     }
 
     @Override
     public void testInit() {
+//        System.out.println("Starting test mode...");
     }
 
     @Override
     public void testPeriodic() {
         LiveWindow.run();
+//       System.out.println(adaptor.centerX[0]);
     }
 }

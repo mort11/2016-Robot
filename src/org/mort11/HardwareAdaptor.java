@@ -74,11 +74,11 @@ public class HardwareAdaptor {
         this.rightSide = new DTRight(rightDTEncoder);
         this.led = new LED();
 
-        this.areas = Robot.tableLocation.getNumberArray("area", defaultValue);
-        this.centerX = Robot.tableLocation.getNumberArray("centerX", defaultValue);
-        this.centerY = Robot.tableLocation.getNumberArray("centerY", defaultValue);
-        this.width = Robot.tableLocation.getNumberArray("width", defaultValue);
-        this.height = Robot.tableLocation.getNumberArray("height", defaultValue);
-        this.solidity = Robot.tableLocation.getNumberArray("solidity", defaultValue);
+        this.areas = Robot.table_location.getNumberArray("area", defaultValue);
+        this.centerX = Robot.table_location.getNumberArray("centerX", defaultValue);
+        this.centerY = Robot.table_location.getNumberArray("centerY", defaultValue);
+        this.width = Robot.table_location.getNumberArray("width", defaultValue);
+        this.height = Robot.table_location.getNumberArray("height", defaultValue);
+        this.solidity = Robot.table_location.getNumberArray("solidity", defaultValue);
     }
 }

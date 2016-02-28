@@ -23,6 +23,11 @@ public class SubsystemStates {
         STORED, DOWN, GROUND, MANUAL_CTRL, STOP
     }
 
+    // Motor state for the fly wheel
+    public enum FlywheelRequest {
+        STOP, START
+    }
+
     public enum Gear {
         LOW, HIGH
     }
