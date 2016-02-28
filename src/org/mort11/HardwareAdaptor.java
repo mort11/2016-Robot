@@ -50,10 +50,10 @@ public class HardwareAdaptor {
     public LED led;
     
     //NetworkTable
-    //NetworkTable table = NetworkTable.getTable("GRIP/myContoursReport"); 
+    //public NetworkTable table; 
     public double[] areas, centerX, centerY, width, height, solidity;
     double[] defaultValue = new double[0];
-    Robot robot = new Robot();
+    //Robot robot = new Robot();
 
     public HardwareAdaptor() {
         this.pdp = new PowerDistributionPanel();
@@ -79,12 +79,6 @@ public class HardwareAdaptor {
         this.rightSide = new DTRight(rightDTEncoder);
         this.led = new LED();
         
-        this.areas = this.robot.table.getNumberArray("area", defaultValue);
-        this.centerX = this.robot.table.getNumberArray("centerX", defaultValue);
-        this.centerY = this.robot.table.getNumberArray("centerY", defaultValue);
-        this.width = this.robot.table.getNumberArray("width", defaultValue);
-        this.height = this.robot.table.getNumberArray("height", defaultValue);
-        this.solidity = this.robot.table.getNumberArray("solidity", defaultValue);
         
         
     }
