@@ -19,8 +19,6 @@ public class Constants {
     public static final int INTAKE_ARM_TALON_ID = 6;
     public static final int ROLLER_TALON_ID = 1;
 
-    /** ============================================================================================================= */
-
     /**
      * Solenoid ports
      */
@@ -30,8 +28,6 @@ public class Constants {
     public static final int HOOD_SOLENOID_A = 2;
     public static final int HOOD_SOLENOID_B = 3;
 
-    /** ============================================================================================================= */
-
     /**
      * LED PWMs
      */
@@ -39,16 +35,12 @@ public class Constants {
     public static final int GREEN_LIGHT = 1;
     public static final int BLUE_LIGHT = 0;
 
-    /** ============================================================================================================= */
-
     /**
      * DS Joystick ports
      */
     public static final int LEFT_JOYSTICK = 0;
     public static final int RIGHT_JOYSTICK = 1;
     public static final int EE_JOYSTICK = 2;
-
-    /** ============================================================================================================= */
 
     /**
      * Joystick Buttons
@@ -62,14 +54,14 @@ public class Constants {
     // EE Stick
     public static final int INTAKE_BUTTON = 3;
     public static final int OUTTAKE_BUTTON = 5;
+    public static final int FULL_SPEED_BUTTON = 11;
     public static final int SPIN_UP_BUTTON = 11;
     public static final int TOGGLE_HOOD = 2;
+
+    // TODO: 2/21/2016 Figure out what buttons Ally wants these presets mapped to
     public static final int ARM_INTERRUPT = 8;
     public static final int ARM_TO_90 = 10;
     public static final int ARM_TO_0 = 12;
-    public static final int AUTO_SHOOT = 1;
-
-    /** ============================================================================================================= */
 
     /**
      * PDP Slots
@@ -85,8 +77,6 @@ public class Constants {
     public static final int PDP_FLYWHEEL = 3;
     public static final int PDP_ROLLERS = 8;
 
-    /** ============================================================================================================= */
-
     /**
      * Sensor ports
      */
@@ -98,15 +88,26 @@ public class Constants {
     public static final int DT_ENCODER_RIGHT_A = 0;
     public static final int DT_ENCODER_RIGHT_B = 1;
 
+    // Intake Arm
+    public static final int INTAKE_ARM_ENCODER_A = 4;
+    public static final int INTAKE_ARM_ENCODER_B = 5;
+
     // Arm limit switch
     public static final int ARM_LIM_SWITCH_PORT = 4;
+
+    // Flywheel
+    public static final int FLYWHEEL_ENCODER_A = 6;
+    public static final int FLYWHEEL_ENCODER_B = 7;
+
+    // Rollers
+    public static final int ROLLERS_ENCODER_A = 8;
+    public static final int ROLLERS_ENCODER_B = 9;
 
     /** ============================================================================================================= */
 
     /**
      * MATH AND OTHER CONSTANTS
      */
-    public static final int FLYWHEEL_RPM = 98000;
     public static final int EE_CPR = 256;
     public static final double EE_HEIGHT_PER_TURN = 5.0379; // inches
     public static final double INCHES_PER_PULSE = EE_HEIGHT_PER_TURN / EE_CPR;
