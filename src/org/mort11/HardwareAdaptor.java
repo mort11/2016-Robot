@@ -78,7 +78,7 @@ public class HardwareAdaptor {
         this.leftSide = new DTLeft(leftDTEncoder);
         this.rightSide = new DTRight(rightDTEncoder);
         this.led = new LED();
-        
+        System.out.println("Led created");
         
         
     }

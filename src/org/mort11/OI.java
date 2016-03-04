@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.mort11.commands.SubsystemStates;
+import org.mort11.commands.auton.CamAuton;
 import org.mort11.commands.dt.shifting.Shift;
 import org.mort11.commands.ee.*;
 import org.mort11.constants.Constants;
@@ -43,6 +44,7 @@ public class OI {
     public Button armToNinety = new JoystickButton(endEffector, Constants.ARM_TO_90);
     public Button armToZero = new JoystickButton(endEffector, Constants.ARM_TO_0);
     public Button shooterButton = new JoystickButton(endEffector, 1);
+    public Button goToGoal = new JoystickButton(endEffector, 6);
 
     public OI() {
         intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
@@ -61,6 +63,7 @@ public class OI {
         armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
         armToZero.whenPressed(new MotorToAngle(0)); // Moves the intake arm to 0 degrees when pressed
         shooterButton.whenPressed(new Shoot());
+        goToGoal.whenPressed(new CamAuton());
 
     }
 

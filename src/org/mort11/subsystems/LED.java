@@ -18,6 +18,7 @@ public class LED extends Subsystem {
     private PWM red, green, blue;
 
     public LED() {
+    	System.out.println("LED Subsystem called");
         red = new PWM(Constants.RED_LIGHT);
         green = new PWM(Constants.GREEN_LIGHT);
         blue = new PWM(Constants.BLUE_LIGHT);
@@ -26,10 +27,13 @@ public class LED extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
+    	System.out.println("Defaulting the Command");
         setDefaultCommand(new LEDControl(SubsystemStates.Light.YELLOW));
+        System.out.println("Done Defaulting it");
     }
 
     public void set(int r, int g, int b) {
+    	System.out.println("Seting the led");
         red.setRaw(r);
         green.setRaw(g);
         blue.setRaw(b);
