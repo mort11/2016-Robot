@@ -6,7 +6,8 @@ I. Drivetrain check
     3. Click button on grip of joystick to shift gears (listen for it)
     4. Repeat 1&2
 II. Shooter Check
-    1. Spin up with button 11
+    1. Spin up with button 11, make sure it can hit desired RPM by 
+        looking at smartdashboard
     2. Actuate hood with button 2 over the thumb position
     3. Click it again to put the hood down
     4. Stop the wheel by pressing 11 again
@@ -20,5 +21,7 @@ III. Intake Check
     6. Press button 12 to bring the intake back up
 IV. Cleanup
     1. Make sure the air valve is closed
-    2. Get a new battery in there
-    3. Yay you did it!
+    2. Restart robot code in the DS
+    3. Make sure the Kangaroo is on 
+    4. Get a new battery in there
+    5. Yay you did it!

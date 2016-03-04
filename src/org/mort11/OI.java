@@ -59,7 +59,7 @@ public class OI {
         hoodToggle.whenPressed(new HoodToggle());
         armInterrupt.whenPressed(new JoystickIntake(true)); // Allows for manual movement of the intake arm when pressed
         armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
-        armToZero.whenPressed(new MotorToAngle(0)); // Moves the intake arm to 0 degrees when pressed
+        armToZero.whenPressed(new MotorToAngle(5)); // Moves the intake arm to 0 degrees when pressed
         shooterButton.whenPressed(new Shoot());
 
     }

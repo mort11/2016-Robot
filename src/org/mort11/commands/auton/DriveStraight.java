@@ -29,16 +29,22 @@ public class DriveStraight extends Command {
     private Encoder rightDTEncoder = Robot.adaptor.rightDTEncoder;
     private AHRS ahrs = Robot.adaptor.ahrs;
     private Timer timer;
+    private boolean coast = false;
     public DriveStraight(double distance) {
         requires(left);
         requires(right);
-        pd_left = new PIDLoop(distance, .01, 0.01,12.8); 
-        pd_right = new PIDLoop(distance, .01, 0.01,12.8);        
+        pd_left = new PIDLoop(distance, .02, 0.01,23); 
+        pd_right = new PIDLoop(distance, .02, 0.01,23);        
         this.distance = distance;
         leftDTEncoder.reset();
         rightDTEncoder.reset();
         this.ahrs.zeroYaw();
         timer = new Timer();
+    }
+    
+    public DriveStraight(double distance, boolean coast) {
+    	this(distance);
+    	this.coast = coast;
     }
 
     protected void initialize() {
@@ -52,8 +58,8 @@ public class DriveStraight extends Command {
     protected void execute() {
         currentDistanceLeft = leftDTEncoder.getDistance();
         currentDistanceRight = rightDTEncoder.getDistance();
-//        System.out.println("left: " + currentDistanceLeft);
-//        System.out.println("Right " + currentDistanceRight);
+        System.out.println("left: " + currentDistanceLeft);
+        System.out.println("Right " + currentDistanceRight);
         double speedLeft = pd_left.getOutput(currentDistanceLeft);
         double speedRight = pd_right.getOutput(currentDistanceRight);     
         Logger.writeString(timer.get()+","+currentDistanceLeft+","+speedLeft+","+currentDistanceRight+","+speedRight);
@@ -64,10 +70,10 @@ public class DriveStraight extends Command {
         if (angleError > 180) {
             angleError = Math.abs(360 - angleError);
         }
-//        System.out.println("angle error: " + angleError);
+        System.out.println("angle error: " + angleError);
 
-        left.set(speedLeft /*- 0.03 * angleError*/);
-        right.set(speedRight /*+ 0.03 * angleError*/);
+        left.set(speedLeft - 0.03 * angleError);
+        right.set(speedRight + 0.03 * angleError);
 
 
         SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
@@ -84,9 +90,11 @@ public class DriveStraight extends Command {
     }
 
     protected void end() {
+    	if(!coast) {
+    		left.halt();
+            right.halt();
+    	}
     	Logger.close();
-        left.halt();
-        right.halt();
         left.resetEncoder();
         right.resetEncoder();
     }

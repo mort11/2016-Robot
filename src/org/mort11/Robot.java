@@ -1,16 +1,13 @@
 package org.mort11;
 
-import org.mort11.commands.auton.AdjustToGoal;
-import org.mort11.commands.auton.CamAuton;
 import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.auton.DriveForwardToGoal;
 import org.mort11.commands.auton.DriveStraight;
-import org.mort11.commands.auton.Pos4Auton;
-import org.mort11.commands.auton.WaitTime;
-import org.mort11.util.Logger;
+import org.mort11.commands.auton.LowBarAuton;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.SpinUp;
+import org.mort11.util.Logger;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -42,12 +39,15 @@ public class Robot extends IterativeRobot {
     SendableChooser portcullis;
     
     NetworkTable table_location;
-
+	public static CameraServer cam;
     
     @Override
     public void robotInit() {
         oi = new OI();
-
+        cam = CameraServer.getInstance();
+        cam.setQuality(25);
+        cam.setSize(100);
+        cam.startAutomaticCapture("cam0");
        // new Rainbow();
         // Have operator choose autonomous mode
         autoModes = new SendableChooser();
@@ -86,10 +86,12 @@ public class Robot extends IterativeRobot {
 //            System.out.println(autoCommand);
 //        }
     	Logger.init("/home/lvuser/auton_test1");
-    	autonomousCommand = new DriveStraight(40);
-        autonomousCommand.start();
+    	//autonomousCommand = new DriveStraight(72);
+  
+    	
 //    	Logger.init("/home/lvuser/auton_test1");
-//    	autonomousCommand = new LowBarAuton();
+    	autonomousCommand = new LowBarAuton();
+        autonomousCommand.start();
 //    	new AdjustToGoal().start();
 //    	new DriveForwardToGoal().start();
 //    	new CamAuton().start();
@@ -97,6 +99,8 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousPeriodic() {
+    	System.out.println(adaptor.leftDTEncoder.getDistance() + "left");
+    	System.out.println(adaptor.rightDTEncoder.getDistance() + "right");
         Scheduler.getInstance().run();
     }
 
@@ -124,7 +128,7 @@ public class Robot extends IterativeRobot {
     	table_location.putNumber("mag", adaptor.leftDTEncoder.get());
     	table_location.putNumber("theta", adaptor.ahrs.getYaw());
         Scheduler.getInstance().run();
-        System.out.println(adaptor.intakeArm.getAngle() + " norm input");
+        //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
     }
 
     @Override

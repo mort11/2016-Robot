@@ -40,14 +40,14 @@ public class JoystickIntake extends Command {
     	if(posControl) {    		
     		desiredLocation = (-maxDown/2) * Robot.oi.getEEJoy() + maxDown/2;
     		desiredLocation -=5;
-    		if(desiredLocation > 105) {
-    			desiredLocation = 105;
+    		if(desiredLocation > 110) {
+    			desiredLocation = 110;
     		} else if (desiredLocation < 0) {
     			desiredLocation = 0;
     		}
-    		System.out.println("desired location: " + desiredLocation);
-    		System.out.println("curr location: " + intakeArm.getAngle());
-    		System.out.println("getting curr");
+//    		System.out.println("desired location: " + desiredLocation);
+//    		System.out.println("curr location: " + intakeArm.getAngle());
+//    		System.out.println("getting curr");
     		error = desiredLocation - intakeArm.getAngle();
     		output = error * 0.015;    		    		
     		thistime = timer.get();

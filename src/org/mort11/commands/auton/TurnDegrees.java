@@ -33,7 +33,7 @@ public class TurnDegrees extends Command {
         this.desiredAngle = angle;
         requires(left);
         requires(right);
-        pd = new PIDLoop(this.desiredAngle, 0.015, 0.01, 2); // Original vals:  (.02, .005, 2)
+        pd = new PIDLoop(this.desiredAngle, 0.02, 0.01, 16); // Original vals:  (.02, .005, 2)
     }
 
     /**
@@ -46,7 +46,7 @@ public class TurnDegrees extends Command {
     protected void execute() {
         //currentAngle = DTSide.getAngle(); //gets current angle of robot
         currentAngle = Math.abs(this.ahrs.getYaw()); //might work better than getAngle(), must test
-//        System.out.println("current angle" + currentAngle);
+        System.out.println("current angle" + currentAngle);
         speed = pd.getOutput(currentAngle); //passes current angle through pid loop
 //        System.out.println("speed" + speed);
         SmartDashboard.putNumber("Current Angle", currentAngle);

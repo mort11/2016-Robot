@@ -81,12 +81,12 @@ public class Constants {
      * Sensor ports
      */
     // DT Left
-    public static final int DT_ENCODER_LEFT_A = 2;
-    public static final int DT_ENCODER_LEFT_B = 3;
+    public static final int DT_ENCODER_LEFT_A = 0;
+    public static final int DT_ENCODER_LEFT_B = 1;
 
     // DT Right
-    public static final int DT_ENCODER_RIGHT_A = 0;
-    public static final int DT_ENCODER_RIGHT_B = 1;
+    public static final int DT_ENCODER_RIGHT_A = 2;
+    public static final int DT_ENCODER_RIGHT_B = 3;
 
     // Intake Arm
     public static final int INTAKE_ARM_ENCODER_A = 4;
@@ -113,10 +113,10 @@ public class Constants {
     public static final double INCHES_PER_PULSE = EE_HEIGHT_PER_TURN / EE_CPR;
     public static final double ROLLER_SPEED = 1; // Placeholder
     public static final int INTAKE_DEGREE_PER_TICK = 360 / 512;
-    public static final int ENC_CPR_LEFT = 2381; // Tick count from kop robot on left side, ports 2,3
-    public static final int ENC_CPR_RIGHT = -2358; // Tick count from kop robot on right side, ports 0,1
-    public static final double INCHES_PER_PULSE_LEFT = 36.0 / 1505.0;
-    public static final double INCHES_PER_PULSE_RIGHT = 36.0 / 2898.0;
+    //public static final double ENC_CPR_LEFT = 72.0/7473.0; // Tick count from kop robot on left side, ports 2,3
+    //public static final double ENC_CPR_RIGHT = 72.0/3871.0; // Tick count from kop robot on right side, ports 0,1
+    public static final double INCHES_PER_PULSE_LEFT = 72.0 / 4409.0;
+    public static final double INCHES_PER_PULSE_RIGHT = 72.0 / 8502.0;
     public static final double kRobotRadius = 9.75;
     public static final double SPEED_LIMIT = 0.75;
     public static final double MOTOR_MAX_VOLTAGE = 9; // TODO: 2/18/16 Get appropriate current limits
