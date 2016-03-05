@@ -57,7 +57,7 @@ public class DriveStraight extends Command {
 //    	System.out.println("init yaw: " + ahrs.getYaw());
 //    	System.out.println("init d_left: " + leftDTEncoder.getDistance());
 //    	System.out.println("init d_right: " + rightDTEncoder.getDistance());
-    	Logger.writeString("time,left dist,speed left,right dist,right speed");
+    	//Logger.writeString("time,left dist,speed left,right dist,right speed");
     	timer.start();
     }
 

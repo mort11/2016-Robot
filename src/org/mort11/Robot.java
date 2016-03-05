@@ -89,8 +89,7 @@ public class Robot extends IterativeRobot {
 //    	Logger.init("/home/lvuser/auton_test1");
 //    	autonomousCommand = new DriveStraight(40);
 //        autonomousCommand.start();
-
-//    	Logger.init("/home/lvuser/auton_test1");
+    	Logger.init("/home/lvuser/auton_test1");
     	adaptor.leftDTEncoder.reset();
     	adaptor.rightDTEncoder.reset();
     	adaptor.ahrs.zeroYaw();
