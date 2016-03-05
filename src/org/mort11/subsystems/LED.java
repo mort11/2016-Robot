@@ -27,7 +27,7 @@ public class LED extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new LEDControl(SubsystemStates.Light.YELLOW));
+        setDefaultCommand(new LEDControl(SubsystemStates.Light.RED));
     }
 
     public void set(int r, int g, int b) {
