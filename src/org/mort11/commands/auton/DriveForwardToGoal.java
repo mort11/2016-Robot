@@ -32,11 +32,11 @@ public class DriveForwardToGoal extends Command {
             return;
         }
         
-        if(Robot.table.getNumberArray("area", new double[]{})[0] < 6000){
+        if(Robot.table.getNumberArray("area", new double[]{})[0] < 2450){
         	System.out.println("going forward");
         	left.set(.25);
         	right.set(.25);
-        }else if(Robot.table.getNumberArray("area", new double[]{})[0] > 6500){
+        }else if(Robot.table.getNumberArray("area", new double[]{})[0] > 2550){
         	System.out.println("going back");
         	left.set(-.25);
         	right.set(-.25);

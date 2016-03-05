@@ -85,10 +85,11 @@ public class Robot extends IterativeRobot {
 //        for (Command autoCommand : autoCommands) {
 //            System.out.println(autoCommand);
 //        }
-    	Logger.init("/home/lvuser/auton_test1");
-    	//autonomousCommand = new DriveStraight(72);
-  
-    	
+
+//    	Logger.init("/home/lvuser/auton_test1");
+//    	autonomousCommand = new DriveStraight(40);
+//        autonomousCommand.start();
+
 //    	Logger.init("/home/lvuser/auton_test1");
     	adaptor.leftDTEncoder.reset();
     	adaptor.rightDTEncoder.reset();
