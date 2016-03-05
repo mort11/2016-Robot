@@ -25,7 +25,7 @@ public class DropIntake extends Command {
 
     @Override
     protected void execute() {
-        if (timer.get() > 1.5 && timer.get() < 2) {
+        if (/**timer.get() > 1.5 && **/ timer.get() < 0.5) {
             Robot.adaptor.intakeArm.set(0.3);
         } else {
             Robot.adaptor.intakeArm.set(0);

@@ -13,10 +13,11 @@ import org.mort11.commands.ee.SpinUp;
  * @author Matthew Krzyzanowski
  */
 public class LowBarAuton extends CommandGroup {
-    public LowBarAuton() {
+    public LowBarAuton() {        
+        addSequential(new DriveStraight(30, 30));
         addParallel(new DropIntake());
         addSequential(new WaitTime(0.7));
-        addSequential(new DriveStraight(103, 30));
+        addSequential(new DriveStraight(73.1,30));
         addParallel(new SpinUp());
         addSequential(new DriveStraight(63.1));
         addParallel(new MotorToAngle(90));

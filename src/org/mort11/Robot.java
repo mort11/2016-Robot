@@ -132,8 +132,8 @@ public class Robot extends IterativeRobot {
     	table_location.putNumber("mag", adaptor.leftDTEncoder.get());
     	table_location.putNumber("theta", adaptor.ahrs.getYaw());
         Scheduler.getInstance().run();
-        System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
-        System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
+        //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
+        //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
         //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
     }
 
