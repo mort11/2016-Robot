@@ -46,6 +46,12 @@ public class DriveStraight extends Command {
     	this(distance);
     	this.coast = coast;
     }
+    
+    public DriveStraight(double distance, double velocity) {
+    	this(distance);
+    	pd_left = new PIDLoop(distance, .02, 0.01,velocity); 
+        pd_right = new PIDLoop(distance, .02, 0.01,velocity);
+    }
 
     protected void initialize() {
 //    	System.out.println("init yaw: " + ahrs.getYaw());
@@ -84,8 +90,8 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-        return (Math.abs(distance - currentDistanceLeft) < 2 &&
-                Math.abs(distance - currentDistanceRight) < 2) ||
+        return (Math.abs(distance - currentDistanceLeft) < 8 &&
+                Math.abs(distance - currentDistanceRight) < 8) ||
                 (pd_left.timeElapsed(2));
     }
 

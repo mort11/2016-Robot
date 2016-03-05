@@ -30,6 +30,7 @@ public class LED extends Subsystem {
     }
 
     public void set(int r, int g, int b) {
+    	System.out.println("setting color to " + r + "," + g + "," + b );
         red.setRaw(r);
         green.setRaw(g);
         blue.setRaw(b);

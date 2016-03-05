@@ -18,12 +18,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LowBarAuton extends CommandGroup {
     public LowBarAuton() {
     	addParallel(new MotorToAngle(90));
-        addSequential(new WaitTime(1));
-        addSequential(new DriveStraight(95,true));
+        addSequential(new WaitTime(0.5));
+        addSequential(new DriveStraight(103,30));
         addParallel(new SpinUp());
         addSequential(new DriveStraight(63));
         addSequential(new TurnDegrees(false, 57));
-        addSequential(new DriveStraight(30));
+        addSequential(new DriveStraight(42,32));
         addSequential(new Shoot());
         
 //        addParallel(new WaitTime(3));

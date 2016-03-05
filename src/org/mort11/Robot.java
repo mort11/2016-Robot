@@ -43,13 +43,13 @@ public class Robot extends IterativeRobot {
     
     @Override
     public void robotInit() {
-        oi = new OI();
+        oi = new OI();        
+       // new Rainbow();
+        // Have operator choose autonomous mode
         cam = CameraServer.getInstance();
         cam.setQuality(25);
         cam.setSize(100);
         cam.startAutomaticCapture("cam0");
-       // new Rainbow();
-        // Have operator choose autonomous mode
         autoModes = new SendableChooser();
         autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
         autoModes.addObject("Drive Straight [20in.]", new DriveStraight(20));
@@ -90,6 +90,9 @@ public class Robot extends IterativeRobot {
   
     	
 //    	Logger.init("/home/lvuser/auton_test1");
+    	adaptor.leftDTEncoder.reset();
+    	adaptor.rightDTEncoder.reset();
+    	adaptor.ahrs.zeroYaw();
     	autonomousCommand = new LowBarAuton();
         autonomousCommand.start();
 //    	new AdjustToGoal().start();
@@ -112,6 +115,7 @@ public class Robot extends IterativeRobot {
     	adaptor.ahrs.zeroYaw();
     	System.out.println("normal output: " + adaptor.intakeArm.getAngle());
         if (autonomousCommand != null) autonomousCommand.cancel();
+       
     }
 
     @Override
@@ -128,6 +132,8 @@ public class Robot extends IterativeRobot {
     	table_location.putNumber("mag", adaptor.leftDTEncoder.get());
     	table_location.putNumber("theta", adaptor.ahrs.getYaw());
         Scheduler.getInstance().run();
+        System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
+        System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
         //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
     }
 
