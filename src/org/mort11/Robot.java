@@ -23,13 +23,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Matt Turi
  * @author Ryan Thant
  * @author Matthew Krzyzanowski
+ * @author Jakob Shortell
  * @author Seven Kurt
  * @author Michael Kozak
  * @author Jeffrey Pastilha
  * @author Ryan O'Toole
- * @author Carl Hausman
- * @author Jakob Shortell
- */
+ * @author Carl Hausman */
 public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
@@ -113,7 +112,7 @@ public class Robot extends IterativeRobot {
     	//new SpinUp(98000, true).start();
     	//new HoodToggle().start();
     	adaptor.ahrs.zeroYaw();
-    	System.out.println("normal output: " + adaptor.intakeArm.getAngle());
+    	System.out.println("normal output: " + adaptor.intakeArm.getAngle());    	
         if (autonomousCommand != null) autonomousCommand.cancel();
        
     }
@@ -132,9 +131,11 @@ public class Robot extends IterativeRobot {
     	table_location.putNumber("mag", adaptor.leftDTEncoder.get());
     	table_location.putNumber("theta", adaptor.ahrs.getYaw());
         Scheduler.getInstance().run();
+        System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
+    	System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
-        //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
+        System.out.println(adaptor.intakeArm.getAngle() + " norm input");
     }
 
     @Override
