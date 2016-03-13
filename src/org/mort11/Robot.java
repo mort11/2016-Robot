@@ -131,11 +131,11 @@ public class Robot extends IterativeRobot {
     	table_location.putNumber("mag", adaptor.leftDTEncoder.get());
     	table_location.putNumber("theta", adaptor.ahrs.getYaw());
         Scheduler.getInstance().run();
-        System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
-    	System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
+        //System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
+    	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
-        System.out.println(adaptor.intakeArm.getAngle() + " norm input");
+        //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
     }
 
     @Override

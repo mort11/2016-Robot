@@ -16,6 +16,8 @@ public class AdjustToGoal extends Command {
     private boolean isFinished = false;
     private DTSide left = Robot.adaptor.leftSide;
     private DTSide right = Robot.adaptor.rightSide;
+    private double area = 0;
+    private int curr_index = 0,target_index = 0;
     public AdjustToGoal() {
         requires(left);
         requires(right);
@@ -23,19 +25,26 @@ public class AdjustToGoal extends Command {
     protected void initialize() {
         
     }
-    protected void execute() {
+    protected void execute() {    	
         if (Robot.table.getNumberArray("centerX", new double[]{}).length == 0) {
-            System.out.println("Not found");
+            System.out.println("Not found in ATG");
             this.isFinished = true;
             return;
         }
-
+        area = 0; target_index = 0; curr_index = 0;
+        for (double i: Robot.table.getNumberArray("area",new double[]{})) {
+        	if(i > area) {
+        		area = i;
+        		target_index = curr_index;
+        	}
+        	curr_index++;
+        }        
         System.out.println("Centering"); 
-        if (Robot.table.getNumberArray("centerX", new double[]{})[0] < 150) {
+        if (Robot.table.getNumberArray("centerX", new double[]{})[target_index] < 158) {
             this.left.set(-0.25);
             this.right.set(0.25);
             System.out.println("Too far right");
-        } else if (Robot.table.getNumberArray("centerX", new double[]{})[0] > 170) {
+        } else if (Robot.table.getNumberArray("centerX", new double[]{})[target_index] > 162) {
             this.left.set(0.25);
             this.right.set(-0.25);
             System.out.println("Too far left");
@@ -48,6 +57,7 @@ public class AdjustToGoal extends Command {
         return this.isFinished;
     }
     protected void end() {
+    	this.isFinished = false;
     }
     protected void interrupted() {
     }

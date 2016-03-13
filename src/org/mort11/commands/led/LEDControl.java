@@ -32,27 +32,27 @@ public class LEDControl extends Command {
     protected void execute() {
         switch (light) {
             case RED:
-            	System.out.println("RED");
+            	//System.out.println("RED");
                 led.set(-1, 0, 0);
                 break;
             case ORANGE:
-            	System.out.println("ORANGE");
+            	//System.out.println("ORANGE");
                 led.set(-1, 1, 0);
                 break;
             case YELLOW:
-            	System.out.println("YELLOW");
+            	//System.out.println("YELLOW");
                 led.set(-1, -1, 0);
                 break;
             case GREEN:
-            	System.out.println("GREEN");
+            	//System.out.println("GREEN");
                 led.set(0, -1, 0);
                 break;
             case BLUE:
-            	System.out.println("BLUE");
+            	//System.out.println("BLUE");
                 led.set(0, 0, -1);
                 break;
             case PURPLE:
-            	System.out.println("PURPLE");
+            	//System.out.println("PURPLE");
                 led.set(1, 0, -1);
                 break;
 
