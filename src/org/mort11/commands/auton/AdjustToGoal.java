@@ -22,10 +22,11 @@ public class AdjustToGoal extends Command {
     private int curr_index = 0,target_index = 0;
     PIDLoop pid_turn;
     private double angle,range,pxPer6,x_val,theta;
+    private double output;
     public AdjustToGoal() {
         requires(left);
         requires(right);
-        pid_turn = new PIDLoop(180, 0.01, 0,15);
+        pid_turn = new PIDLoop(160, 0.006, 0.004,35);
     }
     protected void initialize() {
         if (Robot.table.getNumberArray("centerX", new double[]{}).length == 0) {
@@ -49,6 +50,8 @@ public class AdjustToGoal extends Command {
         System.out.println("will turn: " + theta);
     }
     protected void execute() {    	        
+        double x_val = Robot.table.getNumberArray("centerX", new double[]{})[target_index];
+        double y_val = Robot.table.getNumberArray("centerY", new double[]{})[target_index];
         System.out.println("Centering"); 
 //        if (Robot.table.getNumberArray("centerX", new double[]{})[target_index] < 158) {
 //            this.left.set(-0.25);
@@ -68,10 +71,28 @@ public class AdjustToGoal extends Command {
 //        		Robot.table.getNumberArray("centerX", new double[]{})[target_index]));
         
         System.out.println("current angle");
+//       System.out.println("x " + (/*180 -*/ x_val));
+//       System.out.println("y " + y_val);
+//       System.out.println("area " + area);
+//       output = pid_turn.getOutput(x_val);
+//       if (output > 0.4) {
+//    	   output = 0.4;
+//       } else if (output < -0.4) {
+//    	   
+//    	   output = -0.4;
+//       }
+//       //left.set(output);
+//       //right.set(-output);
+//       System.out.println("output: " + output);
     }
     protected boolean isFinished() {
-        return Math.abs(pid_turn.getOutput(
-        		Robot.table.getNumberArray("centerX", new double[]{})[target_index])) < 0.01;
+//    	try {
+//    		return Math.abs(pid_turn.getOutput(
+//    			Robot.table.getNumberArray("centerX", new double[]{})[target_index])) < 0.05;
+//    	} catch (Exception e) {
+//    		return this.isFinished;
+//    	}
+    	return false;
     }
     protected void end() {
     	this.isFinished = false;
