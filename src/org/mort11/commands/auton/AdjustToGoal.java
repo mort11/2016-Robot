@@ -1,11 +1,10 @@
 package org.mort11.commands.auton;
-import edu.wpi.first.wpilibj.command.Command;
-
-import org.mort11.HardwareAdaptor;
 import org.mort11.Robot;
-import org.mort11.subsystems.Camera;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * AdjustToGoal - Adjust robot to goal using the camera
@@ -21,12 +20,16 @@ public class AdjustToGoal extends Command {
     private double area = 0;
     private int curr_index = 0,target_index = 0;
     PIDLoop pid_turn;
+    double netError;
+    Timer timer;
+    double thistime = 0,lasttime = 0;
     private double angle,range,pxPer6,x_val,theta;
-    private double output;
+    private double output,curr_angle;
     public AdjustToGoal() {
         requires(left);
         requires(right);
         pid_turn = new PIDLoop(160, 0.006, 0.004,35);
+        timer = new Timer();
     }
     protected void initialize() {
         if (Robot.table.getNumberArray("centerX", new double[]{}).length == 0) {
@@ -47,12 +50,32 @@ public class AdjustToGoal extends Command {
         range = (y_val + 68.05)/1.475;
         pxPer6 = -0.7083*range+ 104.75;
         theta = Math.atan2((((153 - x_val)/pxPer6) * 6),range) * 180/Math.PI;
+        theta *= -2;
+//        if(theta > 0) {
+//        	theta += 3;
+//        } else if (theta < 0) {
+//        	theta -=3;
+//        }
         System.out.println("will turn: " + theta);
+        Robot.adaptor.ahrs.zeroYaw();
+        timer.start();
     }
-    protected void execute() {    	        
-        double x_val = Robot.table.getNumberArray("centerX", new double[]{})[target_index];
-        double y_val = Robot.table.getNumberArray("centerY", new double[]{})[target_index];
-        System.out.println("Centering"); 
+    protected void execute() {  
+    	//TODO: take advantage of PID class
+        //double x_val = Robot.table.getNumberArray("centerX", new double[]{})[target_index];
+        //double y_val = Robot.table.getNumberArray("centerY", new double[]{})[target_index];
+    	curr_angle = Robot.adaptor.ahrs.getYaw();
+    	if(curr_angle > 350) {
+    		curr_angle = curr_angle - 360;
+    	}
+    	thistime = timer.get();
+    	double error = theta - curr_angle; 
+    	netError += (error * (thistime - lasttime));
+    	lasttime = thistime;
+    	output = (error* 0.205) + (netError * 0.08);
+    	left.set(output);
+    	right.set(-output);
+        //System.out.println("Centering"); 
 //        if (Robot.table.getNumberArray("centerX", new double[]{})[target_index] < 158) {
 //            this.left.set(-0.25);
 //            this.right.set(0.25);
@@ -70,7 +93,8 @@ public class AdjustToGoal extends Command {
 //        right.set(pid_turn.getOutput(
 //        		Robot.table.getNumberArray("centerX", new double[]{})[target_index]));
         
-        System.out.println("current angle");
+        System.out.println("error " + error);
+        System.out.println("output: " + output);
 //       System.out.println("x " + (/*180 -*/ x_val));
 //       System.out.println("y " + y_val);
 //       System.out.println("area " + area);

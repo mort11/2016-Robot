@@ -23,6 +23,8 @@ public class LowBarAuton extends CommandGroup {
         addParallel(new MotorToAngle(90));
         addSequential(new TurnDegrees(false, 52));
         addSequential(new DriveStraight(31, 34));
+        addParallel(new AdjustToGoal());
+        addSequential(new WaitTime(1));
         addSequential(new Shoot());
 
 //        addParallel(new WaitTime(3));

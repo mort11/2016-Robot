@@ -113,8 +113,8 @@ public class Constants {
     public static final double INCHES_PER_PULSE = EE_HEIGHT_PER_TURN / EE_CPR;
     public static final double ROLLER_SPEED = 1; // Placeholder
     public static final int INTAKE_DEGREE_PER_TICK = 360 / 512;
-    //public static final double ENC_CPR_LEFT = 72.0/7473.0; // Tick count from kop robot on left side, ports 2,3
-    //public static final double ENC_CPR_RIGHT = 72.0/3871.0; // Tick count from kop robot on right side, ports 0,1
+    //public static final double INCHES_PER_PULSE_LEFT = 72.0/7473.0; // Tick count from kop robot on left side, ports 2,3
+    //public static final double INCHES_PER_PULSE_RIGHT = 72.0/3871.0; // Tick count from kop robot on right side, ports 0,1
     public static final double INCHES_PER_PULSE_LEFT = 72.0 / 4409.0;
     public static final double INCHES_PER_PULSE_RIGHT = 72.0 / 8502.0;
     public static final double kRobotRadius = 9.75;
