@@ -125,6 +125,7 @@ public class Robot extends IterativeRobot {
 //        System.out.println("Disabled. Code halted!");
     }
 
+    
     @Override
     public void teleopPeriodic() {
     	//System.out.println("left: " + adaptor.leftDTEncoder.get());
@@ -135,13 +136,14 @@ public class Robot extends IterativeRobot {
     	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
-        //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
+        System.out.println(adaptor.intakeArm.getAngle() + " norm input");
     }
 
     @Override
     public void testInit() {
 //        System.out.println("Starting test mode...");
     }
+    
 
     @Override
     public void testPeriodic() {

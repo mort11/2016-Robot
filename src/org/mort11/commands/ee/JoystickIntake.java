@@ -45,8 +45,8 @@ public class JoystickIntake extends Command {
     		} else if (desiredLocation < 0) {
     			desiredLocation = 0;
     		}
-//    		System.out.println("desired location: " + desiredLocation);
-//    		System.out.println("curr location: " + intakeArm.getAngle());
+    		System.out.println("desired location: " + desiredLocation);
+    		System.out.println("curr location: " + intakeArm.getAngle());
 //    		System.out.println("getting curr");
     		error = desiredLocation - intakeArm.getAngle();
     		output = error * 0.015;    		    		

@@ -25,6 +25,7 @@ public class AdjustToGoal extends Command {
     double thistime = 0,lasttime = 0;
     private double angle,range,pxPer6,x_val,theta;
     private double output,curr_angle;
+    double error;
     public AdjustToGoal() {
         requires(left);
         requires(right);
@@ -50,7 +51,7 @@ public class AdjustToGoal extends Command {
         range = (y_val + 68.05)/1.475;
         pxPer6 = -0.7083*range+ 104.75;
         theta = Math.atan2((((153 - x_val)/pxPer6) * 6),range) * 180/Math.PI;
-        theta *= -2;
+        theta *= -1;
 //        if(theta > 0) {
 //        	theta += 3;
 //        } else if (theta < 0) {
@@ -69,10 +70,10 @@ public class AdjustToGoal extends Command {
     		curr_angle = curr_angle - 360;
     	}
     	thistime = timer.get();
-    	double error = theta - curr_angle; 
+    	error = theta - curr_angle; 
     	netError += (error * (thistime - lasttime));
     	lasttime = thistime;
-    	output = (error* 0.205) + (netError * 0.08);
+    	output = (error* 0.14) + (netError * 0.1);
     	left.set(output);
     	right.set(-output);
         //System.out.println("Centering"); 
@@ -110,16 +111,12 @@ public class AdjustToGoal extends Command {
 //       System.out.println("output: " + output);
     }
     protected boolean isFinished() {
-//    	try {
-//    		return Math.abs(pid_turn.getOutput(
-//    			Robot.table.getNumberArray("centerX", new double[]{})[target_index])) < 0.05;
-//    	} catch (Exception e) {
-//    		return this.isFinished;
-//    	}
-    	return false;
+//    	return (Math.abs(distance - currentDistanceLeft) < 8 &&
+    	return (Math.abs(error) < 2 );
     }
     protected void end() {
     	this.isFinished = false;
+    	netError = 0;
     	this.left.set(0);
     	this.right.set(0);
     }
