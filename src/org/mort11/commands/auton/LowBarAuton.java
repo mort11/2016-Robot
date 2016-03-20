@@ -1,7 +1,9 @@
 package org.mort11.commands.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+
 import org.mort11.commands.ee.DropIntake;
+import org.mort11.commands.ee.HoodToggle;
 import org.mort11.commands.ee.MotorToAngle;
 import org.mort11.commands.ee.Shoot;
 import org.mort11.commands.ee.SpinUp;
@@ -14,18 +16,18 @@ import org.mort11.commands.ee.SpinUp;
  */
 public class LowBarAuton extends CommandGroup {
     public LowBarAuton() {        
-       // addSequential(new DriveStraight(30, 30));
-//        addParallel(new DropIntake());
-//        addSequential(new WaitTime(0.7));
-//        addSequential(new DriveStraight(82.5,32));
-//        addParallel(new SpinUp());
-//        addSequential(new DriveStraight(68));
-//        addParallel(new MotorToAngle(90));
-//        addSequential(new TurnDegrees(false, 52));
-//        addSequential(new DriveStraight(31, 34));
-        addParallel(new AdjustToGoal());
-//        addSequential(new WaitTime(1));
-//        addSequential(new Shoot());
+          addSequential(new HoodToggle());
+          addSequential(new DriveStraight(30, 34));
+          addParallel(new MotorToAngle(100));
+          addSequential(new WaitTime(2));
+          addSequential(new DriveStraight(82.5,36));	
+          addParallel(new SpinUp());
+          addSequential(new DriveStraight(68,32));
+          addSequential(new TurnDegrees(false, 55));
+          addSequential(new DriveStraight(26, 36));
+          addParallel(new AdjustToGoal());
+          addSequential(new WaitTime(1));
+          addSequential(new Shoot());
 
 //        addParallel(new WaitTime(3));
 //        addSequential(new HoodToggle());

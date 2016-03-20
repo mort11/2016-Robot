@@ -20,7 +20,7 @@ public class IntakeArm extends Subsystem {
     int timesCalled = 0;
     public IntakeArm() {
         intakeArm = new CANTalon(Constants.INTAKE_ARM_TALON_ID);
-        limswitch = new DigitalInput(Constants.ARM_LIM_SWITCH_PORT);
+        //limswitch = new DigitalInput(Constants.ARM_LIM_SWITCH_PORT);
         initPos = intakeArm.getEncPosition();
 //        System.out.println("init pos: "  + initPos);
     }
@@ -32,9 +32,10 @@ public class IntakeArm extends Subsystem {
      */
     public double getAngle() {
     	//System.out.println("analog out:" + intakeArm.getAnalogInRaw());
-        System.out.println("ticks: "  + intakeArm.getEncPosition() + " times called: " + timesCalled);
+        //System.out.println("ticks: "  + intakeArm.getEncPosition() + " times called: " + timesCalled);
+    	intakeArm.getEncPosition();
     	//System.out.println("angle in intakearm class: " + angle;
-    	angle = ((intakeArm.getEncPosition() - initPos) * 0.09); //:'(
+    	angle = ((intakeArm.getEncPosition() - initPos) * 0.092); //:'(
     	timesCalled++;
         return angle; //:'(
     }

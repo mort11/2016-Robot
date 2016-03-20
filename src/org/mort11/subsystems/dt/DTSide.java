@@ -41,10 +41,10 @@ public abstract class DTSide extends Subsystem {
 //    	System.out.println("shifting gears");
         switch (gear) {
             case LOW:
-                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse);
+                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward);
                 break;
             case HIGH:
-                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward);
+                Robot.adaptor.shifter.set(DoubleSolenoid.Value.kReverse);
                 break;
         }
     }

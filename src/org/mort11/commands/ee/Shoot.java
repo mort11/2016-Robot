@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Shoot extends CommandGroup {
     
     public  Shoot() {
-        //addSequential(new HoodToggle());
-        addSequential(new AdjustToGoal());
-        //addSequential(new IntakeRollers(1.5, RollerRequest.INTAKE));
-        //addSequential(new HoodToggle());
+        addSequential(new HoodToggle());
+      //  addSequential(new AdjustToGoal());
+      //  addSequential(new AdjustToGoal());
+        addSequential(new IntakeRollers(1.5, RollerRequest.INTAKE));
+        addSequential(new HoodToggle());
     }
 }

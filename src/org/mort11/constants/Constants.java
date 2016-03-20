@@ -1,3 +1,4 @@
+
 package org.mort11.constants;
 
 /**
@@ -81,19 +82,19 @@ public class Constants {
      * Sensor ports
      */
     // DT Left
-    public static final int DT_ENCODER_LEFT_A = 0;
-    public static final int DT_ENCODER_LEFT_B = 1;
+    public static final int DT_ENCODER_LEFT_A = 4;
+    public static final int DT_ENCODER_LEFT_B = 5;
 
     // DT Right
-    public static final int DT_ENCODER_RIGHT_A = 2;
-    public static final int DT_ENCODER_RIGHT_B = 3;
+    public static final int DT_ENCODER_RIGHT_A = 0;
+    public static final int DT_ENCODER_RIGHT_B = 1;
 
     // Intake Arm
-    public static final int INTAKE_ARM_ENCODER_A = 4;
-    public static final int INTAKE_ARM_ENCODER_B = 5;
+    //public static final int INTAKE_ARM_ENCODER_A = 4;
+    //public static final int INTAKE_ARM_ENCODER_B = 5;
 
     // Arm limit switch
-    public static final int ARM_LIM_SWITCH_PORT = 4;
+    //public static final int ARM_LIM_SWITCH_PORT = 4;
 
     // Flywheel
     public static final int FLYWHEEL_ENCODER_A = 6;

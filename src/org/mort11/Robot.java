@@ -4,6 +4,7 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarAuton;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.HoodToggle;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.util.Logger;
 
@@ -33,7 +34,8 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static HardwareAdaptor adaptor = new HardwareAdaptor();
     public static NetworkTable table;
-    Command autonomousCommand;
+    
+    Command autonomousCommand = new WaitTime(0);
     SendableChooser autoModes;
     SendableChooser portcullis;
     
@@ -112,8 +114,8 @@ public class Robot extends IterativeRobot {
     	//new SpinUp(98000, true).start();
     	//new HoodToggle().start();
     	adaptor.ahrs.zeroYaw();
-    	System.out.println("normal output: " + adaptor.intakeArm.getAngle());    	
-        if (autonomousCommand != null) autonomousCommand.cancel();
+    	//System.out.println("normal output: " + adaptor.intakeArm.getAngle());    	
+        autonomousCommand.cancel();
        
     }
 
@@ -132,11 +134,17 @@ public class Robot extends IterativeRobot {
     	table_location.putNumber("mag", adaptor.leftDTEncoder.get());
     	table_location.putNumber("theta", adaptor.ahrs.getYaw());
         Scheduler.getInstance().run();
-        //System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
-    	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
+//        System.out.println("left output: " + adaptor.leftSide.getSpeed());
+//        System.out.println("left comm: " + adaptor.leftSide.getCurrentCommand());
+//        System.out.println("right output: " + adaptor.rightSide.getSpeed());
+//        System.out.println("right comm: " + adaptor.rightSide.getCurrentCommand());
+        System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
+    	System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
-        System.out.println(adaptor.intakeArm.getAngle() + " norm input");
+        //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
+        adaptor.intakeArm.getAngle();
+        //System.out.println();
     }
 
     @Override

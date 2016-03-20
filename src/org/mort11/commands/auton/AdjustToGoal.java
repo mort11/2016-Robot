@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AdjustToGoal extends Command {
     private boolean isFinished = false;
+    boolean loopStarted = false;
     private DTSide left = Robot.adaptor.leftSide;	
     private DTSide right = Robot.adaptor.rightSide;
     private double area = 0;
@@ -31,8 +32,13 @@ public class AdjustToGoal extends Command {
         requires(right);
         pid_turn = new PIDLoop(160, 0.006, 0.004,35);
         timer = new Timer();
+        setInterruptible(true);
     }
     protected void initialize() {
+    	this.left.set(0);
+    	this.right.set(0);
+    	netError = 0;
+    	System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         if (Robot.table.getNumberArray("centerX", new double[]{}).length == 0) {
             System.out.println("Not found in ATG");
             this.isFinished = true;
@@ -51,7 +57,7 @@ public class AdjustToGoal extends Command {
         range = (y_val + 68.05)/1.475;
         pxPer6 = -0.7083*range+ 104.75;
         theta = Math.atan2((((153 - x_val)/pxPer6) * 6),range) * 180/Math.PI;
-        theta *= -1;
+        theta *= -1.3;
 //        if(theta > 0) {
 //        	theta += 3;
 //        } else if (theta < 0) {
@@ -66,14 +72,25 @@ public class AdjustToGoal extends Command {
         //double x_val = Robot.table.getNumberArray("centerX", new double[]{})[target_index];
         //double y_val = Robot.table.getNumberArray("centerY", new double[]{})[target_index];
     	curr_angle = Robot.adaptor.ahrs.getYaw();
-    	if(curr_angle > 350) {
+    	if(!loopStarted && curr_angle != 0) {
+    		System.out.println("Still Zero!");
+    		return;
+    	}
+    	loopStarted = true;
+    	if(curr_angle > 200) {
     		curr_angle = curr_angle - 360;
     	}
     	thistime = timer.get();
     	error = theta - curr_angle; 
     	netError += (error * (thistime - lasttime));
     	lasttime = thistime;
-    	output = (error* 0.14) + (netError * 0.1);
+    	//output = (error* 0.16) + (netError * 0.1);
+    	output = (error* 0.09) + (netError * 0.13);
+    	if (output > 0.5) {
+    		output = 0.5;
+    	} else if (output < -0.5) {
+    		output = -0.5;
+    	}
     	left.set(output);
     	right.set(-output);
         //System.out.println("Centering"); 
@@ -94,8 +111,8 @@ public class AdjustToGoal extends Command {
 //        right.set(pid_turn.getOutput(
 //        		Robot.table.getNumberArray("centerX", new double[]{})[target_index]));
         
-        System.out.println("error " + error);
-        System.out.println("output: " + output);
+        //System.out.println("error " + error);
+        //System.out.println("output: " + output);
 //       System.out.println("x " + (/*180 -*/ x_val));
 //       System.out.println("y " + y_val);
 //       System.out.println("area " + area);
@@ -106,19 +123,25 @@ public class AdjustToGoal extends Command {
 //    	   
 //    	   output = -0.4;
 //       }
-//       //left.set(output);
-//       //right.set(-output);
-//       System.out.println("output: " + output);
+    	//left.set(output);
+    	//right.set(-output);
+       System.out.println("pos: " + curr_angle + " error: " + error + 
+    		   " P output " + (error * 0.09) + " I output " + (netError * 0.1) 
+    		    + " netErr " + netError +" output: " + output + " ");
+       System.out.println("ATG output: " + output);
     }
     protected boolean isFinished() {
 //    	return (Math.abs(distance - currentDistanceLeft) < 8 &&
-    	return (Math.abs(error) < 2 );
+    	System.out.println("checking");
+    	return (Math.abs(error) < 0.1 && loopStarted);
+    	//return false;
     }
     protected void end() {
     	this.isFinished = false;
     	netError = 0;
     	this.left.set(0);
     	this.right.set(0);
+    	
     }
     protected void interrupted() {
     }
