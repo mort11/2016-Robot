@@ -50,7 +50,7 @@ public class JoystickIntake extends Command {
     		intakeArm.getAngle();
 //    		System.out.println("getting curr");
     		error = desiredLocation - intakeArm.getAngle();
-    		output = error * 0.015;    		    		
+    		output = error * 0.010;    		    		
     		thistime = timer.get();
     		neterror += (thistime - lasttime) * error;
     		if(neterror > 30) {
@@ -59,7 +59,7 @@ public class JoystickIntake extends Command {
     			neterror = -30;
     		}
     		System.out.println("I gain: " + (neterror * 0.01));
-    		output += (neterror * 0.01);
+    		output += (neterror * 0.005);
     		if(output > 0.2) {
     			output = 0.2;
     		} else if (output < -1) {

@@ -29,8 +29,9 @@ public class DriveStraight extends Command {
     private Encoder rightDTEncoder = Robot.adaptor.rightDTEncoder;
     private AHRS ahrs = Robot.adaptor.ahrs;
     private Timer timer;
-    private boolean coast = false;
+    private boolean coast = false,loopStarted = false;
     public DriveStraight(double distance) {
+        this.ahrs.zeroYaw();
         requires(left);
         requires(right);
         pd_left = new PIDLoop(distance, .02, 0.01,23); 
@@ -38,7 +39,6 @@ public class DriveStraight extends Command {
         this.distance = distance;
         leftDTEncoder.reset();
         rightDTEncoder.reset();
-        this.ahrs.zeroYaw();
         timer = new Timer();
     }
     
