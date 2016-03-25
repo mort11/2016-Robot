@@ -12,8 +12,9 @@ import org.mort11.constants.Constants;
  * @author Matthew Krzyzanowski
  * @author Jeffrey Pastilha
  */
-public class DTLeft extends DTSide {
-    public DTLeft(Encoder encoder) {
+public class DTLeft extends DTSide {	
+
+	public DTLeft(Encoder encoder) {
         super(
                 Constants.DT_LEFT_TALON_ID_1,
                 Constants.DT_LEFT_TALON_ID_2,
@@ -30,5 +31,7 @@ public class DTLeft extends DTSide {
     public void initDefaultCommand() {
         setDefaultCommand(new DriveLinearLeft());
     }
+    
+    
 }
 

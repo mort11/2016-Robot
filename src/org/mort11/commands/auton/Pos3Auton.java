@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Pos3Auton extends CommandGroup {
     
     public  Pos3Auton() {
-    	 addParallel(new MotorToAngle(90));
-         addSequential(new WaitTime(1.5));
-    	 addSequential(new DriveStraight(60, 30));
+    	 //addParallel(new MotorToAngle(90));
+         //addSequential(new WaitTime(1.5));
+    	 addSequential(new DriveStraight(40, 30));
          addSequential(new TurnDegrees(false, 50));
          addSequential(new DriveStraight(20, 34));
          addSequential(new TurnDegrees(true, 50));

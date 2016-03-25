@@ -143,6 +143,7 @@ public class Robot extends IterativeRobot {
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
         //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
+        //System.out.println("yaw: " + adaptor.ahrs.getYaw());
         adaptor.intakeArm.getAngle();
         //System.out.println();
     }

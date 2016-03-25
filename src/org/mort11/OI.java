@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.mort11.commands.SubsystemStates;
 import org.mort11.commands.auton.AdjustToGoal;
 import org.mort11.commands.auton.CamAuton;
+import org.mort11.commands.auton.TurnDegrees;
+import org.mort11.commands.auton.TurnToGoal;
 import org.mort11.commands.dt.shifting.Shift;
 import org.mort11.commands.ee.*;
 import org.mort11.constants.Constants;
@@ -66,7 +68,7 @@ public class OI {
         armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
         armToZero.whenPressed(new MotorToAngle(5)); // Moves the intake arm to 0 degrees when pressed
         shooterButton.whenPressed(new Shoot());
-        goToGoal.whenPressed(new AdjustToGoal());
+        goToGoal.whenPressed(new TurnToGoal());
 
     }
 

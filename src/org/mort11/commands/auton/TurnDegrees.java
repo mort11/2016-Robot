@@ -1,9 +1,12 @@
 package org.mort11.commands.auton;
 
 import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.mort11.Robot;
+import org.mort11.subsystems.dt.DTLeft;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.util.PIDLoop;
 
@@ -35,7 +38,20 @@ public class TurnDegrees extends Command {
         requires(right);
         pd = new PIDLoop(this.desiredAngle, 0.02, 0.01, 17); // Original vals:  (.02, .005, 2)
     }
-
+    public TurnDegrees() {
+    	if(left.getDistToTurn() < 0) {
+    		this.isReverse = true;
+            this.desiredAngle = -left.getDistToTurn();       
+    	}
+    	else {
+    		this.isReverse = false;
+            this.desiredAngle = left.getDistToTurn();
+    	}
+    	 requires(left);
+         requires(right);
+         System.out.println("Turn Degrees will turn: " + this.desiredAngle);
+    	 pd = new PIDLoop(this.desiredAngle, 0.02, 0.01, 17); // Original vals:  (.02, .005, 2)
+    }
     /**
      * Resets the yaw so current angle is accurate
      */
@@ -48,6 +64,7 @@ public class TurnDegrees extends Command {
         currentAngle = Math.abs(this.ahrs.getYaw()); //might work better than getAngle(), must test
         System.out.println("current angle" + currentAngle);
         speed = pd.getOutput(currentAngle); //passes current angle through pid loop
+        System.out.println("output " + speed);
 //        System.out.println("speed" + speed);
         SmartDashboard.putNumber("Current Angle", currentAngle);
         SmartDashboard.putNumber("Speed", speed);
@@ -61,13 +78,17 @@ public class TurnDegrees extends Command {
             left.set(-speed);
             right.set(speed);
         }
+        //System.out.println("left speed: " + left.getSpeed());
+        //System.out.println("right speed: " + right.getSpeed());
     }
 
     protected boolean isFinished() {
+    	System.out.println("is finished: " + (this.ahrs.getYaw() > desiredAngle * 0.98));
         return this.ahrs.getYaw() > desiredAngle * 0.98;
     }
 
     protected void end() {
+    	System.out.println("ending");
         left.set(0);
         right.set(0);
         left.resetEncoder();

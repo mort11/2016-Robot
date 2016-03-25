@@ -20,7 +20,7 @@ import org.mort11.util.powermanager.MORTCANTalon;
 public abstract class DTSide extends Subsystem {
     private MORTCANTalon motor1, motor2, motor3;
     private Encoder encoder;
-
+    double distToTurn = 0;   
     public DTSide(
             int motor1Port, int motor2Port, int motor3Port,
             int pdpSlot1, int pdpSlot2, int pdpSlot3,
@@ -84,5 +84,13 @@ public abstract class DTSide extends Subsystem {
         this.motor2.set(0);
         this.motor3.set(0);
     }
+    
+    public double getDistToTurn() {
+		return distToTurn;
+	}
+
+	public void setDistToTurn(double distToTurn) {
+		this.distToTurn = distToTurn;
+	}
 }
 
