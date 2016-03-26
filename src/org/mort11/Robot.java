@@ -138,8 +138,8 @@ public class Robot extends IterativeRobot {
 //        System.out.println("left comm: " + adaptor.leftSide.getCurrentCommand());
 //        System.out.println("right output: " + adaptor.rightSide.getSpeed());
 //        System.out.println("right comm: " + adaptor.rightSide.getCurrentCommand());
-        System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
-    	System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
+        //System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
+    	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
         //System.out.println(adaptor.intakeArm.getAngle() + " norm input");
