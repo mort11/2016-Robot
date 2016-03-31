@@ -23,6 +23,7 @@ public class TurnToGoal extends Command {
     Timer timer;    
     double thistime = 0,lasttime = 0;
     double netError;
+    double kP,kI;
     public TurnToGoal() {
         requires(left);
         requires(right);       
@@ -58,10 +59,13 @@ public class TurnToGoal extends Command {
 	        		Robot.table.getNumberArray("area",new double[]{})[target_index]);
 	        thistime = timer.get(); 
 	    	lasttime = thistime;
-	        error = curr_pix - 175;
+	        error = curr_pix - 158;
 	    	netError += (error * (thistime - lasttime));
-	        right.set(-(error * 0.005 + netError * 0.0076));
-	        left.set((error * 0.005 + netError * 0.0076));        
+	    	if(error > 20) {
+	    		//kP = 
+	    	}
+	        right.set(-(error * 0.0055 + netError * 0.004));
+	        left.set((error * 0.0055 + netError * 0.004));        
     	}catch(Exception e) {
     		this.isFinished = true;    		
     	}

@@ -18,7 +18,7 @@ public class Constants {
     public static final int DT_RIGHT_TALON_ID_3 = 3;
     public static final int FLYWHEEL_TALON_ID = 7;
     public static final int INTAKE_ARM_TALON_ID = 6;
-    public static final int ROLLER_TALON_ID = 2;
+    public static final int ROLLER_TALON_ID = 1;
 
     /**
      * Solenoid ports
