@@ -23,7 +23,7 @@ public class TurnToGoal extends Command {
     Timer timer;    
     double thistime = 0,lasttime = 0;
     double netError;
-    double kP,kI;
+    double kP = 0.0055,kI = 0.000;
     public TurnToGoal() {
         requires(left);
         requires(right);       
@@ -61,11 +61,8 @@ public class TurnToGoal extends Command {
 	    	lasttime = thistime;
 	        error = curr_pix - 158;
 	    	netError += (error * (thistime - lasttime));
-	    	if(error > 20) {
-	    		//kP = 
-	    	}
-	        right.set(-(error * 0.0055 + netError * 0.004));
-	        left.set((error * 0.0055 + netError * 0.004));        
+	        right.set(-(error * kP + netError * kI));
+	        left.set((error * kP + netError * kI));        
     	}catch(Exception e) {
     		this.isFinished = true;    		
     	}
