@@ -1,119 +1,78 @@
 package org.mort11.subsystems;
 
-import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.Image;
+import com.ni.vision.NIVision; // "..."
+import com.ni.vision.NIVision.Image; // "..."
 import com.ni.vision.NIVision.Range;
-import com.ni.vision.NIVision.RawData;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ni.vision.NIVision.RawData; // "..."
 
-/**
- * Camera - takes a picture, finds the location of the largest object of a pretested
- * color in terms of X and Y, and also identifies its size
- *
- * @author Carl Hausman
- */
+import edu.wpi.first.wpilibj.CameraServer; // "..."
+//import org.mort11.OI; // "..."
+import edu.wpi.first.wpilibj.command.Subsystem; // "imports all standard code for specified object"
+
+/*********************************************************************
+ * This subsystem is designed to be able to take a picture and also  *
+ * run a color threshold on it.                                      *
+ *********************************************************************/
 public class Camera extends Subsystem {
-
-    int session; // Declares session variable
-    Image frame, thresh, filter; // Declares image variables
-    RawData imageData; // Declares raw data variable
-    Range rangeH, rangeS, rangeV; // Declares three new range variables
-    int num_particles, largest_particle, largest_particle2;
-    int i, j;
-    double particle_size, largest_size, Location_X;
-
-    /**
-     * Takes a picture of the area and identifies the x/y location of the largest particle
-     */
-    public void setPicture() {
-        frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0); // assigns new RGB Image Value
-        thresh = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0); // assigns new U8 Image Value
-        filter = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0); // assigns new U8 Image Value
-
-        /**
-         * Open session at camera name assigned
-         */
-        session = NIVision.IMAQdxOpenCamera("cam0", NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-
-        NIVision.IMAQdxConfigureGrab(session); // configures grab for set session
-
-        /**
-         * Set range values
-         */
-        rangeH = new Range(37, 180);
-        rangeS = new Range(0, 255);
-        rangeV = new Range(220, 255);
-
-        imageData = new RawData(); // creates new raw data object
-
-        i = 0; // assigns integer value
-        largest_particle = 0; // assigns integer value
-        largest_particle2 = 0; // assigns integer value
-        particle_size = 0; // assigns double value
-        largest_size = 0; // assigns double value
-
-        NIVision.IMAQdxStartAcquisition(session); // starts aquisition for set session
-
-        NIVision.IMAQdxGrab(session, frame, 1); // grabs image taken by camera for editing
-
-        CameraServer.getInstance().setImage(frame); // gets instance in order to manually adjust image
-
-        /**
-         * Enact color threshold on image
-         */
-        NIVision.imaqColorThreshold(thresh, frame, 255, NIVision.ColorMode.HSV, rangeH, rangeS, rangeV);
-
-        num_particles = NIVision.imaqCountParticles(thresh, 0); // assigns value equal to particle number
-        //System.out.println("num_particles " + num_particles); // prints num_particles value
-
-        largest_particle = 0;
-        largest_size = 0;
-        Location_X = -1;
-        if (num_particles > 0) {
-            for (int k = 0; k < num_particles; k++) {
-
-                /**
-                 * Measure particle size
-                 */
-                particle_size = NIVision.imaqMeasureParticle(thresh, k, 0, NIVision.MeasurementType.MT_AREA);
-                //System.out.println("particle_area " + particle_size); // prints particle size to the riolog
-
-                /**
-                 * Checks if particle is largest particle
-                 */
-                if (particle_size > largest_size) {
-                    largest_size = particle_size;
-                    largest_particle = k;
-
-                }
-            }
-
-            //System.out.println("largest particle " + largest_size); // prints largest particle size to riolog
-
-            /**
-             * Measure tote location
-             */
-            Location_X = NIVision.imaqMeasureParticle(thresh, largest_particle, 0, NIVision.MeasurementType.MT_CENTER_OF_MASS_X);
-//            System.out.println("location X " + Location_X); // prints final location to riolog
-        }
-
-        i++; // increases value of i by one
-
-        NIVision.IMAQdxStopAcquisition(session); // stops aquisition for set session
-        frame.free();
-        thresh.free();
-    }
-
-    public double getX() {
-        return Location_X;
-    }
-
-    public double getSize() {
-        return particle_size;
-    }
-
+	
+	int session; //declares a session variable to store camera info
+	
+	//declares RGB variable to hold image data
+	Image frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+	
+	//declares U8 variable to hold image data
+	Image thresh = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
+		
+	RawData imageData = new RawData(); //declares a raw data variable
+	
+	/*************************************************
+	 * Takes a picture and stores it for processing. *
+	 *************************************************/
+	public void takePicture() {
+		
+		frame.free(); //clears the filespace for the frame variable
+		
+		/*
+		 * Opens the session at camera name assigned
+		 */
+		session = NIVision.IMAQdxOpenCamera("cam1", 
+				NIVision.IMAQdxCameraControlMode.CameraControlModeController); 
+		
+		NIVision.IMAQdxConfigureGrab(session); // configures grab for set session
+		NIVision.IMAQdxStartAcquisition(session); // starts aquisition for set session
+		NIVision.IMAQdxGrab(session, frame, 1); // grabs image taken by camera for editing
+		
+		NIVision.IMAQdxStopAcquisition(session); // stops aquisition for set session
+	}
+	
+	public Image getPicture() {
+		return frame; //returns the picture that takePicture() method took
+	}
+	
+	/******************************************************************
+	 * Runs a color threshold on the image, eliminating all particles * 
+	 * that do not fit within a specific hue, saturation, and value.  *
+	 ******************************************************************/
+	public void threshold(Image picture) {
+		
+		thresh.free(); //clears the filespace for the thresh variable
+		
+		CameraServer.getInstance().setImage(picture); // gets instance in order to manually adjust image
+		
+		/*
+		 * Enacts a color threshold on the image, fully converting the
+		 * image to binary and only retaining particles falling within
+		 * the set ranges for hue, saturation, and value.
+		 */
+	    NIVision.imaqColorThreshold(thresh, picture, 255, NIVision.ColorMode.HSV, 
+	    		new Range(0,0),new Range(0,0), new Range(0,0));
+	}
+	
+	public Image getThreshold() {
+		return thresh; //returns the edited picture created by threshold() method
+	}
+	
     public void initDefaultCommand() {
-
+       //set the default command for this subsystem here.
     }
 }
