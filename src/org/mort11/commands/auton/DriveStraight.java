@@ -92,7 +92,7 @@ public class DriveStraight extends Command {
     protected boolean isFinished() {
         return (Math.abs(distance - currentDistanceLeft) < 8 &&
                 Math.abs(distance - currentDistanceRight) < 8) ||
-                (pd_left.timeElapsed(2));
+                (pd_left.timeElapsed(1));
     }
 
     protected void end() {

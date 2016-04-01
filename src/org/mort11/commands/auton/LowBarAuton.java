@@ -17,6 +17,7 @@ import org.mort11.commands.ee.SpinUp;
 public class LowBarAuton extends CommandGroup {
     public LowBarAuton() {        
           addSequential(new HoodToggle());
+          addSequential(new HoodToggle());
           addSequential(new DriveStraight(30, 40));          
           addSequential(new DriveStraight(82.5,40));	
           addParallel(new SpinUp());
