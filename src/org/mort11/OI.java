@@ -68,7 +68,7 @@ public class OI {
         armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
         armToZero.whenPressed(new MotorToAngle(5)); // Moves the intake arm to 0 degrees when pressed
         shooterButton.whenPressed(new Shoot());
-        goToGoal.whenPressed(new TurnToGoal());
+        //goToGoal.whenPressed(new TurnToGoal(false));
 
     }
 

@@ -47,10 +47,10 @@ public class Robot extends IterativeRobot {
         oi = new OI();        
        // new Rainbow();
         // Have operator choose autonomous mode
-        cam = CameraServer.getInstance();
-        cam.setQuality(25);
-        cam.setSize(100);
-        cam.startAutomaticCapture("cam0");
+//        cam = CameraServer.getInstance();
+//        cam.setQuality(25);
+//        cam.setSize(100);
+//        cam.startAutomaticCapture("cam0");
         autoModes = new SendableChooser();
         autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
         autoModes.addObject("Drive Straight [20in.]", new DriveStraight(20));

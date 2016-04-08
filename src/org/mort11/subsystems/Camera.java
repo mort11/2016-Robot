@@ -3,78 +3,48 @@ package org.mort11.subsystems;
 import com.ni.vision.NIVision; 
 import com.ni.vision.NIVision.Image; 
 import com.ni.vision.NIVision.Range;
-import com.ni.vision.NIVision.RawData;
-
-import edu.wpi.first.wpilibj.CameraServer; 
-
 import edu.wpi.first.wpilibj.command.Subsystem; 
 
-/*********************************************************************
- * This subsystem is designed to be able to take a picture and also  *
- * run a color threshold on it.                                      *
- *********************************************************************/
+//This system locates the target on the field using a camera
 public class Camera extends Subsystem {
-	
-	int session; //declares a session variable to store camera info
-	
-	//declares RGB variable to hold image data
+	int session;
+	//holds the camera image
 	Image frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-	
-	//declares U8 variable to hold image data
-	Image thresh = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
-		
-	RawData imageData = new RawData(); //declares a raw data variable
-	
-	/*************************************************
-	 * Takes a picture and stores it for processing. *
-	 *************************************************/
-	public void takePicture() {
-		
-		frame.free(); //clears the filespace for the frame variable
-		
-		/*
-		 * Opens the session at camera name assigned
-		 */
+
+	//holds the thresholded image
+	Image thresh  = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
+	public Camera() {
 		session = NIVision.IMAQdxOpenCamera("cam1", 
-				NIVision.IMAQdxCameraControlMode.CameraControlModeController); 
-		
+				NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		NIVision.IMAQdxConfigureGrab(session); // configures grab for set session
+	}
+		
+					
+	
+	//takes a picture
+	public Image getPicture() {
+		System.out.println("taking picture");		
+		frame.free(); //clears the filespace for the frame variable
+		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+								
 		NIVision.IMAQdxStartAcquisition(session); // starts aquisition for set session
 		NIVision.IMAQdxGrab(session, frame, 1); // grabs image taken by camera for editing
 		
 		NIVision.IMAQdxStopAcquisition(session); // stops aquisition for set session
-	}
-	
-	public Image getPicture() {
 		return frame; //returns the picture that takePicture() method took
 	}
 	
-	/******************************************************************
-	 * Runs a color threshold on the image, eliminating all particles * 
-	 * that do not fit within a specific hue, saturation, and value.  *
-	 ******************************************************************/
+	//runs and HSL thresh on the image to find the green
 	public void threshold(Image picture) {
-		
+				
 		thresh.free(); //clears the filespace for the thresh variable
-		
-		CameraServer.getInstance().setImage(picture); // gets instance in order to manually adjust image
-		
-		/*
-		 * Enacts a color threshold on the image, fully converting the
-		 * image to binary and only retaining particles falling within
-		 * the set ranges for hue, saturation, and value.
-		 */
+		thresh =  NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
+		//CameraServer.getInstance().setImage(picture); 
+		//store the thresh results in the thresh variable		
 	    NIVision.imaqColorThreshold(thresh, picture, 255, NIVision.ColorMode.HSV, 
-	    		new Range(0,0),new Range(0,0), new Range(0,0));
+	    		new Range(52,96),new Range(83,255), new Range(157,255));
 	}
 	
-	public Image getThreshold() {
-		return thresh; //returns the edited picture created by threshold() method
-	}
-	
-    public void initDefaultCommand() {
-       //set the default command for this subsystem here.
-    }
     
     public double getBlob() {
     	Image image = thresh;
@@ -104,7 +74,14 @@ public class Camera extends Subsystem {
     
     public void clearBuffs() {
     	frame.free();
-    	imageData.free();
     	thresh.free();
     }
+
+
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
+	}
 }

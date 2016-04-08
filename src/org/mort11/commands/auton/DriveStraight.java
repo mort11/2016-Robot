@@ -62,7 +62,7 @@ public class DriveStraight extends Command {
     }
 
     protected void execute() {
-        currentDistanceLeft = leftDTEncoder.getDistance();
+        currentDistanceLeft = rightDTEncoder.getDistance();
         currentDistanceRight = rightDTEncoder.getDistance();
         System.out.println("left: " + currentDistanceLeft);
         System.out.println("Right " + currentDistanceRight);
@@ -90,9 +90,9 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-        return (Math.abs(distance - currentDistanceLeft) < 8 &&
+        return (true &&
                 Math.abs(distance - currentDistanceRight) < 8) ||
-                (pd_left.timeElapsed(1));
+                (pd_left.timeElapsed(2));
     }
 
     protected void end() {

@@ -35,7 +35,7 @@ public class IntakeArm extends Subsystem {
         //System.out.println("ticks: "  + intakeArm.getEncPosition() + " times called: " + timesCalled);
     	intakeArm.getEncPosition();
     	//System.out.println("angle in intakearm class: " + angle;
-    	angle = ((intakeArm.getEncPosition() - initPos) * 0.092); //:'(
+    	angle = ((intakeArm.getEncPosition() - initPos) * 0.085); //:'(
     	timesCalled++;
         return angle; //:'(
     }
