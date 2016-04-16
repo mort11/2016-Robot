@@ -18,10 +18,10 @@ public class Hood extends Subsystem {
     public static void setHood(SubsystemStates.HoodRequest hoodRequest) {
         switch (hoodRequest) {
             case POP:
-                solenoid.set(DoubleSolenoid.Value.kForward);
+                solenoid.set(DoubleSolenoid.Value.kReverse);
                 break;
             case STOW:
-                solenoid.set(DoubleSolenoid.Value.kReverse);
+                solenoid.set(DoubleSolenoid.Value.kForward);
                 break;
         }
     }

@@ -58,7 +58,7 @@ public class JoystickIntake extends Command {
     		} else if (neterror < -30) {
     			neterror = -30;
     		}
-    		System.out.println("I gain: " + (neterror * 0.01));
+    		//System.out.println("I gain: " + (neterror * 0.01));
     		output += (neterror * 0.005);
     		if(output > 0.2) {
     			output = 0.2;

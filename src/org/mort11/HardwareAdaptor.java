@@ -57,7 +57,7 @@ public class HardwareAdaptor {
 
     public HardwareAdaptor() {
         this.pdp = new PowerDistributionPanel();
-        this.cam = new Camera();
+        //this.cam = new Camera();
         this.compressor = new Compressor(Constants.PCM_ID);
 
         this.rollers = new Rollers();
@@ -70,9 +70,9 @@ public class HardwareAdaptor {
         this.accelerometer = new BuiltInAccelerometer();
         this.ahrs = new AHRS(SPI.Port.kMXP);
 
-        this.leftDTEncoder = new Encoder(Constants.DT_ENCODER_LEFT_A, Constants.DT_ENCODER_LEFT_B, false, CounterBase.EncodingType.k4X);
+        this.leftDTEncoder = new Encoder(Constants.DT_ENCODER_LEFT_A, Constants.DT_ENCODER_LEFT_B, true, CounterBase.EncodingType.k4X);
         this.leftDTEncoder.setDistancePerPulse(Constants.INCHES_PER_PULSE_LEFT);
-        this.rightDTEncoder = new Encoder(Constants.DT_ENCODER_RIGHT_A, Constants.DT_ENCODER_RIGHT_B, false, CounterBase.EncodingType.k4X);
+        this.rightDTEncoder = new Encoder(Constants.DT_ENCODER_RIGHT_A, Constants.DT_ENCODER_RIGHT_B, true, CounterBase.EncodingType.k4X);
         this.rightDTEncoder.setDistancePerPulse(Constants.INCHES_PER_PULSE_RIGHT );
 
         this.leftSide = new DTLeft(leftDTEncoder);

@@ -3,6 +3,7 @@ package org.mort11;
 import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarAuton;
+import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.HoodToggle;
 import org.mort11.commands.ee.SpinUp;
@@ -53,16 +54,16 @@ public class Robot extends IterativeRobot {
 //        cam.startAutomaticCapture("cam0");
         autoModes = new SendableChooser();
         autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
-        autoModes.addObject("Drive Straight [20in.]", new DriveStraight(20));
-        autoModes.addObject("Drive Arc [Unknown units]", new DriveArc(1.33 * Math.PI, 0.5 * Math.PI));
+        autoModes.addObject("Drive Straight over obstacle", new DriveStraight(155,50));
+        autoModes.addObject("Take Shot", new LowBarAuton());
 
-        portcullis = new SendableChooser();
-        // TODO: 2/21/2016 Write auto commands for these
-        portcullis.addDefault("Portcullis", new WaitTime(0));
-        portcullis.addObject("No Portcullis", new WaitTime(0));
-
+//        portcullis = new SendableChooser();
+//        // TODO: 2/21/2016 Write auto commands for these
+//        portcullis.addDefault("Portcullis", new WaitTime(0));
+//        portcullis.addObject("No Portcullis", new WaitTime(0));
+//
         SmartDashboard.putData("Auto Mode", autoModes);
-        SmartDashboard.putData("Portcullis", portcullis);
+//        SmartDashboard.putData("Portcullis", portcullis);
         SmartDashboard.putString("RPM", "too slow!");
         
         table = NetworkTable.getTable("GRIP/myContoursReport");
@@ -90,11 +91,12 @@ public class Robot extends IterativeRobot {
 //    	Logger.init("/home/lvuser/auton_test1");
 //    	autonomousCommand = new DriveStraight(40);
 //        autonomousCommand.start();
-    	Logger.init("/home/lvuser/auton_test1");
+    	Logger.init("/home/lvuser/MAR_CMP");
     	adaptor.leftDTEncoder.reset();
     	adaptor.rightDTEncoder.reset();
     	adaptor.ahrs.zeroYaw();
-    	autonomousCommand = new LowBarAuton();
+    	autonomousCommand = (Command) autoModes.getSelected();
+    	//autonomousCommand = new LowBarAuton();
         autonomousCommand.start();
 //    	new AdjustToGoal().start();
 //    	new DriveForwardToGoal().start();

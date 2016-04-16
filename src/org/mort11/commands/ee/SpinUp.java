@@ -49,21 +49,26 @@ public class SpinUp extends Command {
     	}
         if (PID) { //uses pid loop to SpinUp
         	curr_vel = spinUp.getSpeed() ;
-        	//System.out.println("RPM = " + curr_vel);
-        	double delta_rpm = (velocity - curr_vel) * 0.000001;
+        	System.out.println("RPM = " + curr_vel);
+        	if((curr_vel - velocity) < 1000  && (curr_vel - velocity) > 0) { 
+        		curr_vel = velocity;
+        	}
+        	double delta_rpm = (velocity - curr_vel) * 0.00000025;
         	voltage_command = voltage_command+delta_rpm;
         	if(voltage_command > 1) {
         		voltage_command = 1;
         	} else if (voltage_command < 0) {
         		voltage_command = 0;
         	}
-//        	System.out.println("voltage_command = " + voltage_command);
+        	System.out.println("voltage_command = " + voltage_command);
         	spinUp.set(voltage_command);
-        	per_error = Math.abs((velocity - curr_vel)/velocity);
-        	if(per_error < 0.02) {
+        	per_error = (velocity - curr_vel)/velocity;
+        	if(per_error > -0.02 && per_error < 0.05) {
         		SmartDashboard.putString("RPM", "there!");
+        		SmartDashboard.putBoolean("spun up", true);
         	} else {
         		SmartDashboard.putString("RPM", "not there!");
+        		SmartDashboard.putBoolean("spun up", false);
 //        		System.out.println("percent error shooter: " + per_error);
         	}
             //SmartDashboard.putNu1mber("Velocity", currentVelocity);

@@ -40,6 +40,8 @@ public class OI {
 
     // EE Joystick
     public Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
+    public Button spinUpFast = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON_FAST);
+    public Button spinUpAlt = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON_ALT);
     public Button spinDown = new JoystickButton(endEffector, 9);
     public Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
@@ -61,7 +63,9 @@ public class OI {
         shiftDown.whenPressed(new Shift(SubsystemStates.Gear.LOW));
 
 
-        spinUp.whenPressed(new SpinUp(98000, true));
+        spinUp.whenPressed(new SpinUp(78000, true));
+        spinUpFast.whenPressed(new SpinUp(94000, true));        
+        spinUpAlt.whenPressed(new SpinUp(94000,true));
         spinDown.whenPressed(new SpinUp(0, true));
         hoodToggle.whenPressed(new HoodToggle());
         armInterrupt.whenPressed(new JoystickIntake(true)); // Allows for manual movement of the intake arm when pressed

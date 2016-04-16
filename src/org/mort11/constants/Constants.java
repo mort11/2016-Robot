@@ -56,7 +56,9 @@ public class Constants {
     public static final int INTAKE_BUTTON = 3;
     public static final int OUTTAKE_BUTTON = 5;
     public static final int FULL_SPEED_BUTTON = 11;
-    public static final int SPIN_UP_BUTTON = 11;
+    public static final int SPIN_UP_BUTTON = 4;
+    public static final int SPIN_UP_BUTTON_FAST = 6;
+    public static final int SPIN_UP_BUTTON_ALT = 11;
     public static final int TOGGLE_HOOD = 2;
 
     // TODO: 2/21/2016 Figure out what buttons Ally wants these presets mapped to
@@ -82,12 +84,12 @@ public class Constants {
      * Sensor ports
      */
     // DT Left
-    public static final int DT_ENCODER_LEFT_A = 4;
-    public static final int DT_ENCODER_LEFT_B = 5;
+    public static final int DT_ENCODER_LEFT_A = 0;
+    public static final int DT_ENCODER_LEFT_B = 1;
 
     // DT Right
-    public static final int DT_ENCODER_RIGHT_A = 0;
-    public static final int DT_ENCODER_RIGHT_B = 1;
+    public static final int DT_ENCODER_RIGHT_A = 4;
+    public static final int DT_ENCODER_RIGHT_B = 5;
 
     // Intake Arm
     //public static final int INTAKE_ARM_ENCODER_A = 4;

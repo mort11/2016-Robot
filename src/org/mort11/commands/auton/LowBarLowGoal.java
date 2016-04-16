@@ -17,7 +17,6 @@ public class LowBarLowGoal extends CommandGroup {
         addSequential(new DriveStraight(256));
         addSequential(new TurnDegrees(false, 55));
         addSequential(new DriveStraight(71));
-        addSequential(new TurnDegrees(false, 180));
         addSequential(new DriveStraight(-61));
         addSequential(new IntakeRollers(4, SubsystemStates.RollerRequest.EXHAUST));
     }

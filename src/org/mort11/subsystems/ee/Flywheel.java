@@ -15,8 +15,16 @@ import org.mort11.util.powermanager.MORTCANTalon;
 public class Flywheel extends Subsystem {
     double initEncoderValue;
     private MORTCANTalon flywheel;
+    boolean isSpunUp = false;
+    public boolean isSpunUp() {
+		return isSpunUp;
+	}
 
-    public Flywheel() {
+	public void setSpunUp(boolean isSpunUp) {
+		this.isSpunUp = isSpunUp;
+	}
+
+	public Flywheel() {
         this.flywheel = new MORTCANTalon(Constants.FLYWHEEL_TALON_ID, Constants.PDP_FLYWHEEL, false);
         initEncoderValue = flywheel.getEncPosition();
     }

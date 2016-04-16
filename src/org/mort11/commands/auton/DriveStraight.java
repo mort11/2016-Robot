@@ -92,7 +92,7 @@ public class DriveStraight extends Command {
     protected boolean isFinished() {
         return (true &&
                 Math.abs(distance - currentDistanceRight) < 8) ||
-                (pd_left.timeElapsed(2));
+                (pd_left.timeElapsed(1.2));
     }
 
     protected void end() {
@@ -100,6 +100,7 @@ public class DriveStraight extends Command {
     		left.halt();
             right.halt();
     	}
+       	Logger.writeString("left dist: " + currentDistanceLeft + "right dist: " + currentDistanceRight);
     	Logger.close();
         left.resetEncoder();
         right.resetEncoder();
