@@ -4,7 +4,9 @@ import org.mort11.commands.auton.DriveArc;
 import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarAuton;
 import org.mort11.commands.auton.LowBarLowGoal;
+import org.mort11.commands.auton.ObstacleAuton;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.auton.positional.Pos4Auton;
 import org.mort11.commands.ee.HoodToggle;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.util.Logger;
@@ -54,7 +56,7 @@ public class Robot extends IterativeRobot {
 //        cam.startAutomaticCapture("cam0");
         autoModes = new SendableChooser();
         autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
-        autoModes.addObject("Drive Straight over obstacle", new DriveStraight(155,50));
+        autoModes.addObject("Drive Straight over obstacle", new ObstacleAuton());
         autoModes.addObject("Take Shot", new LowBarAuton());
 
 //        portcullis = new SendableChooser();
@@ -95,7 +97,7 @@ public class Robot extends IterativeRobot {
     	adaptor.leftDTEncoder.reset();
     	adaptor.rightDTEncoder.reset();
     	adaptor.ahrs.zeroYaw();
-    	autonomousCommand = (Command) autoModes.getSelected();
+    	autonomousCommand = (Command) new Pos4Auton();
     	//autonomousCommand = new LowBarAuton();
         autonomousCommand.start();
 //    	new AdjustToGoal().start();
@@ -105,8 +107,8 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousPeriodic() {
-    	System.out.println(adaptor.leftDTEncoder.getDistance() + "left");
-    	System.out.println(adaptor.rightDTEncoder.getDistance() + "right");
+    	System.out.println(adaptor.leftDTEncoder.getDistance() + 
+    			"left " + adaptor.rightDTEncoder.getDistance() + " right ");
         Scheduler.getInstance().run();
     }
 
@@ -140,8 +142,10 @@ public class Robot extends IterativeRobot {
 //        System.out.println("left comm: " + adaptor.leftSide.getCurrentCommand());
 //        System.out.println("right output: " + adaptor.rightSide.getSpeed());
 //        System.out.println("right comm: " + adaptor.rightSide.getCurrentCommand());
-        System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance());
-    	System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
+        /**System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance() + 
+        		" right dist: " + adaptor.rightDTEncoder.getDistance() + 
+        		" intake ang: " + adaptor.intakeArm.getAngle());**/
+    	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
         //System.out.println(adaptor.intakeArm.getAngle() + " norm input");

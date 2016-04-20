@@ -1,5 +1,7 @@
-package org.mort11.commands.auton;
+package org.mort11.commands.auton.positional;
 
+import org.mort11.commands.auton.DriveStraight;
+import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.MotorToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -7,9 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Pos4Auton extends CommandGroup {
+public class Pos5Auton extends CommandGroup {
     
-    public  Pos4Auton() {
+    public  Pos5Auton() {
         addParallel(new MotorToAngle(90));
         addSequential(new WaitTime(3.5));
         addSequential(new DriveStraight(60));

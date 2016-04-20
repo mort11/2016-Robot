@@ -14,12 +14,13 @@ public class Shoot extends CommandGroup {
     
     public  Shoot() {
         addSequential(new HoodToggle(SubsystemStates.HoodRequest.POP));
-        addSequential(new IntakeRollers(0.3,RollerRequest.EXHAUST));
-        addSequential(new WaitForSpinUp(), 2);
+        //addSequential(new IntakeRollers(0.1,RollerRequest.EXHAUST));
+        //addSequential(new WaitForSpinUp(), 2);
         addSequential(new WaitTime(1));
       //  addSequential(new AdjustToGoal());
       //  addSequential(new AdjustToGoal());
         addSequential(new IntakeRollers(1.5, RollerRequest.INTAKE));
+        addSequential(new WaitTime(1));
         addSequential(new HoodToggle(SubsystemStates.HoodRequest.STOW));
     }
 }

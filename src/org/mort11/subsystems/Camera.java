@@ -1,12 +1,16 @@
 package org.mort11.subsystems;
 
-import com.ni.vision.NIVision; 
-import com.ni.vision.NIVision.Image; 
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.Range;
-import edu.wpi.first.wpilibj.command.Subsystem; 
+
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 //This system locates the target on the field using a camera
 public class Camera extends Subsystem {
+	CameraServer cam = CameraServer.getInstance();   
+	CameraServer camThresh = CameraServer.getInstance();
 	int session;
 	//holds the camera image
 	Image frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
@@ -14,9 +18,13 @@ public class Camera extends Subsystem {
 	//holds the thresholded image
 	Image thresh  = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
 	public Camera() {
-		session = NIVision.IMAQdxOpenCamera("cam1", 
+		session = NIVision.IMAQdxOpenCamera("cam0", 
 				NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		NIVision.IMAQdxConfigureGrab(session); // configures grab for set session
+		cam.setQuality(25);
+	    cam.setSize(100);
+	    camThresh.setQuality(25);
+	    camThresh.setSize(100);
 	}
 		
 					
@@ -31,6 +39,7 @@ public class Camera extends Subsystem {
 		NIVision.IMAQdxGrab(session, frame, 1); // grabs image taken by camera for editing
 		
 		NIVision.IMAQdxStopAcquisition(session); // stops aquisition for set session
+		//camThresh.setImage(frame);
 		return frame; //returns the picture that takePicture() method took
 	}
 	
@@ -42,7 +51,8 @@ public class Camera extends Subsystem {
 		//CameraServer.getInstance().setImage(picture); 
 		//store the thresh results in the thresh variable		
 	    NIVision.imaqColorThreshold(thresh, picture, 255, NIVision.ColorMode.HSV, 
-	    		new Range(52,96),new Range(83,255), new Range(157,255));
+	    		new Range(110,255),new Range(0,255), new Range(0,255));
+        cam.setImage(thresh);
 	}
 	
     

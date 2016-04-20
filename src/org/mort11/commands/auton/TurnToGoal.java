@@ -23,7 +23,7 @@ public class TurnToGoal extends Command {
     Timer timer;    
     double thistime = 0,lasttime = 0;
     double netError;
-    double kP = 0.0055,kI = 0.000;
+    double kP = 0.0005,kI = 0.000;
     boolean kangaroo = true;
     public TurnToGoal() {
         requires(left);
@@ -81,7 +81,8 @@ public class TurnToGoal extends Command {
     		System.out.println("curr pix: " + curr_pix);
 	        thistime = timer.get(); 
 	    	lasttime = thistime;
-	        error = curr_pix - 158;
+	        error = curr_pix - 310;
+	        System.out.println("error: " + error + " output " + (error * kP));
 	    	netError += (error * (thistime - lasttime));
 	        //right.set(-(error * kP + netError * kI));
 	        //left.set((error * kP + netError * kI));
