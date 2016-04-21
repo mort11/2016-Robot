@@ -63,7 +63,7 @@ public class OI {
         shiftDown.whenPressed(new Shift(SubsystemStates.Gear.LOW));
 
         //77k
-        spinUp.whenPressed(new SpinUp(85000, true));
+        spinUp.whenPressed(new SpinUp(90000, true));
         //spinUpFast.whenPressed(new SpinUp(91000, true));        
         spinUpAlt.whenPressed(new SpinUp(85000,true));
         spinDown.whenPressed(new SpinUp(0, true));

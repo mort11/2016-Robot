@@ -53,7 +53,7 @@ public class SpinUp extends Command {
         	if((curr_vel - velocity) < 1000  && (curr_vel - velocity) > 0) { 
         		curr_vel = velocity;
         	}
-        	double delta_rpm = (velocity - curr_vel) * 0.00000025;
+        	double delta_rpm = (velocity - curr_vel) * 0.0000001;
         	voltage_command = voltage_command+delta_rpm;
         	if(voltage_command > 1) {
         		voltage_command = 1;
@@ -61,13 +61,13 @@ public class SpinUp extends Command {
         		voltage_command = 0;
         	}
         	System.out.println("voltage_command = " + voltage_command);
-        	spinUp.set(voltage_command);
+        	spinUp.set(/*voltage_command*/0.8);
         	per_error = (velocity - curr_vel)/velocity;
         	if(per_error > -0.02 && per_error < 0.05) {
-        		SmartDashboard.putString("RPM", "there!");
+        		SmartDashboard.putString("RPM", "Fire!");
         		SmartDashboard.putBoolean("spun up", true);
         	} else {
-        		SmartDashboard.putString("RPM", "not there!");
+        		SmartDashboard.putString("RPM", "Stand By");
         		SmartDashboard.putBoolean("spun up", false);
 //        		System.out.println("percent error shooter: " + per_error);
         	}
