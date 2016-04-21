@@ -53,7 +53,7 @@ public class SpinUp extends Command {
         	if((curr_vel - velocity) < 1000  && (curr_vel - velocity) > 0) { 
         		curr_vel = velocity;
         	}
-        	double delta_rpm = (velocity - curr_vel) * 0.0000001;
+        	double delta_rpm = (velocity - curr_vel) * 0.0000002;
         	voltage_command = voltage_command+delta_rpm;
         	if(voltage_command > 1) {
         		voltage_command = 1;
@@ -61,7 +61,7 @@ public class SpinUp extends Command {
         		voltage_command = 0;
         	}
         	System.out.println("voltage_command = " + voltage_command);
-        	spinUp.set(/*voltage_command*/0.8);
+        	spinUp.set(voltage_command);
         	per_error = (velocity - curr_vel)/velocity;
         	if(per_error > -0.02 && per_error < 0.05) {
         		SmartDashboard.putString("RPM", "Fire!");

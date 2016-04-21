@@ -145,7 +145,7 @@ public class Robot extends IterativeRobot {
         System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance() + 
         		" right dist: " + adaptor.rightDTEncoder.getDistance() + 
         		" intake ang: " + adaptor.intakeArm.getAngle() + 
-        		" shooter RPM" + adaptor.flywheel.getSpeed());
+        		" shooter RPM: " + adaptor.flywheel.getSpeed());
     	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
