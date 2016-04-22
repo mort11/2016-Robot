@@ -35,4 +35,8 @@ public class SubsystemStates {
     public enum Light {
         RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE
     }
+    
+    public enum Intake {
+    	UP, DOWN
+    }
 }
