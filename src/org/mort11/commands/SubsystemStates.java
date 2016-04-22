@@ -12,6 +12,11 @@ public class SubsystemStates {
     public enum HoodRequest {
         POP, STOW
     }
+    
+    //Position for the indexers
+    public enum IndexerRequest {
+        DOWN, STOW
+    }
 
     // Motor state for roller
     public enum RollerRequest {
