@@ -7,7 +7,7 @@ import org.mort11.commands.auton.DriveStraight;
 import org.mort11.subsystems.ee.Indexers;
 
 /**
- * HoodToggle - Toggles the hood
+ * IndexersToggle - Toggles the Indexers
  *
  * @author Matt Turi
  * @author Jakob Shortell
@@ -30,7 +30,7 @@ public class IndexerToggle extends Command {
     protected void execute() {
     	System.out.println("toggling");
     	if(state == null) {
-    		Indexers.toggleHood();
+    		Indexers.toggleIndexer();
     	}
     	else {
     		Indexers.setIndexer(state);
