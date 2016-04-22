@@ -28,6 +28,8 @@ public class Constants {
     public static final int DT_HIGH_SHIFTER_PORT = 1;
     public static final int HOOD_SOLENOID_A = 2;
     public static final int HOOD_SOLENOID_B = 3;
+    public static final int INDEXERS_SOLENOID_A = 6;
+    public static final int INDEXERS_SOLENOID_B = 7;
 
     /**
      * LED PWMs

@@ -35,6 +35,7 @@ public class HardwareAdaptor {
     // Pneumatic-based systems
     public DoubleSolenoid shifter;
     public DoubleSolenoid hood;
+    public DoubleSolenoid indexers;
 
     // Navigational instruments
     public Accelerometer accelerometer;
@@ -66,7 +67,8 @@ public class HardwareAdaptor {
 
         this.shifter = new DoubleSolenoid(Constants.PCM_ID, Constants.DT_LOW_SHIFTER_PORT, Constants.DT_HIGH_SHIFTER_PORT);
         this.hood = new DoubleSolenoid(Constants.PCM_ID, Constants.HOOD_SOLENOID_A, Constants.HOOD_SOLENOID_B);
-
+        this.indexers = new DoubleSolenoid(Constants.PCM_ID, Constants.INDEXERS_SOLENOID_A, Constants.INDEXERS_SOLENOID_B);
+        
         this.accelerometer = new BuiltInAccelerometer();
         this.ahrs = new AHRS(SPI.Port.kMXP);
 
