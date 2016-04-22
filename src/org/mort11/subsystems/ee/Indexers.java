@@ -6,7 +6,7 @@ import org.mort11.Robot;
 import org.mort11.commands.SubsystemStates;
 
 /**
- * HoodToggle - Intake hood
+ * IndexerToggle - Intake indexers
  *
  * @author Sahit Chintalapudi
  * @author Matt Turi
@@ -14,7 +14,7 @@ import org.mort11.commands.SubsystemStates;
  * 
  */
 public class Indexers extends Subsystem {
-    private static DoubleSolenoid solenoid = Robot.adaptor.hood;
+    private static DoubleSolenoid solenoid = Robot.adaptor.indexers;
     private static boolean indexerUp = false;
 
     public static void setIndexer(SubsystemStates.IndexerRequest IndexerRequest) {
@@ -36,7 +36,7 @@ public class Indexers extends Subsystem {
         solenoid.set(DoubleSolenoid.Value.kReverse);
     }
 
-    public static void toggleHood() {
+    public static void toggleIndexer() {
     	System.out.println("new state is: " + indexerUp);
         if (indexerUp) {
             solenoid.set(DoubleSolenoid.Value.kForward);
