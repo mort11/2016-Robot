@@ -32,26 +32,22 @@ public class OI {
     public Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK);
     public Joystick endEffector = new Joystick(Constants.EE_JOYSTICK);
 
-    // Right drive joystick
-    public Button fullSpeed = new JoystickButton(rightJoystick, Constants.FULL_SPEED_BUTTON);
-
     public Button shiftDown = new JoystickButton(leftJoystick, Constants.SHIFT_DOWN_BUTTON);
     public Button shiftUp = new JoystickButton(rightJoystick, Constants.SHIFT_UP_BUTTON);
 
     // EE Joystick
     public Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
     //public Button spinUpFast = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON_FAST);
-    public Button spinUpAlt = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON_ALT);
-    public Button spinDown = new JoystickButton(endEffector, 9);
+    public Button spinDown = new JoystickButton(endEffector, Constants.STOP_FLYWHEEL);
     public Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
     public Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
     public Button hoodToggle = new JoystickButton(endEffector, Constants.TOGGLE_HOOD);
-    public Button armInterrupt = new JoystickButton(endEffector, Constants.ARM_INTERRUPT);
     public Button armToNinety = new JoystickButton(endEffector, Constants.ARM_TO_90);
     public Button armToZero = new JoystickButton(endEffector, Constants.ARM_TO_0);
     public Button shooterButton = new JoystickButton(endEffector, 1);
     public Button goToGoal = new JoystickButton(endEffector, 6);
-
+    	
+    
     public OI() {
         intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
         intakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
@@ -65,12 +61,11 @@ public class OI {
         //77k
         spinUp.whenPressed(new SpinUp(90000, true));
         //spinUpFast.whenPressed(new SpinUp(91000, true));        
-        spinUpAlt.whenPressed(new SpinUp(85000,true));
         spinDown.whenPressed(new SpinUp(0, true));
         hoodToggle.whenPressed(new HoodToggle());
-        armInterrupt.whenPressed(new JoystickIntake(true)); // Allows for manual movement of the intake arm when pressed
-        armToNinety.whenPressed(new MotorToAngle(90)); // Moves the intake arm to 90 degrees when pressed
-        armToZero.whenPressed(new MotorToAngle(5)); // Moves the intake arm to 0 degrees when pressed
+        armToNinety.whenPressed(new ActuatePistonIntake(SubsystemStates.Intake.UP)); // Moves the intake arm to 90 degrees when pressed
+        armToZero.whenPressed(new ActuatePistonIntake(SubsystemStates.Intake.DOWN)); // Moves the intake arm to 90 degrees when pressed
+        
         shooterButton.whenPressed(new Shoot());
         goToGoal.whenPressed(new TurnToGoal(false));
 
@@ -91,5 +86,13 @@ public class OI {
     public double getEE_Z() {
         return (endEffector.getThrottle() + 1) / 2;
     }
-}
+    
+    public boolean getUpPOV() {
+    	return endEffector.getPOV() == 0;
+    }
+    
+    public boolean getDownPOV() {
+    	return endEffector.getPOV() == 180;
+    }
 
+}

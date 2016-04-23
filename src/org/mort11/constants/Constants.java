@@ -52,30 +52,24 @@ public class Constants {
     /**
      * Joystick Buttons
      */
-    // Right Drive stick
-    public static final int SHIFT_UP_BUTTON = 7;
-
-    // Left Joystick
-    public static final int SHIFT_DOWN_BUTTON = 7;
+    //shifting on DT Sticks
+    public static final int SHIFT_UP_BUTTON = 7;     // Right Drive stick
+    public static final int SHIFT_DOWN_BUTTON = 7;    // Left Joystick
 
     // EE Stick
     public static final int INTAKE_BUTTON = 3;
-    public static final int OUTTAKE_BUTTON = 5;
-    public static final int FULL_SPEED_BUTTON = 11;
-    public static final int SPIN_UP_BUTTON = 11
-    		;
-    public static final int SPIN_UP_BUTTON_FAST = 6;
-    public static final int SPIN_UP_BUTTON_ALT = 11;
+    public static final int OUTTAKE_BUTTON = 5; 
+    
+    public static final int SPIN_UP_BUTTON = 11;
+    public static final int STOP_FLYWHEEL = 9;
+    public static final int SPIN_UP_BUTTON_FAST = 7;    
     public static final int TOGGLE_HOOD = 2;
 
-    // TODO: 2/21/2016 Figure out what buttons Ally wants these presets mapped to
-    public static final int ARM_INTERRUPT = 8;
-    public static final int ARM_TO_90 = 10;
-    public static final int ARM_TO_0 = 12;
+    public static final int ARM_TO_90 = 12;
+    public static final int ARM_TO_0 = 10;
 
     /**
      * PDP Slots
-     * THESE ARE FOR THE PRACTICE BOT PDP
      */
     public static final int PDP_LEFT_DT_1 = 0;
     public static final int PDP_LEFT_DT_2 = 1;

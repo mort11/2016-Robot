@@ -2,8 +2,10 @@ package org.mort11.subsystems.ee;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 import org.mort11.Robot;
 import org.mort11.commands.SubsystemStates;
+import org.mort11.commands.ee.IndexerToggle;
 
 /**
  * IndexerToggle - Intake indexers
@@ -48,6 +50,7 @@ public class Indexers extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
+    	setDefaultCommand(new IndexerToggle());
     }
 }
 
