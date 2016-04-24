@@ -17,6 +17,7 @@ import org.mort11.subsystems.ee.Indexers;
 public class IndexerToggle extends Command {
 	SubsystemStates.IndexerRequest state = null;
 	boolean isFinished = false;
+	
 	public IndexerToggle() {
 		
 	}
@@ -32,11 +33,15 @@ public class IndexerToggle extends Command {
     protected void execute() {
     	System.out.println("toggling");
     	if(state == null && Robot.oi.getUpPOV()) {
+    		System.out.println("IF");
     		Indexers.setIndexer(SubsystemStates.IndexerRequest.DOWN);
     	} else if(state == null && Robot.oi.getDownPOV()) {
-    		Indexers.setIndexer(SubsystemStates.IndexerRequest.STOW); 
+    		System.out.println("ELSE");
+    		Indexers.setIndexer(SubsystemStates.IndexerRequest.UP
+    				); 
     	}
     	else if(state != null){
+    		System.out.println("ELSE IF");
     		Indexers.setIndexer(state);
     		isFinished = true;
     	}
@@ -45,11 +50,13 @@ public class IndexerToggle extends Command {
 
     @Override
     protected boolean isFinished() {
+    	System.out.println("IS FINISHED");
         return isFinished;
     }
 
     @Override
     protected void end() {
+    	System.out.println("END");
     	isFinished = false;
     }
 

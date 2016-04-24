@@ -15,7 +15,7 @@ public class SubsystemStates {
     
     //Position for the indexers
     public enum IndexerRequest {
-        DOWN, STOW
+        DOWN, UP
     }
 
     // Motor state for roller

@@ -8,6 +8,7 @@ import org.mort11.commands.auton.ObstacleAuton;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.auton.positional.Pos4Auton;
 import org.mort11.commands.ee.HoodToggle;
+import org.mort11.commands.ee.IndexerToggle;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.util.Logger;
 
@@ -120,7 +121,7 @@ public class Robot extends IterativeRobot {
     	adaptor.ahrs.zeroYaw();
     	//System.out.println("normal output: " + adaptor.intakeArm.getAngle());    	
         autonomousCommand.cancel();
-       
+       new IndexerToggle().start();
     }
 
     @Override
@@ -142,10 +143,10 @@ public class Robot extends IterativeRobot {
 //        System.out.println("left comm: " + adaptor.leftSide.getCurrentCommand());
 //        System.out.println("right output: " + adaptor.rightSide.getSpeed());
 //        System.out.println("right comm: " + adaptor.rightSide.getCurrentCommand());
-        System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance() + 
-        		" right dist: " + adaptor.rightDTEncoder.getDistance() + 
-        		" intake ang: " + adaptor.intakeArm.getAngle() + 
-        		" shooter RPM: " + adaptor.flywheel.getSpeed());
+//        System.out.println("left dist: " + adaptor.leftDTEncoder.getDistance() + 
+//        		" right dist: " + adaptor.rightDTEncoder.getDistance() + 
+//        		" intake ang: " + adaptor.intakeArm.getAngle() + 
+//        		" shooter RPM: " + adaptor.flywheel.getSpeed());
     	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");

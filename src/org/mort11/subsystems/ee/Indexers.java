@@ -21,7 +21,7 @@ public class Indexers extends Subsystem {
 
     public static void setIndexer(SubsystemStates.IndexerRequest IndexerRequest) {
         switch (IndexerRequest) {
-            case STOW:
+            case UP:
                 solenoid.set(DoubleSolenoid.Value.kReverse);
                 break;
             case DOWN:
