@@ -29,7 +29,7 @@ public class DriveStraight extends Command {
     private Encoder rightDTEncoder = Robot.adaptor.rightDTEncoder;
     private AHRS ahrs = Robot.adaptor.ahrs;
     private Timer timer;
-    private boolean coast = false,loopStarted = false;
+    private boolean coast = false,loopStarted = false, trapezoid = false;
     public DriveStraight(double distance) {
         this.ahrs.zeroYaw();
         requires(left);
@@ -47,10 +47,17 @@ public class DriveStraight extends Command {
     	this.coast = coast;
     }
     
-    public DriveStraight(double distance, double velocity) {
+    public DriveStraight(double distance, double velocity, boolean trapezoid) {
     	this(distance);
     	pd_left = new PIDLoop(distance, .02, 0.01,velocity); 
         pd_right = new PIDLoop(distance, .02, 0.01,velocity);
+        this.trapezoid = trapezoid;
+    }
+    
+    public DriveStraight(double distance, double velocity) {
+    	this(distance);
+    	pd_left = new PIDLoop(distance, .02, 0.01,velocity); 
+        pd_right = new PIDLoop(distance, .02, 0.01,velocity);      
     }
 
     protected void initialize() {

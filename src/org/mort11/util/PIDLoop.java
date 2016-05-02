@@ -74,6 +74,8 @@ public class PIDLoop {
         return output;
     }
 
+    
+    
     public double getSP() {
         return getLocation(currTime, curr_location);
     }
@@ -89,6 +91,7 @@ public class PIDLoop {
         }
         return vel_max * time;
     }
+    
     
     public boolean timeElapsed(double multiplier) {
     	return timer.get() > Math.abs(multiplier * (desired_target/vel_max));

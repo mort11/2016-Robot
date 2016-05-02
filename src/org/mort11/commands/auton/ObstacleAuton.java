@@ -13,6 +13,6 @@ public class ObstacleAuton extends CommandGroup {
     	addSequential(new DriveStraight(30, 45));
         addParallel(new MotorToAngle(50));
         addSequential(new WaitTime(2));
-        addSequential(new DriveStraight(170, 55));
+        addSequential(new DriveStraight(130, 55));
     }
 }

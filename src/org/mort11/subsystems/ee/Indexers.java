@@ -22,10 +22,10 @@ public class Indexers extends Subsystem {
     public static void setIndexer(SubsystemStates.IndexerRequest IndexerRequest) {
         switch (IndexerRequest) {
             case UP:
-                solenoid.set(DoubleSolenoid.Value.kReverse);
+                solenoid.set(DoubleSolenoid.Value.kForward);
                 break;
             case DOWN:
-                solenoid.set(DoubleSolenoid.Value.kForward);
+                solenoid.set(DoubleSolenoid.Value.kReverse);
                 break;
         }
     }

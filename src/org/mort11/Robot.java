@@ -1,13 +1,10 @@
 package org.mort11;
 
-import org.mort11.commands.auton.DriveArc;
-import org.mort11.commands.auton.DriveStraight;
 import org.mort11.commands.auton.LowBarAuton;
-import org.mort11.commands.auton.LowBarLowGoal;
 import org.mort11.commands.auton.ObstacleAuton;
+import org.mort11.commands.auton.TwoBallDump;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.auton.positional.Pos4Auton;
-import org.mort11.commands.ee.HoodToggle;
 import org.mort11.commands.ee.IndexerToggle;
 import org.mort11.commands.ee.SpinUp;
 import org.mort11.util.Logger;
@@ -58,7 +55,8 @@ public class Robot extends IterativeRobot {
         autoModes = new SendableChooser();
         autoModes.addDefault("Do Nothing for 10s", new WaitTime(10));
         autoModes.addObject("Drive Straight over obstacle", new ObstacleAuton());
-        autoModes.addObject("Take Shot", new LowBarAuton());
+        autoModes.addObject("Take Dump", new TwoBallDump());
+        autoModes.addObject("Pos 4 Shot", new Pos4Auton());
 
 //        portcullis = new SendableChooser();
 //        // TODO: 2/21/2016 Write auto commands for these
@@ -92,24 +90,27 @@ public class Robot extends IterativeRobot {
 //        }
 
 //    	Logger.init("/home/lvuser/auton_test1");
-//    	autonomousCommand = new DriveStraight(40);
-//        autonomousCommand.start();
+//    	autonomousCommand = new DriveStraight(40);    	
     	Logger.init("/home/lvuser/MAR_CMP");
     	adaptor.leftDTEncoder.reset();
     	adaptor.rightDTEncoder.reset();
     	adaptor.ahrs.zeroYaw();
-    	autonomousCommand = (Command) new Pos4Auton();
+    	//autonomousCommand = (Command) new Pos4Auton();
     	//autonomousCommand = new LowBarAuton();
-        autonomousCommand.start();
+        //autonomousCommand.start();
 //    	new AdjustToGoal().start();
 //    	new DriveForwardToGoal().start();
 //    	new CamAuton().start();
+    	autonomousCommand = (Command) autoModes.getSelected();
+        autonomousCommand.start();
     }
 
     @Override
     public void autonomousPeriodic() {
+    	
     	System.out.println(adaptor.leftDTEncoder.getDistance() + 
-    			"left " + adaptor.rightDTEncoder.getDistance() + " right ");
+    			"left " + adaptor.rightDTEncoder.getDistance() + " right " 
+    			+ adaptor.leftSide.getCurrentCommand() + " command");
         Scheduler.getInstance().run();
     }
 
@@ -147,7 +148,13 @@ public class Robot extends IterativeRobot {
 //        		" right dist: " + adaptor.rightDTEncoder.getDistance() + 
 //        		" intake ang: " + adaptor.intakeArm.getAngle() + 
 //        		" shooter RPM: " + adaptor.flywheel.getSpeed());
-    	//System.out.println("right dist: " + adaptor.rightDTEncoder.getDistance());
+        System.out.println("left dist " + adaptor.leftDTEncoder.getDistance() + 
+        		" left RPM: " + adaptor.leftDTEncoder.getRate() +
+        		" right dist: " + adaptor.rightDTEncoder.getDistance() +
+        		" right RPM: " + adaptor.rightDTEncoder.getRate() +
+        		" flywheel RPM: " + adaptor.flywheel.getSpeed() + 
+        		" theta: " + adaptor.ahrs.getYaw() + 
+        		" memes: > 7");
         //System.out.println(adaptor.leftSide.getCurrentCommand() + " left command");
         //System.out.println(adaptor.rightSide.getCurrentCommand() + " right command");
         //System.out.println(adaptor.intakeArm.getAngle() + " norm input");

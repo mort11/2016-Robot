@@ -28,7 +28,6 @@ public class ActuatePistonIntake extends Command {
 
     @Override
     protected void execute() {
-    	System.out.println("toggling");
     	if(state == null) {
     		PistonIntake.toggleIntake();
     	}

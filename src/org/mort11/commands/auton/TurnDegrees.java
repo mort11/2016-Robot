@@ -36,7 +36,7 @@ public class TurnDegrees extends Command {
         this.desiredAngle = angle;
         requires(left);
         requires(right);
-        pd = new PIDLoop(this.desiredAngle, 0.02, 0.01, 17); // Original vals:  (.02, .005, 2)
+        pd = new PIDLoop(this.desiredAngle, 0.02, 0.01,25); // Original vals:  (.02, .005, 2)
     }
     public TurnDegrees() {
     	if(left.getDistToTurn() < 0) {
@@ -50,7 +50,7 @@ public class TurnDegrees extends Command {
     	 requires(left);
          requires(right);
          System.out.println("Turn Degrees will turn: " + this.desiredAngle);
-    	 pd = new PIDLoop(this.desiredAngle, 0.02, 0.01, 17); // Original vals:  (.02, .005, 2)
+    	 pd = new PIDLoop(this.desiredAngle, 0.02, 0.01, 25); // Original vals:  (.02, .005, 2)
     }
     /**
      * Resets the yaw so current angle is accurate

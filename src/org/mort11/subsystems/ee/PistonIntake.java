@@ -17,10 +17,10 @@ public class PistonIntake extends Subsystem {
     public static void setPistonIntake(SubsystemStates.Intake pistonRequest) {
         switch (pistonRequest) {
             case UP:
-                solenoid.set(DoubleSolenoid.Value.kReverse);
+                solenoid.set(DoubleSolenoid.Value.kForward);
                 break;
             case DOWN:
-                solenoid.set(DoubleSolenoid.Value.kForward);
+                solenoid.set(DoubleSolenoid.Value.kReverse);
                 break;
         }
     }

@@ -26,14 +26,14 @@ public class Constants {
     public static final int PCM_ID = 20; // PCM CAN ID
     public static final int DT_LOW_SHIFTER_PORT = 0;
     public static final int DT_HIGH_SHIFTER_PORT = 1;
-    public static final int HOOD_SOLENOID_A = 2;
-    public static final int HOOD_SOLENOID_B = 3;
+    public static final int HOOD_SOLENOID_A = 6; //2
+    public static final int HOOD_SOLENOID_B = 7; //3
 
-    public static final int INTAKE_SOLENOID_A = 4;
-    public static final int INTAKE_SOLENOID_B = 5;
+    public static final int INTAKE_SOLENOID_A = 2; //4
+    public static final int INTAKE_SOLENOID_B = 3; //5
     
-    public static final int INDEXERS_SOLENOID_A = 6;
-    public static final int INDEXERS_SOLENOID_B = 7;
+    public static final int INDEXERS_SOLENOID_A = 4;
+    public static final int INDEXERS_SOLENOID_B = 5;
 
     /**
      * LED PWMs
@@ -71,6 +71,7 @@ public class Constants {
     /**
      * PDP Slots
      */
+    
     public static final int PDP_LEFT_DT_1 = 0;
     public static final int PDP_LEFT_DT_2 = 1;
     public static final int PDP_LEFT_DT_3 = 2;
@@ -115,7 +116,7 @@ public class Constants {
     public static final int EE_CPR = 256;
     public static final double EE_HEIGHT_PER_TURN = 5.0379; // inches
     public static final double INCHES_PER_PULSE = EE_HEIGHT_PER_TURN / EE_CPR;
-    public static final double ROLLER_SPEED = 1; // Placeholder
+    public static final double ROLLER_SPEED = 0.7; // Placeholder
     public static final int INTAKE_DEGREE_PER_TICK = 360 / 512;
     //public static final double INCHES_PER_PULSE_LEFT = 72.0/7473.0; // Tick count from kop robot on left side, ports 2,3
     //public static final double INCHES_PER_PULSE_RIGHT = 72.0/3871.0; // Tick count from kop robot on right side, ports 0,1

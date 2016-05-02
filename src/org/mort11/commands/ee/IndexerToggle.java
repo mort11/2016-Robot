@@ -31,17 +31,14 @@ public class IndexerToggle extends Command {
 
     @Override
     protected void execute() {
-    	System.out.println("toggling");
-    	if(state == null && Robot.oi.getUpPOV()) {
-    		System.out.println("IF");
+    	//System.out.println("toggling");
+    	if(state == null && Robot.oi.getUpPOV()) {    	
     		Indexers.setIndexer(SubsystemStates.IndexerRequest.DOWN);
     	} else if(state == null && Robot.oi.getDownPOV()) {
-    		System.out.println("ELSE");
     		Indexers.setIndexer(SubsystemStates.IndexerRequest.UP
     				); 
     	}
     	else if(state != null){
-    		System.out.println("ELSE IF");
     		Indexers.setIndexer(state);
     		isFinished = true;
     	}
@@ -50,13 +47,12 @@ public class IndexerToggle extends Command {
 
     @Override
     protected boolean isFinished() {
-    	System.out.println("IS FINISHED");
+    	//System.out.println("IS FINISHED");
         return isFinished;
     }
 
     @Override
     protected void end() {
-    	System.out.println("END");
     	isFinished = false;
     }
 
