@@ -1,118 +1,80 @@
 package org.mort11.commands.auton;
 
-import org.mort11.Robot;
-import org.mort11.subsystems.dt.DTSide;
-import org.mort11.util.Logger;
-import org.mort11.util.PIDLoop;
-
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.mort11.Robot;
+import org.mort11.subsystems.dt.DTSide;
+import org.mort11.util.PIDLoop;
 
 /**
- * DriveStraight - Drive in a (mostly) straight line
+ * Drive in a (mostly) straight line
  *
  * @author Matthew Krzyzanowski
  * @author Sahit Chintalapudi
  * @author Jeffrey Pastilha
  */
 public class DriveStraight extends Command {
-    double currentDistanceLeft, currentDistanceRight;
-    double distance;
-    private DTSide left = Robot.adaptor.leftSide;
-    private DTSide right = Robot.adaptor.rightSide;
-    private PIDLoop pd_left, pd_right;
-    private Encoder leftDTEncoder = Robot.adaptor.leftDTEncoder;
-    private Encoder rightDTEncoder = Robot.adaptor.rightDTEncoder;
+    private DTSide left = Robot.adaptor.leftSide, right = Robot.adaptor.rightSide;
+    private PIDLoop leftDTController, rightDTController;
+    private Encoder leftDTEncoder = Robot.adaptor.leftDTEncoder, rightDTEncoder = Robot.adaptor.rightDTEncoder;
     private AHRS ahrs = Robot.adaptor.ahrs;
     private Timer timer;
-    private boolean coast = false,loopStarted = false, trapezoid = false;
+    private double distance, currentDistanceRight;
+
     public DriveStraight(double distance) {
         this.ahrs.zeroYaw();
         requires(left);
         requires(right);
-        pd_left = new PIDLoop(distance, .02, 0.01,23); 
-        pd_right = new PIDLoop(distance, .02, 0.01,23);        
+        leftDTController = new PIDLoop(distance, .02, 0.01, 23);
+        rightDTController = new PIDLoop(distance, .02, 0.01, 23);
         this.distance = distance;
         leftDTEncoder.reset();
         rightDTEncoder.reset();
         timer = new Timer();
     }
-    
-    public DriveStraight(double distance, boolean coast) {
-    	this(distance);
-    	this.coast = coast;
-    }
-    
-    public DriveStraight(double distance, double velocity, boolean trapezoid) {
-    	this(distance);
-    	pd_left = new PIDLoop(distance, .02, 0.01,velocity); 
-        pd_right = new PIDLoop(distance, .02, 0.01,velocity);
-        this.trapezoid = trapezoid;
-    }
-    
+
     public DriveStraight(double distance, double velocity) {
-    	this(distance);
-    	pd_left = new PIDLoop(distance, .02, 0.01,velocity); 
-        pd_right = new PIDLoop(distance, .02, 0.01,velocity);      
+        this(distance);
+        leftDTController = new PIDLoop(distance, .02, 0.01, velocity);
+        rightDTController = new PIDLoop(distance, .02, 0.01, velocity);
     }
 
+    @Override
     protected void initialize() {
-//    	System.out.println("init yaw: " + ahrs.getYaw());
-//    	System.out.println("init d_left: " + leftDTEncoder.getDistance());
-//    	System.out.println("init d_right: " + rightDTEncoder.getDistance());
-    	//Logger.writeString("time,left dist,speed left,right dist,right speed");
-    	timer.start();
+        timer.start();
     }
 
+    @Override
     protected void execute() {
-        currentDistanceLeft = rightDTEncoder.getDistance();
         currentDistanceRight = rightDTEncoder.getDistance();
-        System.out.println("left: " + currentDistanceLeft);
-        System.out.println("Right " + currentDistanceRight);
-        double speedLeft = pd_left.getOutput(currentDistanceLeft);
-        double speedRight = pd_right.getOutput(currentDistanceRight);     
-        Logger.writeString(timer.get()+","+currentDistanceLeft+","+speedLeft+","+currentDistanceRight+","+speedRight);
-        System.out.println("speed left: " + speedLeft);
-        System.out.println("speed right: " + speedRight);
-        
+        double speedLeft = leftDTController.getOutput(leftDTEncoder.getDistance());
+        double speedRight = rightDTController.getOutput(currentDistanceRight);
+
         double angleError = this.ahrs.getYaw() % 360;
         if (angleError > 180) {
             angleError = Math.abs(360 - angleError);
         }
-        System.out.println("angle error: " + angleError);
 
         left.set(speedLeft - 0.03 * angleError);
         right.set(speedRight + 0.03 * angleError);
-
-
-        SmartDashboard.putNumber("Left Distancse", currentDistanceLeft);
-        SmartDashboard.putNumber("Right Distance", currentDistanceRight);
-        SmartDashboard.putNumber("Left Speed", speedLeft);
-        SmartDashboard.putNumber("Right Speed", speedRight);
-        SmartDashboard.putNumber("Angle Disp", angleError);
     }
 
+    @Override
     protected boolean isFinished() {
-        return (true &&
-                Math.abs(distance - currentDistanceRight) < 8) ||
-                (pd_left.timeElapsed(1.2));
+        return (Math.abs(distance - currentDistanceRight) < 8 || leftDTController.timeElapsed(1.2) || rightDTController.timeElapsed(1.2));
     }
 
+    @Override
     protected void end() {
-    	if(!coast) {
-    		left.halt();
-            right.halt();
-    	}
-       	Logger.writeString("left dist: " + currentDistanceLeft + "right dist: " + currentDistanceRight);
-    	Logger.close();
+        left.halt();
+        right.halt();
         left.resetEncoder();
         right.resetEncoder();
     }
 
+    @Override
     protected void interrupted() {
     }
 }

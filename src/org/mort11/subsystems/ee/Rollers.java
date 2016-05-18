@@ -1,19 +1,19 @@
 package org.mort11.subsystems.ee;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.constants.Constants;
-import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
- * Rollers - Controls the intakeArm roller
+ * Controls the intakeArm roller
  *
  * @author Sahit Chintalapudi
  */
 public class Rollers extends Subsystem {
-    private MORTCANTalon rollers;
+    private CANTalon rollers;
 
     public Rollers() {
-        this.rollers = new MORTCANTalon(Constants.ROLLER_TALON_ID, Constants.PDP_ROLLERS, false);
+        this.rollers = new CANTalon(Constants.ROLLER_TALON_ID);
     }
 
     @Override
@@ -27,15 +27,5 @@ public class Rollers extends Subsystem {
      */
     public void set(double speed) {
         rollers.set(speed);
-//        System.out.println("getting roller speed: " + rollers.get());
-    }
-
-    /**
-     * Get distance rollers have gone
-     *
-     * @return Distance
-     */
-    public double getDistance() {
-        return rollers.getEncPosition();
     }
 }

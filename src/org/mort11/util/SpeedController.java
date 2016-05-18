@@ -1,7 +1,5 @@
 package org.mort11.util;
 
-import org.mort11.constants.Constants;
-
 /**
  * SpeedController - Functions to control speed manage
  *
@@ -9,8 +7,6 @@ import org.mort11.constants.Constants;
  * @author Matthew Krzyzanowski
  */
 public class SpeedController {
-    public static int fsUsageCount = 0;
-
     /**
      * Applies a deadband to the input to prevent jitter
      *
@@ -23,20 +19,5 @@ public class SpeedController {
         } else {
             return input / Math.abs(input) * (Math.abs(input) - 0.05) / (1 - 0.05);
         }
-    }
-
-    /**
-     * Limits top speed of robot to avoid brownouts
-     *
-     * @param input Current speed received from Joystick or other control module
-     * @return Speed limited value
-     */
-    public static double speedLimit(double input) {
-        if (input >= Constants.SPEED_LIMIT) {
-            input = Constants.SPEED_LIMIT;
-        } else if (input <= -Constants.SPEED_LIMIT) {
-            input = -Constants.SPEED_LIMIT;
-        }
-        return threshold(input);
     }
 }

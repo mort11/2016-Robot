@@ -5,9 +5,9 @@ import org.mort11.Robot;
 import org.mort11.subsystems.ee.Flywheel;
 
 /**
- * JoystickShooter - Run flywheel at joystick value
- * 
- * @author chsahit
+ * Set the flywheel speed based off of the operator's throttle
+ *
+ * @author Sahit Chintalapudi
  */
 public class JoystickShooter extends Command {
     private Flywheel flywheel = Robot.adaptor.flywheel;

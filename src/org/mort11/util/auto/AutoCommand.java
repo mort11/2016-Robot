@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * AutoCommand - Todo file description
+ * Runs multiple commands one after another as a single command group
  *
  * @author Matt Turi
  */

@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * Logger - Utility for writing log files to RoboRIO for later use
+ * Utility for writing log files to RoboRIO for later use
  *
  * @author Sahit Chintalapudi
  */
@@ -22,7 +22,6 @@ public class Logger {
             e.printStackTrace();
         }
     }
-
 
     public static void writeString(String msg) {
         writer.write(msg + "\n");

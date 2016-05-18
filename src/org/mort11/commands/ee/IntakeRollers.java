@@ -8,30 +8,42 @@ import org.mort11.constants.Constants;
 import org.mort11.subsystems.ee.Rollers;
 
 /**
- * IntakeRollers - Spins the intake rollers at a
+ * Spins the intake rollers in a specified direction
  *
+ * @author Matt Turi
  * @author Seven Kurt
  * @author Jakob Shortell
  * @author Ryan O'Toole
  * @author Ryan Thant
- * @author chsahit
+ * @author Sahit Chintalapudi
  */
 public class IntakeRollers extends Command {
-    Rollers roller = Robot.adaptor.rollers;
-    SubsystemStates.RollerRequest rollerRequest;
-    double time = -1;
-    Timer timer = new Timer();
+    private Rollers roller = Robot.adaptor.rollers;
+    private SubsystemStates.RollerState rollerState;
+    private double time = -1;
+    private Timer timer = new Timer();
 
-    public IntakeRollers(SubsystemStates.RollerRequest rollerRequest) {
-        this.rollerRequest = rollerRequest;
+    /**
+     * Set the roller up to infinitely run in given direction
+     *
+     * @param rollerDirection Roller direction
+     */
+    public IntakeRollers(SubsystemStates.RollerState rollerDirection) {
         requires(roller);
         setInterruptible(true);
+        this.rollerState = rollerDirection;
     }
 
-    public IntakeRollers(double time, SubsystemStates.RollerRequest direction) {
+    /**
+     * Sets the roller to spin for specified duration in given direction
+     *
+     * @param duration  Duration to spin for
+     * @param direction Direction to spin
+     */
+    public IntakeRollers(double duration, SubsystemStates.RollerState direction) {
         this(direction);
-        this.time = time;
-        timer = new Timer();
+        this.time = duration;
+        this.timer = new Timer();
     }
 
     @Override
@@ -41,13 +53,11 @@ public class IntakeRollers extends Command {
 
     @Override
     protected void execute() {
-        switch (rollerRequest) {
+        switch (rollerState) {
             case INTAKE:
-//            	System.out.println("intaking");
                 roller.set(Constants.ROLLER_SPEED);
                 break;
             case EXHAUST:
-//            	System.out.println("exhausting");
                 roller.set(-Constants.ROLLER_SPEED);
                 break;
             case STOP:
@@ -57,17 +67,17 @@ public class IntakeRollers extends Command {
 
     @Override
     protected boolean isFinished() {
-//    	System.out.println();
         return timer.get() > time;
     }
 
+    @Override
     protected void end() {
         if (time != -1) {
             roller.set(0);
         }
     }
 
+    @Override
     protected void interrupted() {
     }
-
 }

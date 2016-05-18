@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 
 /**
- * GhettoDriveStraight - Drives ghetto-ly straight
+ * Drives semi-straight without assistance from NavX for correction
  *
  * @author Sahit Chintalapudi
  */
 public class GhettoDriveStraight extends Command {
-    double time;
-    Timer timer;
+    private double time;
+    private Timer timer;
 
     public GhettoDriveStraight(double time) {
         requires(Robot.adaptor.leftSide);
@@ -20,23 +20,27 @@ public class GhettoDriveStraight extends Command {
         timer = new Timer();
     }
 
+    @Override
     protected void initialize() {
         timer.start();
-
     }
 
+    @Override
     protected void execute() {
         Robot.adaptor.leftSide.set(0.5);
         Robot.adaptor.rightSide.set(0.5);
     }
 
+    @Override
     protected boolean isFinished() {
         return timer.get() > time;
     }
 
+    @Override
     protected void end() {
     }
 
+    @Override
     protected void interrupted() {
     }
 }

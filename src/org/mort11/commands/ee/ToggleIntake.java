@@ -2,25 +2,23 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.commands.SubsystemStates;
-import org.mort11.subsystems.ee.Hood;
+import org.mort11.subsystems.ee.PistonIntake;
 
 /**
- * Toggles the hood
+ * Sets the intake to a specified state, or toggles if no state is set
  *
  * @author Matt Turi
+ * @author Sahit Chintalapudi
  */
-public class HoodToggle extends Command {
-    private SubsystemStates.HoodState state = null;
-
-    public HoodToggle() {
-    }
+public class ToggleIntake extends Command {
+    private SubsystemStates.Intake state = null;
 
     /**
-     * Sets the hood to a specified state
+     * Set intake state request
      *
-     * @param state Hood state
+     * @param state Intake state
      */
-    HoodToggle(SubsystemStates.HoodState state) {
+    public ToggleIntake(SubsystemStates.Intake state) {
         this.state = state;
     }
 
@@ -31,12 +29,11 @@ public class HoodToggle extends Command {
     @Override
     protected void execute() {
         if (state == null) {
-            Hood.toggleHood();
+            PistonIntake.toggleIntake();
         } else {
-            Hood.setHood(state);
+            PistonIntake.setPistonIntake(state);
         }
     }
-
 
     @Override
     protected boolean isFinished() {
@@ -45,7 +42,6 @@ public class HoodToggle extends Command {
 
     @Override
     protected void end() {
-
     }
 
     @Override

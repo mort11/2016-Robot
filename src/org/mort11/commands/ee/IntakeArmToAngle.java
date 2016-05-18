@@ -3,31 +3,26 @@ package org.mort11.commands.ee;
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
 import org.mort11.subsystems.ee.IntakeArm;
-import org.mort11.util.PIDLoop;
 
 /**
- * MotorToAngle - Move motor to angle
+ * DEPRECATED: NO LONGER USING THIS MODEL INTAKE
+ * <p>
+ * Hold the intake arm at an angle
  *
+ * @author Matt Turi
  * @author Ryan Thant
  * @author Seven Kurt
  * @author Ryan O'Toole
- * @author chsahit
+ * @author Sahit Chintalapudi
  */
-public class MotorToAngle extends Command {
-
-    double speed = 0.5;
-    double target = 90, angle, error;
-    PIDLoop intake_pid;
+@Deprecated
+public class IntakeArmToAngle extends Command {
+    private double target = 90;
     private IntakeArm intake = Robot.adaptor.intakeArm;
 
-    public MotorToAngle(double target) {
+    public IntakeArmToAngle(double target) {
         requires(intake);
         this.target = target;
-        intake_pid = new PIDLoop(target, 0.02, 0.00, 20.5);
-    }
-
-    public MotorToAngle() {
-        requires(intake);
     }
 
     @Override
@@ -37,17 +32,13 @@ public class MotorToAngle extends Command {
 
     @Override
     protected void execute() {
-//        System.out.println("intake angle: " + intake.getAngle());
-        angle = intake.getAngle();
-        
-        double output = intake_pid.getOutput(angle);
-        output = (target - angle) * 0.01;
-        //System.out.println("output: " + output);
+        double angle = intake.getAngle();
+
+        double output = (target - angle) * 0.01;
+
         if (output > 0.3) {
             output = 0.3;
         }
-        //System.out.println("error " + (target - angle));
-        //System.out.println("setting: " + output);
 
         intake.set(output);
     }

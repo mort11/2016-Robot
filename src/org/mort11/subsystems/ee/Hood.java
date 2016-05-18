@@ -6,7 +6,7 @@ import org.mort11.Robot;
 import org.mort11.commands.SubsystemStates;
 
 /**
- * HoodToggle - Intake hood
+ * Intake hood
  *
  * @author Sahit Chintalapudi
  * @author Matt Turi
@@ -15,8 +15,8 @@ public class Hood extends Subsystem {
     private static DoubleSolenoid solenoid = Robot.adaptor.hood;
     private static boolean hoodUp = false;
 
-    public static void setHood(SubsystemStates.HoodRequest hoodRequest) {
-        switch (hoodRequest) {
+    public static void setHood(SubsystemStates.HoodState hoodState) {
+        switch (hoodState) {
             case POP:
                 solenoid.set(DoubleSolenoid.Value.kReverse);
                 break;
@@ -26,16 +26,7 @@ public class Hood extends Subsystem {
         }
     }
 
-    public static void hoodUp() {
-        solenoid.set(DoubleSolenoid.Value.kForward);
-    }
-
-    public static void hoodDown() {
-        solenoid.set(DoubleSolenoid.Value.kReverse);
-    }
-
     public static void toggleHood() {
-    	System.out.println("new state is: " + hoodUp);
         if (hoodUp) {
             solenoid.set(DoubleSolenoid.Value.kForward);
         } else {

@@ -1,8 +1,7 @@
-
 package org.mort11.constants;
 
 /**
- * Constants - All the robot constants
+ * All the robot constants
  *
  * @author Matt Turi
  */
@@ -26,21 +25,14 @@ public class Constants {
     public static final int PCM_ID = 20; // PCM CAN ID
     public static final int DT_LOW_SHIFTER_PORT = 0;
     public static final int DT_HIGH_SHIFTER_PORT = 1;
-    public static final int HOOD_SOLENOID_A = 6; //2
-    public static final int HOOD_SOLENOID_B = 7; //3
+    public static final int HOOD_SOLENOID_A = 6;
+    public static final int HOOD_SOLENOID_B = 7;
 
-    public static final int INTAKE_SOLENOID_A = 2; //4
-    public static final int INTAKE_SOLENOID_B = 3; //5
+    public static final int INTAKE_SOLENOID_A = 2;
+    public static final int INTAKE_SOLENOID_B = 3;
     
     public static final int INDEXERS_SOLENOID_A = 4;
     public static final int INDEXERS_SOLENOID_B = 5;
-
-    /**
-     * LED PWMs
-     */
-    public static final int RED_LIGHT = 2;
-    public static final int GREEN_LIGHT = 1;
-    public static final int BLUE_LIGHT = 0;
 
     /**
      * DS Joystick ports
@@ -62,25 +54,11 @@ public class Constants {
     
     public static final int SPIN_UP_BUTTON = 11;
     public static final int STOP_FLYWHEEL = 9;
-    public static final int SPIN_UP_BUTTON_FAST = 7;    
     public static final int TOGGLE_HOOD = 2;
 
     public static final int ARM_TO_90 = 12;
     public static final int ARM_TO_0 = 10;
 
-    /**
-     * PDP Slots
-     */
-    
-    public static final int PDP_LEFT_DT_1 = 0;
-    public static final int PDP_LEFT_DT_2 = 1;
-    public static final int PDP_LEFT_DT_3 = 2;
-    public static final int PDP_RIGHT_DT_1 = 15;
-    public static final int PDP_RIGHT_DT_2 = 14;
-    public static final int PDP_RIGHT_DT_3 = 13;
-    public static final int PDP_INTAKE_ARM = 7;
-    public static final int PDP_FLYWHEEL = 3;
-    public static final int PDP_ROLLERS = 8;
 
     /**
      * Sensor ports
@@ -93,38 +71,12 @@ public class Constants {
     public static final int DT_ENCODER_RIGHT_A = 4;
     public static final int DT_ENCODER_RIGHT_B = 5;
 
-    // Intake Arm
-    //public static final int INTAKE_ARM_ENCODER_A = 4;
-    //public static final int INTAKE_ARM_ENCODER_B = 5;
-
-    // Arm limit switch
-    //public static final int ARM_LIM_SWITCH_PORT = 4;
-
-    // Flywheel
-    public static final int FLYWHEEL_ENCODER_A = 6;
-    public static final int FLYWHEEL_ENCODER_B = 7;
-
-    // Rollers
-    public static final int ROLLERS_ENCODER_A = 8;
-    public static final int ROLLERS_ENCODER_B = 9;
-
     /** ============================================================================================================= */
 
     /**
      * MATH AND OTHER CONSTANTS
      */
-    public static final int EE_CPR = 256;
-    public static final double EE_HEIGHT_PER_TURN = 5.0379; // inches
-    public static final double INCHES_PER_PULSE = EE_HEIGHT_PER_TURN / EE_CPR;
     public static final double ROLLER_SPEED = 0.7; // Placeholder
-    public static final int INTAKE_DEGREE_PER_TICK = 360 / 512;
-    //public static final double INCHES_PER_PULSE_LEFT = 72.0/7473.0; // Tick count from kop robot on left side, ports 2,3
-    //public static final double INCHES_PER_PULSE_RIGHT = 72.0/3871.0; // Tick count from kop robot on right side, ports 0,1
     public static final double INCHES_PER_PULSE_LEFT = 72.0 / 4409.0;
     public static final double INCHES_PER_PULSE_RIGHT = 72.0 / 8502.0;
-    public static final double kRobotRadius = 9.75;
-    public static final double SPEED_LIMIT = 0.75;
-    public static final double MOTOR_MAX_VOLTAGE = 9; // TODO: 2/18/16 Get appropriate current limits
-    public static final double MOTOR_MIN_REENABLE_VOLTAGE = 7; // TODO: 2/18/16 Get appropriate current limits
-    public static final int MAX_FULL_SPEED_TIME = 10; // Seconds
 }

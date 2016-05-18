@@ -3,13 +3,12 @@ package org.mort11.commands.dt;
 import org.mort11.Robot;
 
 /**
- * DriveLinearRight - Controls right drivetrain movement
+ * Controls right drivetrain movement
  *
- * @author gridbug
+ * @author Will Marshall
  * @author Matthew Krzyzanowski
  */
 public class DriveLinearRight extends DriveLinear {
-
     public DriveLinearRight() {
         super(Robot.adaptor.rightSide);
     }

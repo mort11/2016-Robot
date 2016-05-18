@@ -3,19 +3,14 @@ package org.mort11;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
 import org.mort11.commands.SubsystemStates;
-import org.mort11.commands.auton.AdjustToGoal;
-import org.mort11.commands.auton.CamAuton;
-import org.mort11.commands.auton.TurnDegrees;
-import org.mort11.commands.auton.TurnToGoal;
 import org.mort11.commands.dt.shifting.Shift;
 import org.mort11.commands.ee.*;
 import org.mort11.constants.Constants;
 import org.mort11.util.SpeedController;
 
 /**
- * OI - Joystick mapping to buttons and other math stuff
+ * Joystick mapping to buttons and other math stuff
  *
  * @author Sahit Chintalapudi
  * @author Matthew Krzyzanowski
@@ -26,49 +21,37 @@ import org.mort11.util.SpeedController;
  * @author Ryan O'Toole
  */
 public class OI {
-
     // Joysticks
-    public Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK);
-    public Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK);
-    public Joystick endEffector = new Joystick(Constants.EE_JOYSTICK);
+    private Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK);
+    private Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK);
+    private Joystick endEffector = new Joystick(Constants.EE_JOYSTICK);
 
-    public Button shiftDown = new JoystickButton(leftJoystick, Constants.SHIFT_DOWN_BUTTON);
-    public Button shiftUp = new JoystickButton(rightJoystick, Constants.SHIFT_UP_BUTTON);
+    OI() {
+        Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
+        intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerState.INTAKE));
+        intakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerState.STOP));
 
-    // EE Joystick
-    public Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
-    //public Button spinUpFast = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON_FAST);
-    public Button spinDown = new JoystickButton(endEffector, Constants.STOP_FLYWHEEL);
-    public Button intakeRoller = new JoystickButton(endEffector, Constants.INTAKE_BUTTON);
-    public Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
-    public Button hoodToggle = new JoystickButton(endEffector, Constants.TOGGLE_HOOD);
-    public Button armToNinety = new JoystickButton(endEffector, Constants.ARM_TO_90);
-    public Button armToZero = new JoystickButton(endEffector, Constants.ARM_TO_0);
-    public Button shooterButton = new JoystickButton(endEffector, 1);
-    public Button goToGoal = new JoystickButton(endEffector, 6);
-    	
-    
-    public OI() {
-        intakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.INTAKE));
-        intakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
+        Button outtakeRoller = new JoystickButton(endEffector, Constants.OUTTAKE_BUTTON);
+        outtakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerState.EXHAUST));
+        outtakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerState.STOP));
 
-        outtakeRoller.whileHeld(new IntakeRollers(SubsystemStates.RollerRequest.EXHAUST));
-        outtakeRoller.whenReleased(new IntakeRollers(SubsystemStates.RollerRequest.STOP));
-
+        Button shiftUp = new JoystickButton(rightJoystick, Constants.SHIFT_UP_BUTTON);
         shiftUp.whenPressed(new Shift(SubsystemStates.Gear.HIGH));
+        Button shiftDown = new JoystickButton(leftJoystick, Constants.SHIFT_DOWN_BUTTON);
         shiftDown.whenPressed(new Shift(SubsystemStates.Gear.LOW));
 
-        //77k
-        spinUp.whenPressed(new SpinUp(60000, true));
-        //spinUpFast.whenPressed(new SpinUp(91000, true));        
-        spinDown.whenPressed(new SpinUp(0, true));
+        Button spinUp = new JoystickButton(endEffector, Constants.SPIN_UP_BUTTON);
+        spinUp.whenPressed(new SpoolFlywheel(60000, true));
+        Button spinDown = new JoystickButton(endEffector, Constants.STOP_FLYWHEEL);
+        spinDown.whenPressed(new SpoolFlywheel(0, true));
+        Button hoodToggle = new JoystickButton(endEffector, Constants.TOGGLE_HOOD);
         hoodToggle.whenPressed(new HoodToggle());
-        armToNinety.whenPressed(new ActuatePistonIntake(SubsystemStates.Intake.UP)); // Moves the intake arm to 90 degrees when pressed
-        armToZero.whenPressed(new ActuatePistonIntake(SubsystemStates.Intake.DOWN)); // Moves the intake arm to 90 degrees when pressed
-        
-        shooterButton.whenPressed(new Shoot());
-        goToGoal.whenPressed(new TurnToGoal(false));
-
+        Button armToNinety = new JoystickButton(endEffector, Constants.ARM_TO_90);
+        armToNinety.whenPressed(new ToggleIntake(SubsystemStates.Intake.UP));
+        Button armToZero = new JoystickButton(endEffector, Constants.ARM_TO_0);
+        armToZero.whenPressed(new ToggleIntake(SubsystemStates.Intake.DOWN));
+        Button shooterButton = new JoystickButton(endEffector, 1);
+        shooterButton.whenPressed(new AutoShoot());
     }
 
     public double getLeftJoy() {
@@ -86,13 +69,12 @@ public class OI {
     public double getEE_Z() {
         return (endEffector.getThrottle() + 1) / 2;
     }
-    
+
     public boolean getUpPOV() {
-    	return endEffector.getPOV() == 0;
-    }
-    
-    public boolean getDownPOV() {
-    	return endEffector.getPOV() == 180;
+        return endEffector.getPOV() == 0;
     }
 
+    public boolean getDownPOV() {
+        return endEffector.getPOV() == 180;
+    }
 }

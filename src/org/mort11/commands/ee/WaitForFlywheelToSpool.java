@@ -2,32 +2,25 @@ package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.Robot;
-import org.mort11.subsystems.ee.Flywheel;
 
-/** 
- * FullSpin - Spins up the flywheel to fullspeed
- * 
- *@author chsahit
+/**
+ * Waits for Flywheel subsystem to report that it is spinning at the appropriate speed to fire
+ *
+ * @author Matt Turi
+ * @author Sahit Chintalapudi
  */
-public class FullSpin extends Command {
-    private Flywheel flywheel = Robot.adaptor.flywheel;
-
-    public FullSpin() {
-        requires(this.flywheel);
-    }
-
+public class WaitForFlywheelToSpool extends Command {
     @Override
     protected void initialize() {
     }
 
     @Override
     protected void execute() {
-        this.flywheel.set(-1);
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.adaptor.flywheel.getReadyFireState();
     }
 
     @Override

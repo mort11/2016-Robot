@@ -1,11 +1,11 @@
 package org.mort11.subsystems.dt;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.mort11.Robot;
 import org.mort11.commands.SubsystemStates;
-import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
  * DTSide - Base class controlling drivetrain sides
@@ -18,17 +18,19 @@ import org.mort11.util.powermanager.MORTCANTalon;
  * @author Jakob Shortell
  */
 public abstract class DTSide extends Subsystem {
-    private MORTCANTalon motor1, motor2, motor3;
+    private CANTalon motor1, motor2, motor3;
+    private boolean motor1Reverse, motor2Reverse, motor3Reverse;
     private Encoder encoder;
-    double distToTurn = 0;   
-    public DTSide(
-            int motor1Port, int motor2Port, int motor3Port,
-            int pdpSlot1, int pdpSlot2, int pdpSlot3,
-            boolean motor1Reverse, boolean motor2Reverse, boolean motor3Reverse,
-            Encoder encoder) {
-        this.motor1 = new MORTCANTalon(motor1Port, pdpSlot1, motor1Reverse);
-        this.motor2 = new MORTCANTalon(motor2Port, pdpSlot2, motor2Reverse);
-        this.motor3 = new MORTCANTalon(motor3Port, pdpSlot3, motor3Reverse);
+    private double distToTurn = 0;
+
+    public DTSide(int motor1Port, int motor2Port, int motor3Port, boolean motor1Reverse, boolean motor2Reverse,
+                  boolean motor3Reverse, Encoder encoder) {
+        this.motor1 = new CANTalon(motor1Port);
+        this.motor2 = new CANTalon(motor2Port);
+        this.motor3 = new CANTalon(motor3Port);
+        this.motor1Reverse = motor1Reverse;
+        this.motor2Reverse = motor2Reverse;
+        this.motor3Reverse = motor3Reverse;
         this.encoder = encoder;
     }
 
@@ -38,7 +40,6 @@ public abstract class DTSide extends Subsystem {
      * @param gear Gear to shift to
      */
     public static void shift(SubsystemStates.Gear gear) {
-//    	System.out.println("shifting gears");
         switch (gear) {
             case LOW:
                 Robot.adaptor.shifter.set(DoubleSolenoid.Value.kForward);
@@ -57,23 +58,14 @@ public abstract class DTSide extends Subsystem {
     }
 
     /**
-     * Get current speed of motor from TalonSRX
-     *
-     * @return Motor speed [Units?]
-     */
-    public double getSpeed() {
-        return motor1.get();
-    }
-
-    /**
      * Set motor to speed
      *
      * @param speed Speed
      */
     public void set(double speed) {
-        this.motor1.set(speed);
-        this.motor2.set(speed);
-        this.motor3.set(speed);
+        this.motor1.set(speed * (motor1Reverse ? -1 : 1));
+        this.motor2.set(speed * (motor2Reverse ? -1 : 1));
+        this.motor3.set(speed * (motor3Reverse ? -1 : 1));
     }
 
     /**
@@ -84,13 +76,13 @@ public abstract class DTSide extends Subsystem {
         this.motor2.set(0);
         this.motor3.set(0);
     }
-    
-    public double getDistToTurn() {
-		return distToTurn;
-	}
 
-	public void setDistToTurn(double distToTurn) {
-		this.distToTurn = distToTurn;
-	}
+    public double getDistToTurn() {
+        return distToTurn;
+    }
+
+    public void setDistToTurn(double distToTurn) {
+        this.distToTurn = distToTurn;
+    }
 }
 

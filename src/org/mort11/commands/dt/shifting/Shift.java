@@ -5,7 +5,7 @@ import org.mort11.commands.SubsystemStates;
 import org.mort11.subsystems.dt.DTSide;
 
 /**
- * Shift - Shift transmission
+ * Shift transmission
  *
  * @author Matt Turi
  */
@@ -22,7 +22,6 @@ public class Shift extends Command {
 
     @Override
     protected void execute() {
-//    	System.out.println("shifting gears");
         DTSide.shift(gear);
     }
 
@@ -37,6 +36,5 @@ public class Shift extends Command {
 
     @Override
     protected void interrupted() {
-
     }
 }

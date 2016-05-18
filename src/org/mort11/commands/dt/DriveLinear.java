@@ -1,39 +1,45 @@
-	package org.mort11.commands.dt;
+package org.mort11.commands.dt;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.mort11.subsystems.dt.DTSide;
 
 /**
- * DriveLinear - Base command for controlling left and right drivetrain movement
+ * Base command for controlling left and right drivetrain movement
  *
- * @author gridbug
+ * @author Will Marshall
  * @author Matthew Krzyzanowski
+ * @author Matt Turi
  */
-public abstract class DriveLinear extends Command {
-    protected DTSide side;
+abstract class DriveLinear extends Command {
+    private DTSide side;
 
-    public DriveLinear(DTSide drivetrain) {
+    DriveLinear(DTSide drivetrain) {
         requires(drivetrain);
-        this.side = drivetrain;
         setInterruptible(true);
+        this.side = drivetrain;
     }
 
+    @Override
     protected void initialize() {
     }
 
     protected abstract double getSpeed();
 
+    @Override
     protected void execute() {
         side.set(getSpeed());
     }
 
+    @Override
     protected boolean isFinished() {
         return false;
     }
 
+    @Override
     protected void end() {
     }
 
+    @Override
     protected void interrupted() {
     }
 }

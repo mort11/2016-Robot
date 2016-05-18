@@ -1,37 +1,34 @@
 package org.mort11.subsystems.ee;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.mort11.commands.ee.JoystickShooter;
 import org.mort11.constants.Constants;
-import org.mort11.util.powermanager.MORTCANTalon;
 
 /**
- * Flywheel - Controls the flywheel
+ * Controls the flywheel
  *
  * @author Sahit Chintalapudi
  * @author Matthew Krzyzanowski
  * @author Matt Turi
  */
 public class Flywheel extends Subsystem {
-    double initEncoderValue;
-    private MORTCANTalon flywheel;
-    boolean isSpunUp = false;
-    public boolean isSpunUp() {
-		return isSpunUp;
-	}
+    private boolean readyFireState = false;
+    private CANTalon flywheel;
 
-	public void setSpunUp(boolean isSpunUp) {
-		this.isSpunUp = isSpunUp;
-	}
+    public Flywheel() {
+        this.flywheel = new CANTalon(Constants.FLYWHEEL_TALON_ID);
+    }
 
-	public Flywheel() {
-        this.flywheel = new MORTCANTalon(Constants.FLYWHEEL_TALON_ID, Constants.PDP_FLYWHEEL, false);
-        initEncoderValue = flywheel.getEncPosition();
+    public boolean getReadyFireState() {
+        return readyFireState;
+    }
+
+    public void setReadyFireState(boolean isSpunUp) {
+        this.readyFireState = isSpunUp;
     }
 
     @Override
     public void initDefaultCommand() {
-        //setDefaultCommand(new JoystickShooter());
     }
 
     /**
@@ -39,10 +36,8 @@ public class Flywheel extends Subsystem {
      *
      * @param speed Flywheel speed
      */
-    // TODO: 2/10/16 Flywheel speed should be regulated by a PID loop
     public void set(double speed) {
         this.flywheel.set(speed);
-        //System.out.println("outputting: " + flywheel.get() );
     }
 
     /**
