@@ -1,4 +1,4 @@
-package org.mort11.util;
+package src.org.mort11.util;
 
 /**
  * PID Stuff
@@ -9,6 +9,7 @@ package org.mort11.util;
 public class PID {
     private double setpoint, kP, kI, kD, accumError = 0;
     private double prevTime = -1;
+    private double prevError = 0;
 
     /**
      * Create instance of PID controller
@@ -35,15 +36,22 @@ public class PID {
         double error = setpoint - measuredValue;
         double currTime = System.currentTimeMillis();
 
-        // Setup integral and derivative terms if the getOutput() method has executed more than once
+        // Set up integral and derivative terms if the getOutput() method has executed more than once
         if (prevTime > 0) {
             // TODO: 8/4/16
         }
 
+        // Set up integral term
         double deltaTime = currTime - prevTime;
         prevTime = currTime;
-        accumError += error;
+        accumError += error * deltaTime;
 
-        return kP * error;
+        // Set up derivative term
+        double deltaError = error - prevError;
+        double errorDerivative = deltaError / deltaTime; 
+        
+        
+        return (kP * error) + (kI * accumError ) + (kD * errorDerivative);
+        
     }
 }
