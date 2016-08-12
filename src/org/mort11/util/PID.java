@@ -35,23 +35,22 @@ public class PID {
     public double getOutput(double measuredValue) {
         double error = setpoint - measuredValue;
         double currTime = System.currentTimeMillis();
-
+        double errorDerivative = 0;
+        
         // Set up integral and derivative terms if the getOutput() method has executed more than once
         if (prevTime > 0) {
-            // TODO: 8/4/16
+	        // Set up integral term
+	        double deltaTime = currTime - prevTime;
+	        prevTime = currTime;
+	        accumError += error * deltaTime;
+	
+	        // Set up derivative term
+	        double deltaError = error - prevError;
+	        errorDerivative = deltaError / deltaTime; 
         }
-
-        // Set up integral term
-        double deltaTime = currTime - prevTime;
-        prevTime = currTime;
-        accumError += error * deltaTime;
-
-        // Set up derivative term
-        double deltaError = error - prevError;
-        double errorDerivative = deltaError / deltaTime; 
-        
         
         return (kP * error) + (kI * accumError ) + (kD * errorDerivative);
         
-    }
+    } // getOutput()
+    
 }
