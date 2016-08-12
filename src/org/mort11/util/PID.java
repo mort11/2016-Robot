@@ -5,7 +5,7 @@ package org.mort11.util;
  *
  * @author Jakob Shortell
  * @author Matt Turi
- * @author Seven Kurt 
+ * @author Seven Kurt
  * @author Karl Hausman (cheated)
  */
 public class PID {
@@ -38,22 +38,20 @@ public class PID {
         double error = setpoint - measuredValue;
         double currTime = System.currentTimeMillis();
         double errorDerivative = 0;
-        
+
         // Set up integral and derivative terms if the getOutput() method has executed more than once
         if (prevTime >= 0) {
-	        // Set up integral term
-	        double deltaTime = currTime - prevTime;
-	        accumError += error * deltaTime;
-	
-	        // Set up derivative term
-	        double deltaError = error - prevError;
-	        errorDerivative = deltaError / deltaTime; 
+            // Set up integral term
+            double deltaTime = currTime - prevTime;
+            accumError += error * deltaTime;
+
+            // Set up derivative term
+            double deltaError = error - prevError;
+            errorDerivative = deltaError / deltaTime;
         }
-        
+
         prevTime = currTime;
         prevError = error;
-        return (kP * error) + (kI * accumError ) + (kD * errorDerivative);
-        
+        return (kP * error) + (kI * accumError) + (kD * errorDerivative);
     } // getOutput()
-    
 }
