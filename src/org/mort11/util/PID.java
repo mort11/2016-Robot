@@ -1,4 +1,4 @@
-package src.org.mort11.util;
+package org.mort11.util;
 
 /**
  * PID Stuff
