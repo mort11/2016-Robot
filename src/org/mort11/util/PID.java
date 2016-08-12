@@ -5,6 +5,8 @@ package org.mort11.util;
  *
  * @author Jakob Shortell
  * @author Matt Turi
+ * @author Seven Kurt 
+ * @author Karl Hausman (cheated)
  */
 public class PID {
     private double setpoint, kP, kI, kD, accumError = 0;
@@ -38,10 +40,9 @@ public class PID {
         double errorDerivative = 0;
         
         // Set up integral and derivative terms if the getOutput() method has executed more than once
-        if (prevTime > 0) {
+        if (prevTime >= 0) {
 	        // Set up integral term
 	        double deltaTime = currTime - prevTime;
-	        prevTime = currTime;
 	        accumError += error * deltaTime;
 	
 	        // Set up derivative term
@@ -49,6 +50,8 @@ public class PID {
 	        errorDerivative = deltaError / deltaTime; 
         }
         
+        prevTime = currTime;
+        prevError = error;
         return (kP * error) + (kI * accumError ) + (kD * errorDerivative);
         
     } // getOutput()
