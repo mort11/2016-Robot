@@ -6,7 +6,7 @@ package org.mort11.util;
  * @author Jakob Shortell
  * @author Matt Turi
  * @author Seven Kurt
- * @author Karl Hausman (cheated)
+ * @author Carl Hausman (cheated)
  */
 public class PID {
     private double setpoint, kP, kI, kD, accumError = 0;
