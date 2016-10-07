@@ -24,14 +24,16 @@ public class IndexerToggle extends Command {
     protected void execute() {
         if (Robot.oi.getUpPOV()) {
             Indexers.setIndexer(SubsystemStates.IndexersState.DOWN);
+            System.out.println("index down");
         } else if (Robot.oi.getDownPOV()) {
             Indexers.setIndexer(SubsystemStates.IndexersState.UP);
+            System.out.println("index up");
         }
     }
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     @Override
